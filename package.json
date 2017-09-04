@@ -1,6 +1,6 @@
 {
   "name": "@micro-os-plus/riscv-arch",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "An xPack with µOS++ RISC-V architecture support",
   "main": "index.js",
   "scripts": {
@@ -27,6 +27,6 @@
   },
   "config": {},
   "dependencies": {},
-  "xpack": {}, 
+  "xpack": {},
   "homepage": "https://github.com/micro-os-plus/riscv-arch"
 }
