@@ -50,46 +50,46 @@ extern "C"
   // Exception handlers.
 
   void
-  riscv_exc_handle_misaligned_fetch (void);
+  riscv_exception_handle_misaligned_fetch (void);
 
   void
-  riscv_exc_handle_fault_fetch (void);
+  riscv_exception_handle_fault_fetch (void);
 
   void
-  riscv_exc_handle_illegal_instruction (void);
+  riscv_exception_handle_illegal_instruction (void);
 
   void
-  riscv_exc_handle_breakpoint (void);
+  riscv_exception_handle_breakpoint (void);
 
   void
-  riscv_exc_handle_misaligned_load (void);
+  riscv_exception_handle_misaligned_load (void);
 
   void
-  riscv_exc_handle_fault_load (void);
+  riscv_exception_handle_fault_load (void);
 
   void
-  riscv_exc_handle_misaligned_store (void);
+  riscv_exception_handle_misaligned_store (void);
 
   void
-  riscv_exc_handle_fault_store (void);
+  riscv_exception_handle_fault_store (void);
 
   void
-  riscv_exc_handle_user_ecall (void);
+  riscv_exception_handle_user_ecall (void);
 
   void
-  riscv_exc_handle_supervisor_ecall (void);
+  riscv_exception_handle_supervisor_ecall (void);
 
   void
-  riscv_exc_handle_machine_ecall (void);
+  riscv_exception_handle_machine_ecall (void);
 
   void
-  riscv_exc_handle_page_fetch (void);
+  riscv_exception_handle_page_fetch (void);
 
   void
-  riscv_exc_handle_page_load (void);
+  riscv_exception_handle_page_load (void);
 
   void
-  riscv_exc_handle_page_store (void);
+  riscv_exception_handle_page_store (void);
 
   // --------------------------------------------------------------------------
   // Interrupt handlers.
@@ -98,37 +98,37 @@ extern "C"
   riscv_trap_entry (void);
 
   void
-  riscv_irq_local_handle_user_software (void);
+  riscv_interrupt_local_handle_user_software (void);
 
   void
-  riscv_irq_local_handle_supervisor_software (void);
+  riscv_interrupt_local_handle_supervisor_software (void);
 
   void
-  riscv_irq_local_handle_machine_software (void);
+  riscv_interrupt_local_handle_machine_software (void);
 
   void
-  riscv_irq_local_handle_user_timer (void);
+  riscv_interrupt_local_handle_user_timer (void);
 
   void
-  riscv_irq_local_handle_supervisor_timer (void);
+  riscv_interrupt_local_handle_supervisor_timer (void);
 
   void
-  riscv_irq_local_handle_machine_timer (void);
+  riscv_interrupt_local_handle_machine_timer (void);
 
   void
-  riscv_irq_local_handle_user_ext (void);
+  riscv_interrupt_local_handle_user_ext (void);
 
   void
-  riscv_irq_local_handle_supervisor_ext (void);
+  riscv_interrupt_local_handle_supervisor_ext (void);
 
   void
-  riscv_irq_local_handle_machine_ext (void);
+  riscv_interrupt_local_handle_machine_ext (void);
 
   void
-  riscv_irq_local_handle_cop (void);
+  riscv_interrupt_local_handle_cop (void);
 
   void
-  riscv_irq_local_handle_host (void);
+  riscv_interrupt_local_handle_host (void);
 
 // ----------------------------------------------------------------------------
 

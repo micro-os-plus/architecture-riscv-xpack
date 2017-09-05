@@ -37,7 +37,7 @@ extern "C"
 {
 #endif /* defined(__cplusplus) */
 
-  extern riscv_trap_handler_ptr_t riscv_irq_global_handlers[];
+  extern riscv_trap_handler_ptr_t riscv_interrupts_global_handlers[];
 
 // ----------------------------------------------------------------------------
 

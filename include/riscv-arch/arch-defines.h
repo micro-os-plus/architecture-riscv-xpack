@@ -421,9 +421,11 @@
 #error "Unsupported __riscv_xlen"
 #endif /* __riscv_xlen */
 
-#define IRQ_ARRAY_SIZE	IRQ_HOST + 1
+// End of SiFive definitions.
+// ----------------------------------------------------------------------------
 
-#define EXC_ARRAY_SIZE	16
+#define RISCV_INTERRUPTS_LOCAL_ARCH_ARRAY_SIZE (16)
+#define RISCV_EXCEPTIONS_ARRAY_SIZE	(16)
 
 // ----------------------------------------------------------------------------
 
