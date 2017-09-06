@@ -48,6 +48,12 @@ extern "C"
   void
   riscv_core_update_running_frequency (void);
 
+  static void
+  riscv_core_enable_machine_external_interrupts(void);
+
+  static void
+  riscv_core_disable_machine_external_interrupts(void);
+
 // ----------------------------------------------------------------------------
 
 #if defined(__cplusplus)
@@ -77,6 +83,18 @@ namespace riscv
      */
     void
     update_running_frequency (void);
+
+    /**
+     * @brief Enable external interrupts (used by PLIC).
+     */
+    void
+    enable_machine_external_interrupts (void);
+
+    /**
+     * @brief Disable external interrupts (used by PLIC).
+     */
+    void
+    disable_machine_external_interrupts (void);
 
   // --------------------------------------------------------------------------
   } /* namespace core */

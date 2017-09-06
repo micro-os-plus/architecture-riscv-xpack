@@ -41,7 +41,22 @@ extern "C"
 
 // --------------------------------------------------------------------------
 
-// TODO: add functions.
+  static inline void
+  __attribute__((always_inline))
+  riscv_core_enable_machine_external_interrupts (void)
+  {
+    riscv_csr_set_mie (MIP_MEIP);
+  }
+
+  /**
+   * @brief Disable external interrupts (used by PLIC).
+   */
+  static inline void
+  __attribute__((always_inline))
+  riscv_core_disable_machine_external_interrupts (void)
+  {
+    riscv_csr_clear_mie (MIP_MEIP);
+  }
 
 // ----------------------------------------------------------------------------
 
@@ -55,8 +70,25 @@ extern "C"
 
 namespace riscv
 {
-// TODO: add functions.
+  namespace core
+  {
 
+    inline void
+    __attribute__((always_inline))
+    enable_machine_external_interrupts (void)
+    {
+      riscv_core_enable_machine_external_interrupts ();
+    }
+
+    inline void
+    __attribute__((always_inline))
+    disable_machine_external_interrupts (void)
+    {
+      riscv_core_disable_machine_external_interrupts ();
+    }
+
+  // --------------------------------------------------------------------------
+  } /* namespace core */
 // ----------------------------------------------------------------------------
 } /* namespace riscv */
 
