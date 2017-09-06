@@ -57,25 +57,25 @@ extern "C"
   // `mstatus`
 
   /**
-   * Read `mstatus` CSR.
+   * Read the `mstatus` CSR.
    */
   static riscv_arch_register_t
   riscv_csr_read_mstatus (void);
 
   /**
-   * Write `mstatus` CSR.
+   * Write the `mstatus` CSR.
    */
   static void
   riscv_csr_write_mstatus (riscv_arch_register_t value);
 
   /**
-   * Clear bits in `mstatus` CSR.
+   * Clear bits in the `mstatus` CSR.
    */
   static riscv_arch_register_t
   riscv_csr_clear_mstatus (riscv_arch_register_t mask);
 
   /**
-   * Set bits in `mstatus` CSR.
+   * Set bits in the `mstatus` CSR.
    */
   static riscv_arch_register_t
   riscv_csr_set_mstatus (riscv_arch_register_t mask);
@@ -84,13 +84,13 @@ extern "C"
   // `mtvec`
 
   /**
-   * Read `mtvec` CSR.
+   * Read the `mtvec` CSR.
    */
   static riscv_arch_register_t
   riscv_csr_read_mtvec (void);
 
   /**
-   * Write `mtvec` CSR.
+   * Write the `mtvec` CSR.
    */
   static void
   riscv_csr_write_mtvec (riscv_arch_register_t value);
@@ -99,7 +99,7 @@ extern "C"
   // `mcause`
 
   /**
-   * Read `mcause` CSR.
+   * Read the `mcause` CSR.
    */
   static riscv_arch_register_t
   riscv_csr_read_mcause (void);
@@ -108,25 +108,25 @@ extern "C"
   // `mie`
 
   /**
-   * Read `mie` CSR.
+   * Read the `mie` CSR.
    */
   static riscv_arch_register_t
   riscv_csr_read_mie (void);
 
   /**
-   * Write `mie` CSR.
+   * Write the `mie` CSR.
    */
   static void
   riscv_csr_write_mie (riscv_arch_register_t value);
 
   /**
-   * Clear bits in `mie` CSR.
+   * Clear bits in the `mie` CSR.
    */
   static riscv_arch_register_t
   riscv_csr_clear_mie (riscv_arch_register_t mask);
 
   /**
-   * Set bits in `mie` CSR.
+   * Set bits in the `mie` CSR.
    */
   static riscv_arch_register_t
   riscv_csr_set_mie (riscv_arch_register_t mask);
@@ -135,7 +135,7 @@ extern "C"
   // `mcycle`
 
   /**
-   * Read `mcycle` CSR.
+   * Read the `mcycle` CSR.
    */
 #if __riscv_xlen == 64
   static
@@ -148,6 +148,15 @@ extern "C"
 
   static uint32_t
   riscv_csr_read_mcycle_high (void);
+
+  // --------------------------------------------------------------------------
+  // `mhartid`
+
+  /**
+   * Read the `mhartid` CSR.
+   */
+  static riscv_arch_register_t
+  riscv_csr_read_mhartid (void);
 
 // ----------------------------------------------------------------------------
 
@@ -222,6 +231,12 @@ namespace riscv
 
     uint32_t
     mcycle_high (void);
+
+    // ------------------------------------------------------------------------
+    // `mhartid`
+
+    arch::register_t
+    mhartid (void);
 
   // --------------------------------------------------------------------------
   } /* namespace csr */

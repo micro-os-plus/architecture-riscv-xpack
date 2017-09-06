@@ -349,18 +349,18 @@ extern "C"
   static inline uint64_t
   __attribute__((always_inline))
   riscv_csr_read_mcycle (void)
-    {
-      riscv_arch_register_t tmp;
+  {
+    riscv_arch_register_t tmp;
 
-      asm volatile (
-          "csrr %[r],mcycle"
+    asm volatile (
+        "csrr %[r],mcycle"
 
-          : [r] "=rm"(tmp) /* Outputs */
-          : /* Inputs */
-          : /* Clobbers */
-      );
-      return tmp;
-    }
+        : [r] "=rm"(tmp) /* Outputs */
+        : /* Inputs */
+        : /* Clobbers */
+    );
+    return tmp;
+  }
 
 #endif /* __riscv_xlen == 64 */
 
@@ -383,7 +383,7 @@ extern "C"
 
 #elif __riscv_xlen == 64
 
-    return (uint32_t)riscv_csr_read_mcycle ();
+    return (uint32_t) riscv_csr_read_mcycle ();
 
 #endif /* __riscv_xlen */
   }
@@ -407,9 +407,27 @@ extern "C"
 
 #elif __riscv_xlen == 64
 
-    return (uint32_t)(riscv_csr_read_mcycle() >> 32);
+    return (uint32_t) (riscv_csr_read_mcycle () >> 32);
 
 #endif /* __riscv_xlen */
+  }
+
+  // --------------------------------------------------------------------------
+
+  static inline riscv_arch_register_t
+  __attribute__((always_inline))
+  riscv_csr_read_mhartid (void)
+  {
+    riscv_arch_register_t tmp;
+
+    asm volatile (
+        "csrr %[r],mhartid"
+
+        : [r] "=r"(tmp) /* Outputs */
+        : /* Inputs */
+        : /* Clobbers */
+    );
+    return tmp;
   }
 
 // ----------------------------------------------------------------------------
@@ -481,7 +499,7 @@ namespace riscv
       return riscv_csr_read_mcause ();
     }
 
-// ------------------------------------------------------------------------
+    // ------------------------------------------------------------------------
 
     inline arch::register_t
     __attribute__((always_inline))
@@ -518,9 +536,9 @@ namespace riscv
     inline uint64_t
     __attribute__((always_inline))
     mcycle (void)
-      {
-        return riscv_csr_read_mcycle();
-      }
+    {
+      return riscv_csr_read_mcycle ();
+    }
 
 #endif /* __riscv_xlen == 64 */
 
@@ -536,6 +554,15 @@ namespace riscv
     mcycle_high (void)
     {
       return riscv_csr_read_mcycle_high ();
+    }
+
+    // ------------------------------------------------------------------------
+
+    inline arch::register_t
+    __attribute__((always_inline))
+    mhartid (void)
+    {
+      return riscv_csr_read_mhartid ();
     }
 
   // --------------------------------------------------------------------------
