@@ -243,12 +243,10 @@ riscv_core_handle_trap (void)
 
 #if RISCV_INTERRUPTS_LOCAL_DEVICE_ARRAY_SIZE > 0
 
-      extern riscv_trap_handler_ptr_t
-      riscv_interrupts_local_device_handlers[];
+      extern riscv_trap_handler_ptr_t riscv_interrupts_local_device_handlers[];
 
       index -= RISCV_INTERRUPTS_LOCAL_ARCH_ARRAY_SIZE;
-      if (index
-          < RISCV_INTERRUPTS_LOCAL_DEVICE_ARRAY_SIZE)
+      if (index < RISCV_INTERRUPTS_LOCAL_DEVICE_ARRAY_SIZE)
         {
           // Call the local device interrupt handler via the pointer.
           riscv_interrupts_local_device_handlers[index] ();
@@ -280,32 +278,30 @@ riscv_core_handle_trap (void)
 
 #if defined(RISCV_INTERRUPTS_GLOBAL_ARRAY_SIZE)
 
-plic_instance_t g_plic;
-
 void
 __attribute__ ((section(".trap_handlers")))
 riscv_interrupt_local_handle_machine_ext (void)
-  {
-    // TODO: redo PLIC API to use static inlines.
-    size_t int_num = PLIC_claim_interrupt (&g_plic);
-    if (int_num < RISCV_INTERRUPTS_GLOBAL_ARRAY_SIZE)
-      {
-        // Call the global interrupt handler via the pointer.
-        riscv_interrupts_global_handlers[int_num] ();
-        PLIC_complete_interrupt (&g_plic, (plic_source) int_num);
-        return;
-      }
+{
+  // TODO: redo PLIC API to use static inlines.
+  size_t int_num = riscv::plic::claim_interrupt ();
+  if (int_num < RISCV_INTERRUPTS_GLOBAL_ARRAY_SIZE)
+    {
+      // Call the global interrupt handler via the pointer.
+      riscv_interrupts_global_handlers[int_num] ();
+      riscv::plic::complete_interrupt ((riscv::plic::source_t) int_num);
+      return;
+    }
 
 #if defined(DEBUG)
-    riscv::arch::ebreak ();
+  riscv::arch::ebreak ();
 #endif /* defined(DEBUG) */
 
-    while (true)
-      {
-        riscv::arch::nop ();
-      }
+  while (true)
+    {
+      riscv::arch::nop ();
+    }
 
-  }
+}
 #endif /* defined(RISCV_INTERRUPTS_GLOBAL_ARRAY_SIZE) */
 
 void
