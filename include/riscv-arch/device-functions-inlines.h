@@ -48,9 +48,9 @@ extern "C"
   static inline uint64_t
   __attribute__((always_inline))
   riscv_device_read_mtime (void)
-    {
-      return *(volatile uint64_t *) (RISCV_MMIO_MTIME_ADDR);
-    }
+  {
+    return *(volatile uint64_t *) (RISCV_MMIO_MTIME_ADDR);
+  }
 
 #endif /* __riscv_xlen == 64 */
 
@@ -73,9 +73,9 @@ extern "C"
   static inline void
   __attribute__((always_inline))
   riscv_device_write_mtime (uint64_t value)
-    {
-      *(volatile uint64_t *) (RISCV_MMIO_MTIME_ADDR) = value;
-    }
+  {
+    *(volatile uint64_t *) (RISCV_MMIO_MTIME_ADDR) = value;
+  }
 
 #endif /* __riscv_xlen == 64 */
 
@@ -122,9 +122,9 @@ extern "C"
   static inline void
   __attribute__((always_inline))
   riscv_device_write_mtimecmp (uint64_t value)
-    {
-      *(uint64_t *) (RISCV_MMIO_MTIMECMP_ADDR) = value;
-    }
+  {
+    *(uint64_t *) (RISCV_MMIO_MTIMECMP_ADDR) = value;
+  }
 
 #endif /* __riscv_xlen == 64 */
 
@@ -163,9 +163,9 @@ namespace riscv
     inline uint64_t
     __attribute__((always_inline))
     mtime (void)
-      {
-        return riscv_device_read_mtime ();
-      }
+    {
+      return riscv_device_read_mtime ();
+    }
 
 #endif /* __riscv_xlen == 64 */
 
@@ -188,9 +188,9 @@ namespace riscv
     inline void
     __attribute__((always_inline))
     mtime (uint64_t value)
-      {
-        riscv_device_write_mtime (value);
-      }
+    {
+      riscv_device_write_mtime (value);
+    }
 
 #endif /* __riscv_xlen == 64 */
 
@@ -236,9 +236,9 @@ namespace riscv
     inline void
     __attribute__((always_inline))
     mtimecmp (uint64_t value)
-      {
-        riscv_device_write_mtimecmp (value);
-      }
+    {
+      riscv_device_write_mtimecmp (value);
+    }
 
 #endif /* __riscv_xlen == 64 */
 
