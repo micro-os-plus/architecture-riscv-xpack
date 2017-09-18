@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "link": "npm link @micro-os-plus/startup"
+    "link": "npm link @micro-os-plus/startup; npm link @micro-os-plus/c-libs; npm link @micro-os-plus/cpp-libs; npm link @micro-os-plus/diag-trace"
   },
   "repository": {
     "type": "git",
@@ -28,7 +28,7 @@
   },
   "config": {},
   "dependencies": {
-    "@micro-os-plus/startup": "^1.0.1"
+    "@micro-os-plus/startup": "^1.0.2"
   },
   "xpack": {},
   "homepage": "https://github.com/micro-os-plus/riscv-arch"
