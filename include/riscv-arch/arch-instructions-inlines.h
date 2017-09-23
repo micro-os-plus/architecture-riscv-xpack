@@ -80,6 +80,33 @@ extern "C"
     );
   }
 
+  static inline void
+  __attribute__((always_inline))
+  os_arch_nop (void)
+  {
+    riscv_arch_nop ();
+  }
+
+  /**
+   * `break` instruction.
+   */
+  static inline void
+  __attribute__((always_inline))
+  os_arch_brk (void)
+  {
+    riscv_arch_ebreak ();
+  }
+
+  /**
+   * `wfi` instruction.
+   */
+  static inline void
+  __attribute__((always_inline))
+  os_arch_wfi (void)
+  {
+    riscv_arch_wfi ();
+  }
+
 // ----------------------------------------------------------------------------
 
 #if defined(__cplusplus)
@@ -122,6 +149,39 @@ namespace riscv
 
 // ----------------------------------------------------------------------------
 } /* namespace riscv */
+
+namespace os
+{
+  namespace arch
+  {
+    // ------------------------------------------------------------------------
+
+    inline void
+    __attribute__((always_inline))
+    nop (void)
+    {
+      riscv::arch::nop ();
+    }
+
+    inline void
+    __attribute__((always_inline))
+    brk (void)
+    {
+      riscv::arch::ebreak ();
+    }
+
+    inline void
+    __attribute__((always_inline))
+    wfi (void)
+    {
+      riscv::arch::wfi ();
+    }
+
+  // --------------------------------------------------------------------------
+  } /* namespace arch */
+
+// ----------------------------------------------------------------------------
+} /* namespace os */
 
 #endif /* defined(__cplusplus) */
 

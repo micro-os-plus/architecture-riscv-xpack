@@ -62,6 +62,27 @@ extern "C"
   static void
   riscv_arch_wfi (void);
 
+  // --------------------------------------------------------------------------
+  // Portable architecture assembly instructions in C.
+
+  /**
+   * `nop` instruction.
+   */
+  static void
+  os_arch_nop (void);
+
+  /**
+   * `break` instruction.
+   */
+  static void
+  os_arch_brk (void);
+
+  /**
+   * `wfi` instruction.
+   */
+  static void
+  os_arch_wfi (void);
+
 // ----------------------------------------------------------------------------
 
 #if defined(__cplusplus)
@@ -101,6 +122,36 @@ namespace riscv
   } /* namespace arch */
 // ----------------------------------------------------------------------------
 } /* namespace riscv */
+
+namespace os
+{
+  namespace arch
+  {
+    // ------------------------------------------------------------------------
+    // Portable architecture assembly instructions in C++.
+
+    /**
+     * The assembler `nop` instruction.
+     */
+    void
+    nop (void);
+
+    /**
+     * The assembler `break` instruction.
+     */
+    void
+    brk (void);
+
+    /**
+     * The assembler `wfi` instruction.
+     */
+    void
+    wfi (void);
+
+  // --------------------------------------------------------------------------
+  } /* namespace arch */
+// ----------------------------------------------------------------------------
+} /* namespace os */
 
 #endif /* defined(__cplusplus) */
 
