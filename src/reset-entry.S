@@ -28,16 +28,16 @@
 // ----------------------------------------------------------------------------
 
 	.section	.reset_entry,"ax",@progbits
-	.align	2 // number of low order zeros, i.e. 4
-	.globl	riscv_reset_entry
-	.type	riscv_reset_entry, @function
+	.align		2 // number of low order zeros, i.e. align to a multiple of 4
+	.globl		riscv_reset_entry
+	.type		riscv_reset_entry, @function
 riscv_reset_entry:
 
 .option push
 	// Ensure the instruction is not optimised, since gp is not yet set.
 .option norelax
 	// __global_pointer$ is a magic symbol, known by the linker.
-	// Unless instructed not not to do so, the linker optimises
+	// Unless instructed not to do so, the linker optimises
 	// accesses +/- 2KB around this to gp-relative.
 	la gp, __global_pointer$
 .option pop
