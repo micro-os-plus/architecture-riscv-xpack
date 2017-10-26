@@ -11,7 +11,7 @@ From a top down approach, in µOS++ the RISC-V definitions are grouped by severa
 
 The board level refers to a device and adds board specific definitions, like what GPIO pins are used for various LEDs, buttons, etc.
 
-The portable way to include board specifc definitions in an application is:
+The portable way to include board specific definitions in an application is:
 
 ```
 #include <micro-os-plus/board.h>
@@ -19,7 +19,7 @@ The portable way to include board specifc definitions in an application is:
 
 In µOS++, the board specific definitions are grouped in the `riscv::board` namespace.
  
-An example of a board package is **sifive-hifive1** with the SiFive HiFive1 board.
+An example of a board package is **sifive/hifive1-board** with the SiFive HiFive1 board.
 
 ### Device
 
@@ -41,17 +41,17 @@ The portable way to include device specifc definitions in an application is:
 #include <micro-os-plus/device.h>
 ```
 
-Example of device packages are **sifive-freedom-e310** with the SiFive Freedom E310 device.
+Example of device packages are **sifive/devices** with the SiFive Freedom E310 and E31/E51 Arty devices.
 
 ### Core
 
 The RISC-V documentation introduces the term _core_ as:
 
-> A component is termed a core if it contains an independent instruction fetch unit. A RISC-V-compatible core might support multiple RISC-V-compatible hardware threads, or harts, through multithreading.
+> A component is termed a core if it contains an independent instruction fetch unit. A RISC-V-compatible core might support multiple RISC-V-compatible hardware threads, or harts, through multi-threading.
 
 In µOS++, the core specific definitions are grouped in the `riscv::core` namespace.  
 
-The portable way to include architecture specifc definitions in an application is:
+The portable way to include architecture specific definitions in an application is:
 
 ```
 #include <micro-os-plus/architecture.h>
@@ -59,7 +59,7 @@ The portable way to include architecture specifc definitions in an application i
 
 ### Hart
 
-Harware threads are the working horses of the software threads; each hardware thread has its own set of general registers and Control and Status Registers (CSRs); the OS may schedule a maximum number of software threads equal with the number of hardware threads, possibly with some grouping constrains.
+Hardware threads are the working horses of the software threads; each hardware thread has its own set of general registers and Control and Status Registers (CSRs); the OS may schedule a maximum number of software threads equal with the number of hardware threads, possibly with some grouping constrains.
 
 In RISC-V, **Control and Status Registers** (**CSR**s) are a special group of registers, available via specific `csr*` instructions from a separate addressing space not visible in the memory space. 
 
@@ -76,10 +76,10 @@ This section is intended to developers who plan to include this library in their
 
 ### Easy install
 
-The source files are available from [GitHub](https://github.com/micro-os-plus/riscv-arch):
+The source files are available from [GitHub](https://github.com/micro-os-plus/riscv-arch-xpack):
 
 ```bash
-$ git clone https://github.com/micro-os-plus/riscv-arch.git riscv-arch.git
+$ git clone https://github.com/micro-os-plus/riscv-arch-xpack.git riscv-arch-xpack.git
 ```
 
 The library will shortly be available from the npm registry:
