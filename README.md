@@ -13,7 +13,7 @@ The board level refers to a device and adds board specific definitions, like wha
 
 The portable way to include board specific definitions in an application is:
 
-```
+```c
 #include <micro-os-plus/board.h>
 ```
 
@@ -37,7 +37,7 @@ In µOS++, the device specific definitions are grouped in the `riscv::device` na
 
 The portable way to include device specifc definitions in an application is:
 
-```
+```c
 #include <micro-os-plus/device.h>
 ```
 
@@ -53,7 +53,7 @@ In µOS++, the core specific definitions are grouped in the `riscv::core` namesp
 
 The portable way to include architecture specific definitions in an application is:
 
-```
+```c
 #include <micro-os-plus/architecture.h>
 ```
 
@@ -78,13 +78,13 @@ This section is intended to developers who plan to include this library in their
 
 The source files are available from [GitHub](https://github.com/micro-os-plus/riscv-arch-xpack):
 
-```bash
+```console
 $ git clone https://github.com/micro-os-plus/riscv-arch-xpack.git riscv-arch-xpack.git
 ```
 
 The library will shortly be available from the npm registry:
 
-```bash
+```console
 $ npm install @micro-os-plus/riscv-arch
 ```
 
