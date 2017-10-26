@@ -2,6 +2,10 @@
 
 Changes in reverse chronological order.
 
+### v0.1.0 (2017-10-26)
+
+* update for new GitHub names
+
 ### v0.0.4 (2017-10-04)
 
 * package.json clean-ups
