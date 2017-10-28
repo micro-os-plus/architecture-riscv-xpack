@@ -26,7 +26,23 @@
  */
 
 #include <riscv-arch/arch-defines.h>
-#include <sifive/bits.h>
+
+// ----------------------------------------------------------------------------
+
+#if __riscv_xlen == 32
+# define SLL32    sll
+# define STORE    sw
+# define LOAD     lw
+# define LWU      lw
+# define LOG_REGBYTES 2
+#elif __riscv_xlen == 64
+# define SLL32    sllw
+# define STORE    sd
+# define LOAD     ld
+# define LWU      lwu
+# define LOG_REGBYTES 3
+#endif
+#define REGBYTES (1 << LOG_REGBYTES)
 
 // ----------------------------------------------------------------------------
 
