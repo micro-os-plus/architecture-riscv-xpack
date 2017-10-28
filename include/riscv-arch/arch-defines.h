@@ -424,8 +424,7 @@
 // End of SiFive definitions.
 // ----------------------------------------------------------------------------
 
-#define RISCV_INTERRUPTS_LOCAL_ARCH_ARRAY_SIZE (16)
-#define RISCV_EXCEPTIONS_ARRAY_SIZE	(16)
+#define RISCV_EXCEPTIONS_LAST_NUMBER (15u)
 
 // ----------------------------------------------------------------------------
 
