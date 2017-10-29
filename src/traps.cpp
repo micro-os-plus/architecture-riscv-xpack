@@ -65,10 +65,8 @@ riscv_core_handle_trap (void)
       // The `<=` is because the number is the last valid one.
       if (index <= (RISCV_INTERRUPTS_LOCAL_LAST_NUMBER))
         {
-          extern riscv_trap_handler_ptr_t riscv_interrupts_local_device_handlers[];
-
           // Call the local device interrupt handler via the pointer.
-          riscv_interrupts_local_device_handlers[index] ();
+          riscv_interrupts_local_handlers[index] ();
 
           return;
         }
