@@ -59,9 +59,9 @@ __attribute__ ((section(".trap_handlers")))
 riscv_core_handle_trap (void)
 {
   riscv::arch::register_t cause = riscv::csr::mcause ();
-  if ((cause & MCAUSE_INT) != 0)
+  if ((cause & RISCV_CSR_MCAUSE_INTERRUPT) != 0)
     {
-      size_t index = (cause & MCAUSE_CAUSE);
+      size_t index = (cause & RISCV_CSR_MCAUSE_CAUSE);
       // The `<=` is because the number is the last valid one.
       if (index <= (RISCV_INTERRUPTS_LOCAL_LAST_NUMBER))
         {

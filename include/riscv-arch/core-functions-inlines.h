@@ -45,7 +45,7 @@ extern "C"
   __attribute__((always_inline))
   riscv_core_enable_machine_external_interrupts (void)
   {
-    riscv_csr_set_mie (MIP_MEIP);
+    riscv_csr_set_mie (RISCV_CSR_MIP_MEIP);
   }
 
   /**
@@ -55,7 +55,7 @@ extern "C"
   __attribute__((always_inline))
   riscv_core_disable_machine_external_interrupts (void)
   {
-    riscv_csr_clear_mie (MIP_MEIP);
+    riscv_csr_clear_mie (RISCV_CSR_MIP_MEIP);
   }
 
 // ----------------------------------------------------------------------------

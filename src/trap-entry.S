@@ -90,7 +90,7 @@ riscv_trap_entry:
   call riscv_core_handle_trap
 
   # Remain in M-mode after mret
-  li t0, MSTATUS_MPP
+  li t0, RISCV_CSR_MSTATUS_MPP
   csrs mstatus, t0
 
   LOAD x1, 1*REGBYTES(sp)
