@@ -34,10 +34,10 @@
 riscv_reset_entry:
 
 .option push
-	// Ensure the instruction is not optimised, since gp is not yet set.
+	// Ensure the instruction is not optimized, since gp is not yet set.
 .option norelax
 	// __global_pointer$ is a magic symbol, known by the linker.
-	// Unless instructed not to do so, the linker optimises
+	// Unless instructed not to do so, the linker optimizes
 	// accesses +/- 2KB around this to gp-relative.
 	la gp, __global_pointer$
 .option pop
