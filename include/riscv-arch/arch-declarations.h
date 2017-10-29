@@ -25,8 +25,8 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef RISCV_ARCH_DECLARATIONS_H_
-#define RISCV_ARCH_DECLARATIONS_H_
+#ifndef RISCV_ARCH_ARCH_DECLARATIONS_H_
+#define RISCV_ARCH_ARCH_DECLARATIONS_H_
 
 #include <riscv-arch/arch-types.h>
 
@@ -66,4 +66,4 @@ namespace riscv
 
 // ----------------------------------------------------------------------------
 
-#endif /* RISCV_ARCH_TYPES_H_ */
+#endif /* RISCV_ARCH_ARCH_DECLARATIONS_H_ */

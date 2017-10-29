@@ -25,8 +25,8 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef RISCV_ARCH_DEFINES_H_
-#define RISCV_ARCH_DEFINES_H_
+#ifndef RISCV_ARCH_ARCH_DEFINES_H_
+#define RISCV_ARCH_ARCH_DEFINES_H_
 
 // ----------------------------------------------------------------------------
 // Definitions from SiFive bsp/env/encoding.h.
@@ -428,4 +428,4 @@
 
 // ----------------------------------------------------------------------------
 
-#endif /* RISCV_ARCH_DEFINES_H_ */
+#endif /* RISCV_ARCH_ARCH_DEFINES_H_ */

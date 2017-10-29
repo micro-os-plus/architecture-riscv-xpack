@@ -25,8 +25,8 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef RISCV_ARCH_INSTRUCTIONS_INLINES_H_
-#define RISCV_ARCH_INSTRUCTIONS_INLINES_H_
+#ifndef RISCV_ARCH_ARCH_INSTRUCTIONS_INLINES_H_
+#define RISCV_ARCH_ARCH_INSTRUCTIONS_INLINES_H_
 
 #include <stdint.h>
 
@@ -187,4 +187,4 @@ namespace os
 
 // ----------------------------------------------------------------------------
 
-#endif /* RISCV_ARCH_INSTRUCTIONS_INLINES_H_ */
+#endif /* RISCV_ARCH_ARCH_INSTRUCTIONS_INLINES_H_ */

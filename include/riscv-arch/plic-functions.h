@@ -25,8 +25,8 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef RISCV_PLIC_FUNCTIONS_H_
-#define RISCV_PLIC_FUNCTIONS_H_
+#ifndef RISCV_ARCH_PLIC_FUNCTIONS_H_
+#define RISCV_ARCH_PLIC_FUNCTIONS_H_
 
 #include <riscv-arch/arch-types.h>
 
@@ -288,4 +288,4 @@ extern "C"
 
 // ----------------------------------------------------------------------------
 
-#endif /* RISCV_PLIC_FUNCTIONS_H_ */
+#endif /* RISCV_ARCH_PLIC_FUNCTIONS_H_ */

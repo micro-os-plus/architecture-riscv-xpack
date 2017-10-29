@@ -25,8 +25,8 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef RISCV_ARCH_ARCHITECTURE_H_
-#define RISCV_ARCH_ARCHITECTURE_H_
+#ifndef MICRO_OS_PLUS_ARCHITECTURE_H_
+#define MICRO_OS_PLUS_ARCHITECTURE_H_
 
 #include <riscv-arch/arch-defines.h>
 
@@ -44,4 +44,4 @@
 
 #include <riscv-arch/traps-handlers.h>
 
-#endif /* RISCV_ARCH_ARCHITECTURE_H_ */
+#endif /* MICRO_OS_PLUS_ARCHITECTURE_H_ */

@@ -25,8 +25,8 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef RISCV_CSR_FUNCTIONS_H_
-#define RISCV_CSR_FUNCTIONS_H_
+#ifndef RISCV_ARCH_CSR_FUNCTIONS_H_
+#define RISCV_ARCH_CSR_FUNCTIONS_H_
 
 #include <riscv-arch/arch-types.h>
 
@@ -248,4 +248,4 @@ namespace riscv
 
 // ----------------------------------------------------------------------------
 
-#endif /* RISCV_CSR_FUNCTIONS_H_ */
+#endif /* RISCV_ARCH_CSR_FUNCTIONS_H_ */

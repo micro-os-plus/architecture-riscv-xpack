@@ -25,8 +25,8 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef RISCV_CORE_FUNCTIONS_H_
-#define RISCV_CORE_FUNCTIONS_H_
+#ifndef RISCV_ARCH_CORE_FUNCTIONS_H_
+#define RISCV_ARCH_CORE_FUNCTIONS_H_
 
 #include <stdint.h>
 
@@ -106,4 +106,4 @@ namespace riscv
 
 // ----------------------------------------------------------------------------
 
-#endif /* RISCV_CORE_FUNCTIONS_H_ */
+#endif /* RISCV_ARCH_CORE_FUNCTIONS_H_ */

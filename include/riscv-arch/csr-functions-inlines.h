@@ -25,8 +25,8 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef RISCV_CSR_FUNCTIONS_INLINES_H_
-#define RISCV_CSR_FUNCTIONS_INLINES_H_
+#ifndef RISCV_ARCH_CSR_FUNCTIONS_INLINES_H_
+#define RISCV_ARCH_CSR_FUNCTIONS_INLINES_H_
 
 #include <stdint.h>
 
@@ -575,4 +575,4 @@ namespace riscv
 
 // ----------------------------------------------------------------------------
 
-#endif /* RISCV_CSR_FUNCTIONS_INLINES_H_ */
+#endif /* RISCV_ARCH_CSR_FUNCTIONS_INLINES_H_ */

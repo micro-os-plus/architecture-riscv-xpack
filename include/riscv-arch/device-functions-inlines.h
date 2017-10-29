@@ -25,8 +25,8 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef RISCV_DEVICE_FUNCTIONS_INLINES_H_
-#define RISCV_DEVICE_FUNCTIONS_INLINES_H_
+#ifndef RISCV_ARCH_DEVICE_FUNCTIONS_INLINES_H_
+#define RISCV_ARCH_DEVICE_FUNCTIONS_INLINES_H_
 
 #include <stdint.h>
 
@@ -266,4 +266,4 @@ namespace riscv
 
 // ----------------------------------------------------------------------------
 
-#endif /* RISCV_DEVICE_FUNCTIONS_INLINES_H_ */
+#endif /* RISCV_ARCH_DEVICE_FUNCTIONS_INLINES_H_ */

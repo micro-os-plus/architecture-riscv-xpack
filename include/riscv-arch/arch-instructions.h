@@ -25,8 +25,8 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef RISCV_ARCH_INSTRUCTIONS_H_
-#define RISCV_ARCH_INSTRUCTIONS_H_
+#ifndef RISCV_ARCH_ARCH_INSTRUCTIONS_H_
+#define RISCV_ARCH_ARCH_INSTRUCTIONS_H_
 
 #include <riscv-arch/arch-defines.h>
 
@@ -157,4 +157,4 @@ namespace os
 
 // ----------------------------------------------------------------------------
 
-#endif /* RISCV_CORE_FUNCTIONS_H_ */
+#endif /* RISCV_ARCH_ARCH_INSTRUCTIONS_H_ */
