@@ -42,6 +42,4 @@
 #include <riscv-arch/core-functions.h>
 #include <riscv-arch/core-functions-inlines.h>
 
-#include <riscv-arch/traps-handlers.h>
-
 #endif /* MICRO_OS_PLUS_ARCHITECTURE_H_ */

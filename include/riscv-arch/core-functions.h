@@ -54,6 +54,12 @@ extern "C"
   static void
   riscv_core_disable_machine_external_interrupts(void);
 
+  /**
+   * Hardware trap entry point (assembly).
+   */
+  void
+  riscv_trap_entry (void);
+
 // ----------------------------------------------------------------------------
 
 #if defined(__cplusplus)
