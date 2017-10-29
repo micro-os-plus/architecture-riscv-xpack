@@ -55,7 +55,7 @@ riscv_exception_handle_all (void);
 // ----------------------------------------------------------------------------
 
 extern "C" void
-__attribute__ ((section(".trap_handlers")))
+__attribute__ ((section(".traps_handlers")))
 riscv_core_handle_trap (void)
 {
   riscv::arch::register_t cause = riscv::csr::mcause ();
@@ -98,7 +98,7 @@ riscv_core_handle_trap (void)
 #if defined(RISCV_INTERRUPTS_GLOBAL_LAST_NUMBER)
 
 void
-__attribute__ ((section(".trap_handlers")))
+__attribute__ ((section(".traps_handlers")))
 riscv_interrupt_local_handle_machine_ext (void)
 {
   // Get the current interrupt number from the PLIC.
@@ -129,7 +129,7 @@ riscv_interrupt_local_handle_machine_ext (void)
 #endif /* defined(RISCV_INTERRUPTS_GLOBAL_LAST_NUMBER) */
 
 void
-__attribute__ ((section(".trap_handlers"),weak))
+__attribute__ ((section(".traps_handlers"),weak))
 riscv_trap_handle_unused (void)
 {
   riscv::arch::register_t mcause = riscv::csr::mcause ();
