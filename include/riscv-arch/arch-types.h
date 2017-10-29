@@ -44,6 +44,51 @@ extern "C"
   typedef void
   (*riscv_trap_handler_ptr_t) (void);
 
+  // --------------------------------------------------------------------------
+
+  typedef enum {
+    riscv_exception_misaligned_fetch = 0,
+    riscv_exception_fault_fetch = 1,
+    riscv_exception_illegal_instruction = 2,
+    riscv_exception_breakpoint = 3,
+    riscv_exception_misaligned_load = 4,
+    riscv_exception_fault_load = 5,
+    riscv_exception_misaligned_store = 6,
+    riscv_exception_fault_store = 7,
+    riscv_exception_user_ecall = 8,
+    riscv_exception_supervisor_ecall = 9,
+    /* 10 */
+    riscv_exception_machine_ecall = 11,
+    riscv_exception_page_fetch = 12,
+    riscv_exception_page_load = 13,
+    /* 14 */
+    riscv_exception_page_store = 15
+  } riscv_exceptions_enum_t;
+
+#define RISCV_EXCEPTIONS_LAST_NUMBER (15u)
+
+  // --------------------------------------------------------------------------
+  // Values from Table 3.6.
+
+  typedef enum {
+    riscv_interrupt_local_user_software = 0,
+    riscv_interrupt_local_supervisor_software = 1,
+    /* 2 reserved */
+    riscv_interrupt_local_machine_software = 3,
+    riscv_interrupt_local_user_timer = 4,
+    riscv_interrupt_local_supervisor_timer = 5,
+    /* 6 reserved */
+    riscv_interrupt_local_machine_timer = 7,
+    riscv_interrupt_local_user_ext = 8,
+    riscv_interrupt_local_supervisor_ext = 9,
+    /* 10 reserved */
+    riscv_interrupt_local_machine_ext = 11,
+    /* 12 reserved */
+    /* 13 reserved */
+    /* 14 reserved */
+    /* 15 reserved */
+  } riscv_interrupts_local_enum_t;
+
 // ----------------------------------------------------------------------------
 
 #if defined(__cplusplus)
