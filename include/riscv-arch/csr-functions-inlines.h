@@ -109,7 +109,7 @@ extern "C"
 
   static inline riscv_arch_register_t
   __attribute__((always_inline))
-  riscv_csr_clear_mstatus (riscv_arch_register_t mask)
+  riscv_csr_clear_mstatus_bits (riscv_arch_register_t mask)
   {
     riscv_arch_register_t tmp;
 
@@ -139,7 +139,7 @@ extern "C"
 
   static inline riscv_arch_register_t
   __attribute__((always_inline))
-  riscv_csr_set_mstatus (riscv_arch_register_t mask)
+  riscv_csr_set_mstatus_bits (riscv_arch_register_t mask)
   {
     riscv_arch_register_t tmp;
 
@@ -281,7 +281,7 @@ extern "C"
 
   static inline riscv_arch_register_t
   __attribute__((always_inline))
-  riscv_csr_clear_mie (riscv_arch_register_t mask)
+  riscv_csr_clear_mie_bits (riscv_arch_register_t mask)
   {
     riscv_arch_register_t tmp;
 
@@ -311,7 +311,7 @@ extern "C"
 
   static inline riscv_arch_register_t
   __attribute__((always_inline))
-  riscv_csr_set_mie (riscv_arch_register_t mask)
+  riscv_csr_set_mie_bits (riscv_arch_register_t mask)
   {
     riscv_arch_register_t tmp;
 
@@ -462,16 +462,16 @@ namespace riscv
 
     inline void
     __attribute__((always_inline))
-    clear_mstatus (arch::register_t mask)
+    clear_mstatus_bits (arch::register_t mask)
     {
-      riscv_csr_clear_mstatus (mask);
+      riscv_csr_clear_mstatus_bits (mask);
     }
 
     inline void
     __attribute__((always_inline))
-    set_mstatus (arch::register_t mask)
+    set_mstatus_bits (arch::register_t mask)
     {
-      riscv_csr_set_mstatus (mask);
+      riscv_csr_set_mstatus_bits (mask);
     }
 
     // ------------------------------------------------------------------------
@@ -517,16 +517,16 @@ namespace riscv
 
     inline void
     __attribute__((always_inline))
-    clear_mie (arch::register_t mask)
+    clear_mie_bits (arch::register_t mask)
     {
-      riscv_csr_clear_mie (mask);
+      riscv_csr_clear_mie_bits (mask);
     }
 
     inline void
     __attribute__((always_inline))
-    set_mie (arch::register_t mask)
+    set_mie_bits (arch::register_t mask)
     {
-      riscv_csr_set_mie (mask);
+      riscv_csr_set_mie_bits (mask);
     }
 
     // ------------------------------------------------------------------------

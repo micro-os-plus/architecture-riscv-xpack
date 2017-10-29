@@ -72,13 +72,13 @@ extern "C"
    * Clear bits in the `mstatus` CSR.
    */
   static riscv_arch_register_t
-  riscv_csr_clear_mstatus (riscv_arch_register_t mask);
+  riscv_csr_clear_mstatus_bits (riscv_arch_register_t mask);
 
   /**
    * Set bits in the `mstatus` CSR.
    */
   static riscv_arch_register_t
-  riscv_csr_set_mstatus (riscv_arch_register_t mask);
+  riscv_csr_set_mstatus_bits (riscv_arch_register_t mask);
 
   // --------------------------------------------------------------------------
   // `mtvec`
@@ -123,13 +123,13 @@ extern "C"
    * Clear bits in the `mie` CSR.
    */
   static riscv_arch_register_t
-  riscv_csr_clear_mie (riscv_arch_register_t mask);
+  riscv_csr_clear_mie_bits (riscv_arch_register_t mask);
 
   /**
    * Set bits in the `mie` CSR.
    */
   static riscv_arch_register_t
-  riscv_csr_set_mie (riscv_arch_register_t mask);
+  riscv_csr_set_mie_bits (riscv_arch_register_t mask);
 
   // --------------------------------------------------------------------------
   // `mcycle`
@@ -182,10 +182,10 @@ namespace riscv
     mstatus (arch::register_t value);
 
     void
-    clear_mstatus (arch::register_t mask);
+    clear_mstatus_bits (arch::register_t mask);
 
     void
-    set_mstatus (arch::register_t mask);
+    set_mstatus_bits (arch::register_t mask);
 
     // ------------------------------------------------------------------------
     // `mtvec`
@@ -212,10 +212,10 @@ namespace riscv
     mie (arch::register_t value);
 
     void
-    clear_mie (arch::register_t mask);
+    clear_mie_bits (arch::register_t mask);
 
     void
-    set_mie (arch::register_t mask);
+    set_mie_bits (arch::register_t mask);
 
     // ------------------------------------------------------------------------
     // `mcycle`
