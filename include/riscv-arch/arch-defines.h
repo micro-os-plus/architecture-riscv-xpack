@@ -181,7 +181,7 @@
 
 #if __riscv_xlen == 32
 #define RISCV_CSR_MCAUSE_INTERRUPT  (1ul << 31ul)
-#define RISCV_CSR_MCAUSE_CAUSE      (0x7FFFFFFFFFFFFFFFul)
+#define RISCV_CSR_MCAUSE_CAUSE      (0x7FFFFFFFul)
 #elif __riscv_xlen == 64
 #define RISCV_CSR_MCAUSE_INTERRUPT  (1ul << 63ul)
 #define RISCV_CSR_MCAUSE_CAUSE      (0x7FFFFFFFFFFFFFFFul)
