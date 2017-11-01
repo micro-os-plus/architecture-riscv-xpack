@@ -36,101 +36,147 @@
 
 extern "C"
 {
-  // Forward declarations.
   void
-  riscv_core_handle_trap (void);
-
-  void
-  riscv_trap_handle_unused (void);
+  riscv_core_handle_unused_trap (void);
 }
 
 // ----------------------------------------------------------------------------
 
 // To provide the desired functionality, redefine it in the application.
+#if defined(OS_USE_CPP_INTERRUPTS)
+
+namespace riscv
+{
+  namespace core
+  {
+    void
+    __attribute__ ((weak, alias ("riscv_core_handle_unused_trap")))
+    handle_exceptions (void);
+  } /* namespace core */
+} /* namespace riscv */
+
+#else /* defined(OS_USE_CPP_INTERRUPTS) */
 
 void
-__attribute__ ((weak, alias ("riscv_trap_handle_unused")))
-riscv_exception_handle_all (void);
+__attribute__ ((weak, alias ("riscv_core_handle_unused_trap")))
+riscv_core_handle_exceptions (void);
+
+#endif /* defined(OS_USE_CPP_INTERRUPTS) */
 
 // ----------------------------------------------------------------------------
 
-extern "C" void
-__attribute__ ((section(".traps_handlers")))
-riscv_core_handle_trap (void)
+namespace riscv
 {
-  riscv::arch::register_t cause = riscv::csr::mcause ();
-  if ((cause & RISCV_CSR_MCAUSE_INTERRUPT) != 0)
-    {
-      size_t index = (cause & RISCV_CSR_MCAUSE_CAUSE);
-      // The `<=` is because the number is the last valid one.
-      if (index <= (RISCV_INTERRUPTS_LOCAL_LAST_NUMBER))
-        {
-          // Call the local device interrupt handler via the pointer.
-          riscv_interrupts_local_handlers[index] ();
+  namespace core
+  {
+    // ------------------------------------------------------------------------
 
-          return;
-        }
-    }
-  else
-    {
-      size_t index = cause;
-      if (index < RISCV_EXCEPTIONS_LAST_NUMBER)
-        {
-          // Call the single handler for all exception.
-          // No need to pass the number, the handler can get 
-          // it again from `mcause()`.
-          riscv_exception_handle_all ();
+    void
+    handle_trap ();
 
-          return;
+    void
+    __attribute__ ((section(".traps_handlers")))
+    handle_trap ()
+    {
+      riscv::arch::register_t cause = riscv::csr::mcause ();
+      if ((cause & RISCV_CSR_MCAUSE_INTERRUPT) != 0)
+        {
+          size_t index = (cause & RISCV_CSR_MCAUSE_CAUSE);
+          // The `<=` is because the number is the last valid one.
+          if (index <= (RISCV_INTERRUPTS_LOCAL_LAST_NUMBER))
+            {
+              // Call the local device interrupt handler via the pointer.
+              riscv::core::local_interrupt_handlers[index] ();
+
+              return;
+            }
         }
-    }
+      else
+        {
+          size_t index = cause;
+          if (index < RISCV_EXCEPTIONS_LAST_NUMBER)
+            {
+              // Call the single handler for all exception.
+              // No need to pass the number, the handler can get
+              // it again from `mcause()`.
+#if defined(OS_USE_CPP_INTERRUPTS)
+              riscv::core::handle_exceptions ();
+#else
+              riscv_core_handle_exceptions ();
+#endif
+
+              return;
+            }
+        }
 
 #if defined(DEBUG)
-  riscv::arch::ebreak ();
+      riscv::arch::ebreak ();
 #endif /* defined(DEBUG) */
 
-  while (true)
-    {
-      riscv::arch::nop ();
+      while (true)
+        {
+          riscv::arch::nop ();
+        }
     }
-}
+
+    // ------------------------------------------------------------------------
+  } /* namespace core */
+} /* namespace riscv */
+
+// Alias function to C, so that the assembly code will reach it.
+extern "C" void
+__attribute__ ((alias("_ZN5riscv4core11handle_trapEv")))
+riscv_core_handle_trap (void);
 
 #if defined(RISCV_INTERRUPTS_GLOBAL_LAST_NUMBER)
 
-void
-__attribute__ ((section(".traps_handlers")))
-riscv_interrupt_local_handle_machine_ext (void)
+namespace riscv
 {
-  // Get the current interrupt number from the PLIC.
-  size_t int_num = riscv::plic::claim_interrupt ();
+  namespace interrupt
+  {
+    // ------------------------------------------------------------------------
 
-  // The `<=` is because the number is the last valid one.
-  if (int_num <= RISCV_INTERRUPTS_GLOBAL_LAST_NUMBER)
+    void
+    handle_machine_ext (void)
     {
-      // Call the global interrupt handler via the pointer.
-      riscv_interrupts_global_handlers[int_num] ();
+      // Get the current interrupt number from the PLIC.
+      size_t int_num = riscv::plic::claim_interrupt ();
 
-      // Acknowledge the interrupt in the PLIC.
-      riscv::plic::complete_interrupt ((riscv::plic::source_t) int_num);
+      // The `<=` is because the number is the last valid one.
+      if (int_num <= RISCV_INTERRUPTS_GLOBAL_LAST_NUMBER)
+        {
+          // Call the global interrupt handler via the pointer.
+          riscv::core::global_interrupt_handlers[int_num] ();
 
-      return;
-    }
+          // Acknowledge the interrupt in the PLIC.
+          riscv::plic::complete_interrupt ((riscv::plic::source_t) int_num);
+
+          return;
+        }
 
 #if defined(DEBUG)
-  riscv::arch::ebreak ();
+      riscv::arch::ebreak ();
 #endif /* defined(DEBUG) */
 
-  while (true)
-    {
-      riscv::arch::nop ();
+      while (true)
+        {
+          riscv::arch::nop ();
+        }
     }
 
-}
+    // ------------------------------------------------------------------------
+  } /* namespace interrupt */
+} /* namespace riscv */
+
+extern "C" void
+__attribute__ ((alias("_ZN5riscv9interrupt18handle_machine_extEv")))
+riscv_interrupt_handle_machine_ext (void);
+
 #endif /* defined(RISCV_INTERRUPTS_GLOBAL_LAST_NUMBER) */
 
 void
 __attribute__ ((section(".traps_handlers"),weak))
-riscv_trap_handle_unused (void)
+riscv_core_handle_unused_trap (void)
 {
   riscv::arch::register_t mcause = riscv::csr::mcause ();
   os::trace::printf ("%s() mcause=0x%0" PRIX64 "\n", __func__, mcause);

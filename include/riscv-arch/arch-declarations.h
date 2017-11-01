@@ -33,25 +33,19 @@
 #include <stdint.h>
 
 #if defined(__cplusplus)
-extern "C"
-{
-#endif /* defined(__cplusplus) */
-
-  extern riscv_trap_handler_ptr_t riscv_interrupts_local_handlers[];
-  extern riscv_trap_handler_ptr_t riscv_interrupts_global_handlers[];
-
-// ----------------------------------------------------------------------------
-
-#if defined(__cplusplus)
-}
-#endif /* defined(__cplusplus) */
-
-// ============================================================================
-
-#if defined(__cplusplus)
 
 namespace riscv
 {
+  namespace core
+  {
+    // ------------------------------------------------------------------------
+
+    extern riscv_core_trap_handler_ptr_t local_interrupt_handlers[];
+    extern riscv_core_trap_handler_ptr_t global_interrupt_handlers[];
+
+    // ------------------------------------------------------------------------
+  } /* namespace core */
+
   namespace arch
   {
     // ------------------------------------------------------------------------
