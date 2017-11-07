@@ -137,6 +137,9 @@ namespace riscv
     // ------------------------------------------------------------------------
 
     void
+    handle_machine_ext (void);
+
+    void
     handle_machine_ext (void)
     {
       // Get the current interrupt number from the PLIC.
