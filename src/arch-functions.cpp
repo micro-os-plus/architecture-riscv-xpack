@@ -134,7 +134,7 @@ namespace device
 uint64_t
 mtime (void)
 {
-  // Atomic read. The loop is taken one in most cases. Only when the
+  // Atomic read. The loop is taken once in most cases. Only when the
   // value carries to the high word, two loops are performed.
   while (true)
     {
