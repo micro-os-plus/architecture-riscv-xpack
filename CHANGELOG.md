@@ -2,6 +2,43 @@
 
 Changes in reverse chronological order.
 
+### v0.2.0 (2018-01-09)
+
+### 2017-11-10
+
+* README: reformat prerequisites
+* arch-functions.cpp: fix typo
+* README: explain xpm install
+* README: refer to CHANGELOG in message
+* README: update license with links
+* do not ignore package-lock
+
+### 2017-11-07 
+
+* traps.cpp: add `handle_machine_ext()` declaration
+* ignore package-lock for now
+* rework interrupts to use namespaces
+
+### 2017-10-30 
+* arch-defines: fix `MCAUSE_CAUSE` for 32-bits
+* traps.cpp: fix section `.traps_handlers`
+* reset-entry.S: cosmetise comments
+
+### 2017-10-29 
+* include/\*: rename csr set/clear_\*_bits
+* include/\*/arch-defines.h: simplify & prefix
+* include/\*/arch-types.h: add exc & irq enums
+* include/board-functions-inlines.h added
+* src/traps.cpp: rename `riscv_interrupts_local_handlers`
+* include/core-functions.h: move `riscv_trap_entry()` here
+* include/\*: update guard macros
+
+### 2017-10-28
+
+* src/traps.cpp: move local handlers to device
+* include/riscv-arch/arch-defines.h: number of exc
+* update for device-peripherals.h
+
 ### v0.1.0 (2017-10-26)
 
 * update for new GitHub names
