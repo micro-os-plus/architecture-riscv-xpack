@@ -2,6 +2,11 @@
 
 Changes in reverse chronological order.
 
+### 2018-01-09
+
+* [#2] Use wfi() in infinite loops
+* [#3] Add semihosting call_host() implementation
+
 ### v0.2.0 (2018-01-09)
 
 ### 2017-11-10

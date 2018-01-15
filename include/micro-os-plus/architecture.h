@@ -42,4 +42,6 @@
 #include <riscv-arch/core-functions.h>
 #include <riscv-arch/core-functions-inlines.h>
 
+#include <riscv-arch/arch-semihosting-inlines.h>
+
 #endif /* MICRO_OS_PLUS_ARCHITECTURE_H_ */
