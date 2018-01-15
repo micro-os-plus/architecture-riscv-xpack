@@ -78,6 +78,7 @@ extern "C"
         : /* Inputs */
         : /* Clobbers */
     );
+
     return tmp;
   }
 
@@ -85,26 +86,13 @@ extern "C"
   __attribute__((always_inline))
   riscv_csr_write_mstatus (riscv_arch_register_t value)
   {
-    if (__builtin_constant_p(value) && (value < 32))
-      {
-        asm volatile (
-            "csrw mstatus,%[v]"
+    asm volatile (
+        "csrw mstatus,%[v]"
 
-            : /* Outputs */
-            : [v] "i"(value) /* Inputs */
-            : /* Clobbers */
-        );
-      }
-    else
-      {
-        asm volatile (
-            "csrw mstatus,%[v]"
-
-            : /* Outputs */
-            : [v] "r"(value) /* Inputs */
-            : /* Clobbers */
-        );
-      }
+        : /* Outputs */
+        : [v] "rK"(value) /* Inputs */
+        : /* Clobbers */
+    );
   }
 
   static inline riscv_arch_register_t
@@ -113,26 +101,13 @@ extern "C"
   {
     riscv_arch_register_t tmp;
 
-    if (__builtin_constant_p(mask) && (mask < 32))
-      {
-        asm volatile (
-            "csrrc %[r],mstatus,%[v]"
+    asm volatile (
+        "csrrc %[r],mstatus,%[v]"
 
-            : [r] "=r"(tmp) /* Outputs */
-            : [v] "i"(mask) /* Inputs */
-            : /* Clobbers */
-        );
-      }
-    else
-      {
-        asm volatile (
-            "csrrc %[r],mstatus,%[v]"
-
-            : [r] "=r"(tmp) /* Outputs */
-            : [v] "r"(mask) /* Inputs */
-            : /* Clobbers */
-        );
-      }
+        : [r] "=r"(tmp) /* Outputs */
+        : [v] "rK"(mask) /* Inputs */
+        : /* Clobbers */
+    );
 
     return tmp;
   }
@@ -143,26 +118,13 @@ extern "C"
   {
     riscv_arch_register_t tmp;
 
-    if (__builtin_constant_p(mask) && (mask < 32))
-      {
-        asm volatile (
-            "csrrs %[r],mstatus,%[v]"
+    asm volatile (
+        "csrrs %[r],mstatus,%[v]"
 
-            : [r] "=r"(tmp) /* Outputs */
-            : [v] "i"(mask) /* Inputs */
-            : /* Clobbers */
-        );
-      }
-    else
-      {
-        asm volatile (
-            "csrrs %[r],mstatus,%[v]"
-
-            : [r] "=r"(tmp) /* Outputs */
-            : [v] "r"(mask) /* Inputs */
-            : /* Clobbers */
-        );
-      }
+        : [r] "=r"(tmp) /* Outputs */
+        : [v] "rK"(mask) /* Inputs */
+        : /* Clobbers */
+    );
 
     return tmp;
   }
@@ -185,6 +147,7 @@ extern "C"
         : /* Inputs */
         : /* Clobbers */
     );
+
     return tmp;
   }
 
@@ -195,26 +158,13 @@ extern "C"
   __attribute__((always_inline))
   riscv_csr_write_mtvec (riscv_arch_register_t value)
   {
-    if (__builtin_constant_p(value) && (value < 32))
-      {
-        asm volatile (
-            "csrw mtvec,%[v]"
+    asm volatile (
+        "csrw mtvec,%[v]"
 
-            : /* Outputs */
-            : [v] "i"(value) /* Inputs */
-            : /* Clobbers */
-        );
-      }
-    else
-      {
-        asm volatile (
-            "csrw mtvec,%[v]"
-
-            : /* Outputs */
-            : [v] "r"(value) /* Inputs */
-            : /* Clobbers */
-        );
-      }
+        : /* Outputs */
+        : [v] "rK"(value) /* Inputs */
+        : /* Clobbers */
+    );
   }
 
   // --------------------------------------------------------------------------
@@ -232,6 +182,7 @@ extern "C"
         : /* Inputs */
         : /* Clobbers */
     );
+
     return tmp;
   }
 
@@ -250,6 +201,7 @@ extern "C"
         : /* Inputs */
         : /* Clobbers */
     );
+
     return tmp;
   }
 
@@ -257,26 +209,13 @@ extern "C"
   __attribute__((always_inline))
   riscv_csr_write_mie (riscv_arch_register_t value)
   {
-    if (__builtin_constant_p(value) && (value < 32))
-      {
-        asm volatile (
-            "csrw mie,%[v]"
+    asm volatile (
+        "csrw mie,%[v]"
 
-            : /* Outputs */
-            : [v] "i"(value) /* Inputs */
-            : /* Clobbers */
-        );
-      }
-    else
-      {
-        asm volatile (
-            "csrw mie,%[v]"
-
-            : /* Outputs */
-            : [v] "r"(value) /* Inputs */
-            : /* Clobbers */
-        );
-      }
+        : /* Outputs */
+        : [v] "rK"(value) /* Inputs */
+        : /* Clobbers */
+    );
   }
 
   static inline riscv_arch_register_t
@@ -285,26 +224,13 @@ extern "C"
   {
     riscv_arch_register_t tmp;
 
-    if (__builtin_constant_p(mask) && (mask < 32))
-      {
-        asm volatile (
-            "csrrc %[r],mie,%[v]"
+    asm volatile (
+        "csrrc %[r],mie,%[v]"
 
-            : [r] "=r"(tmp) /* Outputs */
-            : [v] "i"(mask) /* Inputs */
-            : /* Clobbers */
-        );
-      }
-    else
-      {
-        asm volatile (
-            "csrrc %[r],mie,%[v]"
-
-            : [r] "=r"(tmp) /* Outputs */
-            : [v] "r"(mask) /* Inputs */
-            : /* Clobbers */
-        );
-      }
+        : [r] "=r"(tmp) /* Outputs */
+        : [v] "rK"(mask) /* Inputs */
+        : /* Clobbers */
+    );
 
     return tmp;
   }
@@ -315,26 +241,13 @@ extern "C"
   {
     riscv_arch_register_t tmp;
 
-    if (__builtin_constant_p(mask) && (mask < 32))
-      {
-        asm volatile (
-            "csrrs %[r],mie,%[v]"
+    asm volatile (
+        "csrrs %[r],mie,%[v]"
 
-            : [r] "=r"(tmp) /* Outputs */
-            : [v] "i"(mask) /* Inputs */
-            : /* Clobbers */
-        );
-      }
-    else
-      {
-        asm volatile (
-            "csrrs %[r],mie,%[v]"
-
-            : [r] "=r"(tmp) /* Outputs */
-            : [v] "r"(mask) /* Inputs */
-            : /* Clobbers */
-        );
-      }
+        : [r] "=r"(tmp) /* Outputs */
+        : [v] "rK"(mask) /* Inputs */
+        : /* Clobbers */
+    );
 
     return tmp;
   }
