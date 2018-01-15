@@ -115,7 +115,7 @@ namespace riscv
 
       while (true)
         {
-          riscv::arch::nop ();
+          riscv::arch::wfi ();
         }
     }
 
@@ -163,7 +163,7 @@ namespace riscv
 
       while (true)
         {
-          riscv::arch::nop ();
+          riscv::arch::wfi ();
         }
     }
 
@@ -190,7 +190,7 @@ riscv_core_handle_unused_trap (void)
 
   while (true)
     {
-      riscv::arch::nop ();
+      riscv::arch::wfi ();
     }
 }
 
