@@ -46,12 +46,10 @@ extern "C"
   __attribute__ ((always_inline))
   os_semihosting_call_host (int reason, void* arg)
   {
-    int value;
-    asm volatile (
+    register int value asm ("a0") = reason;
+    register void* ptr asm ("a1") = arg;
 
-        // Prepare inputs, as per semihosting ABI.
-        " mv a0, %[rsn] \n"
-        " mv a1, %[arg] \n"
+    asm volatile (
 
         // Workaround for RISC-V lack of multiple EBREAKs.
         " .option push \n"
@@ -61,13 +59,9 @@ extern "C"
         " srai x0, x0, %[swi] \n"
         " .option pop \n"
 
-        // Copy output.
-        " mv %[val], a0 \n"
-
-        : [val] "=r" (value) /* Outputs */
-        : [rsn] "r" (reason), [arg] "r" (arg), [swi] "i" (RISCV_SEMIHOSTING_CALL_NUMBER) /* Inputs */
-        : "a0", "a1", "memory" /* Clobbers */
-        // TODO: Check OpenOCD & QEMU if they clobber more.
+        : "=r" (value) /* Outputs */
+        : "0" (value), "r" (ptr), [swi] "i" (RISCV_SEMIHOSTING_CALL_NUMBER) /* Inputs */
+        : "memory" /* Clobbers */
     );
 
     return value;

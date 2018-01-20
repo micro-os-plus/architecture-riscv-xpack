@@ -4,6 +4,7 @@ Changes in reverse chronological order.
 
 ### 2018-01-20
 
+* [#271] Reimplement RISC-V semihosting
 * semihosting asm: remove "cc"
 
 ### 2018-01-15
