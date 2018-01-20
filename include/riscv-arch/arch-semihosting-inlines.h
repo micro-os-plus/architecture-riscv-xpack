@@ -66,7 +66,7 @@ extern "C"
 
         : [val] "=r" (value) /* Outputs */
         : [rsn] "r" (reason), [arg] "r" (arg), [swi] "i" (RISCV_SEMIHOSTING_CALL_NUMBER) /* Inputs */
-        : "a0", "a1", "memory", "cc" /* Clobbers */
+        : "a0", "a1", "memory" /* Clobbers */
         // TODO: Check OpenOCD & QEMU if they clobber more.
     );
 
