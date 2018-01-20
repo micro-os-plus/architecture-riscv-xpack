@@ -2,7 +2,11 @@
 
 Changes in reverse chronological order.
 
-### 2018-01-09
+### 2018-01-20
+
+* semihosting asm: remove "cc"
+
+### 2018-01-15
 
 * [#2] Use wfi() in infinite loops
 * [#3] Add semihosting call_host() implementation
