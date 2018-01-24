@@ -31,7 +31,7 @@
   "dependencies": {},
   "xpack": {
     "dependencies": {
-      "@micro-os-plus/startup": "~1.0.4"
+      "@micro-os-plus/startup": "~1.0.5"
     }
   }
 }
