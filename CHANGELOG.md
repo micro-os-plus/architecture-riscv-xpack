@@ -2,7 +2,7 @@
 
 Changes in reverse chronological order.
 
-### v0.3.0 (2018-01-23)
+### v1.0.0 (2018-01-23)
 
 ### 2018-01-20
 
