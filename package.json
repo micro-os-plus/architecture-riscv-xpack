@@ -1,6 +1,6 @@
 {
   "name": "@micro-os-plus/riscv-arch",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "An xPack with µOS++ RISC-V architecture support",
   "main": "",
   "scripts": {
