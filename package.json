@@ -28,10 +28,8 @@
     "url": "https://github.com/micro-os-plus/riscv-arch-xpack/issues"
   },
   "config": {},
-  "dependencies": {},
-  "xpack": {
-    "dependencies": {
-      "@micro-os-plus/startup": "~1.0.6"
-    }
-  }
+  "dependencies": {
+    "@micro-os-plus/startup": "~1.0.7"
+  },
+  "xpack": {}
 }
