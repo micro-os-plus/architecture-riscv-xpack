@@ -1,13 +1,41 @@
 ## µOS++ RISC-V architecture definitions
 
-From a top down approach, in µOS++ the RISC-V definitions are grouped by several criteria:
+This project provides support for RISC-V embedded projects.
+
+## Developer info
+
+This section is intended to developers who plan to include this library in their own projects.
+
+### Prerequisites
+
+A recent [`xpm`](https://www.npmjs.com/package/xpm), which is a portable [Node.js](https://nodejs.org/) command line application.
+
+Compiling the source code requires a modern C++ compiler, preferably GCC 5 or higher. 
+
+### Easy install
+
+This package is available as [`@micro-os-plus/riscv-arch`](https://www.npmjs.com/package/@micro-os-plus/riscv-arch) from the `npmjs.com` registry; with `xpm` available, installing the latest version of the package is quite easy:
+
+```console
+$ xpm install @micro-os-plus/riscv-arch
+```
+
+This package is also available from [GitHub](https://github.com/micro-os-plus/riscv-arch-xpack):
+
+```console
+$ git clone https://github.com/micro-os-plus/riscv-arch-xpack.git riscv-arch-xpack.git
+```
+
+### Details
+
+From a top down approach, in µOS++, the RISC-V definitions are grouped by several criteria:
 
 - board
 - device (RISC-V platform)
 - core
 - hart (hardware thread)
 
-### Board
+#### Board
 
 The board level refers to a device and adds board specific definitions, like what GPIO pins are used for various LEDs, buttons, etc.
 
@@ -21,7 +49,7 @@ In µOS++, the board specific definitions are grouped in the `riscv::board` name
  
 An example of a board package is **sifive/hifive1-board** with the SiFive HiFive1 board.
 
-### Device
+#### Device
 
 The RISC-V documentation introduces the term _platform_ as:
 
@@ -43,7 +71,7 @@ The portable way to include device specifc definitions in an application is:
 
 Example of device packages are **sifive/devices** with the SiFive Freedom E310 and E31/E51 Arty devices.
 
-### Core
+#### Core
 
 The RISC-V documentation introduces the term _core_ as:
 
@@ -57,7 +85,7 @@ The portable way to include architecture specific definitions in an application 
 #include <micro-os-plus/architecture.h>
 ```
 
-### Hart
+#### Hart
 
 Hardware threads are the working horses of the software threads; each hardware thread has its own set of general registers and Control and Status Registers (CSRs); the OS may schedule a maximum number of software threads equal with the number of hardware threads, possibly with some grouping constrains.
 
@@ -65,40 +93,11 @@ In RISC-V, **Control and Status Registers** (**CSR**s) are a special group of re
 
 The `hart` specific definitions are grouped under the `riscv::csr` namespace.
 
-### Other namespaces
+#### Other namespaces
 
 Interrupts and exceptions are grouped under `riscv::irq` and `riscv::exc`.
 
-
-## Developer info
-
-This section is intended to developers who plan to include this library in their own projects.
-
-### Easy install
-
-This package can be installed from the `npm` [registry](https://www.npmjs.com/package/@micro-os-plus/riscv-arch).
-
-```console
-$ xpm install @micro-os-plus/riscv-arch
-```
-
-This package is also available from [GitHub](https://github.com/micro-os-plus/riscv-arch-xpack):
-
-```console
-$ git clone https://github.com/micro-os-plus/riscv-arch-xpack.git riscv-arch-xpack.git
-```
-
-### Prerequisites
-
-Installing from `npm` registry requires a recent [Node.js](https://nodejs.org) (>7.x; the 6.x LTS version is not compatible), and the `xpm` tool (https://www.npmjs.com/package/xpm).
-
-```console
-$ sudo npm install xpm --global
-```
-
-On Windows, global packages are installed in the user home folder, and do not require `sudo`.
-
-Compiling the source code require a modern C++ compiler, preferably GCC 5 or higher, but was also compiled with GCC 4.8. 
+## Maintainer info
 
 ### How to publish
 
