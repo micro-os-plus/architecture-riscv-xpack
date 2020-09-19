@@ -29,7 +29,7 @@
   },
   "config": {},
   "dependencies": {
-    "@micro-os-plus/startup": "~1.0.7"
+    "@micro-os-plus/startup": "~1.0.8"
   },
   "xpack": {}
 }
