@@ -1,4 +1,8 @@
-## µOS++ RISC-V architecture definitions
+[![license](https://img.shields.io/github/license/micro-os-plus/riscv-arch-xpack)](https://github.com/micro-os-plus/riscv-arch-xpack/blob/xpack/LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/micro-os-plus/riscv-arch-xpack.svg)](https://github.com/micro-os-plus/riscv-arch-xpack/issues)
+[![GitHub pulls](https://img.shields.io/github/issues-pr/micro-os-plus/riscv-arch-xpack.svg)](https://github.com/micro-os-plus/riscv-arch-xpack/pulls)
+
+# µOS++ RISC-V architecture definitions
 
 This project provides support for RISC-V embedded projects.
 
