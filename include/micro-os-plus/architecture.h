@@ -28,20 +28,20 @@
 #ifndef MICRO_OS_PLUS_ARCHITECTURE_H_
 #define MICRO_OS_PLUS_ARCHITECTURE_H_
 
-#include <riscv-arch/arch-defines.h>
+#include <micro-os-plus/architecture-riscv/defines.h>
 
-#include <riscv-arch/arch-types.h>
-#include <riscv-arch/arch-declarations.h>
+#include <micro-os-plus/architecture-riscv/types.h>
+#include <micro-os-plus/architecture-riscv/declarations.h>
 
-#include <riscv-arch/arch-instructions.h>
-#include <riscv-arch/arch-instructions-inlines.h>
+#include <micro-os-plus/architecture-riscv/instructions.h>
+#include <micro-os-plus/architecture-riscv/instructions-inlines.h>
 
-#include <riscv-arch/csr-functions.h>
-#include <riscv-arch/csr-functions-inlines.h>
+#include <micro-os-plus/architecture-riscv/csr-functions.h>
+#include <micro-os-plus/architecture-riscv/csr-functions-inlines.h>
 
-#include <riscv-arch/core-functions.h>
-#include <riscv-arch/core-functions-inlines.h>
+#include <micro-os-plus/architecture-riscv/core-functions.h>
+#include <micro-os-plus/architecture-riscv/core-functions-inlines.h>
 
-#include <riscv-arch/arch-semihosting-inlines.h>
+#include <micro-os-plus/architecture-riscv/semihosting-inlines.h>
 
 #endif /* MICRO_OS_PLUS_ARCHITECTURE_H_ */

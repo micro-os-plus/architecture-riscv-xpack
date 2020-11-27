@@ -25,8 +25,8 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef RISCV_ARCH_ARCH_DEFINES_H_
-#define RISCV_ARCH_ARCH_DEFINES_H_
+#ifndef MICRO_OS_PLUS_ARCHITECTURE_RISCV_ARCH_DEFINES_H_
+#define MICRO_OS_PLUS_ARCHITECTURE_RISCV_ARCH_DEFINES_H_
 
 #if 0
 // TODO: check and possibly prefix them.
@@ -191,4 +191,4 @@
 
 // ----------------------------------------------------------------------------
 
-#endif /* RISCV_ARCH_ARCH_DEFINES_H_ */
+#endif /* MICRO_OS_PLUS_ARCHITECTURE_RISCV_ARCH_DEFINES_H_ */

@@ -1,7 +1,7 @@
 /*
  * This file is part of the µOS++ distribution.
  *   (https://github.com/micro-os-plus)
- * Copyright (c) 2017 Liviu Ionescu.
+ * Copyright (c) 2015 Liviu Ionescu.
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -25,40 +25,54 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef RISCV_ARCH_ARCH_DECLARATIONS_H_
-#define RISCV_ARCH_ARCH_DECLARATIONS_H_
+#ifndef MICRO_OS_PLUS_ARCHITECTURE_RISCV_ARCH_SEMIHOSTING_INLINES_H_
+#define MICRO_OS_PLUS_ARCHITECTURE_RISCV_ARCH_SEMIHOSTING_INLINES_H_
 
-#include <riscv-arch/arch-types.h>
-
-#include <stdint.h>
+// ----------------------------------------------------------------------------
 
 #if defined(__cplusplus)
-
-namespace riscv
+extern "C"
 {
-  namespace core
-  {
-    // ------------------------------------------------------------------------
+#endif /* defined(__cplusplus) */
 
-    extern riscv_core_trap_handler_ptr_t local_interrupt_handlers[];
-    extern riscv_core_trap_handler_ptr_t global_interrupt_handlers[];
+  // ----------------------------------------------------------------------------
 
-    // ------------------------------------------------------------------------
-  } /* namespace core */
+// The hint that differentiates the semihosting call.
+#define RISCV_SEMIHOSTING_CALL_NUMBER 7
 
-  namespace arch
-  {
-    // ------------------------------------------------------------------------
-
-    // TODO: add C++ declarations here.
-
-    // ------------------------------------------------------------------------
-  } /* namespace arch */
 // ----------------------------------------------------------------------------
-} /* namespace riscv */
 
+  static inline int
+  __attribute__ ((always_inline))
+  os_semihosting_call_host (int reason, void* arg)
+  {
+    register int value asm ("a0") = reason;
+    register void* ptr asm ("a1") = arg;
+
+    asm volatile (
+
+        // Workaround for RISC-V lack of multiple EBREAKs.
+        " .option push \n"
+        " .option norvc \n"
+        " slli x0, x0, 0x1f \n"
+        " ebreak \n"
+        " srai x0, x0, %[swi] \n"
+        " .option pop \n"
+
+        : "=r" (value) /* Outputs */
+        : "0" (value), "r" (ptr), [swi] "i" (RISCV_SEMIHOSTING_CALL_NUMBER) /* Inputs */
+        : "memory" /* Clobbers */
+    );
+
+    return value;
+  }
+
+// ----------------------------------------------------------------------------
+
+#if defined(__cplusplus)
+}
 #endif /* defined(__cplusplus) */
 
 // ----------------------------------------------------------------------------
 
-#endif /* RISCV_ARCH_ARCH_DECLARATIONS_H_ */
+#endif /* MICRO_OS_PLUS_ARCHITECTURE_RISCV_ARCH_SEMIHOSTING_INLINES_H_ */

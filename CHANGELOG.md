@@ -51,9 +51,9 @@ Changes in reverse chronological order.
 
 ### 2017-10-29 
 - include/\*: rename csr set/clear_\*_bits
-- include/\*/arch-defines.h: simplify & prefix
-- include/\*/arch-types.h: add exc & irq enums
-- include/board-functions-inlines.h added
+- include/\*/defines.h: simplify & prefix
+- include/\*/types.h: add exc & irq enums
+- include/platform-functions-inlines.h added
 - src/traps.cpp: rename `riscv_interrupts_local_handlers`
 - include/core-functions.h: move `riscv_trap_entry()` here
 - include/\*: update guard macros
@@ -61,7 +61,7 @@ Changes in reverse chronological order.
 ### 2017-10-28
 
 - src/traps.cpp: move local handlers to device
-- include/riscv-arch/arch-defines.h: number of exc
+- include/architecture-riscv/defines.h: number of exc
 - update for device-peripherals.h
 
 ### v0.1.0 (2017-10-26)

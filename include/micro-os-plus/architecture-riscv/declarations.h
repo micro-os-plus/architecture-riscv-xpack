@@ -25,54 +25,35 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef RISCV_ARCH_BOARD_FUNCTIONS_H_
-#define RISCV_ARCH_BOARD_FUNCTIONS_H_
+#ifndef MICRO_OS_PLUS_ARCHITECTURE_RISCV_ARCH_DECLARATIONS_H_
+#define MICRO_OS_PLUS_ARCHITECTURE_RISCV_ARCH_DECLARATIONS_H_
+
+#include <micro-os-plus/architecture-riscv/types.h>
 
 #include <stdint.h>
-
-/*
- * RISC-V core support functions.
- */
-
-#if defined(__cplusplus)
-extern "C"
-{
-#endif /* defined(__cplusplus) */
-
-  // --------------------------------------------------------------------------
-
-  // The declarations are part of the common design, but each board
-  // must implement them in the <xxx/board-functions.h> file.
-
-  static uint32_t
-  riscv_board_get_rtc_frequency_hz (void);
-
-// ----------------------------------------------------------------------------
-
-#if defined(__cplusplus)
-}
-#endif /* defined(__cplusplus) */
-
-// ============================================================================
 
 #if defined(__cplusplus)
 
 namespace riscv
 {
-  namespace board
+  namespace core
   {
-    // The declarations are part of the common design, but each board
-    // must implement them in the <xxx/board-functions.h> file.
+    // ------------------------------------------------------------------------
 
-    /**
-     * Get the board RTC frequency.
-     */
-    uint32_t
-    rtc_frequency_hz (void);
+    extern riscv_core_trap_handler_ptr_t local_interrupt_handlers[];
+    extern riscv_core_trap_handler_ptr_t global_interrupt_handlers[];
 
-  // --------------------------------------------------------------------------
-  } /* namespace board */
+    // ------------------------------------------------------------------------
+  } /* namespace core */
 
+  namespace arch
+  {
+    // ------------------------------------------------------------------------
+
+    // TODO: add C++ declarations here.
+
+    // ------------------------------------------------------------------------
+  } /* namespace arch */
 // ----------------------------------------------------------------------------
 } /* namespace riscv */
 
@@ -80,4 +61,4 @@ namespace riscv
 
 // ----------------------------------------------------------------------------
 
-#endif /* RISCV_ARCH_BOARD_FUNCTIONS_H_ */
+#endif /* MICRO_OS_PLUS_ARCHITECTURE_RISCV_ARCH_DECLARATIONS_H_ */

@@ -1,6 +1,6 @@
-[![license](https://img.shields.io/github/license/micro-os-plus/riscv-arch-xpack)](https://github.com/micro-os-plus/riscv-arch-xpack/blob/xpack/LICENSE)
-[![GitHub issues](https://img.shields.io/github/issues/micro-os-plus/riscv-arch-xpack.svg)](https://github.com/micro-os-plus/riscv-arch-xpack/issues)
-[![GitHub pulls](https://img.shields.io/github/issues-pr/micro-os-plus/riscv-arch-xpack.svg)](https://github.com/micro-os-plus/riscv-arch-xpack/pulls)
+[![license](https://img.shields.io/github/license/micro-os-plus/architecture-riscv-xpack)](https://github.com/micro-os-plus/architecture-riscv-xpack/blob/xpack/LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/micro-os-plus/architecture-riscv-xpack.svg)](https://github.com/micro-os-plus/architecture-riscv-xpack/issues)
+[![GitHub pulls](https://img.shields.io/github/issues-pr/micro-os-plus/architecture-riscv-xpack.svg)](https://github.com/micro-os-plus/architecture-riscv-xpack/pulls)
 
 # µOS++ RISC-V architecture definitions
 
@@ -22,19 +22,19 @@ GCC 5 or higher.
 ### Easy install
 
 This package is available as
-[`@micro-os-plus/riscv-arch`](https://www.npmjs.com/package/@micro-os-plus/riscv-arch)
+[`@micro-os-plus/architecture-riscv`](https://www.npmjs.com/package/@micro-os-plus/architecture-riscv)
 from the `npmjs.com` registry; with `xpm` available, installing the
 latest version of the package is quite easy:
 
 ```console
-$ xpm install @micro-os-plus/riscv-arch@latest
+$ xpm install @micro-os-plus/architecture-riscv@latest
 ```
 
 This package is also available from
-[GitHub](https://github.com/micro-os-plus/riscv-arch-xpack):
+[GitHub](https://github.com/micro-os-plus/architecture-riscv-xpack):
 
 ```console
-$ git clone https://github.com/micro-os-plus/riscv-arch-xpack.git riscv-arch-xpack.git
+$ git clone https://github.com/micro-os-plus/architecture-riscv-xpack.git architecture-riscv-xpack.git
 ```
 
 ### Details
@@ -42,27 +42,27 @@ $ git clone https://github.com/micro-os-plus/riscv-arch-xpack.git riscv-arch-xpa
 From a top down approach, in µOS++, the RISC-V definitions are
 grouped by several criteria:
 
-- board
-- device (RISC-V platform)
+- platform (board)
+- device
 - core
 - hart (hardware thread)
 
-#### Board
+#### platform
 
-The board level refers to a device and adds board specific definitions,
+The platform level refers to a device and adds platform specific definitions,
 like what GPIO pins are used for various LEDs, buttons, etc.
 
-The portable way to include board specific definitions in an application is:
+The portable way to include platform specific definitions in an application is:
 
 ```c
-#include <micro-os-plus/board.h>
+#include <micro-os-plus/platform.h>
 ```
 
-In µOS++, the board specific definitions are grouped in the
-`riscv::board` namespace.
+In µOS++, the platform specific definitions are grouped in the
+`riscv::platform` namespace.
  
-An example of a board package is **sifive/hifive1-board** with the
-SiFive HiFive1 board.
+An example of a platform package is **sifive/platform-sifive-hifive1** with the
+SiFive HiFive1 small development board.
 
 #### Device
 
@@ -81,7 +81,7 @@ In other contexts, _platform_ has a broader meaning and may refer to
 the environment in which a piece of software is executed; it may be
 the hardware or the operating system (OS); to avoid confusions, in
 µOS++ the term **device** is used to identify the vendor specific
-RISC-V details.
+RISC-V details (with _platform_ being used for the machine, or the board).
 
 Please note that RISC-V defines some common MMIO registers (lime
 `mtime` and `mtimecmp`), but, for more flexibility, leaves the

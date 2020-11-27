@@ -25,57 +25,70 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef RISCV_ARCH_BOARD_FUNCTIONS_INLINES_H_
-#define RISCV_ARCH_BOARD_FUNCTIONS_INLINES_H_
+#ifndef MICRO_OS_PLUS_ARCHITECTURE_RISCV_CORE_FUNCTIONS_INLINES_H_
+#define MICRO_OS_PLUS_ARCHITECTURE_RISCV_CORE_FUNCTIONS_INLINES_H_
 
 #include <stdint.h>
 
 /*
- * Board support functions.
- *
- * Inline functions are first defined in C (prefixed with `riscv_board_`),
- * then, for convenience, are redefined in C++ in the `riscv::board::`
- * namespace.
- *
- * Regular functions are first defined in C++ then aliased to C.
+ * Inline implementations for the RISC-V core support functions.
  */
 
-// ----------------------------------------------------------------------------
 #if defined(__cplusplus)
 extern "C"
 {
 #endif /* defined(__cplusplus) */
 
-  static inline uint32_t
+// --------------------------------------------------------------------------
+
+  static inline void
   __attribute__((always_inline))
-  riscv_board_get_rtc_frequency_hz (void)
+  riscv_core_enable_machine_external_interrupts (void)
   {
-    return RISCV_BOARD_RTC_FREQUENCY_HZ;
+    riscv_csr_set_mie_bits (RISCV_CSR_MIP_MEIP);
   }
+
+  /**
+   * @brief Disable external interrupts (used by PLIC).
+   */
+  static inline void
+  __attribute__((always_inline))
+  riscv_core_disable_machine_external_interrupts (void)
+  {
+    riscv_csr_clear_mie_bits (RISCV_CSR_MIP_MEIP);
+  }
+
+// ----------------------------------------------------------------------------
 
 #if defined(__cplusplus)
 }
 #endif /* defined(__cplusplus) */
 
-// ----------------------------------------------------------------------------
+// ============================================================================
 
 #if defined(__cplusplus)
 
 namespace riscv
 {
-  namespace board
+  namespace core
   {
-    // ------------------------------------------------------------------------
 
-    uint32_t
-    inline __attribute__((always_inline))
-    rtc_frequency_hz (void)
+    inline void
+    __attribute__((always_inline))
+    enable_machine_external_interrupts (void)
     {
-      return riscv_board_get_rtc_frequency_hz ();
+      riscv_core_enable_machine_external_interrupts ();
     }
 
-  } /* namespace board */
+    inline void
+    __attribute__((always_inline))
+    disable_machine_external_interrupts (void)
+    {
+      riscv_core_disable_machine_external_interrupts ();
+    }
 
+  // --------------------------------------------------------------------------
+  } /* namespace core */
 // ----------------------------------------------------------------------------
 } /* namespace riscv */
 
@@ -83,4 +96,4 @@ namespace riscv
 
 // ----------------------------------------------------------------------------
 
-#endif /* RISCV_ARCH_BOARD_FUNCTIONS_INLINES_H_ */
+#endif /* MICRO_OS_PLUS_ARCHITECTURE_RISCV_CORE_FUNCTIONS_INLINES_H_ */

@@ -1,16 +1,16 @@
 {
-  "name": "@micro-os-plus/arch-riscv",
+  "name": "@micro-os-plus/architecture-riscv",
   "version": "1.0.3",
-  "description": "A source xPack with µOS++ RISC-V architecture support",
+  "description": "A source xPack with the µOS++ RISC-V architecture port",
   "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/micro-os-plus/arch-riscv-xpack.git"
+    "url": "git+https://github.com/micro-os-plus/architecture-riscv-xpack.git"
   },
-  "homepage": "https://github.com/micro-os-plus/arch-riscv-xpack",
+  "homepage": "https://github.com/micro-os-plus/architecture-riscv-xpack",
   "keywords": [
     "xpack",
     "c++",
@@ -25,7 +25,7 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/micro-os-plus/arch-riscv-xpack/issues"
+    "url": "https://github.com/micro-os-plus/architecture-riscv-xpack/issues"
   },
   "config": {},
   "dependencies": {

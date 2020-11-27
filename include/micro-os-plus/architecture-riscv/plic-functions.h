@@ -25,10 +25,10 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef RISCV_ARCH_PLIC_FUNCTIONS_H_
-#define RISCV_ARCH_PLIC_FUNCTIONS_H_
+#ifndef MICRO_OS_PLUS_ARCHITECTURE_RISCV_PLIC_FUNCTIONS_H_
+#define MICRO_OS_PLUS_ARCHITECTURE_RISCV_PLIC_FUNCTIONS_H_
 
-#include <riscv-arch/arch-types.h>
+#include <micro-os-plus/architecture-riscv/types.h>
 
 #include <stdbool.h>
 
@@ -288,4 +288,4 @@ extern "C"
 
 // ----------------------------------------------------------------------------
 
-#endif /* RISCV_ARCH_PLIC_FUNCTIONS_H_ */
+#endif /* MICRO_OS_PLUS_ARCHITECTURE_RISCV_PLIC_FUNCTIONS_H_ */

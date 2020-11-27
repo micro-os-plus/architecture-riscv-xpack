@@ -25,10 +25,10 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef RISCV_ARCH_CSR_FUNCTIONS_H_
-#define RISCV_ARCH_CSR_FUNCTIONS_H_
+#ifndef MICRO_OS_PLUS_ARCHITECTURE_RISCV_CSR_FUNCTIONS_H_
+#define MICRO_OS_PLUS_ARCHITECTURE_RISCV_CSR_FUNCTIONS_H_
 
-#include <riscv-arch/arch-types.h>
+#include <micro-os-plus/architecture-riscv/types.h>
 
 /*
  * RISC-V CSR support functions.
@@ -248,4 +248,4 @@ namespace riscv
 
 // ----------------------------------------------------------------------------
 
-#endif /* RISCV_ARCH_CSR_FUNCTIONS_H_ */
+#endif /* MICRO_OS_PLUS_ARCHITECTURE_RISCV_CSR_FUNCTIONS_H_ */

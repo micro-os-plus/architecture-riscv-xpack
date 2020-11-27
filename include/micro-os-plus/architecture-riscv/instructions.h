@@ -25,75 +25,63 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef RISCV_ARCH_DEVICE_FUNCTIONS_H_
-#define RISCV_ARCH_DEVICE_FUNCTIONS_H_
+#ifndef MICRO_OS_PLUS_ARCHITECTURE_RISCV_ARCH_INSTRUCTIONS_H_
+#define MICRO_OS_PLUS_ARCHITECTURE_RISCV_ARCH_INSTRUCTIONS_H_
 
-#include <riscv-arch/arch-types.h>
+#include <micro-os-plus/architecture-riscv/defines.h>
+
+#include <stdint.h>
 
 /*
- * RISC-V device support functions.
- *
- * The declarations are part of the common design, but each device
- * must define the actual address and include the file
- * <riscv-arch/device-functions-inlines.h>.
+ * Declarations of RISC-V functions to wrap architecture instructions.
  */
 
-// ----------------------------------------------------------------------------
 #if defined(__cplusplus)
 extern "C"
 {
 #endif /* defined(__cplusplus) */
 
   // --------------------------------------------------------------------------
-  // `mtime` functions.
+  // Architecture assembly instructions in C.
 
-#if __riscv_xlen == 64
-  static
-#endif /* __riscv_xlen == 64 */
-  uint64_t
-  riscv_device_read_mtime (void);
-
-  static uint32_t
-  riscv_device_read_mtime_low (void);
-
-  static uint32_t
-  riscv_device_read_mtime_high (void);
-
-#if __riscv_xlen == 64
-  static
-#endif /* __riscv_xlen == 64 */
-  void
-  riscv_device_write_mtime (uint64_t value);
-
+  /**
+   * `nop` instruction.
+   */
   static void
-  riscv_device_write_mtime_low (uint32_t value);
+  riscv_arch_nop (void);
 
+  /**
+   * `ebreak` instruction.
+   */
   static void
-  riscv_device_write_mtime_high (uint32_t value);
+  riscv_arch_ebreak (void);
+
+  /**
+   * `wfi` instruction.
+   */
+  static void
+  riscv_arch_wfi (void);
 
   // --------------------------------------------------------------------------
-  // `mtimecmp` functions.
+  // Portable architecture assembly instructions in C.
 
-  static uint64_t
-  riscv_device_read_mtimecmp (void);
-
-  static uint32_t
-  riscv_device_read_mtimecmp_low (void);
-
-  static uint32_t
-  riscv_device_read_mtimecmp_high (void);
-
-#if __riscv_xlen == 64
-  static
-#endif /* __riscv_xlen == 64 */
-  void
-  riscv_device_write_mtimecmp (uint64_t value);
-
+  /**
+   * `nop` instruction.
+   */
   static void
-  riscv_device_write_mtimecmp_low (uint32_t value);
+  os_arch_nop (void);
 
+  /**
+   * `break` instruction.
+   */
   static void
-  riscv_device_write_mtimecmp_high (uint32_t value);
+  os_arch_brk (void);
+
+  /**
+   * `wfi` instruction.
+   */
+  static void
+  os_arch_wfi (void);
 
 // ----------------------------------------------------------------------------
 
@@ -107,67 +95,66 @@ extern "C"
 
 namespace riscv
 {
-  namespace device
+  namespace arch
   {
-    // ----------------------------------------------------------------------------
-    // `mtime` functions.
-
-    /**
-     * Read the RTC current counter.
-     */
-    uint64_t
-    mtime (void);
-
-    uint32_t
-    mtime_low (void);
-
-    uint32_t
-    mtime_high (void);
-
-    void
-    mtime (uint64_t value);
-
-    void
-    mtime_low (uint32_t value);
-
-    void
-    mtime_high (uint32_t value);
-
     // ------------------------------------------------------------------------
-    // `mtimecmp` functions.
+    // Architecture assembly instructions in C++.
 
     /**
-     * Read the RTC comparator.
+     * The assembler `nop` instruction.
      */
-    uint64_t
-    mtimecmp (void);
-
-    uint32_t
-    mtimecmp_low (void);
-
-    uint32_t
-    mtimecmp_high (void);
+    void
+    nop (void);
 
     /**
-     * Write the RTC comparator.
+     * The assembler `ebreak` instruction.
      */
     void
-    mtimecmp (uint64_t value);
+    ebreak (void);
 
+    /**
+     * The assembler `wfi` instruction.
+     */
     void
-    mtimecmp_low (uint32_t value);
-
-    void
-    mtimecmp_high (uint32_t value);
+    wfi (void);
 
   // --------------------------------------------------------------------------
-  } /* namespace device */
-
+  } /* namespace arch */
 // ----------------------------------------------------------------------------
 } /* namespace riscv */
+
+namespace os
+{
+  namespace arch
+  {
+    // ------------------------------------------------------------------------
+    // Portable architecture assembly instructions in C++.
+
+    /**
+     * The assembler `nop` instruction.
+     */
+    void
+    nop (void);
+
+    /**
+     * The assembler `break` instruction.
+     */
+    void
+    brk (void);
+
+    /**
+     * The assembler `wfi` instruction.
+     */
+    void
+    wfi (void);
+
+  // --------------------------------------------------------------------------
+  } /* namespace arch */
+// ----------------------------------------------------------------------------
+} /* namespace os */
 
 #endif /* defined(__cplusplus) */
 
 // ----------------------------------------------------------------------------
 
-#endif /* RISCV_ARCH_DEVICE_FUNCTIONS_H_ */
+#endif /* MICRO_OS_PLUS_ARCHITECTURE_RISCV_ARCH_INSTRUCTIONS_H_ */

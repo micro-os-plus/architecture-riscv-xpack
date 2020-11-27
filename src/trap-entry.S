@@ -25,7 +25,7 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#include <riscv-arch/arch-defines.h>
+#include <micro-os-plus/architecture-riscv/defines.h>
 
 // ----------------------------------------------------------------------------
 
