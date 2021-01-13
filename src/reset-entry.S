@@ -25,6 +25,8 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
+#if defined(__riscv)
+
 // ----------------------------------------------------------------------------
 
 	.section	.reset_entry,"ax",@progbits
@@ -47,5 +49,9 @@ riscv_reset_entry:
 
 	// Proceed with the standard C _start() routine.
 	j _start
+
+// ----------------------------------------------------------------------------
+
+#endif /* __riscv */
 
 // ----------------------------------------------------------------------------

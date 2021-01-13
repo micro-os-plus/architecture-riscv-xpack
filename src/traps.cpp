@@ -25,6 +25,10 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
+#if defined(__riscv)
+
+// ----------------------------------------------------------------------------
+
 #include <micro-os-plus/device.h>
 #include <micro-os-plus/diag/trace.h>
 
@@ -193,5 +197,9 @@ riscv_core_handle_unused_trap (void)
       riscv::arch::wfi ();
     }
 }
+
+// ----------------------------------------------------------------------------
+
+#endif /* __riscv */
 
 // ----------------------------------------------------------------------------

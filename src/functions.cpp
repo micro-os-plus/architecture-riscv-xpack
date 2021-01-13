@@ -25,6 +25,10 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
+#if defined(__riscv)
+
+// ----------------------------------------------------------------------------
+
 #include <micro-os-plus/platform.h>
 
 #include <cstddef>
@@ -222,5 +226,9 @@ __attribute__((alias("_ZN5riscv6device8mtimecmpEy")))
 riscv_device_write_mtimecmp (uint64_t value);
 
 #endif /* __riscv_xlen == 32 */
+
+// ----------------------------------------------------------------------------
+
+#endif /* __riscv */
 
 // ----------------------------------------------------------------------------
