@@ -39,10 +39,9 @@ extern "C"
 {
 #endif /* defined(__cplusplus) */
 
-// --------------------------------------------------------------------------
+  // --------------------------------------------------------------------------
 
-  static inline void
-  __attribute__((always_inline))
+  static inline void __attribute__ ((always_inline))
   riscv_core_enable_machine_external_interrupts (void)
   {
     riscv_csr_set_mie_bits (RISCV_CSR_MIP_MEIP);
@@ -51,14 +50,13 @@ extern "C"
   /**
    * @brief Disable external interrupts (used by PLIC).
    */
-  static inline void
-  __attribute__((always_inline))
+  static inline void __attribute__ ((always_inline))
   riscv_core_disable_machine_external_interrupts (void)
   {
     riscv_csr_clear_mie_bits (RISCV_CSR_MIP_MEIP);
   }
 
-// ----------------------------------------------------------------------------
+  // --------------------------------------------------------------------------
 
 #if defined(__cplusplus)
 }
@@ -70,25 +68,23 @@ extern "C"
 
 namespace riscv
 {
-  namespace core
-  {
+namespace core
+{
 
-    inline void
-    __attribute__((always_inline))
-    enable_machine_external_interrupts (void)
-    {
-      riscv_core_enable_machine_external_interrupts ();
-    }
+inline void __attribute__ ((always_inline))
+enable_machine_external_interrupts (void)
+{
+  riscv_core_enable_machine_external_interrupts ();
+}
 
-    inline void
-    __attribute__((always_inline))
-    disable_machine_external_interrupts (void)
-    {
-      riscv_core_disable_machine_external_interrupts ();
-    }
+inline void __attribute__ ((always_inline))
+disable_machine_external_interrupts (void)
+{
+  riscv_core_disable_machine_external_interrupts ();
+}
 
-  // --------------------------------------------------------------------------
-  } /* namespace core */
+// ----------------------------------------------------------------------------
+} /* namespace core */
 // ----------------------------------------------------------------------------
 } /* namespace riscv */
 

@@ -59,14 +59,12 @@ extern "C"
   /**
    * Read the `mstatus` CSR.
    */
-  static riscv_arch_register_t
-  riscv_csr_read_mstatus (void);
+  static riscv_arch_register_t riscv_csr_read_mstatus (void);
 
   /**
    * Write the `mstatus` CSR.
    */
-  static void
-  riscv_csr_write_mstatus (riscv_arch_register_t value);
+  static void riscv_csr_write_mstatus (riscv_arch_register_t value);
 
   /**
    * Clear bits in the `mstatus` CSR.
@@ -86,14 +84,12 @@ extern "C"
   /**
    * Read the `mtvec` CSR.
    */
-  static riscv_arch_register_t
-  riscv_csr_read_mtvec (void);
+  static riscv_arch_register_t riscv_csr_read_mtvec (void);
 
   /**
    * Write the `mtvec` CSR.
    */
-  static void
-  riscv_csr_write_mtvec (riscv_arch_register_t value);
+  static void riscv_csr_write_mtvec (riscv_arch_register_t value);
 
   // --------------------------------------------------------------------------
   // `mcause`
@@ -101,8 +97,7 @@ extern "C"
   /**
    * Read the `mcause` CSR.
    */
-  static riscv_arch_register_t
-  riscv_csr_read_mcause (void);
+  static riscv_arch_register_t riscv_csr_read_mcause (void);
 
   // --------------------------------------------------------------------------
   // `mie`
@@ -110,14 +105,12 @@ extern "C"
   /**
    * Read the `mie` CSR.
    */
-  static riscv_arch_register_t
-  riscv_csr_read_mie (void);
+  static riscv_arch_register_t riscv_csr_read_mie (void);
 
   /**
    * Write the `mie` CSR.
    */
-  static void
-  riscv_csr_write_mie (riscv_arch_register_t value);
+  static void riscv_csr_write_mie (riscv_arch_register_t value);
 
   /**
    * Clear bits in the `mie` CSR.
@@ -140,14 +133,12 @@ extern "C"
 #if __riscv_xlen == 64
   static
 #endif /* __riscv_xlen == 64 */
-  uint64_t
-  riscv_csr_read_mcycle (void);
+      uint64_t
+      riscv_csr_read_mcycle (void);
 
-  static uint32_t
-  riscv_csr_read_mcycle_low (void);
+  static uint32_t riscv_csr_read_mcycle_low (void);
 
-  static uint32_t
-  riscv_csr_read_mcycle_high (void);
+  static uint32_t riscv_csr_read_mcycle_high (void);
 
   // --------------------------------------------------------------------------
   // `mhartid`
@@ -155,10 +146,9 @@ extern "C"
   /**
    * Read the `mhartid` CSR.
    */
-  static riscv_arch_register_t
-  riscv_csr_read_mhartid (void);
+  static riscv_arch_register_t riscv_csr_read_mhartid (void);
 
-// ----------------------------------------------------------------------------
+  // --------------------------------------------------------------------------
 
 #if defined(__cplusplus)
 }
@@ -170,76 +160,61 @@ extern "C"
 
 namespace riscv
 {
-  namespace csr
-  {
-    // ------------------------------------------------------------------------
-    // `mstatus`
+namespace csr
+{
+// ----------------------------------------------------------------------------
+// `mstatus`
 
-    arch::register_t
-    mstatus (void);
+arch::register_t mstatus (void);
 
-    void
-    mstatus (arch::register_t value);
+void mstatus (arch::register_t value);
 
-    void
-    clear_mstatus_bits (arch::register_t mask);
+void clear_mstatus_bits (arch::register_t mask);
 
-    void
-    set_mstatus_bits (arch::register_t mask);
+void set_mstatus_bits (arch::register_t mask);
 
-    // ------------------------------------------------------------------------
-    // `mtvec`
+// ----------------------------------------------------------------------------
+// `mtvec`
 
-    arch::register_t
-    mtvec (void);
+arch::register_t mtvec (void);
 
-    void
-    mtvec (arch::register_t value);
+void mtvec (arch::register_t value);
 
-    // ------------------------------------------------------------------------
-    // `mcause`
+// ----------------------------------------------------------------------------
+// `mcause`
 
-    arch::register_t
-    mcause (void);
+arch::register_t mcause (void);
 
-    // ------------------------------------------------------------------------
-    // `mie`
+// ----------------------------------------------------------------------------
+// `mie`
 
-    arch::register_t
-    mie (void);
+arch::register_t mie (void);
 
-    void
-    mie (arch::register_t value);
+void mie (arch::register_t value);
 
-    void
-    clear_mie_bits (arch::register_t mask);
+void clear_mie_bits (arch::register_t mask);
 
-    void
-    set_mie_bits (arch::register_t mask);
+void set_mie_bits (arch::register_t mask);
 
-    // ------------------------------------------------------------------------
-    // `mcycle`
+// ----------------------------------------------------------------------------
+// `mcycle`
 
-    /**
-     * Read the mcycle counter.
-     */
-    uint64_t
-    mcycle (void);
+/**
+ * Read the mcycle counter.
+ */
+uint64_t mcycle (void);
 
-    uint32_t
-    mcycle_low (void);
+uint32_t mcycle_low (void);
 
-    uint32_t
-    mcycle_high (void);
+uint32_t mcycle_high (void);
 
-    // ------------------------------------------------------------------------
-    // `mhartid`
+// ----------------------------------------------------------------------------
+// `mhartid`
 
-    arch::register_t
-    mhartid (void);
+arch::register_t mhartid (void);
 
-  // --------------------------------------------------------------------------
-  } /* namespace csr */
+// ----------------------------------------------------------------------------
+} /* namespace csr */
 
 // ----------------------------------------------------------------------------
 } /* namespace riscv */

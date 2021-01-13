@@ -65,65 +65,57 @@ extern "C"
 
   // --------------------------------------------------------------------------
 
-  static inline riscv_arch_register_t
-  __attribute__((always_inline))
+  static inline riscv_arch_register_t __attribute__ ((always_inline))
   riscv_csr_read_mstatus (void)
   {
     riscv_arch_register_t tmp;
 
-    asm volatile (
-        "csrr %[r],mstatus"
+    asm volatile("csrr %[r],mstatus"
 
-        : [r] "=r"(tmp) /* Outputs */
-        : /* Inputs */
-        : /* Clobbers */
+                 : [r] "=r"(tmp) /* Outputs */
+                 :               /* Inputs */
+                 :               /* Clobbers */
     );
 
     return tmp;
   }
 
-  static inline void
-  __attribute__((always_inline))
+  static inline void __attribute__ ((always_inline))
   riscv_csr_write_mstatus (riscv_arch_register_t value)
   {
-    asm volatile (
-        "csrw mstatus,%[v]"
+    asm volatile("csrw mstatus,%[v]"
 
-        : /* Outputs */
-        : [v] "rK"(value) /* Inputs */
-        : /* Clobbers */
+                 :                 /* Outputs */
+                 : [v] "rK"(value) /* Inputs */
+                 :                 /* Clobbers */
     );
   }
 
-  static inline riscv_arch_register_t
-  __attribute__((always_inline))
+  static inline riscv_arch_register_t __attribute__ ((always_inline))
   riscv_csr_clear_mstatus_bits (riscv_arch_register_t mask)
   {
     riscv_arch_register_t tmp;
 
-    asm volatile (
-        "csrrc %[r],mstatus,%[v]"
+    asm volatile("csrrc %[r],mstatus,%[v]"
 
-        : [r] "=r"(tmp) /* Outputs */
-        : [v] "rK"(mask) /* Inputs */
-        : /* Clobbers */
+                 : [r] "=r"(tmp)  /* Outputs */
+                 : [v] "rK"(mask) /* Inputs */
+                 :                /* Clobbers */
     );
 
     return tmp;
   }
 
-  static inline riscv_arch_register_t
-  __attribute__((always_inline))
+  static inline riscv_arch_register_t __attribute__ ((always_inline))
   riscv_csr_set_mstatus_bits (riscv_arch_register_t mask)
   {
     riscv_arch_register_t tmp;
 
-    asm volatile (
-        "csrrs %[r],mstatus,%[v]"
+    asm volatile("csrrs %[r],mstatus,%[v]"
 
-        : [r] "=r"(tmp) /* Outputs */
-        : [v] "rK"(mask) /* Inputs */
-        : /* Clobbers */
+                 : [r] "=r"(tmp)  /* Outputs */
+                 : [v] "rK"(mask) /* Inputs */
+                 :                /* Clobbers */
     );
 
     return tmp;
@@ -134,18 +126,16 @@ extern "C"
   /**
    * Read `mtvec` CSR.
    */
-  static inline riscv_arch_register_t
-  __attribute__((always_inline))
+  static inline riscv_arch_register_t __attribute__ ((always_inline))
   riscv_csr_read_mtvec (void)
   {
     riscv_arch_register_t tmp;
 
-    asm volatile (
-        "csrr %[r],mtvec"
+    asm volatile("csrr %[r],mtvec"
 
-        : [r] "=r"(tmp) /* Outputs */
-        : /* Inputs */
-        : /* Clobbers */
+                 : [r] "=r"(tmp) /* Outputs */
+                 :               /* Inputs */
+                 :               /* Clobbers */
     );
 
     return tmp;
@@ -154,33 +144,29 @@ extern "C"
   /**
    * Write `mtvec` CSR.
    */
-  static inline void
-  __attribute__((always_inline))
+  static inline void __attribute__ ((always_inline))
   riscv_csr_write_mtvec (riscv_arch_register_t value)
   {
-    asm volatile (
-        "csrw mtvec,%[v]"
+    asm volatile("csrw mtvec,%[v]"
 
-        : /* Outputs */
-        : [v] "rK"(value) /* Inputs */
-        : /* Clobbers */
+                 :                 /* Outputs */
+                 : [v] "rK"(value) /* Inputs */
+                 :                 /* Clobbers */
     );
   }
 
   // --------------------------------------------------------------------------
 
-  static inline riscv_arch_register_t
-  __attribute__((always_inline))
+  static inline riscv_arch_register_t __attribute__ ((always_inline))
   riscv_csr_read_mcause (void)
   {
     riscv_arch_register_t tmp;
 
-    asm volatile (
-        "csrr %[r],mcause"
+    asm volatile("csrr %[r],mcause"
 
-        : [r] "=r"(tmp) /* Outputs */
-        : /* Inputs */
-        : /* Clobbers */
+                 : [r] "=r"(tmp) /* Outputs */
+                 :               /* Inputs */
+                 :               /* Clobbers */
     );
 
     return tmp;
@@ -188,65 +174,57 @@ extern "C"
 
   // --------------------------------------------------------------------------
 
-  static inline riscv_arch_register_t
-  __attribute__((always_inline))
+  static inline riscv_arch_register_t __attribute__ ((always_inline))
   riscv_csr_read_mie (void)
   {
     riscv_arch_register_t tmp;
 
-    asm volatile (
-        "csrr %[r],mie"
+    asm volatile("csrr %[r],mie"
 
-        : [r] "=r"(tmp) /* Outputs */
-        : /* Inputs */
-        : /* Clobbers */
+                 : [r] "=r"(tmp) /* Outputs */
+                 :               /* Inputs */
+                 :               /* Clobbers */
     );
 
     return tmp;
   }
 
-  static inline void
-  __attribute__((always_inline))
+  static inline void __attribute__ ((always_inline))
   riscv_csr_write_mie (riscv_arch_register_t value)
   {
-    asm volatile (
-        "csrw mie,%[v]"
+    asm volatile("csrw mie,%[v]"
 
-        : /* Outputs */
-        : [v] "rK"(value) /* Inputs */
-        : /* Clobbers */
+                 :                 /* Outputs */
+                 : [v] "rK"(value) /* Inputs */
+                 :                 /* Clobbers */
     );
   }
 
-  static inline riscv_arch_register_t
-  __attribute__((always_inline))
+  static inline riscv_arch_register_t __attribute__ ((always_inline))
   riscv_csr_clear_mie_bits (riscv_arch_register_t mask)
   {
     riscv_arch_register_t tmp;
 
-    asm volatile (
-        "csrrc %[r],mie,%[v]"
+    asm volatile("csrrc %[r],mie,%[v]"
 
-        : [r] "=r"(tmp) /* Outputs */
-        : [v] "rK"(mask) /* Inputs */
-        : /* Clobbers */
+                 : [r] "=r"(tmp)  /* Outputs */
+                 : [v] "rK"(mask) /* Inputs */
+                 :                /* Clobbers */
     );
 
     return tmp;
   }
 
-  static inline riscv_arch_register_t
-  __attribute__((always_inline))
+  static inline riscv_arch_register_t __attribute__ ((always_inline))
   riscv_csr_set_mie_bits (riscv_arch_register_t mask)
   {
     riscv_arch_register_t tmp;
 
-    asm volatile (
-        "csrrs %[r],mie,%[v]"
+    asm volatile("csrrs %[r],mie,%[v]"
 
-        : [r] "=r"(tmp) /* Outputs */
-        : [v] "rK"(mask) /* Inputs */
-        : /* Clobbers */
+                 : [r] "=r"(tmp)  /* Outputs */
+                 : [v] "rK"(mask) /* Inputs */
+                 :                /* Clobbers */
     );
 
     return tmp;
@@ -259,91 +237,83 @@ extern "C"
   /**
    * Read `mcycle` CSR.
    */
-  static inline uint64_t
-  __attribute__((always_inline))
+  static inline uint64_t __attribute__ ((always_inline))
   riscv_csr_read_mcycle (void)
   {
     riscv_arch_register_t tmp;
 
-    asm volatile (
-        "csrr %[r],mcycle"
+    asm volatile("csrr %[r],mcycle"
 
-        : [r] "=rm"(tmp) /* Outputs */
-        : /* Inputs */
-        : /* Clobbers */
+                 : [r] "=rm"(tmp) /* Outputs */
+                 :                /* Inputs */
+                 :                /* Clobbers */
     );
     return tmp;
   }
 
 #endif /* __riscv_xlen == 64 */
 
-  static inline uint32_t
-  __attribute__((always_inline))
+  static inline uint32_t __attribute__ ((always_inline))
   riscv_csr_read_mcycle_low (void)
   {
 #if __riscv_xlen == 32
 
     uint32_t tmp;
 
-    asm volatile (
-        "csrr %[r],mcycle"
+    asm volatile("csrr %[r],mcycle"
 
-        : [r] "=rm"(tmp) /* Outputs */
-        : /* Inputs */
-        : /* Clobbers */
+                 : [r] "=rm"(tmp) /* Outputs */
+                 :                /* Inputs */
+                 :                /* Clobbers */
     );
     return tmp;
 
 #elif __riscv_xlen == 64
 
-    return (uint32_t) riscv_csr_read_mcycle ();
+  return (uint32_t)riscv_csr_read_mcycle ();
 
 #endif /* __riscv_xlen */
   }
 
-  static inline uint32_t
-  __attribute__((always_inline))
+  static inline uint32_t __attribute__ ((always_inline))
   riscv_csr_read_mcycle_high (void)
   {
 #if __riscv_xlen == 32
 
     uint32_t tmp;
 
-    asm volatile (
-        "csrr %[r],mcycleh"
+    asm volatile("csrr %[r],mcycleh"
 
-        : [r] "=rm"(tmp) /* Outputs */
-        : /* Inputs */
-        : /* Clobbers */
+                 : [r] "=rm"(tmp) /* Outputs */
+                 :                /* Inputs */
+                 :                /* Clobbers */
     );
     return tmp;
 
 #elif __riscv_xlen == 64
 
-    return (uint32_t) (riscv_csr_read_mcycle () >> 32);
+  return (uint32_t) (riscv_csr_read_mcycle () >> 32);
 
 #endif /* __riscv_xlen */
   }
 
   // --------------------------------------------------------------------------
 
-  static inline riscv_arch_register_t
-  __attribute__((always_inline))
+  static inline riscv_arch_register_t __attribute__ ((always_inline))
   riscv_csr_read_mhartid (void)
   {
     riscv_arch_register_t tmp;
 
-    asm volatile (
-        "csrr %[r],mhartid"
+    asm volatile("csrr %[r],mhartid"
 
-        : [r] "=r"(tmp) /* Outputs */
-        : /* Inputs */
-        : /* Clobbers */
+                 : [r] "=r"(tmp) /* Outputs */
+                 :               /* Inputs */
+                 :               /* Clobbers */
     );
     return tmp;
   }
 
-// ----------------------------------------------------------------------------
+  // --------------------------------------------------------------------------
 
 #if defined(__cplusplus)
 }
@@ -355,131 +325,105 @@ extern "C"
 
 namespace riscv
 {
-  namespace csr
-  {
-    // ------------------------------------------------------------------------
+namespace csr
+{
+// ----------------------------------------------------------------------------
 
-    inline arch::register_t
-    __attribute__((always_inline))
-    mstatus (void)
-    {
-      return riscv_csr_read_mstatus ();
-    }
+inline arch::register_t __attribute__ ((always_inline)) mstatus (void)
+{
+  return riscv_csr_read_mstatus ();
+}
 
-    inline void
-    __attribute__((always_inline))
-    mstatus (arch::register_t value)
-    {
-      riscv_csr_write_mstatus (value);
-    }
+inline void __attribute__ ((always_inline)) mstatus (arch::register_t value)
+{
+  riscv_csr_write_mstatus (value);
+}
 
-    inline void
-    __attribute__((always_inline))
-    clear_mstatus_bits (arch::register_t mask)
-    {
-      riscv_csr_clear_mstatus_bits (mask);
-    }
+inline void __attribute__ ((always_inline))
+clear_mstatus_bits (arch::register_t mask)
+{
+  riscv_csr_clear_mstatus_bits (mask);
+}
 
-    inline void
-    __attribute__((always_inline))
-    set_mstatus_bits (arch::register_t mask)
-    {
-      riscv_csr_set_mstatus_bits (mask);
-    }
+inline void __attribute__ ((always_inline))
+set_mstatus_bits (arch::register_t mask)
+{
+  riscv_csr_set_mstatus_bits (mask);
+}
 
-    // ------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 
-    inline arch::register_t
-    __attribute__((always_inline))
-    mtvec (void)
-    {
-      return riscv_csr_read_mtvec ();
-    }
+inline arch::register_t __attribute__ ((always_inline)) mtvec (void)
+{
+  return riscv_csr_read_mtvec ();
+}
 
-    inline void
-    __attribute__((always_inline))
-    mtvec (arch::register_t value)
-    {
-      riscv_csr_write_mtvec (value);
-    }
+inline void __attribute__ ((always_inline)) mtvec (arch::register_t value)
+{
+  riscv_csr_write_mtvec (value);
+}
 
-    // ------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 
-    inline arch::register_t
-    __attribute__((always_inline))
-    mcause (void)
-    {
-      return riscv_csr_read_mcause ();
-    }
+inline arch::register_t __attribute__ ((always_inline)) mcause (void)
+{
+  return riscv_csr_read_mcause ();
+}
 
-    // ------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 
-    inline arch::register_t
-    __attribute__((always_inline))
-    mie (void)
-    {
-      return riscv_csr_read_mie ();
-    }
+inline arch::register_t __attribute__ ((always_inline)) mie (void)
+{
+  return riscv_csr_read_mie ();
+}
 
-    inline void
-    __attribute__((always_inline))
-    mie (arch::register_t value)
-    {
-      riscv_csr_write_mie (value);
-    }
+inline void __attribute__ ((always_inline)) mie (arch::register_t value)
+{
+  riscv_csr_write_mie (value);
+}
 
-    inline void
-    __attribute__((always_inline))
-    clear_mie_bits (arch::register_t mask)
-    {
-      riscv_csr_clear_mie_bits (mask);
-    }
+inline void __attribute__ ((always_inline))
+clear_mie_bits (arch::register_t mask)
+{
+  riscv_csr_clear_mie_bits (mask);
+}
 
-    inline void
-    __attribute__((always_inline))
-    set_mie_bits (arch::register_t mask)
-    {
-      riscv_csr_set_mie_bits (mask);
-    }
+inline void __attribute__ ((always_inline))
+set_mie_bits (arch::register_t mask)
+{
+  riscv_csr_set_mie_bits (mask);
+}
 
-    // ------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 
 #if __riscv_xlen == 64
 
-    inline uint64_t
-    __attribute__((always_inline))
-    mcycle (void)
-    {
-      return riscv_csr_read_mcycle ();
-    }
+inline uint64_t __attribute__ ((always_inline)) mcycle (void)
+{
+  return riscv_csr_read_mcycle ();
+}
 
 #endif /* __riscv_xlen == 64 */
 
-    inline uint32_t
-    __attribute__((always_inline))
-    mcycle_low (void)
-    {
-      return riscv_csr_read_mcycle_low ();
-    }
+inline uint32_t __attribute__ ((always_inline)) mcycle_low (void)
+{
+  return riscv_csr_read_mcycle_low ();
+}
 
-    inline uint32_t
-    __attribute__((always_inline))
-    mcycle_high (void)
-    {
-      return riscv_csr_read_mcycle_high ();
-    }
+inline uint32_t __attribute__ ((always_inline)) mcycle_high (void)
+{
+  return riscv_csr_read_mcycle_high ();
+}
 
-    // ------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 
-    inline arch::register_t
-    __attribute__((always_inline))
-    mhartid (void)
-    {
-      return riscv_csr_read_mhartid ();
-    }
+inline arch::register_t __attribute__ ((always_inline)) mhartid (void)
+{
+  return riscv_csr_read_mhartid ();
+}
 
-  // --------------------------------------------------------------------------
-  } /* namespace csr */
+// ----------------------------------------------------------------------------
+} /* namespace csr */
 
 // ----------------------------------------------------------------------------
 } /* namespace riscv */

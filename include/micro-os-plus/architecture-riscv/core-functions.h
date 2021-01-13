@@ -42,25 +42,20 @@ extern "C"
   // --------------------------------------------------------------------------
   // Support functions.
 
-  uint32_t
-  riscv_core_get_running_frequency_hz (void);
+  uint32_t riscv_core_get_running_frequency_hz (void);
 
-  void
-  riscv_core_update_running_frequency (void);
+  void riscv_core_update_running_frequency (void);
 
-  static void
-  riscv_core_enable_machine_external_interrupts(void);
+  static void riscv_core_enable_machine_external_interrupts (void);
 
-  static void
-  riscv_core_disable_machine_external_interrupts(void);
+  static void riscv_core_disable_machine_external_interrupts (void);
 
   /**
    * Hardware trap entry point (assembly).
    */
-  void
-  riscv_trap_entry (void);
+  void riscv_trap_entry (void);
 
-// ----------------------------------------------------------------------------
+  // --------------------------------------------------------------------------
 
 #if defined(__cplusplus)
 }
@@ -72,38 +67,34 @@ extern "C"
 
 namespace riscv
 {
-  namespace core
-  {
-    // ------------------------------------------------------------------------
-    // Support functions.
+namespace core
+{
+// ----------------------------------------------------------------------------
+// Support functions.
 
-    /**
-     * Get the previously computed CPU frequency.
-     */
-    uint32_t
-    running_frequency_hz (void);
+/**
+ * Get the previously computed CPU frequency.
+ */
+uint32_t running_frequency_hz (void);
 
-    /**
-     * Compute the CPU frequency. Call this after changing the
-     * clock settings.
-     */
-    void
-    update_running_frequency (void);
+/**
+ * Compute the CPU frequency. Call this after changing the
+ * clock settings.
+ */
+void update_running_frequency (void);
 
-    /**
-     * @brief Enable external interrupts (used by PLIC).
-     */
-    void
-    enable_machine_external_interrupts (void);
+/**
+ * @brief Enable external interrupts (used by PLIC).
+ */
+void enable_machine_external_interrupts (void);
 
-    /**
-     * @brief Disable external interrupts (used by PLIC).
-     */
-    void
-    disable_machine_external_interrupts (void);
+/**
+ * @brief Disable external interrupts (used by PLIC).
+ */
+void disable_machine_external_interrupts (void);
 
-  // --------------------------------------------------------------------------
-  } /* namespace core */
+// ----------------------------------------------------------------------------
+} /* namespace core */
 
 // ----------------------------------------------------------------------------
 } /* namespace riscv */

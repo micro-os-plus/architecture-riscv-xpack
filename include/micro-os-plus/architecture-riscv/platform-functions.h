@@ -44,10 +44,9 @@ extern "C"
   // The declarations are part of the common design, but each board
   // must implement them in the <xxx/platform-functions.h> file.
 
-  static uint32_t
-  riscv_board_get_rtc_frequency_hz (void);
+  static uint32_t riscv_board_get_rtc_frequency_hz (void);
 
-// ----------------------------------------------------------------------------
+  // --------------------------------------------------------------------------
 
 #if defined(__cplusplus)
 }
@@ -59,19 +58,18 @@ extern "C"
 
 namespace riscv
 {
-  namespace board
-  {
-    // The declarations are part of the common design, but each board
-    // must implement them in the <xxx/platform-functions.h> file.
+namespace board
+{
+// The declarations are part of the common design, but each board
+// must implement them in the <xxx/platform-functions.h> file.
 
-    /**
-     * Get the board RTC frequency.
-     */
-    uint32_t
-    rtc_frequency_hz (void);
+/**
+ * Get the board RTC frequency.
+ */
+uint32_t rtc_frequency_hz (void);
 
-  // --------------------------------------------------------------------------
-  } /* namespace board */
+// ----------------------------------------------------------------------------
+} /* namespace board */
 
 // ----------------------------------------------------------------------------
 } /* namespace riscv */

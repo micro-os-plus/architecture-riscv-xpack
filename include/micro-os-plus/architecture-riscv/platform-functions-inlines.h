@@ -46,8 +46,7 @@ extern "C"
 {
 #endif /* defined(__cplusplus) */
 
-  static inline uint32_t
-  __attribute__((always_inline))
+  static inline uint32_t __attribute__ ((always_inline))
   riscv_board_get_rtc_frequency_hz (void)
   {
     return RISCV_PLATFORM_RTC_FREQUENCY_HZ;
@@ -63,18 +62,16 @@ extern "C"
 
 namespace riscv
 {
-  namespace board
-  {
-    // ------------------------------------------------------------------------
+namespace board
+{
+// ----------------------------------------------------------------------------
 
-    uint32_t
-    inline __attribute__((always_inline))
-    rtc_frequency_hz (void)
-    {
-      return riscv_board_get_rtc_frequency_hz ();
-    }
+uint32_t inline __attribute__ ((always_inline)) rtc_frequency_hz (void)
+{
+  return riscv_board_get_rtc_frequency_hz ();
+}
 
-  } /* namespace board */
+} /* namespace board */
 
 // ----------------------------------------------------------------------------
 } /* namespace riscv */

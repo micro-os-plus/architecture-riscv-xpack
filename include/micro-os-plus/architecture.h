@@ -30,17 +30,17 @@
 
 #include <micro-os-plus/architecture-riscv/defines.h>
 
-#include <micro-os-plus/architecture-riscv/types.h>
 #include <micro-os-plus/architecture-riscv/declarations.h>
+#include <micro-os-plus/architecture-riscv/types.h>
 
-#include <micro-os-plus/architecture-riscv/instructions.h>
 #include <micro-os-plus/architecture-riscv/instructions-inlines.h>
+#include <micro-os-plus/architecture-riscv/instructions.h>
 
-#include <micro-os-plus/architecture-riscv/csr-functions.h>
 #include <micro-os-plus/architecture-riscv/csr-functions-inlines.h>
+#include <micro-os-plus/architecture-riscv/csr-functions.h>
 
-#include <micro-os-plus/architecture-riscv/core-functions.h>
 #include <micro-os-plus/architecture-riscv/core-functions-inlines.h>
+#include <micro-os-plus/architecture-riscv/core-functions.h>
 
 #include <micro-os-plus/architecture-riscv/semihosting-inlines.h>
 

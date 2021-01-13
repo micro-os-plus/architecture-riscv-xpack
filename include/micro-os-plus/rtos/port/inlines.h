@@ -39,182 +39,153 @@
 
 // ----------------------------------------------------------------------------
 
-#ifdef  __cplusplus
+#ifdef __cplusplus
 
 #include <micro-os-plus/device.h>
 #include <micro-os-plus/diag/trace.h>
 
 namespace os
 {
-  namespace rtos
-  {
-    namespace port
-    {
-      // ----------------------------------------------------------------------
+namespace rtos
+{
+namespace port
+{
+// ----------------------------------------------------------------------------
 
-      namespace scheduler
-      {
+namespace scheduler
+{
 
-        inline void
-        __attribute__((always_inline))
-        greeting (void)
-        {
-          trace::printf ("Scheduler: µOS++ RISC-V");
-          trace::printf (", preemptive");
+inline void __attribute__ ((always_inline)) greeting (void)
+{
+  trace::printf ("Scheduler: µOS++ RISC-V");
+  trace::printf (", preemptive");
 #if defined(OS_EXCLUDE_RTOS_IDLE_SLEEP)
-          trace::printf(", no WFI");
+  trace::printf (", no WFI");
 #else
-          trace::printf(", WFI");
+  trace::printf (", WFI");
 #endif
-          trace::puts (".");
+  trace::puts (".");
 
-          // At this stage the system clock should have already been configured
-          // at high speed by __initialise_hardware().
-          // trace::printf ("System clock: %u Hz.\n", SystemCoreClock);
-        }
+  // At this stage the system clock should have already been configured
+  // at high speed by __initialise_hardware().
+  // trace::printf ("System clock: %u Hz.\n", SystemCoreClock);
+}
 
-        inline port::scheduler::state_t
-        __attribute__((always_inline))
-        lock (void)
-        {
-          return locked (state::locked);
-        }
+inline port::scheduler::state_t __attribute__ ((always_inline)) lock (void)
+{
+  return locked (state::locked);
+}
 
-        inline port::scheduler::state_t
-        __attribute__((always_inline))
-        unlock (void)
-        {
-          return locked (state::unlocked);
-        }
+inline port::scheduler::state_t __attribute__ ((always_inline)) unlock (void)
+{
+  return locked (state::unlocked);
+}
 
-        inline bool
-        __attribute__((always_inline))
-        locked (void)
-        {
-          return lock_state != state::unlocked;
-        }
+inline bool __attribute__ ((always_inline)) locked (void)
+{
+  return lock_state != state::unlocked;
+}
 
-        inline void
-        __attribute__((always_inline))
-        wait_for_interrupt (void)
-        {
+inline void __attribute__ ((always_inline)) wait_for_interrupt (void)
+{
 #if !defined(OS_EXCLUDE_RTOS_IDLE_SLEEP)
 #if defined(OS_TRACE_RTOS_THREAD_CONTEXT)
-          trace::printf ("%s() \n", __func__);
+  trace::printf ("%s() \n", __func__);
 #endif
-          riscv::arch::wfi();
+  riscv::arch::wfi ();
 #endif /* !defined(OS_EXCLUDE_RTOS_IDLE_SLEEP) */
-        }
+}
 
-      } /* namespace scheduler */
+} /* namespace scheduler */
 
-      namespace interrupts
-      {
-        inline bool
-        __attribute__((always_inline))
-        in_handler_mode (void)
-        {
-          return false;
-        }
+namespace interrupts
+{
+inline bool __attribute__ ((always_inline)) in_handler_mode (void)
+{
+  return false;
+}
 
-        /**
-         * @details
-         * TBD
-         */
-        inline bool
-        is_priority_valid (void)
-        {
-        	return true;
-        }
+/**
+ * @details
+ * TBD
+ */
+inline bool
+is_priority_valid (void)
+{
+  return true;
+}
 
-        // Enter an IRQ critical section
-        inline rtos::interrupts::state_t
-        __attribute__((always_inline))
-        critical_section::enter (void)
-        {
-          return 0;
-        }
+// Enter an IRQ critical section
+inline rtos::interrupts::state_t __attribute__ ((always_inline))
+critical_section::enter (void)
+{
+  return 0;
+}
 
-        // Exit an IRQ critical section
-        inline void
-        __attribute__((always_inline))
-        critical_section::exit (rtos::interrupts::state_t state)
-        {
-        	riscv::arch::nop();
-        }
+// Exit an IRQ critical section
+inline void __attribute__ ((always_inline))
+critical_section::exit (rtos::interrupts::state_t state)
+{
+  riscv::arch::nop ();
+}
 
-        // ====================================================================
+// ============================================================================
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 
-        // Enter an IRQ uncritical section
-        inline rtos::interrupts::state_t
-        __attribute__((always_inline))
-        uncritical_section::enter (void)
-        {
-          return 0;
-        }
+// Enter an IRQ uncritical section
+inline rtos::interrupts::state_t __attribute__ ((always_inline))
+uncritical_section::enter (void)
+{
+  return 0;
+}
 
-        // Exit an IRQ critical section
-        inline void
-        __attribute__((always_inline))
-        uncritical_section::exit (rtos::interrupts::state_t state)
-        {
-          ;
-        }
+// Exit an IRQ critical section
+inline void __attribute__ ((always_inline))
+uncritical_section::exit (rtos::interrupts::state_t state)
+{
+  ;
+}
 
 #pragma GCC diagnostic pop
 
-      } /* namespace interrupts */
+} /* namespace interrupts */
 
-      // ======================================================================
+// ============================================================================
 
-      namespace this_thread
-      {
-        inline void
-        __attribute__((always_inline))
-        prepare_suspend (void)
-        {
-          ;
-        }
+namespace this_thread
+{
+inline void __attribute__ ((always_inline)) prepare_suspend (void) { ; }
 
-      } /* namespace this_thread */
+} /* namespace this_thread */
 
-      // ======================================================================
+// ============================================================================
 
-      inline void
-      __attribute__((always_inline))
-      clock_highres::start (void)
-      {
-        ;
-      }
+inline void __attribute__ ((always_inline)) clock_highres::start (void) { ; }
 
-      inline uint32_t
-      __attribute__((always_inline))
-      clock_highres::input_clock_frequency_hz (void)
-      {
-        return 0;
-      }
+inline uint32_t __attribute__ ((always_inline))
+clock_highres::input_clock_frequency_hz (void)
+{
+  return 0;
+}
 
-      inline uint32_t
-      __attribute__((always_inline))
-      clock_highres::cycles_per_tick (void)
-      {
-        return 1;
-      }
+inline uint32_t __attribute__ ((always_inline))
+clock_highres::cycles_per_tick (void)
+{
+  return 1;
+}
 
-      inline uint32_t
-      __attribute__((always_inline))
-      clock_highres::cycles_since_tick (void)
-      {
-        return 1;
-      }
+inline uint32_t __attribute__ ((always_inline))
+clock_highres::cycles_since_tick (void)
+{
+  return 1;
+}
 
-    // ======================================================================
+// ============================================================================
 
-    } /* namespace port */
-  } /* namespace rtos */
+} /* namespace port */
+} /* namespace rtos */
 } /* namespace os */
 
 #pragma GCC diagnostic pop
