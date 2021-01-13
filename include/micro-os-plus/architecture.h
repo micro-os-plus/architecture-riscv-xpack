@@ -45,3 +45,5 @@
 #include <micro-os-plus/architecture-riscv/semihosting-inlines.h>
 
 #endif /* MICRO_OS_PLUS_ARCHITECTURE_H_ */
+
+// ----------------------------------------------------------------------------
