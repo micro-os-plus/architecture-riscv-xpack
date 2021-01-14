@@ -35,20 +35,21 @@ extern "C"
 {
 #endif /* defined(__cplusplus) */
 
-// ----------------------------------------------------------------------------
+  // ----------------------------------------------------------------------------
 
 // The hint that differentiates the semihosting call.
 #define RISCV_SEMIHOSTING_CALL_NUMBER 7
 
-  // --------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 
-  static inline int __attribute__ ((always_inline))
+  static inline int
+  __attribute__ ((always_inline))
   os_semihosting_call_host (int reason, void* arg)
   {
-    register int value asm("a0") = reason;
-    register void* ptr asm("a1") = arg;
+    register int value asm ("a0") = reason;
+    register void* ptr asm ("a1") = arg;
 
-    asm volatile(
+    asm volatile (
 
         // Workaround for RISC-V lack of multiple EBREAKs.
         " .option push \n"
@@ -58,16 +59,15 @@ extern "C"
         " srai x0, x0, %[swi] \n"
         " .option pop \n"
 
-        : "=r"(value) /* Outputs */
-        : "0"(value),
-          "r"(ptr), [swi] "i"(RISCV_SEMIHOSTING_CALL_NUMBER) /* Inputs */
-        : "memory"                                           /* Clobbers */
+        : "=r" (value) /* Outputs */
+        : "0" (value), "r" (ptr), [swi] "i" (RISCV_SEMIHOSTING_CALL_NUMBER) /* Inputs */
+        : "memory" /* Clobbers */
     );
 
     return value;
   }
 
-  // --------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 
 #if defined(__cplusplus)
 }

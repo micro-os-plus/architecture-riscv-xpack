@@ -47,17 +47,20 @@ extern "C"
   /**
    * `nop` instruction.
    */
-  static void riscv_arch_nop (void);
+  static void
+  riscv_arch_nop (void);
 
   /**
    * `ebreak` instruction.
    */
-  static void riscv_arch_ebreak (void);
+  static void
+  riscv_arch_ebreak (void);
 
   /**
    * `wfi` instruction.
    */
-  static void riscv_arch_wfi (void);
+  static void
+  riscv_arch_wfi (void);
 
   // --------------------------------------------------------------------------
   // Portable architecture assembly instructions in C.
@@ -65,19 +68,22 @@ extern "C"
   /**
    * `nop` instruction.
    */
-  static void os_arch_nop (void);
+  static void
+  os_arch_nop (void);
 
   /**
    * `break` instruction.
    */
-  static void os_arch_brk (void);
+  static void
+  os_arch_brk (void);
 
   /**
    * `wfi` instruction.
    */
-  static void os_arch_wfi (void);
+  static void
+  os_arch_wfi (void);
 
-  // --------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 
 #if defined(__cplusplus)
 }
@@ -89,55 +95,61 @@ extern "C"
 
 namespace riscv
 {
-namespace arch
-{
-// ----------------------------------------------------------------------------
-// Architecture assembly instructions in C++.
+  namespace arch
+  {
+    // ------------------------------------------------------------------------
+    // Architecture assembly instructions in C++.
 
-/**
- * The assembler `nop` instruction.
- */
-void nop (void);
+    /**
+     * The assembler `nop` instruction.
+     */
+    void
+    nop (void);
 
-/**
- * The assembler `ebreak` instruction.
- */
-void ebreak (void);
+    /**
+     * The assembler `ebreak` instruction.
+     */
+    void
+    ebreak (void);
 
-/**
- * The assembler `wfi` instruction.
- */
-void wfi (void);
+    /**
+     * The assembler `wfi` instruction.
+     */
+    void
+    wfi (void);
 
-// ----------------------------------------------------------------------------
-} /* namespace arch */
+  // --------------------------------------------------------------------------
+  } /* namespace arch */
 // ----------------------------------------------------------------------------
 } /* namespace riscv */
 
 namespace os
 {
-namespace arch
-{
-// ----------------------------------------------------------------------------
-// Portable architecture assembly instructions in C++.
+  namespace arch
+  {
+    // ------------------------------------------------------------------------
+    // Portable architecture assembly instructions in C++.
 
-/**
- * The assembler `nop` instruction.
- */
-void nop (void);
+    /**
+     * The assembler `nop` instruction.
+     */
+    void
+    nop (void);
 
-/**
- * The assembler `break` instruction.
- */
-void brk (void);
+    /**
+     * The assembler `break` instruction.
+     */
+    void
+    brk (void);
 
-/**
- * The assembler `wfi` instruction.
- */
-void wfi (void);
+    /**
+     * The assembler `wfi` instruction.
+     */
+    void
+    wfi (void);
 
-// ----------------------------------------------------------------------------
-} /* namespace arch */
+  // --------------------------------------------------------------------------
+  } /* namespace arch */
 // ----------------------------------------------------------------------------
 } /* namespace os */
 

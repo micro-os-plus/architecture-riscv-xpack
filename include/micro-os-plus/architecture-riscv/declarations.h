@@ -36,24 +36,24 @@
 
 namespace riscv
 {
-namespace core
-{
-// ----------------------------------------------------------------------------
+  namespace core
+  {
+    // ------------------------------------------------------------------------
 
-extern riscv_core_trap_handler_ptr_t local_interrupt_handlers[];
-extern riscv_core_trap_handler_ptr_t global_interrupt_handlers[];
+    extern riscv_core_trap_handler_ptr_t local_interrupt_handlers[];
+    extern riscv_core_trap_handler_ptr_t global_interrupt_handlers[];
 
-// ----------------------------------------------------------------------------
-} /* namespace core */
+    // ------------------------------------------------------------------------
+  } /* namespace core */
 
-namespace arch
-{
-// ----------------------------------------------------------------------------
+  namespace arch
+  {
+    // ------------------------------------------------------------------------
 
-// TODO: add C++ declarations here.
+    // TODO: add C++ declarations here.
 
-// ----------------------------------------------------------------------------
-} /* namespace arch */
+    // ------------------------------------------------------------------------
+  } /* namespace arch */
 // ----------------------------------------------------------------------------
 } /* namespace riscv */
 
