@@ -49,10 +49,10 @@ extern "C"
   riscv_core_update_running_frequency (void);
 
   static void
-  riscv_core_enable_machine_external_interrupts(void);
+  riscv_core_enable_machine_external_interrupts (void);
 
   static void
-  riscv_core_disable_machine_external_interrupts(void);
+  riscv_core_disable_machine_external_interrupts (void);
 
   /**
    * Hardware trap entry point (assembly).
@@ -60,7 +60,7 @@ extern "C"
   void
   riscv_trap_entry (void);
 
-// ----------------------------------------------------------------------------
+  // --------------------------------------------------------------------------
 
 #if defined(__cplusplus)
 }
@@ -102,11 +102,9 @@ namespace riscv
     void
     disable_machine_external_interrupts (void);
 
-  // --------------------------------------------------------------------------
-  } /* namespace core */
-
-// ----------------------------------------------------------------------------
-} /* namespace riscv */
+    // ------------------------------------------------------------------------
+  } // namespace core
+} // namespace riscv
 
 #endif /* defined(__cplusplus) */
 

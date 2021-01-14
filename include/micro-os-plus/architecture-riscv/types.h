@@ -38,15 +38,15 @@ extern "C"
 #if __riscv_xlen == 32
   typedef uint32_t riscv_arch_register_t;
 #elif __riscv_xlen == 64
-  typedef uint64_t riscv_arch_register_t;
+typedef uint64_t riscv_arch_register_t;
 #endif /* __riscv_xlen */
 
-  typedef void
-  (*riscv_core_trap_handler_ptr_t) (void);
+  typedef void (*riscv_core_trap_handler_ptr_t) (void);
 
   // --------------------------------------------------------------------------
 
-  typedef enum {
+  typedef enum
+  {
     riscv_exception_misaligned_fetch = 0,
     riscv_exception_fault_fetch = 1,
     riscv_exception_illegal_instruction = 2,
@@ -70,7 +70,8 @@ extern "C"
   // --------------------------------------------------------------------------
   // Values from Table 3.6.
 
-  typedef enum {
+  typedef enum
+  {
     riscv_interrupt_local_user_software = 0,
     riscv_interrupt_local_supervisor_software = 1,
     /* 2 reserved */
@@ -89,7 +90,7 @@ extern "C"
     /* 15 reserved */
   } riscv_interrupts_local_enum_t;
 
-// ----------------------------------------------------------------------------
+  // --------------------------------------------------------------------------
 
 #if defined(__cplusplus)
 }
@@ -107,8 +108,8 @@ namespace riscv
 
     using register_t = riscv_arch_register_t;
 
-  // --------------------------------------------------------------------------
-  } /* namespace arch */
+    // ------------------------------------------------------------------------
+  } // namespace arch
 
   namespace core
   {
@@ -116,10 +117,9 @@ namespace riscv
 
     using trap_handler_ptr_t = riscv_core_trap_handler_ptr_t;
 
-  // --------------------------------------------------------------------------
-  }
-// ----------------------------------------------------------------------------
-} /* namespace riscv */
+    // ------------------------------------------------------------------------
+  } // namespace core
+} // namespace riscv
 
 #endif /* defined(__cplusplus) */
 

@@ -37,8 +37,12 @@
 #ifndef MICRO_OS_PLUS_ARCHITECTURE_RISCV_RTOS_PORT_DECLARATIONS_C_H_
 #define MICRO_OS_PLUS_ARCHITECTURE_RISCV_RTOS_PORT_DECLARATIONS_C_H_
 
+// ----------------------------------------------------------------------------
+
 #include <stdint.h>
 #include <stdbool.h>
+
+// ----------------------------------------------------------------------------
 
 typedef uint64_t os_port_clock_timestamp_t;
 typedef uint32_t os_port_clock_duration_t;
@@ -55,6 +59,8 @@ typedef struct
 {
   os_port_thread_stack_element_t* stack_ptr;
 } os_port_thread_context_t;
+
+// ----------------------------------------------------------------------------
 
 #endif /* MICRO_OS_PLUS_ARCHITECTURE_RISCV_RTOS_PORT_DECLARATIONS_C_H_ */
 

@@ -45,104 +45,92 @@ extern "C"
 
 #if __riscv_xlen == 64
 
-  static inline uint64_t
-  __attribute__((always_inline))
+  static inline __attribute__ ((always_inline)) uint64_t
   riscv_device_read_mtime (void)
   {
-    return *(volatile uint64_t *) (RISCV_MMIO_MTIME_ADDRESS);
+    return *(volatile uint64_t*)(RISCV_MMIO_MTIME_ADDRESS);
   }
 
 #endif /* __riscv_xlen == 64 */
 
-  static inline uint32_t
-  __attribute__((always_inline))
+  static inline __attribute__ ((always_inline)) uint32_t
   riscv_device_read_mtime_low (void)
   {
-    return *(volatile uint32_t *) (RISCV_MMIO_MTIME_ADDRESS);
+    return *(volatile uint32_t*)(RISCV_MMIO_MTIME_ADDRESS);
   }
 
-  static inline uint32_t
-  __attribute__((always_inline))
+  static inline __attribute__ ((always_inline)) uint32_t
   riscv_device_read_mtime_high (void)
   {
-    return *(volatile uint32_t *) (RISCV_MMIO_MTIME_ADDRESS + 4);
+    return *(volatile uint32_t*)(RISCV_MMIO_MTIME_ADDRESS + 4);
   }
 
 #if __riscv_xlen == 64
 
-  static inline void
-  __attribute__((always_inline))
+  static inline __attribute__ ((always_inline)) void
   riscv_device_write_mtime (uint64_t value)
   {
-    *(volatile uint64_t *) (RISCV_MMIO_MTIME_ADDRESS) = value;
+    *(volatile uint64_t*)(RISCV_MMIO_MTIME_ADDRESS) = value;
   }
 
 #endif /* __riscv_xlen == 64 */
 
-  static inline void
-  __attribute__((always_inline))
+  static inline __attribute__ ((always_inline)) void
   riscv_device_write_mtime_low (uint32_t value)
   {
-    *(volatile uint32_t *) (RISCV_MMIO_MTIME_ADDRESS) = value;
+    *(volatile uint32_t*)(RISCV_MMIO_MTIME_ADDRESS) = value;
   }
 
-  static inline void
-  __attribute__((always_inline))
+  static inline __attribute__ ((always_inline)) void
   riscv_device_write_mtime_high (uint32_t value)
   {
-    *(volatile uint32_t *) (RISCV_MMIO_MTIME_ADDRESS + 4) = value;
+    *(volatile uint32_t*)(RISCV_MMIO_MTIME_ADDRESS + 4) = value;
   }
 
   // --------------------------------------------------------------------------
 
-  static inline uint64_t
-  __attribute__((always_inline))
+  static inline __attribute__ ((always_inline)) uint64_t
   riscv_device_read_mtimecmp (void)
   {
     // On RV32 the compiler generates two word accesses.
-    return *(uint64_t *) (RISCV_MMIO_MTIMECMP_ADDRESS);
+    return *(uint64_t*)(RISCV_MMIO_MTIMECMP_ADDRESS);
   }
 
-  static inline uint32_t
-  __attribute__((always_inline))
+  static inline __attribute__ ((always_inline)) uint32_t
   riscv_device_read_mtimecmp_low (void)
   {
-    return *(uint32_t *) (RISCV_MMIO_MTIMECMP_ADDRESS);
+    return *(uint32_t*)(RISCV_MMIO_MTIMECMP_ADDRESS);
   }
 
-  static inline uint32_t
-  __attribute__((always_inline))
+  static inline __attribute__ ((always_inline)) uint32_t
   riscv_device_read_mtimecmp_high (void)
   {
-    return *(uint32_t *) (RISCV_MMIO_MTIMECMP_ADDRESS + 4);
+    return *(uint32_t*)(RISCV_MMIO_MTIMECMP_ADDRESS + 4);
   }
 
 #if __riscv_xlen == 64
 
-  static inline void
-  __attribute__((always_inline))
+  static inline __attribute__ ((always_inline)) void
   riscv_device_write_mtimecmp (uint64_t value)
   {
-    *(uint64_t *) (RISCV_MMIO_MTIMECMP_ADDRESS) = value;
+    *(uint64_t*)(RISCV_MMIO_MTIMECMP_ADDRESS) = value;
   }
 
 #endif /* __riscv_xlen == 64 */
 
-  static inline void
-  __attribute__((always_inline))
+  static inline __attribute__ ((always_inline)) void
   riscv_device_write_mtimecmp_low (uint32_t value)
   {
-    *(uint32_t *) (RISCV_MMIO_MTIMECMP_ADDRESS) = value;
+    *(uint32_t*)(RISCV_MMIO_MTIMECMP_ADDRESS) = value;
   }
 
-  static inline void
-  __attribute__((always_inline))
+  static inline __attribute__ ((always_inline)) void
   riscv_device_write_mtimecmp_high (uint32_t value)
   {
-    *(uint32_t *) (RISCV_MMIO_MTIMECMP_ADDRESS + 4) = value;
+    *(uint32_t*)(RISCV_MMIO_MTIMECMP_ADDRESS + 4) = value;
   }
 
-// --------------------------------------------------------------------------
+  // --------------------------------------------------------------------------
 
 #if defined(__cplusplus)
 }
@@ -160,8 +148,7 @@ namespace riscv
 
 #if __riscv_xlen == 64
 
-    inline uint64_t
-    __attribute__((always_inline))
+    inline __attribute__ ((always_inline)) uint64_t
     mtime (void)
     {
       return riscv_device_read_mtime ();
@@ -169,15 +156,13 @@ namespace riscv
 
 #endif /* __riscv_xlen == 64 */
 
-    inline uint32_t
-    __attribute__((always_inline))
+    inline __attribute__ ((always_inline)) uint32_t
     mtime_low (void)
     {
       return riscv_device_read_mtime_low ();
     }
 
-    inline uint32_t
-    __attribute__((always_inline))
+    inline __attribute__ ((always_inline)) uint32_t
     mtime_high (void)
     {
       return riscv_device_read_mtime_high ();
@@ -185,8 +170,7 @@ namespace riscv
 
 #if __riscv_xlen == 64
 
-    inline void
-    __attribute__((always_inline))
+    inline __attribute__ ((always_inline)) void
     mtime (uint64_t value)
     {
       riscv_device_write_mtime (value);
@@ -194,15 +178,13 @@ namespace riscv
 
 #endif /* __riscv_xlen == 64 */
 
-    inline void
-    __attribute__((always_inline))
+    inline __attribute__ ((always_inline)) void
     mtime_low (uint32_t value)
     {
       riscv_device_write_mtime_low (value);
     }
 
-    inline void
-    __attribute__((always_inline))
+    inline __attribute__ ((always_inline)) void
     mtime_high (uint32_t value)
     {
       riscv_device_write_mtime_high (value);
@@ -210,22 +192,19 @@ namespace riscv
 
     // ------------------------------------------------------------------------
 
-    inline uint64_t
-    __attribute__((always_inline))
+    inline __attribute__ ((always_inline)) uint64_t
     mtimecmp (void)
     {
       return riscv_device_read_mtimecmp ();
     }
 
-    inline uint32_t
-    __attribute__((always_inline))
+    inline __attribute__ ((always_inline)) uint32_t
     mtimecmp_low (void)
     {
       return riscv_device_read_mtimecmp_low ();
     }
 
-    inline uint32_t
-    __attribute__((always_inline))
+    inline __attribute__ ((always_inline)) uint32_t
     mtimecmp_high (void)
     {
       return riscv_device_read_mtimecmp_high ();
@@ -233,8 +212,7 @@ namespace riscv
 
 #if __riscv_xlen == 64
 
-    inline void
-    __attribute__((always_inline))
+    inline __attribute__ ((always_inline)) void
     mtimecmp (uint64_t value)
     {
       riscv_device_write_mtimecmp (value);
@@ -242,25 +220,21 @@ namespace riscv
 
 #endif /* __riscv_xlen == 64 */
 
-    inline void
-    __attribute__((always_inline))
+    inline __attribute__ ((always_inline)) void
     mtimecmp_low (uint32_t value)
     {
       riscv_device_write_mtimecmp_low (value);
     }
 
-    inline void
-    __attribute__((always_inline))
+    inline __attribute__ ((always_inline)) void
     mtimecmp_high (uint32_t value)
     {
       riscv_device_write_mtimecmp_high (value);
     }
 
-  // --------------------------------------------------------------------------
-  } /* namespace device */
-
-// ----------------------------------------------------------------------------
-} /* namespace riscv */
+    // ------------------------------------------------------------------------
+  } // namespace device
+} // namespace riscv
 
 #endif /* defined(__cplusplus) */
 

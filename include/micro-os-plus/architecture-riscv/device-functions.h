@@ -50,8 +50,8 @@ extern "C"
 #if __riscv_xlen == 64
   static
 #endif /* __riscv_xlen == 64 */
-  uint64_t
-  riscv_device_read_mtime (void);
+      uint64_t
+      riscv_device_read_mtime (void);
 
   static uint32_t
   riscv_device_read_mtime_low (void);
@@ -62,8 +62,8 @@ extern "C"
 #if __riscv_xlen == 64
   static
 #endif /* __riscv_xlen == 64 */
-  void
-  riscv_device_write_mtime (uint64_t value);
+      void
+      riscv_device_write_mtime (uint64_t value);
 
   static void
   riscv_device_write_mtime_low (uint32_t value);
@@ -86,8 +86,8 @@ extern "C"
 #if __riscv_xlen == 64
   static
 #endif /* __riscv_xlen == 64 */
-  void
-  riscv_device_write_mtimecmp (uint64_t value);
+      void
+      riscv_device_write_mtimecmp (uint64_t value);
 
   static void
   riscv_device_write_mtimecmp_low (uint32_t value);
@@ -95,7 +95,7 @@ extern "C"
   static void
   riscv_device_write_mtimecmp_high (uint32_t value);
 
-// ----------------------------------------------------------------------------
+  // --------------------------------------------------------------------------
 
 #if defined(__cplusplus)
 }
@@ -160,11 +160,9 @@ namespace riscv
     void
     mtimecmp_high (uint32_t value);
 
-  // --------------------------------------------------------------------------
-  } /* namespace device */
-
-// ----------------------------------------------------------------------------
-} /* namespace riscv */
+    // ------------------------------------------------------------------------
+  } // namespace device
+} // namespace riscv
 
 #endif /* defined(__cplusplus) */
 

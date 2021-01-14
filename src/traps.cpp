@@ -53,16 +53,14 @@ namespace riscv
 {
   namespace core
   {
-    void
-    __attribute__ ((weak, alias ("riscv_core_handle_unused_trap")))
+    void __attribute__ ((weak, alias ("riscv_core_handle_unused_trap")))
     handle_exceptions (void);
-  } /* namespace core */
-} /* namespace riscv */
+  } // namespace core
+} // namespace riscv
 
 #else /* defined(OS_USE_CPP_INTERRUPTS) */
 
-void
-__attribute__ ((weak, alias ("riscv_core_handle_unused_trap")))
+void __attribute__ ((weak, alias ("riscv_core_handle_unused_trap")))
 riscv_core_handle_exceptions (void);
 
 #endif /* defined(OS_USE_CPP_INTERRUPTS) */
@@ -78,9 +76,7 @@ namespace riscv
     void
     handle_trap ();
 
-    void
-    __attribute__ ((section(".traps_handlers")))
-    handle_trap ()
+    void __attribute__ ((section (".traps_handlers"))) handle_trap ()
     {
       riscv::arch::register_t cause = riscv::csr::mcause ();
       if ((cause & RISCV_CSR_MCAUSE_INTERRUPT) != 0)
@@ -90,7 +86,7 @@ namespace riscv
           if (index <= (RISCV_INTERRUPTS_LOCAL_LAST_NUMBER))
             {
               // Call the local device interrupt handler via the pointer.
-              riscv::core::local_interrupt_handlers[index] ();
+              riscv::core::local_interrupt_handlers[index]();
 
               return;
             }
@@ -124,12 +120,11 @@ namespace riscv
     }
 
     // ------------------------------------------------------------------------
-  } /* namespace core */
-} /* namespace riscv */
+  } // namespace core
+} // namespace riscv
 
 // Alias function to C, so that the assembly code will reach it.
-extern "C" void
-__attribute__ ((alias("_ZN5riscv4core11handle_trapEv")))
+extern "C" void __attribute__ ((alias ("_ZN5riscv4core11handle_trapEv")))
 riscv_core_handle_trap (void);
 
 #if defined(RISCV_INTERRUPTS_GLOBAL_LAST_NUMBER)
@@ -153,10 +148,10 @@ namespace riscv
       if (int_num <= RISCV_INTERRUPTS_GLOBAL_LAST_NUMBER)
         {
           // Call the global interrupt handler via the pointer.
-          riscv::core::global_interrupt_handlers[int_num] ();
+          riscv::core::global_interrupt_handlers[int_num]();
 
           // Acknowledge the interrupt in the PLIC.
-          riscv::plic::complete_interrupt ((riscv::plic::source_t) int_num);
+          riscv::plic::complete_interrupt ((riscv::plic::source_t)int_num);
 
           return;
         }
@@ -172,17 +167,16 @@ namespace riscv
     }
 
     // ------------------------------------------------------------------------
-  } /* namespace interrupt */
-} /* namespace riscv */
+  } // namespace interrupt
+} // namespace riscv
 
 extern "C" void
-__attribute__ ((alias("_ZN5riscv9interrupt18handle_machine_extEv")))
-riscv_interrupt_handle_machine_ext (void);
+    __attribute__ ((alias ("_ZN5riscv9interrupt18handle_machine_extEv")))
+    riscv_interrupt_handle_machine_ext (void);
 
 #endif /* defined(RISCV_INTERRUPTS_GLOBAL_LAST_NUMBER) */
 
-void
-__attribute__ ((section(".traps_handlers"),weak))
+void __attribute__ ((section (".traps_handlers"), weak))
 riscv_core_handle_unused_trap (void)
 {
   riscv::arch::register_t mcause = riscv::csr::mcause ();

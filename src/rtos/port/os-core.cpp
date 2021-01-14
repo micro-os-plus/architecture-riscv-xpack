@@ -41,7 +41,8 @@
 // ----------------------------------------------------------------------------
 
 #if defined(OS_INTEGER_RTOS_CRITICAL_SECTION_INTERRUPT_PRIORITY)
-#error "OS_INTEGER_RTOS_CRITICAL_SECTION_INTERRUPT_PRIORITY should not be used with RISC-V devices."
+#error \
+    "OS_INTEGER_RTOS_CRITICAL_SECTION_INTERRUPT_PRIORITY should not be used with RISC-V devices."
 #endif
 
 // ----------------------------------------------------------------------------
@@ -75,7 +76,7 @@ namespace os
         {
           stack::element_t x;
         } frame_t;
-      } /* namespace stack */
+      } // namespace stack
 
       /**
        * @brief Create a new thread context on the stack.
@@ -94,8 +95,8 @@ namespace os
 #if defined(OS_TRACE_RTOS_THREAD_CONTEXT)
         trace::printf ("port::context::%s(%p)\n", __func__, context);
 #endif
-        class rtos::thread::context* th_ctx =
-            static_cast<class rtos::thread::context*> (context);
+        class rtos::thread::context* th_ctx
+            = static_cast<class rtos::thread::context*> (context);
 
         class rtos::thread::stack& stack = th_ctx->stack ();
 
@@ -103,9 +104,10 @@ namespace os
 
         // Be sure the stack is large enough to hold at least
         // two exception frames.
-        assert((p - stack.bottom ()) > (int )(2 * sizeof(stack::frame_t)));
+        assert ((p - stack.bottom ()) > (int)(2 * sizeof (stack::frame_t)));
 
-        p -= (sizeof(stack::frame_t) / sizeof(rtos::thread::stack::element_t));
+        p -= (sizeof (stack::frame_t)
+              / sizeof (rtos::thread::stack::element_t));
 
         // Align the frame to 8 bytes than leave one more word for the extra
         // stack element, r14_exec_return, which is the 9th.
@@ -113,7 +115,7 @@ namespace os
         // var_args() will fail (for example printf() does not floats/doubles).
         if ((reinterpret_cast<uintptr_t> (p) & 3) != 0)
           {
-            p = (rtos::thread::stack::element_t*) (((int) p) & (~3));
+            p = (rtos::thread::stack::element_t*)(((int)p) & (~3));
           }
 
         if ((reinterpret_cast<uintptr_t> (p) & 7) == 0)
@@ -128,7 +130,6 @@ namespace os
 
         // Thread starts in thumb state (T bit set).
         f->x = 0x00000000;
-
 
         // Store the current stack pointer in the context.
         th_ctx->port_.stack_ptr = p;
@@ -151,10 +152,12 @@ namespace os
       clock_systick::start (void)
       {
 #if defined(NDEBUG)
-        // SysTick_Config (SystemCoreClock / rtos::clock_systick::frequency_hz);
+        // SysTick_Config (SystemCoreClock /
+        // rtos::clock_systick::frequency_hz);
 #else
         // assert(
-        //    SysTick_Config (SystemCoreClock / rtos::clock_systick::frequency_hz)
+        //    SysTick_Config (SystemCoreClock /
+        //    rtos::clock_systick::frequency_hz)
         //        == 0);
 #endif
 
@@ -184,9 +187,9 @@ namespace os
          */
         void
 #if defined(__ARM_ARCH_6M__)
-        __attribute__((optimize("no-delete-null-pointer-checks")))
+            __attribute__ ((optimize ("no-delete-null-pointer-checks")))
 #endif
-        start (void)
+            start (void)
         {
 #if defined(OS_TRACE_RTOS_SCHEDULER)
           trace::printf ("port::scheduler::%s() \n", __func__);
@@ -200,10 +203,10 @@ namespace os
           // Don't worry for being on the stack, this is used
           // only once and can be overridden later.
           os_thread_t fake_thread;
-          memset (&fake_thread, 0, sizeof(os_thread_t));
+          memset (&fake_thread, 0, sizeof (os_thread_t));
 
           fake_thread.name = "fake_thread";
-          rtos::thread* pth = (rtos::thread*) &fake_thread;
+          rtos::thread* pth = (rtos::thread*)&fake_thread;
 
           // Make the fake thread look like the current thread.
           rtos::scheduler::current_thread_ = pth;
@@ -229,16 +232,16 @@ namespace os
         state_t
         locked (state_t state)
         {
-          os_assert_throw(!interrupts::in_handler_mode (), EPERM);
+          os_assert_throw (!interrupts::in_handler_mode (), EPERM);
 
           state_t tmp;
 
-            {
-              rtos::interrupts::critical_section ics;
+          {
+            rtos::interrupts::critical_section ics;
 
-              tmp = lock_state;
-              lock_state = state;
-            }
+            tmp = lock_state;
+            lock_state = state;
+          }
 
           return tmp;
         }
@@ -276,7 +279,8 @@ namespace os
 
         // --------------------------------------------------------------------
 
-// warning: ISO C++17 does not allow 'register' storage class specifier [-Wregister]
+// warning: ISO C++17 does not allow 'register' storage class specifier
+// [-Wregister]
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wregister"
 
@@ -292,18 +296,16 @@ namespace os
          * adding clobber registers that added more initial pushes.
          */
 
-        inline stack::element_t*
-        __attribute__((always_inline))
+        inline __attribute__ ((always_inline)) stack::element_t*
         save_on_stack (void)
         {
           register stack::element_t* sp_;
 
-          asm volatile
-          (
+          asm volatile(
               // Get the thread stack
               " nop                       \n"
 
-              : [r] "=r" (sp_) /* out */
+              : [r] "=r"(sp_) /* out */
               : /* in */
               : /* clobber. DO NOT add anything here! */
           );
@@ -323,8 +325,7 @@ namespace os
          * adding clobber registers that added more initial pushes.
          */
 
-        inline void
-        __attribute__((always_inline))
+        inline __attribute__ ((always_inline)) void
         restore_from_stack (stack::element_t* sp)
         {
           // Without enforcing optimisations, an intermediate variable
@@ -333,13 +334,12 @@ namespace os
 
           // register stack::element_t* sp_ asm ("r0") = sp;
 
-          asm volatile
-          (
+          asm volatile(
 
               " nop                 \n"
 
               : /* out */
-              : [r] "r" (sp) /* in */
+              : [r] "r"(sp) /* in */
               : /* clobber. DO NOT add anything here! */
           );
         }
@@ -393,8 +393,8 @@ namespace os
 #endif
 
           // Prepare a local copy of the new thread SP.
-          stack::element_t* out_sp =
-              rtos::scheduler::current_thread_->context_.port_.stack_ptr;
+          stack::element_t* out_sp
+              = rtos::scheduler::current_thread_->context_.port_.stack_ptr;
 
           // TBD
 
@@ -403,12 +403,11 @@ namespace os
           return out_sp;
         }
 
-      // ----------------------------------------------------------------------
-
-      } /* namespace scheduler */
-    } /* namespace port */
-  } /* namespace rtos */
-} /* namespace os */
+        // --------------------------------------------------------------------
+      } // namespace scheduler
+    } // namespace port
+  } // namespace rtos
+} // namespace os
 
 // ----------------------------------------------------------------------------
 

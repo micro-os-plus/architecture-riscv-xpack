@@ -44,7 +44,7 @@ namespace riscv
     extern riscv_core_trap_handler_ptr_t global_interrupt_handlers[];
 
     // ------------------------------------------------------------------------
-  } /* namespace core */
+  } // namespace core
 
   namespace arch
   {
@@ -53,9 +53,8 @@ namespace riscv
     // TODO: add C++ declarations here.
 
     // ------------------------------------------------------------------------
-  } /* namespace arch */
-// ----------------------------------------------------------------------------
-} /* namespace riscv */
+  } // namespace arch
+} // namespace riscv
 
 #endif /* defined(__cplusplus) */
 

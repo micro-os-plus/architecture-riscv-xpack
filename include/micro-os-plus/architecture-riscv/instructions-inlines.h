@@ -41,11 +41,11 @@ extern "C"
 
   // --------------------------------------------------------------------------
 
-  static inline void
-  __attribute__((always_inline))
+  static inline __attribute__ ((always_inline)) void
   riscv_arch_nop (void)
   {
     asm volatile(
+
         " nop "
 
         : /* Outputs */
@@ -54,11 +54,11 @@ extern "C"
     );
   }
 
-  static inline void
-  __attribute__((always_inline))
+  static inline __attribute__ ((always_inline)) void
   riscv_arch_ebreak (void)
   {
     asm volatile(
+
         " ebreak "
 
         : /* Outputs */
@@ -67,11 +67,11 @@ extern "C"
     );
   }
 
-  static inline void
-  __attribute__((always_inline))
+  static inline __attribute__ ((always_inline)) void
   riscv_arch_wfi (void)
   {
     asm volatile(
+
         " wfi "
 
         : /* Outputs */
@@ -80,8 +80,7 @@ extern "C"
     );
   }
 
-  static inline void
-  __attribute__((always_inline))
+  static inline __attribute__ ((always_inline)) void
   os_arch_nop (void)
   {
     riscv_arch_nop ();
@@ -90,8 +89,7 @@ extern "C"
   /**
    * `break` instruction.
    */
-  static inline void
-  __attribute__((always_inline))
+  static inline __attribute__ ((always_inline)) void
   os_arch_brk (void)
   {
     riscv_arch_ebreak ();
@@ -100,14 +98,13 @@ extern "C"
   /**
    * `wfi` instruction.
    */
-  static inline void
-  __attribute__((always_inline))
+  static inline __attribute__ ((always_inline)) void
   os_arch_wfi (void)
   {
     riscv_arch_wfi ();
   }
 
-// ----------------------------------------------------------------------------
+  // --------------------------------------------------------------------------
 
 #if defined(__cplusplus)
 }
@@ -123,32 +120,27 @@ namespace riscv
   {
     // ------------------------------------------------------------------------
 
-    inline void
-    __attribute__((always_inline))
+    inline __attribute__ ((always_inline)) void
     nop (void)
     {
       riscv_arch_nop ();
     }
 
-    inline void
-    __attribute__((always_inline))
+    inline __attribute__ ((always_inline)) void
     ebreak (void)
     {
       riscv_arch_ebreak ();
     }
 
-    inline void
-    __attribute__((always_inline))
+    inline __attribute__ ((always_inline)) void
     wfi (void)
     {
       riscv_arch_wfi ();
     }
 
-  // --------------------------------------------------------------------------
-  } /* namespace arch */
-
-// ----------------------------------------------------------------------------
-} /* namespace riscv */
+    // ------------------------------------------------------------------------
+  } // namespace arch
+} // namespace riscv
 
 namespace os
 {
@@ -156,32 +148,27 @@ namespace os
   {
     // ------------------------------------------------------------------------
 
-    inline void
-    __attribute__((always_inline))
+    inline __attribute__ ((always_inline)) void
     nop (void)
     {
       riscv::arch::nop ();
     }
 
-    inline void
-    __attribute__((always_inline))
+    inline __attribute__ ((always_inline)) void
     brk (void)
     {
       riscv::arch::ebreak ();
     }
 
-    inline void
-    __attribute__((always_inline))
+    inline __attribute__ ((always_inline)) void
     wfi (void)
     {
       riscv::arch::wfi ();
     }
 
-  // --------------------------------------------------------------------------
-  } /* namespace arch */
-
-// ----------------------------------------------------------------------------
-} /* namespace os */
+    // ------------------------------------------------------------------------
+  } // namespace arch
+} // namespace os
 
 #endif /* defined(__cplusplus) */
 

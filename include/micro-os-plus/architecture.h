@@ -28,6 +28,8 @@
 #ifndef MICRO_OS_PLUS_ARCHITECTURE_H_
 #define MICRO_OS_PLUS_ARCHITECTURE_H_
 
+// ----------------------------------------------------------------------------
+
 #include <micro-os-plus/architecture-riscv/defines.h>
 
 #include <micro-os-plus/architecture-riscv/types.h>
@@ -43,6 +45,8 @@
 #include <micro-os-plus/architecture-riscv/core-functions-inlines.h>
 
 #include <micro-os-plus/architecture-riscv/semihosting-inlines.h>
+
+// ----------------------------------------------------------------------------
 
 #endif /* MICRO_OS_PLUS_ARCHITECTURE_H_ */
 

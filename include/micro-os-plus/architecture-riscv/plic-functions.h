@@ -227,11 +227,9 @@ namespace riscv
     void
     complete_interrupt (source_t global_interrupt_id);
 
-  // --------------------------------------------------------------------------
-  } /* namespace plic */
-
-// ----------------------------------------------------------------------------
-} /* namespace riscv */
+    // ------------------------------------------------------------------------
+  } // namespace plic
+} // namespace riscv
 
 #endif /* defined(__cplusplus) */
 
@@ -242,7 +240,7 @@ extern "C"
 {
 #endif /* defined(__cplusplus) */
 
-// --------------------------------------------------------------------------
+  // --------------------------------------------------------------------------
 
   void
   riscv_plic_initialize (void);
@@ -263,8 +261,7 @@ extern "C"
   riscv_plic_disable_interrupt (riscv_plic_source_t global_interrupt_id);
 
   static bool
-  riscv_plic_is_interrupt_enabled (
-      riscv_plic_source_t global_interrupt_id);
+  riscv_plic_is_interrupt_enabled (riscv_plic_source_t global_interrupt_id);
 
   static void
   riscv_plic_write_priority (riscv_plic_source_t global_interrupt_id,
@@ -277,10 +274,9 @@ extern "C"
   riscv_plic_claim_interrupt (void);
 
   static void
-  riscv_plic_complete_interrupt (
-      riscv_plic_source_t global_interrupt_id);
+  riscv_plic_complete_interrupt (riscv_plic_source_t global_interrupt_id);
 
-// ----------------------------------------------------------------------------
+  // --------------------------------------------------------------------------
 
 #if defined(__cplusplus)
 }

@@ -140,8 +140,8 @@ extern "C"
 #if __riscv_xlen == 64
   static
 #endif /* __riscv_xlen == 64 */
-  uint64_t
-  riscv_csr_read_mcycle (void);
+      uint64_t
+      riscv_csr_read_mcycle (void);
 
   static uint32_t
   riscv_csr_read_mcycle_low (void);
@@ -158,7 +158,7 @@ extern "C"
   static riscv_arch_register_t
   riscv_csr_read_mhartid (void);
 
-// ----------------------------------------------------------------------------
+  // --------------------------------------------------------------------------
 
 #if defined(__cplusplus)
 }
@@ -238,11 +238,9 @@ namespace riscv
     arch::register_t
     mhartid (void);
 
-  // --------------------------------------------------------------------------
-  } /* namespace csr */
-
-// ----------------------------------------------------------------------------
-} /* namespace riscv */
+    // ------------------------------------------------------------------------
+  } // namespace csr
+} // namespace riscv
 
 #endif /* defined(__cplusplus) */
 

@@ -65,13 +65,13 @@ extern "C"
 
   // --------------------------------------------------------------------------
 
-  static inline riscv_arch_register_t
-  __attribute__((always_inline))
+  static inline __attribute__ ((always_inline)) riscv_arch_register_t
   riscv_csr_read_mstatus (void)
   {
     riscv_arch_register_t tmp;
 
-    asm volatile (
+    asm volatile(
+
         "csrr %[r],mstatus"
 
         : [r] "=r"(tmp) /* Outputs */
@@ -82,11 +82,11 @@ extern "C"
     return tmp;
   }
 
-  static inline void
-  __attribute__((always_inline))
+  static inline __attribute__ ((always_inline)) void
   riscv_csr_write_mstatus (riscv_arch_register_t value)
   {
-    asm volatile (
+    asm volatile(
+
         "csrw mstatus,%[v]"
 
         : /* Outputs */
@@ -95,13 +95,13 @@ extern "C"
     );
   }
 
-  static inline riscv_arch_register_t
-  __attribute__((always_inline))
+  static inline __attribute__ ((always_inline)) riscv_arch_register_t
   riscv_csr_clear_mstatus_bits (riscv_arch_register_t mask)
   {
     riscv_arch_register_t tmp;
 
-    asm volatile (
+    asm volatile(
+
         "csrrc %[r],mstatus,%[v]"
 
         : [r] "=r"(tmp) /* Outputs */
@@ -112,13 +112,13 @@ extern "C"
     return tmp;
   }
 
-  static inline riscv_arch_register_t
-  __attribute__((always_inline))
+  static inline __attribute__ ((always_inline)) riscv_arch_register_t
   riscv_csr_set_mstatus_bits (riscv_arch_register_t mask)
   {
     riscv_arch_register_t tmp;
 
-    asm volatile (
+    asm volatile(
+
         "csrrs %[r],mstatus,%[v]"
 
         : [r] "=r"(tmp) /* Outputs */
@@ -134,13 +134,13 @@ extern "C"
   /**
    * Read `mtvec` CSR.
    */
-  static inline riscv_arch_register_t
-  __attribute__((always_inline))
+  static inline __attribute__ ((always_inline)) riscv_arch_register_t
   riscv_csr_read_mtvec (void)
   {
     riscv_arch_register_t tmp;
 
-    asm volatile (
+    asm volatile(
+
         "csrr %[r],mtvec"
 
         : [r] "=r"(tmp) /* Outputs */
@@ -154,11 +154,11 @@ extern "C"
   /**
    * Write `mtvec` CSR.
    */
-  static inline void
-  __attribute__((always_inline))
+  static inline __attribute__ ((always_inline)) void
   riscv_csr_write_mtvec (riscv_arch_register_t value)
   {
-    asm volatile (
+    asm volatile(
+
         "csrw mtvec,%[v]"
 
         : /* Outputs */
@@ -169,13 +169,13 @@ extern "C"
 
   // --------------------------------------------------------------------------
 
-  static inline riscv_arch_register_t
-  __attribute__((always_inline))
+  static inline __attribute__ ((always_inline)) riscv_arch_register_t
   riscv_csr_read_mcause (void)
   {
     riscv_arch_register_t tmp;
 
-    asm volatile (
+    asm volatile(
+
         "csrr %[r],mcause"
 
         : [r] "=r"(tmp) /* Outputs */
@@ -188,13 +188,13 @@ extern "C"
 
   // --------------------------------------------------------------------------
 
-  static inline riscv_arch_register_t
-  __attribute__((always_inline))
+  static inline __attribute__ ((always_inline)) riscv_arch_register_t
   riscv_csr_read_mie (void)
   {
     riscv_arch_register_t tmp;
 
-    asm volatile (
+    asm volatile(
+
         "csrr %[r],mie"
 
         : [r] "=r"(tmp) /* Outputs */
@@ -205,11 +205,11 @@ extern "C"
     return tmp;
   }
 
-  static inline void
-  __attribute__((always_inline))
+  static inline __attribute__ ((always_inline)) void
   riscv_csr_write_mie (riscv_arch_register_t value)
   {
-    asm volatile (
+    asm volatile(
+
         "csrw mie,%[v]"
 
         : /* Outputs */
@@ -218,13 +218,13 @@ extern "C"
     );
   }
 
-  static inline riscv_arch_register_t
-  __attribute__((always_inline))
+  static inline __attribute__ ((always_inline)) riscv_arch_register_t
   riscv_csr_clear_mie_bits (riscv_arch_register_t mask)
   {
     riscv_arch_register_t tmp;
 
-    asm volatile (
+    asm volatile(
+
         "csrrc %[r],mie,%[v]"
 
         : [r] "=r"(tmp) /* Outputs */
@@ -235,13 +235,13 @@ extern "C"
     return tmp;
   }
 
-  static inline riscv_arch_register_t
-  __attribute__((always_inline))
+  static inline __attribute__ ((always_inline)) riscv_arch_register_t
   riscv_csr_set_mie_bits (riscv_arch_register_t mask)
   {
     riscv_arch_register_t tmp;
 
-    asm volatile (
+    asm volatile(
+
         "csrrs %[r],mie,%[v]"
 
         : [r] "=r"(tmp) /* Outputs */
@@ -259,13 +259,13 @@ extern "C"
   /**
    * Read `mcycle` CSR.
    */
-  static inline uint64_t
-  __attribute__((always_inline))
+  static inline __attribute__ ((always_inline)) uint64_t
   riscv_csr_read_mcycle (void)
   {
     riscv_arch_register_t tmp;
 
-    asm volatile (
+    asm volatile(
+
         "csrr %[r],mcycle"
 
         : [r] "=rm"(tmp) /* Outputs */
@@ -277,15 +277,15 @@ extern "C"
 
 #endif /* __riscv_xlen == 64 */
 
-  static inline uint32_t
-  __attribute__((always_inline))
+  static inline __attribute__ ((always_inline)) uint32_t
   riscv_csr_read_mcycle_low (void)
   {
 #if __riscv_xlen == 32
 
     uint32_t tmp;
 
-    asm volatile (
+    asm volatile(
+
         "csrr %[r],mcycle"
 
         : [r] "=rm"(tmp) /* Outputs */
@@ -296,20 +296,20 @@ extern "C"
 
 #elif __riscv_xlen == 64
 
-    return (uint32_t) riscv_csr_read_mcycle ();
+  return (uint32_t)riscv_csr_read_mcycle ();
 
 #endif /* __riscv_xlen */
   }
 
-  static inline uint32_t
-  __attribute__((always_inline))
+  static inline __attribute__ ((always_inline)) uint32_t
   riscv_csr_read_mcycle_high (void)
   {
 #if __riscv_xlen == 32
 
     uint32_t tmp;
 
-    asm volatile (
+    asm volatile(
+
         "csrr %[r],mcycleh"
 
         : [r] "=rm"(tmp) /* Outputs */
@@ -320,20 +320,20 @@ extern "C"
 
 #elif __riscv_xlen == 64
 
-    return (uint32_t) (riscv_csr_read_mcycle () >> 32);
+  return (uint32_t) (riscv_csr_read_mcycle () >> 32);
 
 #endif /* __riscv_xlen */
   }
 
   // --------------------------------------------------------------------------
 
-  static inline riscv_arch_register_t
-  __attribute__((always_inline))
+  static inline __attribute__ ((always_inline)) riscv_arch_register_t
   riscv_csr_read_mhartid (void)
   {
     riscv_arch_register_t tmp;
 
-    asm volatile (
+    asm volatile(
+
         "csrr %[r],mhartid"
 
         : [r] "=r"(tmp) /* Outputs */
@@ -343,7 +343,7 @@ extern "C"
     return tmp;
   }
 
-// ----------------------------------------------------------------------------
+  // --------------------------------------------------------------------------
 
 #if defined(__cplusplus)
 }
@@ -359,29 +359,25 @@ namespace riscv
   {
     // ------------------------------------------------------------------------
 
-    inline arch::register_t
-    __attribute__((always_inline))
+    inline __attribute__ ((always_inline)) arch::register_t
     mstatus (void)
     {
       return riscv_csr_read_mstatus ();
     }
 
-    inline void
-    __attribute__((always_inline))
+    inline __attribute__ ((always_inline)) void
     mstatus (arch::register_t value)
     {
       riscv_csr_write_mstatus (value);
     }
 
-    inline void
-    __attribute__((always_inline))
+    inline __attribute__ ((always_inline)) void
     clear_mstatus_bits (arch::register_t mask)
     {
       riscv_csr_clear_mstatus_bits (mask);
     }
 
-    inline void
-    __attribute__((always_inline))
+    inline __attribute__ ((always_inline)) void
     set_mstatus_bits (arch::register_t mask)
     {
       riscv_csr_set_mstatus_bits (mask);
@@ -389,15 +385,13 @@ namespace riscv
 
     // ------------------------------------------------------------------------
 
-    inline arch::register_t
-    __attribute__((always_inline))
+    inline __attribute__ ((always_inline)) arch::register_t
     mtvec (void)
     {
       return riscv_csr_read_mtvec ();
     }
 
-    inline void
-    __attribute__((always_inline))
+    inline __attribute__ ((always_inline)) void
     mtvec (arch::register_t value)
     {
       riscv_csr_write_mtvec (value);
@@ -405,8 +399,7 @@ namespace riscv
 
     // ------------------------------------------------------------------------
 
-    inline arch::register_t
-    __attribute__((always_inline))
+    inline __attribute__ ((always_inline)) arch::register_t
     mcause (void)
     {
       return riscv_csr_read_mcause ();
@@ -414,29 +407,25 @@ namespace riscv
 
     // ------------------------------------------------------------------------
 
-    inline arch::register_t
-    __attribute__((always_inline))
+    inline __attribute__ ((always_inline)) arch::register_t
     mie (void)
     {
       return riscv_csr_read_mie ();
     }
 
-    inline void
-    __attribute__((always_inline))
+    inline __attribute__ ((always_inline)) void
     mie (arch::register_t value)
     {
       riscv_csr_write_mie (value);
     }
 
-    inline void
-    __attribute__((always_inline))
+    inline __attribute__ ((always_inline)) void
     clear_mie_bits (arch::register_t mask)
     {
       riscv_csr_clear_mie_bits (mask);
     }
 
-    inline void
-    __attribute__((always_inline))
+    inline __attribute__ ((always_inline)) void
     set_mie_bits (arch::register_t mask)
     {
       riscv_csr_set_mie_bits (mask);
@@ -446,8 +435,7 @@ namespace riscv
 
 #if __riscv_xlen == 64
 
-    inline uint64_t
-    __attribute__((always_inline))
+    inline __attribute__ ((always_inline)) uint64_t
     mcycle (void)
     {
       return riscv_csr_read_mcycle ();
@@ -455,15 +443,13 @@ namespace riscv
 
 #endif /* __riscv_xlen == 64 */
 
-    inline uint32_t
-    __attribute__((always_inline))
+    inline __attribute__ ((always_inline)) uint32_t
     mcycle_low (void)
     {
       return riscv_csr_read_mcycle_low ();
     }
 
-    inline uint32_t
-    __attribute__((always_inline))
+    inline __attribute__ ((always_inline)) uint32_t
     mcycle_high (void)
     {
       return riscv_csr_read_mcycle_high ();
@@ -471,18 +457,15 @@ namespace riscv
 
     // ------------------------------------------------------------------------
 
-    inline arch::register_t
-    __attribute__((always_inline))
+    inline __attribute__ ((always_inline)) arch::register_t
     mhartid (void)
     {
       return riscv_csr_read_mhartid ();
     }
 
-  // --------------------------------------------------------------------------
-  } /* namespace csr */
-
-// ----------------------------------------------------------------------------
-} /* namespace riscv */
+    // ------------------------------------------------------------------------
+  } // namespace csr
+} // namespace riscv
 
 #endif /* defined(__cplusplus) */
 

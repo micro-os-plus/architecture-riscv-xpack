@@ -68,10 +68,10 @@ namespace
     uint32_t delta_mcycle = riscv::csr::mcycle_low () - start_mcycle;
 
     return (delta_mcycle / delta_mtime) * mtime_freq
-         + ((delta_mcycle % delta_mtime) * mtime_freq) / delta_mtime;
+           + ((delta_mcycle % delta_mtime) * mtime_freq) / delta_mtime;
   }
 
-}
+} // namespace
 
 // ----------------------------------------------------------------------------
 
@@ -79,13 +79,13 @@ namespace riscv
 {
   namespace csr
   {
-  // ------------------------------------------------------------------------
-  // Control and Status Registers (CSRs).
+    // ------------------------------------------------------------------------
+    // Control and Status Registers (CSRs).
 
 #if __riscv_xlen == 32
 
-  uint64_t
-  mcycle (void)
+    uint64_t
+    mcycle (void)
     {
       // TODO: handle carry from low to high.
       uint64_t tmp = riscv_csr_read_mcycle_high ();
@@ -94,41 +94,42 @@ namespace riscv
 
 #endif /* __riscv_xlen == 32 */
 
-}
-/* namespace csr */
+    // ------------------------------------------------------------------------
+  } // namespace csr
+  /* namespace csr */
 
-namespace core
-{
-// ------------------------------------------------------------------------
-// Support functions.
+  namespace core
+  {
+    // ------------------------------------------------------------------------
+    // Support functions.
 
-uint32_t
-running_frequency_hz (void)
-{
-  if (running_frequency_hz_ == 0)
+    uint32_t
+    running_frequency_hz (void)
     {
-      update_running_frequency ();
+      if (running_frequency_hz_ == 0)
+        {
+          update_running_frequency ();
+        }
+
+      return running_frequency_hz_;
     }
 
-  return running_frequency_hz_;
-}
+    void
+    update_running_frequency (void)
+    {
+      // warm up I$
+      measure_running_frequency_hz_ (1);
+      // measure for real
+      running_frequency_hz_ = measure_running_frequency_hz_ (10);
+    }
 
-void
-update_running_frequency (void)
-{
-  // warm up I$
-  measure_running_frequency_hz_ (1);
-  // measure for real
-  running_frequency_hz_ = measure_running_frequency_hz_ (10);
-}
+    // ------------------------------------------------------------------------
+  } // namespace core
 
-   // --------------------------------------------------------------------------
-} /* namespace core */
+  // ==========================================================================
 
-   // ==========================================================================
-
-namespace device
-{
+  namespace device
+  {
     // ------------------------------------------------------------------------
 
     // The system timer (actually the RTC) has a common interface, but
@@ -136,93 +137,84 @@ namespace device
 
 #if __riscv_xlen == 32
 
-uint64_t
-mtime (void)
-{
-  // Atomic read. The loop is taken once in most cases. Only when the
-  // value carries to the high word, two loops are performed.
-  while (true)
+    uint64_t
+    mtime (void)
     {
-      uint32_t hi = mtime_high ();
-      uint32_t lo = mtime_low ();
-      if (hi == mtime_high ())
+      // Atomic read. The loop is taken once in most cases. Only when the
+      // value carries to the high word, two loops are performed.
+      while (true)
         {
-          return ((uint64_t) hi << 32) | lo;
+          uint32_t hi = mtime_high ();
+          uint32_t lo = mtime_low ();
+          if (hi == mtime_high ())
+            {
+              return ((uint64_t)hi << 32) | lo;
+            }
         }
     }
-}
 
-void
-mtime (uint64_t value)
-{
-  // Set high word to 0.
-  mtime_high (0);
-  // Set low word; if 0xFFFFFFFF it might carry 1 to high word.
-  mtime_low ((uint32_t) (value));
-  // Add initial high word value to 0 or 1.
-  mtime_high (mtime_high () + (uint32_t) (value >> 32));
-}
+    void
+    mtime (uint64_t value)
+    {
+      // Set high word to 0.
+      mtime_high (0);
+      // Set low word; if 0xFFFFFFFF it might carry 1 to high word.
+      mtime_low ((uint32_t) (value));
+      // Add initial high word value to 0 or 1.
+      mtime_high (mtime_high () + (uint32_t) (value >> 32));
+    }
 
-void
-mtimecmp (uint64_t value)
-{
-  // In RV32, memory-mapped writes to mtimecmp modify only one 32-bit
-  // part of the register.
-  // To avoid spurious interrupts, the manual recommends to first
-  // set the high part at max value.
-  //
-  //  # New comparand is in a1:a0.
-  //  li t0, -1
-  //  sw t0, mtimecmp   # write low as max; no smaller than old value.
-  //  sw a1, mtimecmp+4 # write high; no smaller than new value.
-  //  sw a0, mtimecmp   # write low as new value.
+    void
+    mtimecmp (uint64_t value)
+    {
+      // In RV32, memory-mapped writes to mtimecmp modify only one 32-bit
+      // part of the register.
+      // To avoid spurious interrupts, the manual recommends to first
+      // set the high part at max value.
+      //
+      //  # New comparand is in a1:a0.
+      //  li t0, -1
+      //  sw t0, mtimecmp   # write low as max; no smaller than old value.
+      //  sw a1, mtimecmp+4 # write high; no smaller than new value.
+      //  sw a0, mtimecmp   # write low as new value.
 
-  mtimecmp_low ((uint32_t) (-1));
-  mtimecmp_high ((uint32_t) (value >> 32));
-  mtimecmp_low ((uint32_t) value);
-}
+      mtimecmp_low ((uint32_t) (-1));
+      mtimecmp_high ((uint32_t) (value >> 32));
+      mtimecmp_low ((uint32_t)value);
+    }
 
 #endif /* __riscv_xlen == 32 */
 
-   // --------------------------------------------------------------------------
-}
-/* namespace device */
-
-// ----------------------------------------------------------------------------
-} /* namespace riscv */
+    // ------------------------------------------------------------------------
+  } // namespace device
+} // namespace riscv
 
 // ----------------------------------------------------------------------------
 // C aliases to the C++ functions.
 
 #if __riscv_xlen == 32
 
-uint64_t
-__attribute__((alias("_ZN5riscv3csr6mcycleEv")))
+uint64_t __attribute__ ((alias ("_ZN5riscv3csr6mcycleEv")))
 riscv_csr_read_mcycle (void);
 
 #endif /* __riscv_xlen == 32 */
 
-uint32_t
-__attribute__((alias("_ZN5riscv4core20running_frequency_hzEv")))
+uint32_t __attribute__ ((alias ("_ZN5riscv4core20running_frequency_hzEv")))
 riscv_core_get_running_frequency_hz (void);
 
-void
-__attribute__((alias("_ZN5riscv4core24update_running_frequencyEv")))
+void __attribute__ ((alias ("_ZN5riscv4core24update_running_frequencyEv")))
 riscv_core_update_running_frequency (void);
 
 #if __riscv_xlen == 32
 
 // Device functions.
-uint64_t
-__attribute__((alias("_ZN5riscv6device5mtimeEv")))
+uint64_t __attribute__ ((alias ("_ZN5riscv6device5mtimeEv")))
 riscv_device_read_mtime (void);
 
-void
-__attribute__((alias("_ZN5riscv6device5mtimeEy")))
+void __attribute__ ((alias ("_ZN5riscv6device5mtimeEy")))
 riscv_device_write_mtime (uint64_t);
 
-void
-__attribute__((alias("_ZN5riscv6device8mtimecmpEy")))
+void __attribute__ ((alias ("_ZN5riscv6device8mtimecmpEy")))
 riscv_device_write_mtimecmp (uint64_t value);
 
 #endif /* __riscv_xlen == 32 */

@@ -39,7 +39,7 @@
 
 // ----------------------------------------------------------------------------
 
-#ifdef  __cplusplus
+#ifdef __cplusplus
 
 #include <micro-os-plus/device.h>
 #include <micro-os-plus/diag/trace.h>
@@ -55,16 +55,15 @@ namespace os
       namespace scheduler
       {
 
-        inline void
-        __attribute__((always_inline))
+        inline __attribute__ ((always_inline)) void
         greeting (void)
         {
           trace::printf ("Scheduler: µOS++ RISC-V");
           trace::printf (", preemptive");
 #if defined(OS_EXCLUDE_RTOS_IDLE_SLEEP)
-          trace::printf(", no WFI");
+          trace::printf (", no WFI");
 #else
-          trace::printf(", WFI");
+          trace::printf (", WFI");
 #endif
           trace::puts (".");
 
@@ -73,45 +72,40 @@ namespace os
           // trace::printf ("System clock: %u Hz.\n", SystemCoreClock);
         }
 
-        inline port::scheduler::state_t
-        __attribute__((always_inline))
+        inline __attribute__ ((always_inline)) port::scheduler::state_t
         lock (void)
         {
           return locked (state::locked);
         }
 
-        inline port::scheduler::state_t
-        __attribute__((always_inline))
+        inline __attribute__ ((always_inline)) port::scheduler::state_t
         unlock (void)
         {
           return locked (state::unlocked);
         }
 
-        inline bool
-        __attribute__((always_inline))
+        inline __attribute__ ((always_inline)) bool
         locked (void)
         {
           return lock_state != state::unlocked;
         }
 
-        inline void
-        __attribute__((always_inline))
+        inline __attribute__ ((always_inline)) void
         wait_for_interrupt (void)
         {
 #if !defined(OS_EXCLUDE_RTOS_IDLE_SLEEP)
 #if defined(OS_TRACE_RTOS_THREAD_CONTEXT)
           trace::printf ("%s() \n", __func__);
 #endif
-          riscv::arch::wfi();
+          riscv::arch::wfi ();
 #endif /* !defined(OS_EXCLUDE_RTOS_IDLE_SLEEP) */
         }
 
-      } /* namespace scheduler */
+      } // namespace scheduler
 
       namespace interrupts
       {
-        inline bool
-        __attribute__((always_inline))
+        inline __attribute__ ((always_inline)) bool
         in_handler_mode (void)
         {
           return false;
@@ -124,23 +118,21 @@ namespace os
         inline bool
         is_priority_valid (void)
         {
-        	return true;
+          return true;
         }
 
         // Enter an IRQ critical section
-        inline rtos::interrupts::state_t
-        __attribute__((always_inline))
+        inline __attribute__ ((always_inline)) rtos::interrupts::state_t
         critical_section::enter (void)
         {
           return 0;
         }
 
         // Exit an IRQ critical section
-        inline void
-        __attribute__((always_inline))
+        inline __attribute__ ((always_inline)) void
         critical_section::exit (rtos::interrupts::state_t state)
         {
-        	riscv::arch::nop();
+          riscv::arch::nop ();
         }
 
         // ====================================================================
@@ -149,16 +141,14 @@ namespace os
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 
         // Enter an IRQ uncritical section
-        inline rtos::interrupts::state_t
-        __attribute__((always_inline))
+        inline __attribute__ ((always_inline)) rtos::interrupts::state_t
         uncritical_section::enter (void)
         {
           return 0;
         }
 
         // Exit an IRQ critical section
-        inline void
-        __attribute__((always_inline))
+        inline __attribute__ ((always_inline)) void
         uncritical_section::exit (rtos::interrupts::state_t state)
         {
           ;
@@ -166,56 +156,51 @@ namespace os
 
 #pragma GCC diagnostic pop
 
-      } /* namespace interrupts */
+      } // namespace interrupts
 
       // ======================================================================
 
       namespace this_thread
       {
-        inline void
-        __attribute__((always_inline))
+        inline __attribute__ ((always_inline)) void
         prepare_suspend (void)
         {
           ;
         }
 
-      } /* namespace this_thread */
+      } // namespace this_thread
 
       // ======================================================================
 
-      inline void
-      __attribute__((always_inline))
+      inline __attribute__ ((always_inline)) void
       clock_highres::start (void)
       {
         ;
       }
 
-      inline uint32_t
-      __attribute__((always_inline))
+      inline __attribute__ ((always_inline)) uint32_t
       clock_highres::input_clock_frequency_hz (void)
       {
         return 0;
       }
 
-      inline uint32_t
-      __attribute__((always_inline))
+      inline __attribute__ ((always_inline)) uint32_t
       clock_highres::cycles_per_tick (void)
       {
         return 1;
       }
 
-      inline uint32_t
-      __attribute__((always_inline))
+      inline __attribute__ ((always_inline)) uint32_t
       clock_highres::cycles_since_tick (void)
       {
         return 1;
       }
 
-    // ======================================================================
+      // ======================================================================
 
-    } /* namespace port */
-  } /* namespace rtos */
-} /* namespace os */
+    } // namespace port
+  } // namespace rtos
+} // namespace os
 
 #pragma GCC diagnostic pop
 
