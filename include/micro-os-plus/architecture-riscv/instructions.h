@@ -39,7 +39,7 @@
 #if defined(__cplusplus)
 extern "C"
 {
-#endif /* defined(__cplusplus) */
+#endif // defined(__cplusplus)
 
   // --------------------------------------------------------------------------
   // Architecture assembly instructions in C.
@@ -87,7 +87,7 @@ extern "C"
 
 #if defined(__cplusplus)
 }
-#endif /* defined(__cplusplus) */
+#endif // defined(__cplusplus)
 
 // ============================================================================
 
@@ -151,10 +151,10 @@ namespace os
   } // namespace arch
 } // namespace os
 
-#endif /* defined(__cplusplus) */
+#endif // defined(__cplusplus)
 
 // ----------------------------------------------------------------------------
 
-#endif /* MICRO_OS_PLUS_ARCHITECTURE_RISCV_ARCH_INSTRUCTIONS_H_ */
+#endif // MICRO_OS_PLUS_ARCHITECTURE_RISCV_ARCH_INSTRUCTIONS_H_
 
 // ----------------------------------------------------------------------------

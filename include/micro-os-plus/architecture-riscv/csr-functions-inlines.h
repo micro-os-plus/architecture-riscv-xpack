@@ -37,7 +37,7 @@
 #if defined(__cplusplus)
 extern "C"
 {
-#endif /* defined(__cplusplus) */
+#endif // defined(__cplusplus)
 
   // --------------------------------------------------------------------------
 
@@ -275,7 +275,7 @@ extern "C"
     return tmp;
   }
 
-#endif /* __riscv_xlen == 64 */
+#endif // __riscv_xlen == 64
 
   static inline __attribute__ ((always_inline)) uint32_t
   riscv_csr_read_mcycle_low (void)
@@ -298,7 +298,7 @@ extern "C"
 
   return (uint32_t)riscv_csr_read_mcycle ();
 
-#endif /* __riscv_xlen */
+#endif // __riscv_xlen
   }
 
   static inline __attribute__ ((always_inline)) uint32_t
@@ -322,7 +322,7 @@ extern "C"
 
   return (uint32_t) (riscv_csr_read_mcycle () >> 32);
 
-#endif /* __riscv_xlen */
+#endif // __riscv_xlen
   }
 
   // --------------------------------------------------------------------------
@@ -347,7 +347,7 @@ extern "C"
 
 #if defined(__cplusplus)
 }
-#endif /* defined(__cplusplus) */
+#endif // defined(__cplusplus)
 
 // ============================================================================
 
@@ -441,7 +441,7 @@ namespace riscv
       return riscv_csr_read_mcycle ();
     }
 
-#endif /* __riscv_xlen == 64 */
+#endif // __riscv_xlen == 64
 
     inline __attribute__ ((always_inline)) uint32_t
     mcycle_low (void)
@@ -467,10 +467,10 @@ namespace riscv
   } // namespace csr
 } // namespace riscv
 
-#endif /* defined(__cplusplus) */
+#endif // defined(__cplusplus)
 
 // ----------------------------------------------------------------------------
 
-#endif /* MICRO_OS_PLUS_ARCHITECTURE_RISCV_CSR_FUNCTIONS_INLINES_H_ */
+#endif // MICRO_OS_PLUS_ARCHITECTURE_RISCV_CSR_FUNCTIONS_INLINES_H_
 
 // ----------------------------------------------------------------------------

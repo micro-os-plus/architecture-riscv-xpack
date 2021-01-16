@@ -231,14 +231,14 @@ namespace riscv
   } // namespace plic
 } // namespace riscv
 
-#endif /* defined(__cplusplus) */
+#endif // defined(__cplusplus)
 
 // ============================================================================
 
 #if defined(__cplusplus)
 extern "C"
 {
-#endif /* defined(__cplusplus) */
+#endif // defined(__cplusplus)
 
   // --------------------------------------------------------------------------
 
@@ -280,10 +280,10 @@ extern "C"
 
 #if defined(__cplusplus)
 }
-#endif /* defined(__cplusplus) */
+#endif // defined(__cplusplus)
 
 // ----------------------------------------------------------------------------
 
-#endif /* MICRO_OS_PLUS_ARCHITECTURE_RISCV_PLIC_FUNCTIONS_H_ */
+#endif // MICRO_OS_PLUS_ARCHITECTURE_RISCV_PLIC_FUNCTIONS_H_
 
 // ----------------------------------------------------------------------------

@@ -133,7 +133,7 @@
 #define MSTATUS_SD MSTATUS64_SD
 #define SSTATUS_SD SSTATUS64_SD
 #define RISCV_PGLEVEL_BITS 9
-#endif /* __riscv_xlen */
+#endif // __riscv_xlen
 
 #define RISCV_PGSHIFT 12
 #define RISCV_PGSIZE (1 << RISCV_PGSHIFT)
@@ -187,10 +187,10 @@
 #define RISCV_CSR_MCAUSE_CAUSE (0x7FFFFFFFFFFFFFFFul)
 #else
 #error "Unsupported __riscv_xlen"
-#endif /* __riscv_xlen */
+#endif // __riscv_xlen
 
 // ----------------------------------------------------------------------------
 
-#endif /* MICRO_OS_PLUS_ARCHITECTURE_RISCV_ARCH_DEFINES_H_ */
+#endif // MICRO_OS_PLUS_ARCHITECTURE_RISCV_ARCH_DEFINES_H_
 
 // ----------------------------------------------------------------------------

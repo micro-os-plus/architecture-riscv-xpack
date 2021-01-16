@@ -63,7 +63,7 @@ namespace riscv
 void __attribute__ ((weak, alias ("riscv_core_handle_unused_trap")))
 riscv_core_handle_exceptions (void);
 
-#endif /* defined(OS_USE_CPP_INTERRUPTS) */
+#endif // defined(OS_USE_CPP_INTERRUPTS)
 
 // ----------------------------------------------------------------------------
 
@@ -111,7 +111,7 @@ namespace riscv
 
 #if defined(DEBUG)
       riscv::arch::ebreak ();
-#endif /* defined(DEBUG) */
+#endif // defined(DEBUG)
 
       while (true)
         {
@@ -158,7 +158,7 @@ namespace riscv
 
 #if defined(DEBUG)
       riscv::arch::ebreak ();
-#endif /* defined(DEBUG) */
+#endif // defined(DEBUG)
 
       while (true)
         {
@@ -174,7 +174,7 @@ extern "C" void
     __attribute__ ((alias ("_ZN5riscv9interrupt18handle_machine_extEv")))
     riscv_interrupt_handle_machine_ext (void);
 
-#endif /* defined(RISCV_INTERRUPTS_GLOBAL_LAST_NUMBER) */
+#endif // defined(RISCV_INTERRUPTS_GLOBAL_LAST_NUMBER)
 
 void __attribute__ ((section (".traps_handlers"), weak))
 riscv_core_handle_unused_trap (void)
@@ -184,7 +184,7 @@ riscv_core_handle_unused_trap (void)
 
 #if defined(DEBUG)
   riscv::arch::ebreak ();
-#endif /* defined(DEBUG) */
+#endif // defined(DEBUG)
 
   while (true)
     {
@@ -194,6 +194,6 @@ riscv_core_handle_unused_trap (void)
 
 // ----------------------------------------------------------------------------
 
-#endif /* __riscv */
+#endif // __riscv
 
 // ----------------------------------------------------------------------------

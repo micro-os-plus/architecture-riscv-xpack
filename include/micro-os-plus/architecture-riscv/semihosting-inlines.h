@@ -33,7 +33,7 @@
 #if defined(__cplusplus)
 extern "C"
 {
-#endif /* defined(__cplusplus) */
+#endif // defined(__cplusplus)
 
   // --------------------------------------------------------------------------
 
@@ -71,10 +71,10 @@ extern "C"
 
 #if defined(__cplusplus)
 }
-#endif /* defined(__cplusplus) */
+#endif // defined(__cplusplus)
 
 // ----------------------------------------------------------------------------
 
-#endif /* MICRO_OS_PLUS_ARCHITECTURE_RISCV_ARCH_SEMIHOSTING_INLINES_H_ */
+#endif // MICRO_OS_PLUS_ARCHITECTURE_RISCV_ARCH_SEMIHOSTING_INLINES_H_
 
 // ----------------------------------------------------------------------------

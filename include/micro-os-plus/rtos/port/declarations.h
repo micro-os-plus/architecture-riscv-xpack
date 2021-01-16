@@ -127,8 +127,8 @@ namespace os
 
 // ----------------------------------------------------------------------------
 
-#endif /* __cplusplus */
+#endif // __cplusplus
 
-#endif /* MICRO_OS_PLUS_ARCHITECTURE_RISCV_RTOS_PORT_DECLARATIONS_H_ */
+#endif // MICRO_OS_PLUS_ARCHITECTURE_RISCV_RTOS_PORT_DECLARATIONS_H_
 
 // ----------------------------------------------------------------------------

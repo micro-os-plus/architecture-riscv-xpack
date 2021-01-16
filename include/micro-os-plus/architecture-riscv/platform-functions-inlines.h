@@ -44,7 +44,7 @@
 #if defined(__cplusplus)
 extern "C"
 {
-#endif /* defined(__cplusplus) */
+#endif // defined(__cplusplus)
 
   static inline __attribute__ ((always_inline)) uint32_t
   riscv_board_get_rtc_frequency_hz (void)
@@ -54,7 +54,7 @@ extern "C"
 
 #if defined(__cplusplus)
 }
-#endif /* defined(__cplusplus) */
+#endif // defined(__cplusplus)
 
 // ----------------------------------------------------------------------------
 
@@ -76,10 +76,10 @@ namespace riscv
   } // namespace board
 } // namespace riscv
 
-#endif /* defined(__cplusplus) */
+#endif // defined(__cplusplus)
 
 // ----------------------------------------------------------------------------
 
-#endif /* MICRO_OS_PLUS_ARCHITECTURE_RISCV_PLATFORM_FUNCTIONS_INLINES_H_ */
+#endif // MICRO_OS_PLUS_ARCHITECTURE_RISCV_PLATFORM_FUNCTIONS_INLINES_H_
 
 // ----------------------------------------------------------------------------

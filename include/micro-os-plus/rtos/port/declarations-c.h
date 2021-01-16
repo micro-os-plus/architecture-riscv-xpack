@@ -62,6 +62,6 @@ typedef struct
 
 // ----------------------------------------------------------------------------
 
-#endif /* MICRO_OS_PLUS_ARCHITECTURE_RISCV_RTOS_PORT_DECLARATIONS_C_H_ */
+#endif // MICRO_OS_PLUS_ARCHITECTURE_RISCV_RTOS_PORT_DECLARATIONS_C_H_
 
 // ----------------------------------------------------------------------------

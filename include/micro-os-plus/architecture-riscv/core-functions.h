@@ -37,7 +37,7 @@
 #if defined(__cplusplus)
 extern "C"
 {
-#endif /* defined(__cplusplus) */
+#endif // defined(__cplusplus)
 
   // --------------------------------------------------------------------------
   // Support functions.
@@ -64,7 +64,7 @@ extern "C"
 
 #if defined(__cplusplus)
 }
-#endif /* defined(__cplusplus) */
+#endif // defined(__cplusplus)
 
 // ============================================================================
 
@@ -106,10 +106,10 @@ namespace riscv
   } // namespace core
 } // namespace riscv
 
-#endif /* defined(__cplusplus) */
+#endif // defined(__cplusplus)
 
 // ----------------------------------------------------------------------------
 
-#endif /* MICRO_OS_PLUS_ARCHITECTURE_RISCV_CORE_FUNCTIONS_H_ */
+#endif // MICRO_OS_PLUS_ARCHITECTURE_RISCV_CORE_FUNCTIONS_H_
 
 // ----------------------------------------------------------------------------

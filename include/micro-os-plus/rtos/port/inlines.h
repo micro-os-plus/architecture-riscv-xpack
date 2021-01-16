@@ -98,7 +98,7 @@ namespace os
           trace::printf ("%s() \n", __func__);
 #endif
           riscv::arch::wfi ();
-#endif /* !defined(OS_EXCLUDE_RTOS_IDLE_SLEEP) */
+#endif // !defined(OS_EXCLUDE_RTOS_IDLE_SLEEP)
         }
 
       } // namespace scheduler
@@ -206,8 +206,8 @@ namespace os
 
 // ----------------------------------------------------------------------------
 
-#endif /* __cplusplus */
+#endif // __cplusplus
 
-#endif /* MICRO_OS_PLUS_ARCHITECTURE_RISCV_RTOS_PORT_INLINES_H_ */
+#endif // MICRO_OS_PLUS_ARCHITECTURE_RISCV_RTOS_PORT_INLINES_H_
 
 // ----------------------------------------------------------------------------

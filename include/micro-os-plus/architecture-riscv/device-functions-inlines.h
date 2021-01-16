@@ -39,7 +39,7 @@
 #if defined(__cplusplus)
 extern "C"
 {
-#endif /* defined(__cplusplus) */
+#endif // defined(__cplusplus)
 
   // --------------------------------------------------------------------------
 
@@ -51,7 +51,7 @@ extern "C"
     return *(volatile uint64_t*)(RISCV_MMIO_MTIME_ADDRESS);
   }
 
-#endif /* __riscv_xlen == 64 */
+#endif // __riscv_xlen == 64
 
   static inline __attribute__ ((always_inline)) uint32_t
   riscv_device_read_mtime_low (void)
@@ -73,7 +73,7 @@ extern "C"
     *(volatile uint64_t*)(RISCV_MMIO_MTIME_ADDRESS) = value;
   }
 
-#endif /* __riscv_xlen == 64 */
+#endif // __riscv_xlen == 64
 
   static inline __attribute__ ((always_inline)) void
   riscv_device_write_mtime_low (uint32_t value)
@@ -116,7 +116,7 @@ extern "C"
     *(uint64_t*)(RISCV_MMIO_MTIMECMP_ADDRESS) = value;
   }
 
-#endif /* __riscv_xlen == 64 */
+#endif // __riscv_xlen == 64
 
   static inline __attribute__ ((always_inline)) void
   riscv_device_write_mtimecmp_low (uint32_t value)
@@ -134,7 +134,7 @@ extern "C"
 
 #if defined(__cplusplus)
 }
-#endif /* defined(__cplusplus) */
+#endif // defined(__cplusplus)
 
 // ============================================================================
 
@@ -154,7 +154,7 @@ namespace riscv
       return riscv_device_read_mtime ();
     }
 
-#endif /* __riscv_xlen == 64 */
+#endif // __riscv_xlen == 64
 
     inline __attribute__ ((always_inline)) uint32_t
     mtime_low (void)
@@ -176,7 +176,7 @@ namespace riscv
       riscv_device_write_mtime (value);
     }
 
-#endif /* __riscv_xlen == 64 */
+#endif // __riscv_xlen == 64
 
     inline __attribute__ ((always_inline)) void
     mtime_low (uint32_t value)
@@ -218,7 +218,7 @@ namespace riscv
       riscv_device_write_mtimecmp (value);
     }
 
-#endif /* __riscv_xlen == 64 */
+#endif // __riscv_xlen == 64
 
     inline __attribute__ ((always_inline)) void
     mtimecmp_low (uint32_t value)
@@ -236,10 +236,10 @@ namespace riscv
   } // namespace device
 } // namespace riscv
 
-#endif /* defined(__cplusplus) */
+#endif // defined(__cplusplus)
 
 // ----------------------------------------------------------------------------
 
-#endif /* MICRO_OS_PLUS_ARCHITECTURE_RISCV_DEVICE_FUNCTIONS_INLINES_H_ */
+#endif // MICRO_OS_PLUS_ARCHITECTURE_RISCV_DEVICE_FUNCTIONS_INLINES_H_
 
 // ----------------------------------------------------------------------------

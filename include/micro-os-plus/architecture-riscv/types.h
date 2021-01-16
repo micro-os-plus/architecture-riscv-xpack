@@ -33,13 +33,13 @@
 #if defined(__cplusplus)
 extern "C"
 {
-#endif /* defined(__cplusplus) */
+#endif // defined(__cplusplus)
 
 #if __riscv_xlen == 32
   typedef uint32_t riscv_arch_register_t;
 #elif __riscv_xlen == 64
 typedef uint64_t riscv_arch_register_t;
-#endif /* __riscv_xlen */
+#endif // __riscv_xlen
 
   typedef void (*riscv_core_trap_handler_ptr_t) (void);
 
@@ -94,7 +94,7 @@ typedef uint64_t riscv_arch_register_t;
 
 #if defined(__cplusplus)
 }
-#endif /* defined(__cplusplus) */
+#endif // defined(__cplusplus)
 
 // ============================================================================
 
@@ -121,10 +121,10 @@ namespace riscv
   } // namespace core
 } // namespace riscv
 
-#endif /* defined(__cplusplus) */
+#endif // defined(__cplusplus)
 
 // ----------------------------------------------------------------------------
 
-#endif /* MICRO_OS_PLUS_ARCHITECTURE_RISCV_ARCH_TYPES_H_ */
+#endif // MICRO_OS_PLUS_ARCHITECTURE_RISCV_ARCH_TYPES_H_
 
 // ----------------------------------------------------------------------------

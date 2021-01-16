@@ -92,7 +92,7 @@ namespace riscv
       return (tmp << 32) | riscv_csr_read_mcycle ();
     }
 
-#endif /* __riscv_xlen == 32 */
+#endif // __riscv_xlen == 32
 
     // ------------------------------------------------------------------------
   } // namespace csr
@@ -183,7 +183,7 @@ namespace riscv
       mtimecmp_low ((uint32_t)value);
     }
 
-#endif /* __riscv_xlen == 32 */
+#endif // __riscv_xlen == 32
 
     // ------------------------------------------------------------------------
   } // namespace device
@@ -197,7 +197,7 @@ namespace riscv
 uint64_t __attribute__ ((alias ("_ZN5riscv3csr6mcycleEv")))
 riscv_csr_read_mcycle (void);
 
-#endif /* __riscv_xlen == 32 */
+#endif // __riscv_xlen == 32
 
 uint32_t __attribute__ ((alias ("_ZN5riscv4core20running_frequency_hzEv")))
 riscv_core_get_running_frequency_hz (void);
@@ -217,10 +217,10 @@ riscv_device_write_mtime (uint64_t);
 void __attribute__ ((alias ("_ZN5riscv6device8mtimecmpEy")))
 riscv_device_write_mtimecmp (uint64_t value);
 
-#endif /* __riscv_xlen == 32 */
+#endif // __riscv_xlen == 32
 
 // ----------------------------------------------------------------------------
 
-#endif /* __riscv */
+#endif // __riscv
 
 // ----------------------------------------------------------------------------

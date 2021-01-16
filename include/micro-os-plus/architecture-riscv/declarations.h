@@ -56,10 +56,10 @@ namespace riscv
   } // namespace arch
 } // namespace riscv
 
-#endif /* defined(__cplusplus) */
+#endif // defined(__cplusplus)
 
 // ----------------------------------------------------------------------------
 
-#endif /* MICRO_OS_PLUS_ARCHITECTURE_RISCV_ARCH_DECLARATIONS_H_ */
+#endif // MICRO_OS_PLUS_ARCHITECTURE_RISCV_ARCH_DECLARATIONS_H_
 
 // ----------------------------------------------------------------------------
