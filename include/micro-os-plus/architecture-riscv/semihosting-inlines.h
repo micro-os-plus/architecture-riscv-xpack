@@ -48,7 +48,7 @@ extern "C"
     register int value asm("a0") = reason;
     register void* ptr asm("a1") = arg;
 
-    asm volatile(
+    __asm__ volatile(
 
         // Workaround for RISC-V lack of multiple EBREAKs.
         " .option push \n"

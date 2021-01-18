@@ -44,7 +44,7 @@ extern "C"
   static inline __attribute__ ((always_inline)) void
   riscv_arch_nop (void)
   {
-    asm volatile(
+    __asm__ volatile(
 
         " nop "
 
@@ -57,7 +57,7 @@ extern "C"
   static inline __attribute__ ((always_inline)) void
   riscv_arch_ebreak (void)
   {
-    asm volatile(
+    __asm__ volatile(
 
         " ebreak "
 
@@ -70,7 +70,7 @@ extern "C"
   static inline __attribute__ ((always_inline)) void
   riscv_arch_wfi (void)
   {
-    asm volatile(
+    __asm__ volatile(
 
         " wfi "
 

@@ -301,7 +301,7 @@ namespace os
         {
           register stack::element_t* sp_;
 
-          asm volatile(
+          __asm__ volatile(
               // Get the thread stack
               " nop                       \n"
 
@@ -334,7 +334,7 @@ namespace os
 
           // register stack::element_t* sp_ asm ("r0") = sp;
 
-          asm volatile(
+          __asm__ volatile(
 
               " nop                 \n"
 
