@@ -11,28 +11,38 @@
 
 message(STATUS "Including micro-os-plus-architecture-riscv...")
 
-function(target_sources_micro_os_plus_architecture_riscv target)
+# -----------------------------------------------------------------------------
 
-  get_filename_component(PARENT_DIR ${CMAKE_CURRENT_FUNCTION_LIST_DIR} DIRECTORY)
+function(target_sources_micro_os_plus_architecture target)
+
+  get_filename_component(xpack_root_folder ${CMAKE_CURRENT_FUNCTION_LIST_DIR} DIRECTORY)
 
   target_sources(
     ${target}
 
     PRIVATE
-      ${PARENT_DIR}/src/lists.cpp
+      ${xpack_root_folder}/src/rtos/port/os-core.cpp
+      ${xpack_root_folder}/src/functions.cpp
+      ${xpack_root_folder}/src/reset-entry.S
+      ${xpack_root_folder}/src/trap-entry.S
+      ${xpack_root_folder}/src/traps.cpp
   )
+
 endfunction()
 
-function(target_include_directories_micro_os_plus_architecture_riscv target)
+# -----------------------------------------------------------------------------
 
-  get_filename_component(PARENT_DIR ${CMAKE_CURRENT_FUNCTION_LIST_DIR} DIRECTORY)
+function(target_include_directories_micro_os_plus_architecture target)
+
+  get_filename_component(xpack_root_folder ${CMAKE_CURRENT_FUNCTION_LIST_DIR} DIRECTORY)
 
   target_include_directories(
     ${target}
 
     PUBLIC
-      ${PARENT_DIR}/include
+      ${xpack_root_folder}/include
   )
+
 endfunction()
 
 # -----------------------------------------------------------------------------
