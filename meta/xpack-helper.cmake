@@ -13,7 +13,7 @@ message(STATUS "Including micro-os-plus-architecture-riscv...")
 
 # -----------------------------------------------------------------------------
 
-function(target_sources_micro_os_plus_architecture target)
+function(target_sources_micro_os_plus_architecture_riscv target)
 
   get_filename_component(xpack_root_folder ${CMAKE_CURRENT_FUNCTION_LIST_DIR} DIRECTORY)
 
@@ -32,7 +32,7 @@ endfunction()
 
 # -----------------------------------------------------------------------------
 
-function(target_include_directories_micro_os_plus_architecture target)
+function(target_include_directories_micro_os_plus_architecture_riscv target)
 
   get_filename_component(xpack_root_folder ${CMAKE_CURRENT_FUNCTION_LIST_DIR} DIRECTORY)
 
@@ -42,6 +42,14 @@ function(target_include_directories_micro_os_plus_architecture target)
     PUBLIC
       ${xpack_root_folder}/include
   )
+
+endfunction()
+
+# -----------------------------------------------------------------------------
+
+function(target_compile_definitions_micro_os_plus_architecture_riscv target)
+
+  # None
 
 endfunction()
 
