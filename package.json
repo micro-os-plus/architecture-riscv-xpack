@@ -8,9 +8,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/micro-os-plus/architecture-riscv-xpack.git"
+    "url": "git+https://github.com/micro-os-plus/architecture-riscv-xpack.git/"
   },
-  "homepage": "https://github.com/micro-os-plus/architecture-riscv-xpack",
+  "homepage": "https://github.com/micro-os-plus/architecture-riscv-xpack/",
   "keywords": [
     "xpack",
     "c++",
@@ -21,15 +21,13 @@
   "author": {
     "name": "Liviu Ionescu",
     "email": "ilg@livius.net",
-    "url": "https://github.com/ilg-ul"
+    "url": "https://github.com/ilg-ul/"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/micro-os-plus/architecture-riscv-xpack/issues"
+    "url": "https://github.com/micro-os-plus/architecture-riscv-xpack/issues/"
   },
   "config": {},
-  "dependencies": {
-    "@micro-os-plus/startup": "~1.0.8"
-  },
+  "dependencies": {},
   "xpack": {}
 }
