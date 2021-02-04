@@ -2,22 +2,28 @@
 
 Releases in reverse chronological order.
 
-Please check [GitHub](https://github.com/micro-os-plus/architecture-riscv-xpack/issues/) and close existing issues and pull requests.
+Please check
+[GitHub](https://github.com/micro-os-plus/architecture-riscv-xpack/issues/)
+and close existing issues and pull requests.
 
-### v1.0.3 (2020-09-19)
+## v1.1.0 (2021-02-04)
+
+- first restructured release
+
+## v1.0.3 (2020-09-19)
 
 - bump startup to 1.0.8
 
-### v1.0.2 (2018-04-16)
+## v1.0.2 (2018-04-16)
 
 - bump deps & move back to npm
 - update README developer info
 
-### v1.0.1 (2018-01-24)
+## v1.0.1 (2018-01-24)
 
 - update dependencies
 
-### v1.0.0 (2018-01-24)
+## v1.0.0 (2018-01-24)
 
 ### 2018-01-20
 
@@ -29,7 +35,7 @@ Please check [GitHub](https://github.com/micro-os-plus/architecture-riscv-xpack/
 - [#2] Use wfi() in infinite loops
 - [#3] Add semihosting call_host() implementation
 
-### v0.2.0 (2018-01-09)
+## v0.2.0 (2018-01-09)
 
 ### 2017-11-10
 
@@ -66,16 +72,16 @@ Please check [GitHub](https://github.com/micro-os-plus/architecture-riscv-xpack/
 - include/architecture-riscv/defines.h: number of exc
 - update for device-peripherals.h
 
-### v0.1.0 (2017-10-26)
+## v1.1.0 (2017-10-26)
 
 - update for new GitHub names
 
-### v0.0.4 (2017-10-04)
+## v0.0.4 (2017-10-04)
 
 - package.json clean-ups
 - add CHANGELOG.md
 
-### v0.0.3 (2017-09-18)
+## v0.0.3 (2017-09-18)
 
 - add enable/disable M external interrupts
 - add plic-functions.h
@@ -85,6 +91,6 @@ Please check [GitHub](https://github.com/micro-os-plus/architecture-riscv-xpack/
   - for improved readability, use full names
   - use local_device array, if needed
 
-### v0.0.2, v0.0.1 (2017-09-04)
+## v0.0.2, v0.0.1 (2017-09-04)
 
 - initial version, copied from µOS++.
