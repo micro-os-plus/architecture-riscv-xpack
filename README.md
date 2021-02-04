@@ -1,43 +1,96 @@
-[![license](https://img.shields.io/github/license/micro-os-plus/architecture-riscv-xpack)](https://github.com/micro-os-plus/architecture-riscv-xpack/blob/xpack/LICENSE)
-[![GitHub issues](https://img.shields.io/github/issues/micro-os-plus/architecture-riscv-xpack.svg)](https://github.com/micro-os-plus/architecture-riscv-xpack/issues)
-[![GitHub pulls](https://img.shields.io/github/issues-pr/micro-os-plus/architecture-riscv-xpack.svg)](https://github.com/micro-os-plus/architecture-riscv-xpack/pulls)
+[[![license](https://img.shields.io/github/license/micro-os-plus/architecture-riscv-xpack)](https://github.com/micro-os-plus/architecture-riscv-xpack/blob/xpack/LICENSE)
+[![CI on Push](https://github.com/micro-os-plus/architecture-riscv-xpack/workflows/CI%20on%20Push/badge.svg)](https://github.com/micro-os-plus/architecture-riscv-xpack/actions?query=workflow%3A%22CI+on+Push%22)
 
-# µOS++ RISC-V architecture definitions
+# A source xPacks with the µOS++ RISC-V architecture definitions
 
 This project provides support for RISC-V embedded projects.
 
-## Developer info
+The project is hosted on GitHub as
+[micro-os-plus/architecture-riscv-xpack](https://github.com/micro-os-plus/architecture-riscv-xpack).
 
-This section is intended to developers who plan to include this library
-in their own projects.
+## Maintainer info
+
+This page is addressed to developers who plan to include this package
+into their own projects.
+
+For maintainer infos, please see the
+[README-MAINTAINER](README-MAINTAINER.md) file.
+
+## Install
+
+As a source xPacks, the easiest way to add it to a project is via **xpm**,
+but it can also be used as any Git project, for example as a submodule.
 
 ### Prerequisites
 
-A recent [`xpm`](https://www.npmjs.com/package/xpm), which is a portable
-[Node.js](https://nodejs.org/) command line application.
+A recent [xpm](https://xpack.github.io/xpm/),
+which is a portable [Node.js](https://nodejs.org/) command line application.
 
-Compiling the source code requires a modern C++ compiler, preferably
-GCC 5 or higher. 
+For details please follow the instructions in the
+[install](https://xpack.github.io/install/) page.
 
-### Easy install
+### xpm
 
-This package is available as
-[`@micro-os-plus/architecture-riscv`](https://www.npmjs.com/package/@micro-os-plus/architecture-riscv)
-from the `npmjs.com` registry; with `xpm` available, installing the
-latest version of the package is quite easy:
+Note: the package will be available from npmjs.com at a later date.
+
+For now, it can be installed from GitHub:
 
 ```console
+$ cd <project>
+$ xpm init # Unless a package.json is already present
+
+$ xpm install github:micro-os-plus/architecture-riscv-xpack
+```
+
+When ready, this package will be available as
+[`@micro-os-plus/architecture-riscv`](https://www.npmjs.com/package/@micro-os-plus/architecture-riscv)
+from the `npmjs.com` registry:
+
+```console
+$ cd <project>
+$ xpm init # Unless a package.json is already present
+
 $ xpm install @micro-os-plus/architecture-riscv@latest
 ```
 
-This package is also available from
-[GitHub](https://github.com/micro-os-plus/architecture-riscv-xpack):
+### Git submodule
+
+If, for any reason, **xpm** is not available, the next recommended
+solution is to link it as a Git submodule below an `xpacks` folder.
 
 ```console
-$ git clone https://github.com/micro-os-plus/architecture-riscv-xpack.git architecture-riscv-xpack.git
+$ cd <project>
+$ git init # Unless already a Git project
+$ mkdir -p xpacks
+
+$ git submodule add https://github.com/micro-os-plus/architecture-riscv-xpack.git \
+  xpacks/micro-os-plus-architecture-riscv
 ```
 
-### Details
+## Branches
+
+Apart from the unused `master` branch, there are two active branches:
+
+- `xpack`, with the latest stable version
+- `xpack-develop`, with the current development version
+
+All development is done in the `xpack-develop` branch, and contributions via
+Pull Requests should be directed to this branch.
+
+When new releases are published, the `xpack-develop` branch is merged
+into `xpack`.
+
+## User info
+
+This source xPack provides general RISC-V definitions and will eventually
+include the implementation for the µOS++ scheduler.
+
+### Status
+
+The µOS++ RISC-V definitions are fully functional for non-RTOS applications;
+the scheduler port will be implemented at a later date.
+
+### Design details
 
 From a top down approach, in µOS++, the RISC-V definitions are
 grouped by several criteria:
@@ -47,7 +100,7 @@ grouped by several criteria:
 - core
 - hart (hardware thread)
 
-#### platform
+#### Platform
 
 The platform level refers to a device and adds platform specific definitions,
 like what GPIO pins are used for various LEDs, buttons, etc.
@@ -60,7 +113,7 @@ The portable way to include platform specific definitions in an application is:
 
 In µOS++, the platform specific definitions are grouped in the
 `riscv::platform` namespace.
- 
+
 An example of a platform package is **sifive/platform-sifive-hifive1** with the
 SiFive HiFive1 small development board.
 
@@ -83,7 +136,7 @@ the hardware or the operating system (OS); to avoid confusions, in
 µOS++ the term **device** is used to identify the vendor specific
 RISC-V details (with _platform_ being used for the machine, or the board).
 
-Please note that RISC-V defines some common MMIO registers (lime
+Please note that RISC-V defines some common MMIO registers (like
 `mtime` and `mtimecmp`), but, for more flexibility, leaves the
 implementation to define the actual address. Unfortunately this
 increases the software complexity, since the device specific headers
@@ -130,9 +183,9 @@ maximum number of software threads equal with the number of
 hardware threads, possibly with some grouping constrains.
 
 In RISC-V, **Control and Status Registers** (**CSR**s) are
-a special group of registers, available via specific `csr*`
+a special group of registers, available via specific `csr`
 instructions from a separate addressing space not visible in
-the memory space. 
+the memory space.
 
 The `hart` specific definitions are grouped under the `riscv::csr` namespace.
 
@@ -140,18 +193,50 @@ The `hart` specific definitions are grouped under the `riscv::csr` namespace.
 
 Interrupts and exceptions are grouped under `riscv::irq` and `riscv::exc`.
 
-## Maintainer info
+### Build & integration info
 
-### How to publish
+To include this package in a project, consider the following details.
 
-- commit all changes
-- update `CHANGELOG.md`; commit with a message like _CHANGELOG: prepare v0.1.2_
-- `npm version patch`
-- push all changes to GitHub
-- `npm publish`
+#### Source folders
+
+- `src`
+
+#### Include folders
+
+- `include`
+
+#### Preprocessor definitions
+
+- none required
+
+#### Compiler options
+
+- `-std=c++17` or higher for C++ sources
+- `-std=c11` for C sources
+
+#### Namespaces
+
+TBD
+
+#### Classes
+
+TBD
+
+### Known problems
+
+- none
+
+### Examples
+
+TBD
+
+### Tests
+
+TBD
 
 ## License
 
 The original content is released under the
-[MIT License](https://opensource.org/licenses/MIT), with all rights reserved to
-[Liviu Ionescu](https://github.com/ilg-ul).
+[MIT License](https://opensource.org/licenses/MIT/),
+with all rights reserved to
+[Liviu Ionescu](https://github.com/ilg-ul/).
