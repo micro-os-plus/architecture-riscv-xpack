@@ -9,48 +9,56 @@
 #
 # -----------------------------------------------------------------------------
 
+if(micro-os-plus-architecture-riscv-included)
+  return()
+endif()
+
+set(micro-os-plus-architecture-riscv-included TRUE)
+
 message(STATUS "Including micro-os-plus-architecture-riscv...")
 
 # -----------------------------------------------------------------------------
+# Local dependencies.
 
-function(target_sources_micro_os_plus_architecture_riscv target)
+include("${CMAKE_CURRENT_LIST_DIR}/../device/meta/xpack-helper.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/../platform/meta/xpack-helper.cmake")
 
-  get_filename_component(xpack_root_folder ${CMAKE_CURRENT_FUNCTION_LIST_DIR} DIRECTORY)
+# -----------------------------------------------------------------------------
+
+get_filename_component(xpack_current_folder ${CMAKE_CURRENT_LIST_DIR} DIRECTORY)
+
+# -----------------------------------------------------------------------------
+
+if(NOT TARGET micro-os-plus-architecture-riscv-interface)
+
+  add_library(micro-os-plus-architecture-riscv-interface INTERFACE EXCLUDE_FROM_ALL)
+
+  # ---------------------------------------------------------------------------
+  # Target settings.
 
   target_sources(
-    ${target}
+    micro-os-plus-architecture-riscv-interface
 
-    PRIVATE
-      ${xpack_root_folder}/src/rtos/port/os-core.cpp
-      ${xpack_root_folder}/src/functions.cpp
-      ${xpack_root_folder}/src/reset-entry.S
-      ${xpack_root_folder}/src/trap-entry.S
-      ${xpack_root_folder}/src/traps.cpp
+    INTERFACE
+      ${xpack_current_folder}/src/reset-entry.S
+      ${xpack_current_folder}/src/trap-entry.S
   )
-
-endfunction()
-
-# -----------------------------------------------------------------------------
-
-function(target_include_directories_micro_os_plus_architecture_riscv target)
-
-  get_filename_component(xpack_root_folder ${CMAKE_CURRENT_FUNCTION_LIST_DIR} DIRECTORY)
 
   target_include_directories(
-    ${target}
+    micro-os-plus-architecture-riscv-interface
 
-    PUBLIC
-      ${xpack_root_folder}/include
+    INTERFACE
+      ${xpack_current_folder}/include
   )
 
-endfunction()
+  # ---------------------------------------------------------------------------
+  # Aliases.
 
-# -----------------------------------------------------------------------------
+  add_library(micro-os-plus::architecture-riscv ALIAS micro-os-plus-architecture-riscv-interface)
+  message(STATUS "micro-os-plus::architecture-riscv")
+  add_library(micro-os-plus::architecture ALIAS micro-os-plus-architecture-riscv-interface)
+  message(STATUS "micro-os-plus::architecture")
 
-function(target_compile_definitions_micro_os_plus_architecture_riscv target)
-
-  # None
-
-endfunction()
+endif()
 
 # -----------------------------------------------------------------------------
