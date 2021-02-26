@@ -31,12 +31,13 @@ if(NOT TARGET micro-os-plus-architecture-riscv-device-interface)
   # ---------------------------------------------------------------------------
   # Target settings.
   
+  file(GLOB_RECURSE source_files CONFIGURE_DEPENDS "${xpack_current_folder}/src/*.c*")
+
   target_sources(
     micro-os-plus-architecture-riscv-device-interface
 
     INTERFACE
-      ${xpack_current_folder}/src/rtos/port/os-core.cpp
-      ${xpack_current_folder}/src/rtos/port/traps.cpp
+      ${source_files}
   )
 
   target_include_directories(
