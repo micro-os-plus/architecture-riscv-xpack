@@ -23,8 +23,8 @@ message(STATUS "Including micro-os-plus-architecture-riscv...")
 # -----------------------------------------------------------------------------
 # Local dependencies.
 
-include("${CMAKE_CURRENT_LIST_DIR}/../device/meta/xpack-helper.cmake")
-include("${CMAKE_CURRENT_LIST_DIR}/../platform/meta/xpack-helper.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/../device/meta/config.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/../platform/meta/config.cmake")
 
 # -----------------------------------------------------------------------------
 
