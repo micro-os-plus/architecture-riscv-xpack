@@ -22,13 +22,13 @@ message(STATUS "Including micro-os-plus-architecture-riscv/device...")
 
 get_filename_component(xpack_current_folder ${CMAKE_CURRENT_LIST_DIR} DIRECTORY)
 
-# ---------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 
 if(NOT TARGET micro-os-plus-architecture-riscv-device-interface)
 
   add_library(micro-os-plus-architecture-riscv-device-interface INTERFACE EXCLUDE_FROM_ALL)
 
-  # -------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------
   # Target settings.
   
   target_sources(
@@ -53,7 +53,7 @@ if(NOT TARGET micro-os-plus-architecture-riscv-device-interface)
       # micro-os-plus::semihosting-static
   )
 
-  # -------------------------------------------------------------------------
+  # ---------------------------------------------------------------------------
   # Aliases.
 
   add_library(micro-os-plus::architecture-riscv-device ALIAS micro-os-plus-architecture-riscv-device-interface)
