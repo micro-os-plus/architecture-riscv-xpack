@@ -26,7 +26,7 @@
  */
 
 /*
- * It is included in `cmsis-plus/rtos/os-c-decls.h` to customise
+ * It is included in `cmsis-plus/rtos/declarations-c.h` to customise
  * it with port specific declarations.
  *
  * These structures (which basically contain handlers)
