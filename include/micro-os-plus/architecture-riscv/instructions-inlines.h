@@ -42,7 +42,7 @@ extern "C"
   // --------------------------------------------------------------------------
 
   static inline __attribute__ ((always_inline)) void
-  riscv_arch_nop (void)
+  riscv_architecture_nop (void)
   {
     __asm__ volatile(
 
@@ -55,7 +55,7 @@ extern "C"
   }
 
   static inline __attribute__ ((always_inline)) void
-  riscv_arch_ebreak (void)
+  riscv_architecture_ebreak (void)
   {
     __asm__ volatile(
 
@@ -68,7 +68,7 @@ extern "C"
   }
 
   static inline __attribute__ ((always_inline)) void
-  riscv_arch_wfi (void)
+  riscv_architecture_wfi (void)
   {
     __asm__ volatile(
 
@@ -81,27 +81,27 @@ extern "C"
   }
 
   static inline __attribute__ ((always_inline)) void
-  os_arch_nop (void)
+  os_architecture_nop (void)
   {
-    riscv_arch_nop ();
+    riscv_architecture_nop ();
   }
 
   /**
    * `break` instruction.
    */
   static inline __attribute__ ((always_inline)) void
-  os_arch_brk (void)
+  os_architecture_brk (void)
   {
-    riscv_arch_ebreak ();
+    riscv_architecture_ebreak ();
   }
 
   /**
    * `wfi` instruction.
    */
   static inline __attribute__ ((always_inline)) void
-  os_arch_wfi (void)
+  os_architecture_wfi (void)
   {
-    riscv_arch_wfi ();
+    riscv_architecture_wfi ();
   }
 
   // --------------------------------------------------------------------------
@@ -123,19 +123,19 @@ namespace riscv
     inline __attribute__ ((always_inline)) void
     nop (void)
     {
-      riscv_arch_nop ();
+      riscv_architecture_nop ();
     }
 
     inline __attribute__ ((always_inline)) void
     ebreak (void)
     {
-      riscv_arch_ebreak ();
+      riscv_architecture_ebreak ();
     }
 
     inline __attribute__ ((always_inline)) void
     wfi (void)
     {
-      riscv_arch_wfi ();
+      riscv_architecture_wfi ();
     }
 
     // ------------------------------------------------------------------------

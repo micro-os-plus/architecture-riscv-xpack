@@ -36,9 +36,9 @@ extern "C"
 #endif // defined(__cplusplus)
 
 #if __riscv_xlen == 32
-  typedef uint32_t riscv_arch_register_t;
+  typedef uint32_t riscv_architecture_register_t;
 #elif __riscv_xlen == 64
-typedef uint64_t riscv_arch_register_t;
+typedef uint64_t riscv_architecture_register_t;
 #endif // __riscv_xlen
 
   typedef void (*riscv_core_trap_handler_ptr_t) (void);
@@ -106,7 +106,7 @@ namespace riscv
   {
     // ------------------------------------------------------------------------
 
-    using register_t = riscv_arch_register_t;
+    using register_t = riscv_architecture_register_t;
 
     // ------------------------------------------------------------------------
   } // namespace architecture

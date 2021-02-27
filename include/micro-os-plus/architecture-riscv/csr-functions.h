@@ -46,11 +46,11 @@ extern "C"
   // The workaround is to use distinct functions
   // for each CSR. There are only 4096 of them.
 
-  riscv_arch_register_t
+  riscv_architecture_register_t
   riscv_csr_read (uint32_t reg);
 
   void
-  riscv_csr_write (uint32_t reg, riscv_arch_register_t value);
+  riscv_csr_write (uint32_t reg, riscv_architecture_register_t value);
 #endif
 
   // --------------------------------------------------------------------------
@@ -59,26 +59,26 @@ extern "C"
   /**
    * Read the `mstatus` CSR.
    */
-  static riscv_arch_register_t
+  static riscv_architecture_register_t
   riscv_csr_read_mstatus (void);
 
   /**
    * Write the `mstatus` CSR.
    */
   static void
-  riscv_csr_write_mstatus (riscv_arch_register_t value);
+  riscv_csr_write_mstatus (riscv_architecture_register_t value);
 
   /**
    * Clear bits in the `mstatus` CSR.
    */
-  static riscv_arch_register_t
-  riscv_csr_clear_mstatus_bits (riscv_arch_register_t mask);
+  static riscv_architecture_register_t
+  riscv_csr_clear_mstatus_bits (riscv_architecture_register_t mask);
 
   /**
    * Set bits in the `mstatus` CSR.
    */
-  static riscv_arch_register_t
-  riscv_csr_set_mstatus_bits (riscv_arch_register_t mask);
+  static riscv_architecture_register_t
+  riscv_csr_set_mstatus_bits (riscv_architecture_register_t mask);
 
   // --------------------------------------------------------------------------
   // `mtvec`
@@ -86,14 +86,14 @@ extern "C"
   /**
    * Read the `mtvec` CSR.
    */
-  static riscv_arch_register_t
+  static riscv_architecture_register_t
   riscv_csr_read_mtvec (void);
 
   /**
    * Write the `mtvec` CSR.
    */
   static void
-  riscv_csr_write_mtvec (riscv_arch_register_t value);
+  riscv_csr_write_mtvec (riscv_architecture_register_t value);
 
   // --------------------------------------------------------------------------
   // `mcause`
@@ -101,7 +101,7 @@ extern "C"
   /**
    * Read the `mcause` CSR.
    */
-  static riscv_arch_register_t
+  static riscv_architecture_register_t
   riscv_csr_read_mcause (void);
 
   // --------------------------------------------------------------------------
@@ -110,26 +110,26 @@ extern "C"
   /**
    * Read the `mie` CSR.
    */
-  static riscv_arch_register_t
+  static riscv_architecture_register_t
   riscv_csr_read_mie (void);
 
   /**
    * Write the `mie` CSR.
    */
   static void
-  riscv_csr_write_mie (riscv_arch_register_t value);
+  riscv_csr_write_mie (riscv_architecture_register_t value);
 
   /**
    * Clear bits in the `mie` CSR.
    */
-  static riscv_arch_register_t
-  riscv_csr_clear_mie_bits (riscv_arch_register_t mask);
+  static riscv_architecture_register_t
+  riscv_csr_clear_mie_bits (riscv_architecture_register_t mask);
 
   /**
    * Set bits in the `mie` CSR.
    */
-  static riscv_arch_register_t
-  riscv_csr_set_mie_bits (riscv_arch_register_t mask);
+  static riscv_architecture_register_t
+  riscv_csr_set_mie_bits (riscv_architecture_register_t mask);
 
   // --------------------------------------------------------------------------
   // `mcycle`
@@ -155,7 +155,7 @@ extern "C"
   /**
    * Read the `mhartid` CSR.
    */
-  static riscv_arch_register_t
+  static riscv_architecture_register_t
   riscv_csr_read_mhartid (void);
 
   // --------------------------------------------------------------------------

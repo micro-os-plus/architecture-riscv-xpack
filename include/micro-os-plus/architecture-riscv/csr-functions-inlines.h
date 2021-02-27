@@ -45,11 +45,11 @@ extern "C"
   // Not available, due to ISA limitations (no 'r' to pass the CSR,
   // mandatory on -O0, even when called with constants).
 
-  inline riscv_arch_register_t
+  inline riscv_architecture_register_t
   __attribute__((always_inline))
   riscv_csr_read (uint32_t reg)
     {
-      riscv_arch_register_t tmp;
+      riscv_architecture_register_t tmp;
 
       __asm__ volatile (
           "csrr %[r],%[csr]"
@@ -65,10 +65,10 @@ extern "C"
 
   // --------------------------------------------------------------------------
 
-  static inline __attribute__ ((always_inline)) riscv_arch_register_t
+  static inline __attribute__ ((always_inline)) riscv_architecture_register_t
   riscv_csr_read_mstatus (void)
   {
-    riscv_arch_register_t tmp;
+    riscv_architecture_register_t tmp;
 
     __asm__ volatile(
 
@@ -83,7 +83,7 @@ extern "C"
   }
 
   static inline __attribute__ ((always_inline)) void
-  riscv_csr_write_mstatus (riscv_arch_register_t value)
+  riscv_csr_write_mstatus (riscv_architecture_register_t value)
   {
     __asm__ volatile(
 
@@ -95,10 +95,10 @@ extern "C"
     );
   }
 
-  static inline __attribute__ ((always_inline)) riscv_arch_register_t
-  riscv_csr_clear_mstatus_bits (riscv_arch_register_t mask)
+  static inline __attribute__ ((always_inline)) riscv_architecture_register_t
+  riscv_csr_clear_mstatus_bits (riscv_architecture_register_t mask)
   {
-    riscv_arch_register_t tmp;
+    riscv_architecture_register_t tmp;
 
     __asm__ volatile(
 
@@ -112,10 +112,10 @@ extern "C"
     return tmp;
   }
 
-  static inline __attribute__ ((always_inline)) riscv_arch_register_t
-  riscv_csr_set_mstatus_bits (riscv_arch_register_t mask)
+  static inline __attribute__ ((always_inline)) riscv_architecture_register_t
+  riscv_csr_set_mstatus_bits (riscv_architecture_register_t mask)
   {
-    riscv_arch_register_t tmp;
+    riscv_architecture_register_t tmp;
 
     __asm__ volatile(
 
@@ -134,10 +134,10 @@ extern "C"
   /**
    * Read `mtvec` CSR.
    */
-  static inline __attribute__ ((always_inline)) riscv_arch_register_t
+  static inline __attribute__ ((always_inline)) riscv_architecture_register_t
   riscv_csr_read_mtvec (void)
   {
-    riscv_arch_register_t tmp;
+    riscv_architecture_register_t tmp;
 
     __asm__ volatile(
 
@@ -155,7 +155,7 @@ extern "C"
    * Write `mtvec` CSR.
    */
   static inline __attribute__ ((always_inline)) void
-  riscv_csr_write_mtvec (riscv_arch_register_t value)
+  riscv_csr_write_mtvec (riscv_architecture_register_t value)
   {
     __asm__ volatile(
 
@@ -169,10 +169,10 @@ extern "C"
 
   // --------------------------------------------------------------------------
 
-  static inline __attribute__ ((always_inline)) riscv_arch_register_t
+  static inline __attribute__ ((always_inline)) riscv_architecture_register_t
   riscv_csr_read_mcause (void)
   {
-    riscv_arch_register_t tmp;
+    riscv_architecture_register_t tmp;
 
     __asm__ volatile(
 
@@ -188,10 +188,10 @@ extern "C"
 
   // --------------------------------------------------------------------------
 
-  static inline __attribute__ ((always_inline)) riscv_arch_register_t
+  static inline __attribute__ ((always_inline)) riscv_architecture_register_t
   riscv_csr_read_mie (void)
   {
-    riscv_arch_register_t tmp;
+    riscv_architecture_register_t tmp;
 
     __asm__ volatile(
 
@@ -206,7 +206,7 @@ extern "C"
   }
 
   static inline __attribute__ ((always_inline)) void
-  riscv_csr_write_mie (riscv_arch_register_t value)
+  riscv_csr_write_mie (riscv_architecture_register_t value)
   {
     __asm__ volatile(
 
@@ -218,10 +218,10 @@ extern "C"
     );
   }
 
-  static inline __attribute__ ((always_inline)) riscv_arch_register_t
-  riscv_csr_clear_mie_bits (riscv_arch_register_t mask)
+  static inline __attribute__ ((always_inline)) riscv_architecture_register_t
+  riscv_csr_clear_mie_bits (riscv_architecture_register_t mask)
   {
-    riscv_arch_register_t tmp;
+    riscv_architecture_register_t tmp;
 
     __asm__ volatile(
 
@@ -235,10 +235,10 @@ extern "C"
     return tmp;
   }
 
-  static inline __attribute__ ((always_inline)) riscv_arch_register_t
-  riscv_csr_set_mie_bits (riscv_arch_register_t mask)
+  static inline __attribute__ ((always_inline)) riscv_architecture_register_t
+  riscv_csr_set_mie_bits (riscv_architecture_register_t mask)
   {
-    riscv_arch_register_t tmp;
+    riscv_architecture_register_t tmp;
 
     __asm__ volatile(
 
@@ -262,7 +262,7 @@ extern "C"
   static inline __attribute__ ((always_inline)) uint64_t
   riscv_csr_read_mcycle (void)
   {
-    riscv_arch_register_t tmp;
+    riscv_architecture_register_t tmp;
 
     __asm__ volatile(
 
@@ -327,10 +327,10 @@ extern "C"
 
   // --------------------------------------------------------------------------
 
-  static inline __attribute__ ((always_inline)) riscv_arch_register_t
+  static inline __attribute__ ((always_inline)) riscv_architecture_register_t
   riscv_csr_read_mhartid (void)
   {
-    riscv_arch_register_t tmp;
+    riscv_architecture_register_t tmp;
 
     __asm__ volatile(
 

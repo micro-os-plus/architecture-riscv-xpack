@@ -48,19 +48,19 @@ extern "C"
    * `nop` instruction.
    */
   static void
-  riscv_arch_nop (void);
+  riscv_architecture_nop (void);
 
   /**
    * `ebreak` instruction.
    */
   static void
-  riscv_arch_ebreak (void);
+  riscv_architecture_ebreak (void);
 
   /**
    * `wfi` instruction.
    */
   static void
-  riscv_arch_wfi (void);
+  riscv_architecture_wfi (void);
 
   // --------------------------------------------------------------------------
   // Portable architecture assembly instructions in C.
@@ -69,19 +69,19 @@ extern "C"
    * `nop` instruction.
    */
   static void
-  os_arch_nop (void);
+  os_architecture_nop (void);
 
   /**
    * `break` instruction.
    */
   static void
-  os_arch_brk (void);
+  os_architecture_brk (void);
 
   /**
    * `wfi` instruction.
    */
   static void
-  os_arch_wfi (void);
+  os_architecture_wfi (void);
 
   // --------------------------------------------------------------------------
 
