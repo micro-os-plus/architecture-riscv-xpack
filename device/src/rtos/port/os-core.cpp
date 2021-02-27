@@ -35,7 +35,7 @@
 
 // ----------------------------------------------------------------------------
 
-#if defined(OS_INCLUDE_RTOS)
+#if defined(MICRO_OS_PLUS_INCLUDE_RTOS)
 
 // ----------------------------------------------------------------------------
 
@@ -50,9 +50,9 @@
 
 // ----------------------------------------------------------------------------
 
-#if defined(OS_INTEGER_RTOS_CRITICAL_SECTION_INTERRUPT_PRIORITY)
+#if defined(MICRO_OS_PLUS_INTEGER_RTOS_CRITICAL_SECTION_INTERRUPT_PRIORITY)
 #error \
-    "OS_INTEGER_RTOS_CRITICAL_SECTION_INTERRUPT_PRIORITY should not be used with RISC-V devices."
+    "MICRO_OS_PLUS_INTEGER_RTOS_CRITICAL_SECTION_INTERRUPT_PRIORITY should not be used with RISC-V devices."
 #endif
 
 // ----------------------------------------------------------------------------
@@ -102,7 +102,7 @@ namespace os
       void
       context::create (void* context, void* func, void* args)
       {
-#if defined(OS_TRACE_RTOS_THREAD_CONTEXT)
+#if defined(MICRO_OS_PLUS_TRACE_RTMICRO_OS_PLUS_THREAD_CONTEXT)
         trace::printf ("port::context::%s(%p)\n", __func__, context);
 #endif
         class rtos::thread::context* th_ctx
@@ -201,7 +201,7 @@ namespace os
 #endif
             start (void)
         {
-#if defined(OS_TRACE_RTOS_SCHEDULER)
+#if defined(MICRO_OS_PLUS_TRACE_RTOS_SCHEDULER)
           trace::printf ("port::scheduler::%s() \n", __func__);
 #endif
 
@@ -274,14 +274,14 @@ namespace os
               || (rtos::interrupts::in_handler_mode ()
                   && !rtos::scheduler::preemptive ()))
             {
-#if defined(OS_TRACE_RTOS_THREAD_CONTEXT)
+#if defined(MICRO_OS_PLUS_TRACE_RTMICRO_OS_PLUS_THREAD_CONTEXT)
               trace::printf ("port::scheduler::%s() %s nop\n", __func__,
                              rtos::scheduler::current_thread_->name ());
 #endif
               return;
             }
 
-#if defined(OS_TRACE_RTOS_THREAD_CONTEXT)
+#if defined(MICRO_OS_PLUS_TRACE_RTMICRO_OS_PLUS_THREAD_CONTEXT)
           trace::printf ("port::scheduler::%s()\n", __func__);
 #endif
           // TBD
@@ -390,14 +390,14 @@ namespace os
           // Save the current SP in the initial context.
           old_thread->context_.port_.stack_ptr = sp;
 
-#if defined(OS_TRACE_RTOS_THREAD_CONTEXT)
+#if defined(MICRO_OS_PLUS_TRACE_RTMICRO_OS_PLUS_THREAD_CONTEXT)
           trace::printf ("port::scheduler::%s() leave %s\n", __func__,
                          old_thread->name ());
 #endif
 
           rtos::scheduler::internal_switch_threads ();
 
-#if defined(OS_TRACE_RTOS_THREAD_CONTEXT)
+#if defined(MICRO_OS_PLUS_TRACE_RTMICRO_OS_PLUS_THREAD_CONTEXT)
           trace::printf ("port::scheduler::%s() to %s\n", __func__,
                          rtos::scheduler::current_thread_->name ());
 #endif
@@ -421,7 +421,7 @@ namespace os
 
 // ----------------------------------------------------------------------------
 
-#endif // defined(OS_INCLUDE_RTOS)
+#endif // defined(MICRO_OS_PLUS_INCLUDE_RTOS)
 
 // ----------------------------------------------------------------------------
 

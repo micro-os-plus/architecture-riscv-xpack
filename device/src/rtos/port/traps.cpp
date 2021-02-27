@@ -47,7 +47,7 @@ extern "C"
 // ----------------------------------------------------------------------------
 
 // To provide the desired functionality, redefine it in the application.
-#if defined(OS_USE_CPP_INTERRUPTS)
+#if defined(MICRO_OS_PLUS_USE_CPP_INTERRUPTS)
 
 namespace riscv
 {
@@ -58,12 +58,12 @@ namespace riscv
   } // namespace core
 } // namespace riscv
 
-#else /* defined(OS_USE_CPP_INTERRUPTS) */
+#else /* defined(MICRO_OS_PLUS_USE_CPP_INTERRUPTS) */
 
 void __attribute__ ((weak, alias ("riscv_core_handle_unused_trap")))
 riscv_core_handle_exceptions (void);
 
-#endif // defined(OS_USE_CPP_INTERRUPTS)
+#endif // defined(MICRO_OS_PLUS_USE_CPP_INTERRUPTS)
 
 // ----------------------------------------------------------------------------
 
@@ -99,7 +99,7 @@ namespace riscv
               // Call the single handler for all exception.
               // No need to pass the number, the handler can get
               // it again from `mcause()`.
-#if defined(OS_USE_CPP_INTERRUPTS)
+#if defined(MICRO_OS_PLUS_USE_CPP_INTERRUPTS)
               riscv::core::handle_exceptions ();
 #else
               riscv_core_handle_exceptions ();
