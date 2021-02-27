@@ -38,6 +38,10 @@
 
 // ----------------------------------------------------------------------------
 
+using namespace micro_os_plus;
+
+// ----------------------------------------------------------------------------
+
 extern "C"
 {
   void
@@ -180,7 +184,8 @@ void __attribute__ ((section (".traps_handlers"), weak))
 riscv_core_handle_unused_trap (void)
 {
   riscv::arch::register_t mcause = riscv::csr::mcause ();
-  os::trace::printf ("%s() mcause=0x%0" PRIX64 "\n", __func__, mcause);
+  trace::printf ("%s() mcause=0x%0" PRIX64 "\n", __func__,
+                                mcause);
 
 #if defined(DEBUG)
   riscv::arch::ebreak ();

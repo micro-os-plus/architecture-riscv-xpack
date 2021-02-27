@@ -142,7 +142,7 @@ namespace riscv
   } // namespace arch
 } // namespace riscv
 
-namespace os
+namespace micro_os_plus
 {
   namespace arch
   {
@@ -168,7 +168,7 @@ namespace os
 
     // ------------------------------------------------------------------------
   } // namespace arch
-} // namespace os
+} // namespace micro_os_plus
 
 #endif // defined(__cplusplus)
 

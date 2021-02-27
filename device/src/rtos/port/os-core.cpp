@@ -71,7 +71,7 @@ extern "C"
 
 // ----------------------------------------------------------------------------
 
-namespace os
+namespace micro_os_plus
 {
   namespace rtos
   {
@@ -417,7 +417,7 @@ namespace os
       } // namespace scheduler
     } // namespace port
   } // namespace rtos
-} // namespace os
+} // namespace micro_os_plus
 
 // ----------------------------------------------------------------------------
 
