@@ -102,14 +102,14 @@ typedef uint64_t riscv_arch_register_t;
 
 namespace riscv
 {
-  namespace arch
+  namespace architecture
   {
     // ------------------------------------------------------------------------
 
     using register_t = riscv_arch_register_t;
 
     // ------------------------------------------------------------------------
-  } // namespace arch
+  } // namespace architecture
 
   namespace core
   {

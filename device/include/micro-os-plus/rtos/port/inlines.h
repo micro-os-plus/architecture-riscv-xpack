@@ -102,7 +102,7 @@ namespace micro_os_plus
 #if defined(MICRO_OS_PLUS_TRACE_RTMICRO_OS_PLUS_THREAD_CONTEXT)
           trace::printf ("%s() \n", __func__);
 #endif
-          riscv::arch::wfi ();
+          riscv::architecture::wfi ();
 #endif // !defined(MICRO_OS_PLUS_EXCLUDE_RTOS_IDLE_SLEEP)
         }
 
@@ -137,7 +137,7 @@ namespace micro_os_plus
         inline __attribute__ ((always_inline)) void
         critical_section::exit (rtos::interrupts::state_t state)
         {
-          riscv::arch::nop ();
+          riscv::architecture::nop ();
         }
 
         // ====================================================================

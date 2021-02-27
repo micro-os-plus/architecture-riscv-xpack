@@ -359,47 +359,47 @@ namespace riscv
   {
     // ------------------------------------------------------------------------
 
-    inline __attribute__ ((always_inline)) arch::register_t
+    inline __attribute__ ((always_inline)) architecture::register_t
     mstatus (void)
     {
       return riscv_csr_read_mstatus ();
     }
 
     inline __attribute__ ((always_inline)) void
-    mstatus (arch::register_t value)
+    mstatus (architecture::register_t value)
     {
       riscv_csr_write_mstatus (value);
     }
 
     inline __attribute__ ((always_inline)) void
-    clear_mstatus_bits (arch::register_t mask)
+    clear_mstatus_bits (architecture::register_t mask)
     {
       riscv_csr_clear_mstatus_bits (mask);
     }
 
     inline __attribute__ ((always_inline)) void
-    set_mstatus_bits (arch::register_t mask)
+    set_mstatus_bits (architecture::register_t mask)
     {
       riscv_csr_set_mstatus_bits (mask);
     }
 
     // ------------------------------------------------------------------------
 
-    inline __attribute__ ((always_inline)) arch::register_t
+    inline __attribute__ ((always_inline)) architecture::register_t
     mtvec (void)
     {
       return riscv_csr_read_mtvec ();
     }
 
     inline __attribute__ ((always_inline)) void
-    mtvec (arch::register_t value)
+    mtvec (architecture::register_t value)
     {
       riscv_csr_write_mtvec (value);
     }
 
     // ------------------------------------------------------------------------
 
-    inline __attribute__ ((always_inline)) arch::register_t
+    inline __attribute__ ((always_inline)) architecture::register_t
     mcause (void)
     {
       return riscv_csr_read_mcause ();
@@ -407,26 +407,26 @@ namespace riscv
 
     // ------------------------------------------------------------------------
 
-    inline __attribute__ ((always_inline)) arch::register_t
+    inline __attribute__ ((always_inline)) architecture::register_t
     mie (void)
     {
       return riscv_csr_read_mie ();
     }
 
     inline __attribute__ ((always_inline)) void
-    mie (arch::register_t value)
+    mie (architecture::register_t value)
     {
       riscv_csr_write_mie (value);
     }
 
     inline __attribute__ ((always_inline)) void
-    clear_mie_bits (arch::register_t mask)
+    clear_mie_bits (architecture::register_t mask)
     {
       riscv_csr_clear_mie_bits (mask);
     }
 
     inline __attribute__ ((always_inline)) void
-    set_mie_bits (arch::register_t mask)
+    set_mie_bits (architecture::register_t mask)
     {
       riscv_csr_set_mie_bits (mask);
     }
@@ -457,7 +457,7 @@ namespace riscv
 
     // ------------------------------------------------------------------------
 
-    inline __attribute__ ((always_inline)) arch::register_t
+    inline __attribute__ ((always_inline)) architecture::register_t
     mhartid (void)
     {
       return riscv_csr_read_mhartid ();

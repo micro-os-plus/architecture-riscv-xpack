@@ -116,7 +116,7 @@ extern "C"
 
 namespace riscv
 {
-  namespace arch
+  namespace architecture
   {
     // ------------------------------------------------------------------------
 
@@ -139,35 +139,35 @@ namespace riscv
     }
 
     // ------------------------------------------------------------------------
-  } // namespace arch
+  } // namespace architecture
 } // namespace riscv
 
 namespace micro_os_plus
 {
-  namespace arch
+  namespace architecture
   {
     // ------------------------------------------------------------------------
 
     inline __attribute__ ((always_inline)) void
     nop (void)
     {
-      riscv::arch::nop ();
+      riscv::architecture::nop ();
     }
 
     inline __attribute__ ((always_inline)) void
     brk (void)
     {
-      riscv::arch::ebreak ();
+      riscv::architecture::ebreak ();
     }
 
     inline __attribute__ ((always_inline)) void
     wfi (void)
     {
-      riscv::arch::wfi ();
+      riscv::architecture::wfi ();
     }
 
     // ------------------------------------------------------------------------
-  } // namespace arch
+  } // namespace architecture
 } // namespace micro_os_plus
 
 #endif // defined(__cplusplus)

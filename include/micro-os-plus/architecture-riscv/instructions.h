@@ -95,7 +95,7 @@ extern "C"
 
 namespace riscv
 {
-  namespace arch
+  namespace architecture
   {
     // ------------------------------------------------------------------------
     // Architecture assembly instructions in C++.
@@ -119,12 +119,12 @@ namespace riscv
     wfi (void);
 
     // ------------------------------------------------------------------------
-  } // namespace arch
+  } // namespace architecture
 } // namespace riscv
 
 namespace micro_os_plus
 {
-  namespace arch
+  namespace architecture
   {
     // ------------------------------------------------------------------------
     // Portable architecture assembly instructions in C++.
@@ -148,7 +148,7 @@ namespace micro_os_plus
     wfi (void);
 
     // ------------------------------------------------------------------------
-  } // namespace arch
+  } // namespace architecture
 } // namespace micro_os_plus
 
 #endif // defined(__cplusplus)

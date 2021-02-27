@@ -46,14 +46,14 @@ namespace riscv
     // ------------------------------------------------------------------------
   } // namespace core
 
-  namespace arch
+  namespace architecture
   {
     // ------------------------------------------------------------------------
 
     // TODO: add C++ declarations here.
 
     // ------------------------------------------------------------------------
-  } // namespace arch
+  } // namespace architecture
 } // namespace riscv
 
 #endif // defined(__cplusplus)

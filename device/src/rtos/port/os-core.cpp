@@ -232,7 +232,7 @@ namespace micro_os_plus
 
           // The context switch will occur somewhere here.
           for (;;)
-            riscv::arch::nop ();
+            riscv::architecture::nop ();
 
           /* NOTREACHED */
         }

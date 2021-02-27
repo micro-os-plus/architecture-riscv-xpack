@@ -82,7 +82,7 @@ namespace riscv
 
     void __attribute__ ((section (".traps_handlers"))) handle_trap ()
     {
-      riscv::arch::register_t cause = riscv::csr::mcause ();
+      riscv::architecture::register_t cause = riscv::csr::mcause ();
       if ((cause & RISCV_CSR_MCAUSE_INTERRUPT) != 0)
         {
           size_t index = (cause & RISCV_CSR_MCAUSE_CAUSE);
@@ -114,12 +114,12 @@ namespace riscv
         }
 
 #if defined(DEBUG)
-      riscv::arch::ebreak ();
+      riscv::architecture::ebreak ();
 #endif // defined(DEBUG)
 
       while (true)
         {
-          riscv::arch::wfi ();
+          riscv::architecture::wfi ();
         }
     }
 
@@ -161,12 +161,12 @@ namespace riscv
         }
 
 #if defined(DEBUG)
-      riscv::arch::ebreak ();
+      riscv::architecture::ebreak ();
 #endif // defined(DEBUG)
 
       while (true)
         {
-          riscv::arch::wfi ();
+          riscv::architecture::wfi ();
         }
     }
 
@@ -183,17 +183,16 @@ extern "C" void
 void __attribute__ ((section (".traps_handlers"), weak))
 riscv_core_handle_unused_trap (void)
 {
-  riscv::arch::register_t mcause = riscv::csr::mcause ();
-  trace::printf ("%s() mcause=0x%0" PRIX64 "\n", __func__,
-                                mcause);
+  riscv::architecture::register_t mcause = riscv::csr::mcause ();
+  trace::printf ("%s() mcause=0x%0" PRIX64 "\n", __func__, mcause);
 
 #if defined(DEBUG)
-  riscv::arch::ebreak ();
+  riscv::architecture::ebreak ();
 #endif // defined(DEBUG)
 
   while (true)
     {
-      riscv::arch::wfi ();
+      riscv::architecture::wfi ();
     }
 }
 

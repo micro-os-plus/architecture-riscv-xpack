@@ -175,47 +175,47 @@ namespace riscv
     // ------------------------------------------------------------------------
     // `mstatus`
 
-    arch::register_t
+    architecture::register_t
     mstatus (void);
 
     void
-    mstatus (arch::register_t value);
+    mstatus (architecture::register_t value);
 
     void
-    clear_mstatus_bits (arch::register_t mask);
+    clear_mstatus_bits (architecture::register_t mask);
 
     void
-    set_mstatus_bits (arch::register_t mask);
+    set_mstatus_bits (architecture::register_t mask);
 
     // ------------------------------------------------------------------------
     // `mtvec`
 
-    arch::register_t
+    architecture::register_t
     mtvec (void);
 
     void
-    mtvec (arch::register_t value);
+    mtvec (architecture::register_t value);
 
     // ------------------------------------------------------------------------
     // `mcause`
 
-    arch::register_t
+    architecture::register_t
     mcause (void);
 
     // ------------------------------------------------------------------------
     // `mie`
 
-    arch::register_t
+    architecture::register_t
     mie (void);
 
     void
-    mie (arch::register_t value);
+    mie (architecture::register_t value);
 
     void
-    clear_mie_bits (arch::register_t mask);
+    clear_mie_bits (architecture::register_t mask);
 
     void
-    set_mie_bits (arch::register_t mask);
+    set_mie_bits (architecture::register_t mask);
 
     // ------------------------------------------------------------------------
     // `mcycle`
@@ -235,7 +235,7 @@ namespace riscv
     // ------------------------------------------------------------------------
     // `mhartid`
 
-    arch::register_t
+    architecture::register_t
     mhartid (void);
 
     // ------------------------------------------------------------------------
