@@ -91,7 +91,8 @@ namespace micro_os_plus
       /**
        * @brief Create a new thread context on the stack.
        * @param [in] context Pointer to thread context.
-       * @param [in] func Pointer to function to execute in the new context.
+       * @param [in] function Pointer to function to execute in the new
+       * context.
        * @param [in] args Function arguments.
        *
        * @details
@@ -100,7 +101,7 @@ namespace micro_os_plus
        * PendSV will pass control to the new context.
        */
       void
-      context::create (void* context, void* func, void* args)
+      context::create (void* context, void* function, void* args)
       {
 #if defined(MICRO_OS_PLUS_TRACE_RTMICRO_OS_PLUS_THREAD_CONTEXT)
         trace::printf ("port::context::%s(%p)\n", __func__, context);
