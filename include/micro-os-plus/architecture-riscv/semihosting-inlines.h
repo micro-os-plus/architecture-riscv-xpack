@@ -43,7 +43,7 @@ extern "C"
   // --------------------------------------------------------------------------
 
   static inline __attribute__ ((always_inline)) int
-  os_semihosting_call_host (int reason, void* arg)
+  micro_os_plus_semihosting_call_host (int reason, void* arg)
   {
     register int value __asm__("a0") = reason;
     register void* ptr __asm__("a1") = arg;
