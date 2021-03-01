@@ -6,24 +6,38 @@ Please check
 [GitHub](https://github.com/micro-os-plus/architecture-riscv-xpack/issues/)
 and close existing issues and pull requests.
 
-## v1.1.0 (2021-02-04)
+## 2021-03-01
 
+- v2.0.0
+
+## 2021-02-28
+
+- rename micro_os_plus
+
+## 2021-02-04
+
+- v1.1.0
 - first restructured release
 
-## v1.0.3 (2020-09-19)
+## 2020-09-19
 
+- v1.0.3
 - bump startup to 1.0.8
 
-## v1.0.2 (2018-04-16)
+## 2018-04-16
 
+- v1.0.2
 - bump deps & move back to npm
 - update README developer info
 
-## v1.0.1 (2018-01-24)
+## 2018-01-24
 
+- v1.0.1
 - update dependencies
 
-## v1.0.0 (2018-01-24)
+## 2018-01-24
+
+- v1.0.0
 
 ### 2018-01-20
 
@@ -35,9 +49,11 @@ and close existing issues and pull requests.
 - [#2] Use wfi() in infinite loops
 - [#3] Add semihosting call_host() implementation
 
-## v0.2.0 (2018-01-09)
+##  (2018-01-09)
 
-### 2017-11-10
+- v0.2.0
+
+## 2017-11-10
 
 - README: reformat prerequisites
 - arch-functions.cpp: fix typo
@@ -46,18 +62,20 @@ and close existing issues and pull requests.
 - README: update license with links
 - do not ignore package-lock
 
-### 2017-11-07 
+## 2017-11-07
 
 - traps.cpp: add `handle_machine_ext()` declaration
 - ignore package-lock for now
 - rework interrupts to use namespaces
 
-### 2017-10-30 
+## 2017-10-30
+
 - arch-defines: fix `MCAUSE_CAUSE` for 32-bits
 - traps.cpp: fix section `.traps_handlers`
 - reset-entry.S: cosmetise comments
 
-### 2017-10-29 
+## 2017-10-29
+
 - include/\*: rename csr set/clear_\*_bits
 - include/\*/defines.h: simplify & prefix
 - include/\*/types.h: add exc & irq enums
@@ -66,23 +84,26 @@ and close existing issues and pull requests.
 - include/core-functions.h: move `riscv_trap_entry()` here
 - include/\*: update guard macros
 
-### 2017-10-28
+## 2017-10-28
 
 - src/traps.cpp: move local handlers to device
 - include/architecture-riscv/defines.h: number of exc
 - update for device-peripherals.h
 
-## v1.1.0 (2017-10-26)
+## 2017-10-26
 
+- v1.1.0
 - update for new GitHub names
 
-## v0.0.4 (2017-10-04)
+## 2017-10-04
 
+- v0.0.4
 - package.json clean-ups
 - add CHANGELOG.md
 
-## v0.0.3 (2017-09-18)
+## 2017-09-18
 
+- v0.0.3
 - add enable/disable M external interrupts
 - add plic-functions.h
 - traps.cpp: use new plic api
@@ -91,6 +112,8 @@ and close existing issues and pull requests.
   - for improved readability, use full names
   - use local_device array, if needed
 
-## v0.0.2, v0.0.1 (2017-09-04)
+## 2017-09-04
 
+- v0.0.2
+- v0.0.1
 - initial version, copied from µOS++.
