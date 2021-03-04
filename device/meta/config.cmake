@@ -59,7 +59,7 @@ if(NOT TARGET micro-os-plus-architecture-riscv-device-interface)
   # Aliases.
 
   add_library(micro-os-plus::architecture-riscv-device ALIAS micro-os-plus-architecture-riscv-device-interface)
-  message(STATUS "micro-os-plus::architecture-riscv-device")
+  message(STATUS "=> micro-os-plus::architecture-riscv-device")
 
 endif()
 
