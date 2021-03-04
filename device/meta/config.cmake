@@ -15,7 +15,7 @@ endif()
 
 set(micro-os-plus-architecture-riscv-device-included TRUE)
 
-message(STATUS "Including micro-os-plus-architecture-riscv/device...")
+message(STATUS "Processing xPack ${PACKAGE_JSON_NAME}@${PACKAGE_JSON_VERSION}...")
 
 # -----------------------------------------------------------------------------
 # The current folder.
