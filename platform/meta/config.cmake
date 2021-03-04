@@ -52,7 +52,7 @@ if(NOT TARGET micro-os-plus-architecture-riscv-platform-interface)
     micro-os-plus-architecture-riscv-platform-interface
 
     INTERFACE
-      micro-os-plus::device-static
+      micro-os-plus::device
   )
 
   # ---------------------------------------------------------------------------

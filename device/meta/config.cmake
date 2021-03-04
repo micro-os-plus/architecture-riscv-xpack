@@ -52,7 +52,7 @@ if(NOT TARGET micro-os-plus-architecture-riscv-device-interface)
     micro-os-plus-architecture-riscv-device-interface
 
     INTERFACE
-      # micro-os-plus::semihosting-static
+      # micro-os-plus::semihosting
   )
 
   # ---------------------------------------------------------------------------
