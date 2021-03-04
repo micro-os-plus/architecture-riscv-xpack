@@ -39,12 +39,14 @@ if(NOT TARGET micro-os-plus-architecture-riscv-interface)
   # ---------------------------------------------------------------------------
   # Target settings.
 
+  xpack_glob_recurse_cxx(source_files "${xpack_current_folder}/src")
+  xpack_display_relative_paths("${source_files}" "${xpack_current_folder}")
+
   target_sources(
     micro-os-plus-architecture-riscv-interface
 
     INTERFACE
-      ${xpack_current_folder}/src/reset-entry.S
-      ${xpack_current_folder}/src/trap-entry.S
+      ${source_files}
   )
 
   target_include_directories(
