@@ -140,9 +140,6 @@ namespace riscv
     // ------------------------------------------------------------------------
 
     void
-    handle_machine_ext (void);
-
-    void
     handle_machine_ext (void)
     {
       // Get the current interrupt number from the PLIC.
@@ -155,7 +152,8 @@ namespace riscv
           riscv::core::global_interrupt_handlers[int_num]();
 
           // Acknowledge the interrupt in the PLIC.
-          riscv::plic::complete_interrupt ((riscv::plic::source_t)int_num);
+          riscv::plic::complete_interrupt (
+              static_cast<riscv::plic::source_t> (int_num));
 
           return;
         }

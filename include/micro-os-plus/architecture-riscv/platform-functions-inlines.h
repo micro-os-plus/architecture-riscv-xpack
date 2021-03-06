@@ -66,6 +66,9 @@ namespace riscv
   {
     // ------------------------------------------------------------------------
 
+    /**
+     * Get the board RTC frequency.
+     */
     inline __attribute__ ((always_inline)) uint32_t
     rtc_frequency_hz (void)
     {

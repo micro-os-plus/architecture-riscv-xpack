@@ -148,7 +148,7 @@ namespace riscv
           uint32_t lo = mtime_low ();
           if (hi == mtime_high ())
             {
-              return ((uint64_t)hi << 32) | lo;
+              return (static_cast<uint64_t> (hi) << 32) | lo;
             }
         }
     }
@@ -159,9 +159,9 @@ namespace riscv
       // Set high word to 0.
       mtime_high (0);
       // Set low word; if 0xFFFFFFFF it might carry 1 to high word.
-      mtime_low ((uint32_t) (value));
+      mtime_low (static_cast<uint32_t> ((value)));
       // Add initial high word value to 0 or 1.
-      mtime_high (mtime_high () + (uint32_t) (value >> 32));
+      mtime_high (mtime_high () + static_cast<uint32_t> (value >> 32));
     }
 
     void
@@ -178,9 +178,9 @@ namespace riscv
       //  sw a1, mtimecmp+4 # write high; no smaller than new value.
       //  sw a0, mtimecmp   # write low as new value.
 
-      mtimecmp_low ((uint32_t) (-1));
-      mtimecmp_high ((uint32_t) (value >> 32));
-      mtimecmp_low ((uint32_t)value);
+      mtimecmp_low (static_cast<uint32_t> ((-1)));
+      mtimecmp_high (static_cast<uint32_t> (value >> 32));
+      mtimecmp_low (static_cast<uint32_t> (value));
     }
 
 #endif // __riscv_xlen == 32
