@@ -28,11 +28,12 @@
 #ifndef MICRO_OS_PLUS_ARCHITECTURE_RISCV_CSR_FUNCTIONS_H_
 #define MICRO_OS_PLUS_ARCHITECTURE_RISCV_CSR_FUNCTIONS_H_
 
+// ----------------------------------------------------------------------------
+
 #include <micro-os-plus/architecture-riscv/types.h>
 
-/*
- * RISC-V CSR support functions.
- */
+// ----------------------------------------------------------------------------
+// RISC-V CSR support functions.
 
 #if defined(__cplusplus)
 extern "C"
@@ -168,6 +169,8 @@ extern "C"
 
 #if defined(__cplusplus)
 
+// ----------------------------------------------------------------------------
+
 namespace riscv
 {
   namespace csr
@@ -241,6 +244,8 @@ namespace riscv
     // ------------------------------------------------------------------------
   } // namespace csr
 } // namespace riscv
+
+// ----------------------------------------------------------------------------
 
 #endif // defined(__cplusplus)
 

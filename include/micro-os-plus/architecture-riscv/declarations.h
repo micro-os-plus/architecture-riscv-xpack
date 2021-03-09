@@ -28,11 +28,17 @@
 #ifndef MICRO_OS_PLUS_ARCHITECTURE_RISCV_ARCH_DECLARATIONS_H_
 #define MICRO_OS_PLUS_ARCHITECTURE_RISCV_ARCH_DECLARATIONS_H_
 
+// ----------------------------------------------------------------------------
+
 #include <micro-os-plus/architecture-riscv/types.h>
 
 #include <stdint.h>
 
+// ----------------------------------------------------------------------------
+
 #if defined(__cplusplus)
+
+// ----------------------------------------------------------------------------
 
 namespace riscv
 {
@@ -55,6 +61,8 @@ namespace riscv
     // ------------------------------------------------------------------------
   } // namespace architecture
 } // namespace riscv
+
+// ----------------------------------------------------------------------------
 
 #endif // defined(__cplusplus)
 

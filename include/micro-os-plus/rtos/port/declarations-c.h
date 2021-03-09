@@ -25,6 +25,11 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
+#ifndef MICRO_OS_PLUS_ARCHITECTURE_RISCV_RTOS_PORT_DECLARATIONS_C_H_
+#define MICRO_OS_PLUS_ARCHITECTURE_RISCV_RTOS_PORT_DECLARATIONS_C_H_
+
+// ----------------------------------------------------------------------------
+
 /*
  * It is included in `micro-os-plus/rtos/declarations-c.h` to customise
  * it with port specific declarations.
@@ -33,11 +38,6 @@
  * are conditionally included in the system objects
  * when they are implemented using the port native objects.
  */
-
-#ifndef MICRO_OS_PLUS_ARCHITECTURE_RISCV_RTOS_PORT_DECLARATIONS_C_H_
-#define MICRO_OS_PLUS_ARCHITECTURE_RISCV_RTOS_PORT_DECLARATIONS_C_H_
-
-// ----------------------------------------------------------------------------
 
 #include <stdint.h>
 #include <stdbool.h>

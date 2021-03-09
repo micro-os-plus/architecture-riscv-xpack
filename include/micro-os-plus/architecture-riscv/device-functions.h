@@ -28,7 +28,11 @@
 #ifndef MICRO_OS_PLUS_ARCHITECTURE_RISCV_DEVICE_FUNCTIONS_H_
 #define MICRO_OS_PLUS_ARCHITECTURE_RISCV_DEVICE_FUNCTIONS_H_
 
+// ----------------------------------------------------------------------------
+
 #include <micro-os-plus/architecture-riscv/types.h>
+
+// ----------------------------------------------------------------------------
 
 /*
  * RISC-V device support functions.
@@ -105,6 +109,8 @@ extern "C"
 
 #if defined(__cplusplus)
 
+// ----------------------------------------------------------------------------
+
 namespace riscv
 {
   namespace device
@@ -163,6 +169,8 @@ namespace riscv
     // ------------------------------------------------------------------------
   } // namespace device
 } // namespace riscv
+
+// ----------------------------------------------------------------------------
 
 #endif // defined(__cplusplus)
 

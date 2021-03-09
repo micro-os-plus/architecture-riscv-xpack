@@ -28,15 +28,19 @@
 #ifndef MICRO_OS_PLUS_ARCHITECTURE_RISCV_PLIC_FUNCTIONS_H_
 #define MICRO_OS_PLUS_ARCHITECTURE_RISCV_PLIC_FUNCTIONS_H_
 
+// ----------------------------------------------------------------------------
+
 #include <micro-os-plus/architecture-riscv/types.h>
 
 #include <stdbool.h>
 
-/*
- * RISC-V PLIC support functions.
- */
+// ----------------------------------------------------------------------------
+
+// RISC-V PLIC support functions.
 
 #if defined(__cplusplus)
+
+// ----------------------------------------------------------------------------
 
 namespace riscv
 {

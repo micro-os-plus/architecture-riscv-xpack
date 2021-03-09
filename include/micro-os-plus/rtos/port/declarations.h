@@ -25,15 +25,15 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-/*
- * This file is included in `micro-os-plus/rtos.h` to customise
- * it with Cortex-M specific declarations.
- */
-
 #ifndef MICRO_OS_PLUS_ARCHITECTURE_RISCV_RTOS_PORT_DECLARATIONS_H_
 #define MICRO_OS_PLUS_ARCHITECTURE_RISCV_RTOS_PORT_DECLARATIONS_H_
 
 // ----------------------------------------------------------------------------
+
+/*
+ * This file is included in `micro-os-plus/rtos.h` to customise
+ * it with Cortex-M specific declarations.
+ */
 
 #if defined(HAVE_MICRO_OS_PLUS_CONFIG_H)
 #include <micro-os-plus/config.h>
@@ -57,8 +57,12 @@
 
 #ifdef __cplusplus
 
+// ----------------------------------------------------------------------------
+
 #include <cstdint>
 #include <cstddef>
+
+// ----------------------------------------------------------------------------
 
 namespace micro_os_plus
 {
@@ -133,6 +137,8 @@ namespace micro_os_plus
 // ----------------------------------------------------------------------------
 
 #endif // __cplusplus
+
+// ----------------------------------------------------------------------------
 
 #endif // MICRO_OS_PLUS_ARCHITECTURE_RISCV_RTOS_PORT_DECLARATIONS_H_
 

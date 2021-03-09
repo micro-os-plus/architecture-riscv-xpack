@@ -28,13 +28,14 @@
 #ifndef MICRO_OS_PLUS_ARCHITECTURE_RISCV_DEVICE_FUNCTIONS_INLINES_H_
 #define MICRO_OS_PLUS_ARCHITECTURE_RISCV_DEVICE_FUNCTIONS_INLINES_H_
 
+// ----------------------------------------------------------------------------
+
 #include <stdint.h>
 
-/*
- * Inline implementations for the common device support functions.
- *
- * Not included by architecture files, but by device files.
- */
+// ----------------------------------------------------------------------------
+
+// Inline implementations for the common device support functions.
+// Not included by architecture files, but by device files.
 
 #if defined(__cplusplus)
 extern "C"
@@ -140,6 +141,8 @@ extern "C"
 
 #if defined(__cplusplus)
 
+// ----------------------------------------------------------------------------
+
 namespace riscv
 {
   namespace device
@@ -235,6 +238,8 @@ namespace riscv
     // ------------------------------------------------------------------------
   } // namespace device
 } // namespace riscv
+
+// ----------------------------------------------------------------------------
 
 #endif // defined(__cplusplus)
 

@@ -28,6 +28,8 @@
 #ifndef MICRO_OS_PLUS_ARCHITECTURE_RISCV_ARCH_TYPES_H_
 #define MICRO_OS_PLUS_ARCHITECTURE_RISCV_ARCH_TYPES_H_
 
+// ----------------------------------------------------------------------------
+
 #include <stdint.h>
 
 #if defined(__cplusplus)
@@ -100,6 +102,8 @@ typedef uint64_t riscv_architecture_register_t;
 
 #if defined(__cplusplus)
 
+// ----------------------------------------------------------------------------
+
 namespace riscv
 {
   namespace architecture
@@ -120,6 +124,8 @@ namespace riscv
     // ------------------------------------------------------------------------
   } // namespace core
 } // namespace riscv
+
+// ----------------------------------------------------------------------------
 
 #endif // defined(__cplusplus)
 

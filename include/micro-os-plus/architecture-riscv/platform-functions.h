@@ -28,11 +28,13 @@
 #ifndef MICRO_OS_PLUS_ARCHITECTURE_RISCV_PLATFORM_FUNCTIONS_H_
 #define MICRO_OS_PLUS_ARCHITECTURE_RISCV_PLATFORM_FUNCTIONS_H_
 
+// ----------------------------------------------------------------------------
+
 #include <stdint.h>
 
-/*
- * RISC-V core support functions.
- */
+// ----------------------------------------------------------------------------
+
+// RISC-V core support functions.
 
 #if defined(__cplusplus)
 extern "C"
@@ -59,6 +61,8 @@ extern "C"
 
 #if defined(__cplusplus)
 
+// ----------------------------------------------------------------------------
+
 namespace riscv
 {
   namespace board
@@ -74,6 +78,8 @@ namespace riscv
     // ------------------------------------------------------------------------
   } // namespace board
 } // namespace riscv
+
+// ----------------------------------------------------------------------------
 
 #endif // defined(__cplusplus)
 

@@ -28,7 +28,11 @@
 #ifndef MICRO_OS_PLUS_ARCHITECTURE_RISCV_PLATFORM_FUNCTIONS_INLINES_H_
 #define MICRO_OS_PLUS_ARCHITECTURE_RISCV_PLATFORM_FUNCTIONS_INLINES_H_
 
+// ----------------------------------------------------------------------------
+
 #include <stdint.h>
+
+// ----------------------------------------------------------------------------
 
 /*
  * Board support functions.
@@ -60,6 +64,8 @@ extern "C"
 
 #if defined(__cplusplus)
 
+// ----------------------------------------------------------------------------
+
 namespace riscv
 {
   namespace board
@@ -78,6 +84,8 @@ namespace riscv
     // ------------------------------------------------------------------------
   } // namespace board
 } // namespace riscv
+
+// ----------------------------------------------------------------------------
 
 #endif // defined(__cplusplus)
 

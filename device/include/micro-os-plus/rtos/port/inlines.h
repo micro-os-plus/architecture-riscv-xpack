@@ -46,8 +46,12 @@
 
 #ifdef __cplusplus
 
+// ----------------------------------------------------------------------------
+
 #include <micro-os-plus/device.h>
 #include <micro-os-plus/diag/trace.h>
+
+// ----------------------------------------------------------------------------
 
 namespace micro_os_plus
 {
@@ -212,6 +216,8 @@ namespace micro_os_plus
 // ----------------------------------------------------------------------------
 
 #endif // __cplusplus
+
+// ----------------------------------------------------------------------------
 
 #endif // MICRO_OS_PLUS_ARCHITECTURE_RISCV_RTOS_PORT_INLINES_H_
 

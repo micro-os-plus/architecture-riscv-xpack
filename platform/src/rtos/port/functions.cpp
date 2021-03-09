@@ -96,7 +96,6 @@ namespace riscv
 
     // ------------------------------------------------------------------------
   } // namespace csr
-  /* namespace csr */
 
   namespace core
   {

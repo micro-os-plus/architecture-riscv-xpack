@@ -28,11 +28,13 @@
 #ifndef MICRO_OS_PLUS_ARCHITECTURE_RISCV_ARCH_INSTRUCTIONS_INLINES_H_
 #define MICRO_OS_PLUS_ARCHITECTURE_RISCV_ARCH_INSTRUCTIONS_INLINES_H_
 
+// ----------------------------------------------------------------------------
+
 #include <stdint.h>
 
-/*
- * Inline implementations for the RISC-V architecture instructions.
- */
+// ----------------------------------------------------------------------------
+
+// Inline implementations for the RISC-V architecture instructions.
 
 #if defined(__cplusplus)
 extern "C"
@@ -114,6 +116,8 @@ extern "C"
 
 #if defined(__cplusplus)
 
+// ----------------------------------------------------------------------------
+
 namespace riscv
 {
   namespace architecture
@@ -142,6 +146,8 @@ namespace riscv
   } // namespace architecture
 } // namespace riscv
 
+// ----------------------------------------------------------------------------
+// Inline functions.
 namespace micro_os_plus
 {
   namespace architecture
@@ -169,6 +175,8 @@ namespace micro_os_plus
     // ------------------------------------------------------------------------
   } // namespace architecture
 } // namespace micro_os_plus
+
+// ----------------------------------------------------------------------------
 
 #endif // defined(__cplusplus)
 
