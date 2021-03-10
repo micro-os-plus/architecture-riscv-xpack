@@ -8,6 +8,8 @@ and close existing issues and pull requests.
 
 ## 2021-03-10
 
+- v3.0.2
+- gitkeep device/include
 - v3.0.1
 - fix/silence warnings
 
