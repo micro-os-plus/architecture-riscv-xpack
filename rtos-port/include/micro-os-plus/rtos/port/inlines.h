@@ -137,6 +137,9 @@ namespace micro_os_plus
           return 0;
         }
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+
         // Exit an IRQ critical section
         inline __attribute__ ((always_inline)) void
         critical_section::exit (rtos::interrupts::state_t state)
@@ -144,10 +147,9 @@ namespace micro_os_plus
           riscv::architecture::nop ();
         }
 
-        // ====================================================================
+#pragma GCC diagnostic pop
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-parameter"
+        // ====================================================================
 
         // Enter an IRQ uncritical section
         inline __attribute__ ((always_inline)) rtos::interrupts::state_t
@@ -155,6 +157,9 @@ namespace micro_os_plus
         {
           return 0;
         }
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
 
         // Exit an IRQ critical section
         inline __attribute__ ((always_inline)) void

@@ -85,6 +85,8 @@ namespace micro_os_plus
         typedef struct frame_s
         {
           stack::element_t x;
+          stack::element_t r2;
+          stack::element_t r1;
         } frame_t;
       } // namespace stack
 
@@ -106,8 +108,8 @@ namespace micro_os_plus
 #if defined(MICRO_OS_PLUS_TRACE_RTMICRO_OS_PLUS_THREAD_CONTEXT)
         trace::printf ("port::context::%s(%p)\n", __func__, context);
 #endif
-        class rtos::thread::context* th_ctx
-            = static_cast<class rtos::thread::context*> (context);
+        rtos::thread::context* th_ctx
+            = static_cast<rtos::thread::context*> (context);
 
         class rtos::thread::stack& stack = th_ctx->stack ();
 
@@ -115,7 +117,8 @@ namespace micro_os_plus
 
         // Be sure the stack is large enough to hold at least
         // two exception frames.
-        assert ((p - stack.bottom ()) > (int)(2 * sizeof (stack::frame_t)));
+        assert ((p - stack.bottom ())
+                > static_cast<int> (2 * sizeof (stack::frame_t)));
 
         p -= (sizeof (stack::frame_t)
               / sizeof (rtos::thread::stack::element_t));
@@ -126,7 +129,8 @@ namespace micro_os_plus
         // var_args() will fail (for example printf() does not floats/doubles).
         if ((reinterpret_cast<uintptr_t> (p) & 3) != 0)
           {
-            p = (rtos::thread::stack::element_t*)(((int)p) & (~3));
+            p = reinterpret_cast<rtos::thread::stack::element_t*> (
+                (reinterpret_cast<int> (p)) & (~3));
           }
 
         if ((reinterpret_cast<uintptr_t> (p) & 7) == 0)
@@ -141,6 +145,13 @@ namespace micro_os_plus
 
         // Thread starts in thumb state (T bit set).
         f->x = 0x00000000;
+
+        // The address of the trampoline code.
+        f->r2 = static_cast<rtos::thread::stack::element_t> (
+            (reinterpret_cast<ptrdiff_t> (function)) & (~1));
+
+        f->r1
+            = reinterpret_cast<rtos::thread::stack::element_t> (arguments); //
 
         // Store the current stack pointer in the context.
         th_ctx->port_.stack_ptr = p;
@@ -213,14 +224,14 @@ namespace micro_os_plus
           // somewhere, so prepare a fake thread context.
           // Don't worry for being on the stack, this is used
           // only once and can be overridden later.
-          micro_os_plus_thread_t fake_thread;
-          memset (&fake_thread, 0, sizeof (micro_os_plus_thread_t));
+          micro_os_plus_thread_t thread_ghost;
+          memset (&thread_ghost, 0, sizeof (micro_os_plus_thread_t));
 
-          fake_thread.name = "fake_thread";
-          rtos::thread* pth = (rtos::thread*)&fake_thread;
+          thread_ghost.name = "ghost";
 
-          // Make the fake thread look like the current thread.
-          rtos::scheduler::current_thread_ = pth;
+          // Make the ghost thread look like the current thread.
+          rtos::scheduler::current_thread_
+              = reinterpret_cast<rtos::thread*> (&thread_ghost);
 
           // Trigger the PendSV; the exception will happen a bit later,
           // after re-enabling the interrupts.
@@ -380,7 +391,7 @@ namespace micro_os_plus
         stack::element_t*
         switch_stacks (stack::element_t* sp)
         {
-          uint32_t pri;
+          // uint32_t pri;
 
           // Enter a local critical section to protect the lists.
 
