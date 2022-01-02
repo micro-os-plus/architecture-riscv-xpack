@@ -9,11 +9,20 @@
 #
 # -----------------------------------------------------------------------------
 
-if(micro-os-plus-architecture-riscv-platform-included)
+# https://cmake.org/cmake/help/v3.19/
+# https://cmake.org/cmake/help/v3.19/manual/cmake-packages.7.html#package-configuration-file
+cmake_minimum_required(VERSION 3.19)
+
+# Use targets as include markers (variables are not scope independent).
+if(TARGET micro-os-plus-architecture-riscv-platform-included)
   return()
+else()
+  add_custom_target(micro-os-plus-architecture-riscv-platform-included)
 endif()
 
-set(micro-os-plus-architecture-riscv-platform-included TRUE)
+if(NOT TARGET micro-os-plus-build-helper-included)
+  message(FATAL_ERROR "Include the mandatory build-helper (xpacks/micro-os-plus-build-helper/cmake/xpack-helper.cmake)")
+endif()
 
 message(STATUS "Processing xPack ${PACKAGE_JSON_NAME}@${PACKAGE_JSON_VERSION}...")
 
@@ -30,7 +39,7 @@ if(NOT TARGET micro-os-plus-architecture-riscv-platform-interface)
 
   # ---------------------------------------------------------------------------
   # Target settings.
-  
+
   xpack_glob_recurse_cxx(source_files "${xpack_current_folder}/src")
   xpack_display_relative_paths("${source_files}" "${xpack_current_folder}")
 
