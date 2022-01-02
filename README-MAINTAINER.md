@@ -14,7 +14,18 @@ The project is hosted on GitHub:
 To clone it:
 
 ```sh
-git clone https://github.com/micro-os-plus/architecture-riscv-xpack-xpack.git architecture-riscv-xpack-xpack.git
+git clone \
+  https://github.com/micro-os-plus/architecture-riscv-xpack-xpack.git \
+  architecture-riscv-xpack-xpack.git
+```
+
+For development purposes, clone the `xpack-develop` branch:
+
+```sh
+git clone \
+  --branch xpack-develop \
+  https://github.com/micro-os-plus/architecture-riscv-xpack-xpack.git \
+  architecture-riscv-xpack-xpack.git
 ```
 
 ## Prerequisites
@@ -49,7 +60,9 @@ as:
 
 - select the `xpack-develop` branch
 - commit all changes
-- update `CHANGELOG.md`; commit with a message like _CHANGELOG: prepare v3.0.2_
+- update versions in `README.md` and `README-MAINTAINER.md`
+- update `CHANGELOG.md`
+- commit with a message like _prepare v3.0.2_
 - `npm pack` and check the content of the archive, which should list
   only the `package.json`, the `README.md`, `LICENSE` and `CHANGELOG.md`;
   possibly adjust `.npmignore`
