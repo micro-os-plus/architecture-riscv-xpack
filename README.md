@@ -214,11 +214,11 @@ To include this package in a project, consider the following details.
 - `-std=c++17` or higher for C++ sources
 - `-std=c11` for C sources
 
-#### Namespaces
+#### C++ Namespaces
 
 TBD
 
-#### Classes
+#### C++ Classes
 
 TBD
 
