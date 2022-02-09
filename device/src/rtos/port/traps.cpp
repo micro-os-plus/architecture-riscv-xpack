@@ -98,9 +98,9 @@ namespace riscv
             }
         }
 
-#if defined(DEBUG)
+#if defined(MICRO_OS_PLUS_DEBUG)
       riscv::architecture::ebreak ();
-#endif // defined(DEBUG)
+#endif // defined(MICRO_OS_PLUS_DEBUG)
 
       while (true)
         {
@@ -143,9 +143,9 @@ namespace riscv
           return;
         }
 
-#if defined(DEBUG)
+#if defined(MICRO_OS_PLUS_DEBUG)
       riscv::architecture::ebreak ();
-#endif // defined(DEBUG)
+#endif // defined(MICRO_OS_PLUS_DEBUG)
 
       while (true)
         {
@@ -169,9 +169,9 @@ riscv_core_handle_unused_trap (void)
   riscv::architecture::register_t mcause = riscv::csr::mcause ();
   trace::printf ("%s() mcause=0x%0" PRIX64 "\n", __func__, mcause);
 
-#if defined(DEBUG)
+#if defined(MICRO_OS_PLUS_DEBUG)
   riscv::architecture::ebreak ();
-#endif // defined(DEBUG)
+#endif // defined(MICRO_OS_PLUS_DEBUG)
 
   while (true)
     {
