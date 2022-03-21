@@ -51,6 +51,8 @@ cd my-project
 xpm init # Unless a package.json is already present
 
 xpm install @micro-os-plus/architecture-riscv@latest
+
+ls -l xpacks/micro-os-plus-architecture-riscv
 ```
 
 ### Git submodule
