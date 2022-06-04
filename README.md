@@ -82,7 +82,7 @@ Pull Requests should be directed to this branch.
 When new releases are published, the `xpack-develop` branch is merged
 into `xpack`.
 
-## User info
+## Developer info
 
 This source xPack provides general RISC-V definitions and will eventually
 include the implementation for the µOS++ scheduler.
