@@ -199,17 +199,23 @@ Interrupts and exceptions are grouped under `riscv::irq` and `riscv::exc`.
 
 To include this package in a project, consider the following details.
 
-#### Source folders
-
-- `src`
-
 #### Include folders
+
+The following folders should be passed to the compiler during the build:
 
 - `include`
 
+TODO
+
+#### Source files
+
+The source files to be added to user projects are:
+
+TODO
+
 #### Preprocessor definitions
 
-- none required
+- none
 
 #### Compiler options
 
