@@ -1,7 +1,7 @@
-[![license](https://img.shields.io/github/license/micro-os-plus/architecture-riscv-xpack-xpack)](https://github.com/micro-os-plus/architecture-riscv-xpack-xpack/blob/xpack/LICENSE)
-[![CI on Push](https://github.com/micro-os-plus/architecture-riscv-xpack-xpack/workflows/CI%20on%20Push/badge.svg)](https://github.com/micro-os-plus/architecture-riscv-xpack-xpack/actions?query=workflow%3A%22CI+on+Push%22)
-[![GitHub issues](https://img.shields.io/github/issues/micro-os-plus/architecture-riscv-xpack-xpack.svg)](https://github.com/micro-os-plus/architecture-riscv-xpack-xpack/issues/)
-[![GitHub pulls](https://img.shields.io/github/issues-pr/micro-os-plus/architecture-riscv-xpack-xpack.svg)](https://github.com/micro-os-plus/architecture-riscv-xpack-xpack/pulls)
+[![license](https://img.shields.io/github/license/micro-os-plus/architecture-riscv-xpack)](https://github.com/micro-os-plus/architecture-riscv-xpack/blob/xpack/LICENSE)
+[![CI on Push](https://github.com/micro-os-plus/architecture-riscv-xpack/workflows/CI%20on%20Push/badge.svg)](https://github.com/micro-os-plus/architecture-riscv-xpack/actions?query=workflow%3A%22CI+on+Push%22)
+[![GitHub issues](https://img.shields.io/github/issues/micro-os-plus/architecture-riscv-xpack.svg)](https://github.com/micro-os-plus/architecture-riscv-xpack/issues/)
+[![GitHub pulls](https://img.shields.io/github/issues-pr/micro-os-plus/architecture-riscv-xpack.svg)](https://github.com/micro-os-plus/architecture-riscv-xpack/pulls)
 
 # Maintainer info
 
@@ -9,28 +9,28 @@
 
 The project is hosted on GitHub:
 
-- <https://github.com/micro-os-plus/architecture-riscv-xpack-xpack.git>
+- <https://github.com/micro-os-plus/architecture-riscv-xpack.git>
 
 To clone the stable branch (`xpack`), run the following commands in a
 terminal (on Windows use the _Git Bash_ console):
 
 ```sh
-rm -rf ~/Work/architecture-riscv-xpack-xpack.git && \
+rm -rf ~/Work/architecture-riscv-xpack.git && \
 mkdir -p ~/Work && \
 git clone \
-  https://github.com/micro-os-plus/architecture-riscv-xpack-xpack.git \
-  ~/Work/architecture-riscv-xpack-xpack.git
+  https://github.com/micro-os-plus/architecture-riscv-xpack.git \
+  ~/Work/architecture-riscv-xpack.git
 ```
 
 For development purposes, clone the `xpack-develop` branch:
 
 ```sh
-rm -rf ~/Work/architecture-riscv-xpack-xpack.git && \
+rm -rf ~/Work/architecture-riscv-xpack.git && \
 mkdir -p ~/Work && \
 git clone \
   --branch xpack-develop \
-  https://github.com/micro-os-plus/architecture-riscv-xpack-xpack.git \
-  ~/Work/architecture-riscv-xpack-xpack.git
+  https://github.com/micro-os-plus/architecture-riscv-xpack.git \
+  ~/Work/architecture-riscv-xpack.git
 ```
 
 ## Prerequisites
@@ -91,7 +91,7 @@ The project includes unit tests.
 To run them, run:
 
 ```sh
-cd architecture-riscv-xpack-xpack.git
+cd architecture-riscv-xpack.git
 xpm run install-all
 xpm run test
 ```
@@ -99,7 +99,7 @@ xpm run test
 ## Continuous Integration
 
 The CI tests are performed on GitHub Actions, as the
-[CI on Push](https://github.com/micro-os-plus/architecture-riscv-xpack-xpack/actions?query=workflow%3A%22CI+on+Push%22)
+[CI on Push](https://github.com/micro-os-plus/architecture-riscv-xpack/actions?query=workflow%3A%22CI+on+Push%22)
 workflow.
 
 ## Update the repo
