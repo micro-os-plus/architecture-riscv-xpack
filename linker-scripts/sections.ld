@@ -1,10 +1,10 @@
 /*
  * Default linker script.
- * 
+ *
  * Static constructors/destructors use the new .init_array/.fini_array
  * definitions; the old .init/.fini are no longer used.
  *
- * The heap starts immediately after the last statically allocated 
+ * The heap starts immediately after the last statically allocated
  * .bss/.noinit section (the _end symbol), and extends up to the stack.
  *
  * To make use of the multi-region initialisations, define
@@ -16,7 +16,7 @@
  */
 OUTPUT_ARCH( "riscv" )
 
-/* 
+/*
  * The entry point is important for debuggers and simulators, the
  * hardware has its own notion of the startup address.
  */
@@ -31,7 +31,7 @@ __stack_size = DEFINED(__stack_size) ? __stack_size : 2K;
 
 /*
  * The ELF object file format uses program headers, also knows as segments.
- * The program headers describe how the program should be loaded into memory. 
+ * The program headers describe how the program should be loaded into memory.
  * You can print them out by using the objdump program with the ‘-p’ option.
  */
 PHDRS
@@ -48,21 +48,21 @@ SECTIONS
      * must be the very first section.
      * Apart from the assembly code used to initialise the stack,
      * do not place anything else into this section.
-     */ 
+     */
     .reset_entry : ALIGN(4)
     {
         KEEP(*(SORT_NONE(.reset_entry) SORT_NONE(.reset_entry.*)))
     } >FLASH AT>FLASH :phdr_flash
 
-    /* 
+    /*
      * Dynamic Run Time Metadata.
-     * Normally the debugger reaches this section by resolving a symbol, 
+     * Normally the debugger reaches this section by resolving a symbol,
      * but in case it should scan memory for the magic, better place this
-     * section as early as possible. 
+     * section as early as possible.
      */
     .drtm : ALIGN(4)
     {
-        KEEP(*(.drtm .drtm.*))    
+        KEEP(*(.drtm .drtm.*))
     } >FLASH AT>FLASH :phdr_flash
 
     /*
@@ -77,13 +77,13 @@ SECTIONS
         *(.traps_handlers .traps_handlers.*)
     } >FLASH AT>FLASH :phdr_flash
 
-    /* 
+    /*
      * Memory regions initialization arrays.
      *
-     * There are two kinds of arrays for each RAM region, one for 
-     * data and one for bss. Each is iterated at startup and the   
+     * There are two kinds of arrays for each RAM region, one for
+     * data and one for bss. Each is iterated at startup and the
      * region initialization is performed.
-     * 
+     *
      * The data array includes:
      * - from (LOADADDR())
      * - region_begin (ADDR())
@@ -93,59 +93,61 @@ SECTIONS
      * - region_begin (ADDR())
      * - region_end (ADDR()+SIZEOF())
      *
-     * WARNING: It is mandatory that the regions are word aligned, 
+     * WARNING: It is mandatory that the regions are word aligned,
      * since the initialization code works only on words.
      */
     .mem_inits : ALIGN(4)
-    {     
+    {
         PROVIDE_HIDDEN(__data_regions_array_begin__ = .); /* µOS++ specific. */
-        
+
         LONG(LOADADDR(.data));
         LONG(ADDR(.data));
         LONG(ADDR(.data)+SIZEOF(.data));
-        
-        /* If more DATA regions are needed, add more such records. */   
-             
+
+        /* If more DATA regions are needed, add more such records. */
+
         PROVIDE_HIDDEN(__data_regions_array_end__ = .); /* µOS++ specific. */
-        
+
         PROVIDE_HIDDEN(__bss_regions_array_begin__ = .); /* µOS++ specific. */
-        
+
         LONG(ADDR(.bss));
         LONG(ADDR(.bss)+SIZEOF(.bss));
 
-        /* If more BSS regions are needed, add more such records. */   
-                
+        /* If more BSS regions are needed, add more such records. */
+
         PROVIDE_HIDDEN(__bss_regions_array_end__ = .); /* µOS++ specific. */
     } >FLASH AT>FLASH :phdr_flash
 
     /*
-     * The preinit code, i.e. an array of pointers to initialization 
+     * The preinit code, i.e. an array of pointers to initialization
      * functions to be performed before constructors.
      */
     .preinit_array : ALIGN(4)
     {
-        /* 
-         * PROVIDE not used intentionally, 
-         * this symbol must not be used for other purposes. 
+        /*
+         * PROVIDE not used intentionally,
+         * this symbol must not be used for other purposes.
          */
+        __preinit_array_start = .;    /* µOS++ specific. */
         __preinit_array_begin__ = .;    /* µOS++ specific. */
-        
+
         /*
          * Used to run the system inits before anything else.
          */
         KEEP(*(.preinit_array_sysinit .preinit_array_sysinit.*))
-        
-        /* 
+
+        /*
          * Used for other platform inits.
          */
         KEEP(*(.preinit_array_platform .preinit_array_platform.*))
-        
+
         /*
-         * The application inits. If you need to enforce some order in 
+         * The application inits. If you need to enforce some order in
          * execution, create new sections, as before.
          */
         KEEP(*(.preinit_array .preinit_array.*))
 
+        __preinit_array_end = .;     /* µOS++ specific. */
         __preinit_array_end__ = .;     /* µOS++ specific. */
     } >FLASH AT>FLASH :phdr_flash
 
@@ -156,11 +158,11 @@ SECTIONS
     {
         /* PROVIDE not used intentionally, this symbol must not be used. */
         __init_array_start = .;        /* Standard newlib definition. */
-        __init_array_begin__ = .;    /* µOS++ specific. */
+
         KEEP(*(SORT_BY_INIT_PRIORITY(.init_array.*) SORT_BY_INIT_PRIORITY(.ctors.*)))
         KEEP(*(.init_array EXCLUDE_FILE(*crtbegin.o *crtbegin?.o *crtend.o *crtend?.o ) .ctors))
+
         __init_array_end = .;        /* Standard newlib definition. */
-        __init_array_end__ = .;        /* µOS++ specific. */
     } >FLASH AT>FLASH :phdr_flash
 
     /*
@@ -170,13 +172,13 @@ SECTIONS
     {
         /* PROVIDE not used intentionally, this symbol must not be used. */
         __fini_array_start = .;        /* Standard newlib definition. */
-        __fini_array_begin__ = .;    /* µOS++ specific. */
+
         KEEP(*(SORT_BY_INIT_PRIORITY(.fini_array.*) SORT_BY_INIT_PRIORITY(.dtors.*)))
         KEEP(*(.fini_array EXCLUDE_FILE(*crtbegin.o *crtbegin?.o *crtend.o *crtend?.o ) .dtors))
+
         __fini_array_end = .;        /* Standard newlib definition. */
-        __fini_array_end__ = .;        /* µOS++ specific. */
     } >FLASH AT>FLASH :phdr_flash
-    
+
     /*
      * The program code.
      */
@@ -184,7 +186,7 @@ SECTIONS
     {
         *(.text.unlikely .text.unlikely.*)
         *(.text.startup .text.startup.*)
-        *(.text .text.*)            
+        *(.text .text.*)
            *(.gnu.linkonce.t.*)
     } >FLASH AT>FLASH :phdr_flash
 
@@ -192,15 +194,15 @@ SECTIONS
       PROVIDE(__etext = .);
       PROVIDE(_etext = .);
       PROVIDE(etext = .);
- 
+
     /*
      * C++ virtual tables.
      */
     .vtable : ALIGN(4)
     {
-        KEEP(*(vtable))            
+        KEEP(*(vtable))
     } >FLASH AT>FLASH :phdr_flash
- 
+
     /*
      * Exception frames.
      */
@@ -209,20 +211,20 @@ SECTIONS
         KEEP(*(.eh_frame*))
         *(.gcc_except_table)
     } >FLASH AT>FLASH :phdr_flash
- 
+
      /*
-      * Read-only data (constants) 
+      * Read-only data (constants)
       */
     .rodata : ALIGN(4)
     {
-        *(.rodata .rodata.*)         
-        *(.constdata .constdata.*)         
+        *(.rodata .rodata.*)
+        *(.constdata .constdata.*)
         *(.gnu.linkonce.r.*)
     } >FLASH AT>FLASH :phdr_flash
 
     . = ALIGN(4);
     PROVIDE( _data = . );
-    
+
     /*
      * The initialised data section.
      *
@@ -233,16 +235,16 @@ SECTIONS
     .data : ALIGN(4)
     {
         FILL(0xFF)
-        
+
         __data_start__ = . ;            /* Standard newlib definition. */
         __data_begin__ = . ;            /* µOS++ specific */
         *(.data_begin .data_begin.*)    /* µOS++ __data_begin_guard */
 
         *(.data .data.*)
         *(.gnu.linkonce.d.*)
-        
+
         . = ALIGN(8);
-        /* 
+        /*
          * RISC-V specific; the compiler optimises memory accesses
          * in the +/- 2K range around __global_pointer$ to GP relative.
          * For this to work, GP must be loaded during startup with the
@@ -251,7 +253,7 @@ SECTIONS
          * several impure and malloc pointers in the .sdata section.
          */
         PROVIDE( __global_pointer$ = . + (4K / 2) );
-        
+
         *(.sdata .sdata.*)
         *(.gnu.linkonce.s.*)
 
@@ -262,14 +264,14 @@ SECTIONS
         *(.srodata.cst4)
         *(.srodata.cst2)
         *(.srodata .srodata.*)
-        
-        *(.data_end .data_end.*)        /* µOS++ __data_end_guard; must be last */        
+
+        *(.data_end .data_end.*)        /* µOS++ __data_end_guard; must be last */
         . = ALIGN(4);
         __data_end__ = . ;                /* Standard newlib definition. */
     } >RAM AT>FLASH :phdr_ram_init
 
-    /* 
-     * This address is used by the µOS++ startup code to 
+    /*
+     * This address is used by the µOS++ startup code to
      * initialise the .data section.
      */
     __data_load_addr__ = LOADADDR(.data);
@@ -278,7 +280,7 @@ SECTIONS
       PROVIDE( __edata = . );
       PROVIDE( _edata = . );
       PROVIDE( edata = . );
-    
+
     /*
      * The uninitialised data sections. NOLOAD is used to avoid
      * the "section `.bss' type changed to PROGBITS" warning
@@ -290,51 +292,51 @@ SECTIONS
         __bss_start = .;                 /* Standard newlib definition. */
         __bss_start__ = .;                 /* Standard newlib definition. */
            __bss_begin__ = .;                 /* µOS++ specific */
-         *(.bss_begin .bss_begin.*)     /* µOS++ __bss_begin_guard */ 
+         *(.bss_begin .bss_begin.*)     /* µOS++ __bss_begin_guard */
 
         *(.sbss .sbss.*)
         *(.gnu.linkonce.sb.*)
-        
+
         *(.bss .bss.*)
         *(.gnu.linkonce.b.*)
         *(COMMON)
-        
+
         *(.bss_end .bss_end.*)             /* µOS++ __bss_end_guard; must be last */
         . = ALIGN(4);
         __bss_end__ = .;                /* Standard newlib definition. */
         __bss_end = .;                    /* Standard newlib definition. */
      } >RAM AT>RAM :phdr_ram
 
-    /* 
+    /*
      * Similar to .bss, but not initialised to zero. µOS++ extension.
      */
     .noinit (NOLOAD) : ALIGN(4)
     {
         __noinit_begin__ = .;            /* µOS++ extension. */
-        
-        *(.noinit .noinit.*) 
-        
+
+        *(.noinit .noinit.*)
+
          . = ALIGN(4) ;
         __noinit_end__ = .;               /* µOS++ extension. */
     } >RAM AT>RAM :phdr_ram
-    
+
     /* _sbrk() expects at least word alignment. */
       . = ALIGN(8);
     PROVIDE( __end = . );
     PROVIDE( _end = . );
-    PROVIDE( end = . ); 
-    
+    PROVIDE( end = . );
+
     PROVIDE( __heap_begin__ = . );        /* µOS++ extension. */
-    
+
       .stack __stack - __stack_size :
       {
         PROVIDE( _heap_end = . );        /* Standard newlib definition. */
         PROVIDE( __heap_end__ = . );    /* µOS++ extension. */
         . += __stack_size;
       } >RAM AT>RAM :phdr_ram
-    
 
-    /* 
+
+    /*
      * Stabs debugging sections.
      */
     .stab          0 : { *(.stab) }
@@ -344,11 +346,11 @@ SECTIONS
     .stab.index    0 : { *(.stab.index) }
     .stab.indexstr 0 : { *(.stab.indexstr) }
     .comment       0 : { *(.comment) }
-    
+
     /*
      * DWARF debug sections.
      * Symbols in the DWARF debugging sections are relative to the beginning
-     * of the section so we begin them at 0.  
+     * of the section so we begin them at 0.
      */
     /* DWARF 1 */
     .debug          0 : { *(.debug) }
@@ -371,5 +373,5 @@ SECTIONS
     .debug_weaknames 0 : { *(.debug_weaknames) }
     .debug_funcnames 0 : { *(.debug_funcnames) }
     .debug_typenames 0 : { *(.debug_typenames) }
-    .debug_varnames  0 : { *(.debug_varnames) }    
+    .debug_varnames  0 : { *(.debug_varnames) }
 }
