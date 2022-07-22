@@ -44,23 +44,6 @@ Code formatting is done using `clang-format --style=file`, either manually
 from a script, or automatically from Visual Studio Code, or the Eclipse
 CppStyle plug-in.
 
-## Prepare a new blog post
-
-In the `micro-os-plus/web-jekyll` GitHub repo:
-
-- select the `develop` branch
-- add a new file to `_posts/architecture-riscv-xpack/releases`
-- name the file like `2020-12-19-architecture-riscv-xpack-v1-1-0-released.md`
-- name the post like: **µOS++ architecture-riscv-xpack v3.0.2 released**
-- update the `date:` field with the current date
-- update the GitHub Actions URLs using the actual test pages
-
-If any, refer to closed
-[issues](https://github.com/micro-os-plus/architecture-riscv-xpack/issues/)
-as:
-
-- **[Issue:\[#1\]\(...\)]**.
-
 ## Publish on the npmjs.com server
 
 - select the `xpack-develop` branch

@@ -89,8 +89,8 @@ include the implementation for the µOS++ scheduler.
 
 ### Status
 
-The µOS++ RISC-V definitions are fully functional for non-RTOS applications;
-the scheduler port will be implemented at a later date.
+The µOS++ RISC-V definitions are fully functional for simple semihosted
+applications.
 
 ### Design details
 
@@ -148,7 +148,7 @@ in a careful order, to avoid circular references.
 In µOS++, the device specific definitions are grouped in the
 `riscv::device` namespace.
 
-The portable way to include device specifc definitions in an application is:
+The portable way to include device specific definitions in an application is:
 
 ```c
 #include <micro-os-plus/device.h>
