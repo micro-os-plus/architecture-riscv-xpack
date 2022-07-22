@@ -110,6 +110,15 @@ namespace riscv
   } // namespace core
 } // namespace riscv
 
+namespace micro_os_plus::architecture
+{
+  // --------------------------------------------------------------------------
+
+  using register_t = riscv_architecture_register_t;
+
+  // --------------------------------------------------------------------------
+} // namespace micro_os_plus::architecture
+
 // ----------------------------------------------------------------------------
 
 #endif // defined(__cplusplus)
