@@ -1,7 +1,7 @@
-[[![license](https://img.shields.io/github/license/micro-os-plus/architecture-riscv-xpack)](https://github.com/micro-os-plus/architecture-riscv-xpack/blob/xpack/LICENSE)
+[![license](https://img.shields.io/github/license/micro-os-plus/architecture-riscv-xpack)](https://github.com/micro-os-plus/architecture-riscv-xpack/blob/xpack/LICENSE)
 [![CI on Push](https://github.com/micro-os-plus/architecture-riscv-xpack/workflows/CI%20on%20Push/badge.svg)](https://github.com/micro-os-plus/architecture-riscv-xpack/actions?query=workflow%3A%22CI+on+Push%22)
 
-# A source library xPacks with the µOS++ RISC-V architecture definitions
+# A source library xPack with the µOS++ RISC-V architecture definitions
 
 This project provides support for RISC-V embedded projects.
 
@@ -18,7 +18,7 @@ For maintainer info, please see the
 
 ## Install
 
-As a source library xPacks, the easiest way to add it to a project is via
+As a source library xPack, the easiest way to add it to a project is via
 **xpm**, but it can also be used as any Git project, for example as a submodule.
 
 ### Prerequisites
@@ -31,18 +31,7 @@ For details please follow the instructions in the
 
 ### xpm
 
-Note: the package will be available from npmjs.com at a later date.
-
-For now, it can be installed from GitHub:
-
-```sh
-cd my-project
-xpm init # Unless a package.json is already present
-
-xpm install github:micro-os-plus/architecture-riscv-xpack
-```
-
-When ready, this package will be available as
+This package is available as
 [`@micro-os-plus/architecture-riscv`](https://www.npmjs.com/package/@micro-os-plus/architecture-riscv)
 from the `npmjs.com` registry:
 
@@ -85,7 +74,8 @@ into `xpack`.
 ## Developer info
 
 This source xPack provides general RISC-V definitions and will eventually
-include the implementation for the µOS++ scheduler.
+include the implementation for a hardware abstraction layer, which,
+for RISC-V is not yet standardized.
 
 ### Status
 
@@ -205,13 +195,17 @@ The following folders should be passed to the compiler during the build:
 
 - `include`
 
-TODO
+The header files to be included in user projects are:
+
+```c++
+#include <micro-os-plus/architecture.h>
+```
 
 #### Source files
 
 The source files to be added to user projects are:
 
-TODO
+- none
 
 #### Preprocessor definitions
 
@@ -224,7 +218,7 @@ TODO
 
 #### C++ Namespaces
 
-TBD
+- `micro_os_plus::architecture`
 
 #### C++ Classes
 
@@ -252,7 +246,9 @@ backwards incompatible changes are introduced to the public API.
 The incompatible changes, in reverse chronological order,
 are:
 
-- TBD
+- v4.x: move rtos-port outside
+- v3.x: move rtos-port to separate folder
+- v2.x: rename micro_os_plus
 
 ## License
 
