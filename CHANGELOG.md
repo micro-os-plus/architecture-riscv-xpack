@@ -6,9 +6,12 @@ Please check
 [GitHub](https://github.com/micro-os-plus/architecture-riscv-xpack/issues/)
 and close existing issues and pull requests.
 
-## 2022-07-21
+## 2022-07-24
 
 * v4.0.0
+
+## 2022-07-21
+
 * move rtos out
 
 ## 2021-03-10
