@@ -1,9 +1,10 @@
 [![license](https://img.shields.io/github/license/micro-os-plus/architecture-riscv-xpack)](https://github.com/micro-os-plus/architecture-riscv-xpack/blob/xpack/LICENSE)
-[![CI on Push](https://github.com/micro-os-plus/architecture-riscv-xpack/workflows/CI%20on%20Push/badge.svg)](https://github.com/micro-os-plus/architecture-riscv-xpack/actions?query=workflow%3A%22CI+on+Push%22)
+[![CI on Push](https://github.com/micro-os-plus/architecture-riscv-xpack/actions/workflows/CI.yml/badge.svg)](https://github.com/micro-os-plus/architecture-riscv-xpack/actions/workflows/CI.yml)
 
 # A source library xPack with the µOS++ RISC-V architecture definitions
 
-This project provides support for RISC-V embedded projects.
+This project provides the **architecture-riscv** source library as an xPack
+dependency and includes architecture definitions for RISC-V embedded projects.
 
 The project is hosted on GitHub as
 [micro-os-plus/architecture-riscv-xpack](https://github.com/micro-os-plus/architecture-riscv-xpack).
@@ -31,7 +32,7 @@ For details please follow the instructions in the
 
 ### xpm
 
-This package is available as
+This package is available from npmjs.com as
 [`@micro-os-plus/architecture-riscv`](https://www.npmjs.com/package/@micro-os-plus/architecture-riscv)
 from the `npmjs.com` registry:
 
@@ -73,14 +74,16 @@ into `xpack`.
 
 ## Developer info
 
+### Overview
+
 This source xPack provides general RISC-V definitions and will eventually
 include the implementation for a hardware abstraction layer, which,
 for RISC-V is not yet standardized.
 
 ### Status
 
-The µOS++ RISC-V definitions are fully functional for simple semihosted
-applications.
+The **architecture-riscv** source library is fully functional,
+but minimalistic, for running semihosted tests.
 
 ### Design details
 
@@ -187,7 +190,16 @@ Interrupts and exceptions are grouped under `riscv::irq` and `riscv::exc`.
 
 ### Build & integration info
 
-To include this package in a project, consider the following details.
+The project is written in C++ and assembly and it is expected
+to be used in C and C++ projects.
+
+The source code was compiled with riscv-none-elf-gcc 12,
+and should be warning free.
+
+To ease the integration of this package into user projects, there
+are already made CMake and meson configuration files (see below).
+
+For other build systems, consider the following details:
 
 #### Include folders
 
@@ -224,13 +236,60 @@ The source files to be added to user projects are:
 
 TBD
 
-### Known problems
+#### Dependencies
 
 - none
+
+#### CMake
+
+To integrate the architecture-riscv source library into a CMake application,
+add this folder to the build:
+
+```cmake
+add_subdirectory("xpacks/micro-os-plus-architecture-riscv")`
+```
+
+The result is an interface library that can be added as an application
+dependency with:
+
+```cmake
+target_link_libraries(your-target PRIVATE
+
+  micro-os-plus::architecture-riscv
+)
+```
+
+#### meson
+
+To integrate the architecture-riscv source library into a meson application,
+add this folder to the build:
+
+```meson
+subdir('xpacks/micro-os-plus-architecture-riscv')
+```
+
+The result is a dependency object that can be added
+to an application with:
+
+```meson
+exe = executable(
+  your-target,
+  link_with: [
+    # Nothing, not static.
+  ],
+  dependencies: [
+    micro_os_plus_architecture_riscv_dependency,
+  ]
+)
+```
 
 ### Examples
 
 TBD
+
+### Known problems
+
+- none
 
 ### Tests
 
