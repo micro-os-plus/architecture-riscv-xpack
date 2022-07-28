@@ -6,6 +6,18 @@ Please check
 [GitHub](https://github.com/micro-os-plus/architecture-riscv-xpack/issues/)
 and close existing issues and pull requests.
 
+## 2022-07-28
+
+* v4.1.0
+* e19aa16 #5: remove linker script ARM sections
+* 5f43150 #7: add sections-flash.ld
+* 963be52 #6: rework semihosting_call_host() to avoid asm() registers
+* 31ebece #4: add signed_register_t for semihosting result
+
+## 2022-07-25
+
+* 0f03dd3 add preliminary xpack.json
+
 ## 2022-07-24
 
 * v4.0.0
