@@ -24,9 +24,15 @@ extern "C"
 
 #if __riscv_xlen == 32
   typedef uint32_t riscv_architecture_register_t;
+  typedef int32_t riscv_architecture_signed_register_t;
 #elif __riscv_xlen == 64
 typedef uint64_t riscv_architecture_register_t;
+typedef int64_t riscv_architecture_signed_register_t;
 #endif // __riscv_xlen
+
+  typedef riscv_architecture_register_t micro_os_plus_architecture_register_t;
+  typedef riscv_architecture_signed_register_t
+      micro_os_plus_architecture_signed_register_t;
 
   typedef void (*riscv_core_trap_handler_ptr_t) (void);
 
@@ -89,32 +95,31 @@ typedef uint64_t riscv_architecture_register_t;
 
 // ----------------------------------------------------------------------------
 
-namespace riscv
+namespace riscv::architecture
 {
-  namespace architecture
-  {
-    // ------------------------------------------------------------------------
+  // --------------------------------------------------------------------------
 
-    using register_t = riscv_architecture_register_t;
+  using register_t = riscv_architecture_register_t;
+  using signed_register_t = riscv_architecture_signed_register_t;
 
-    // ------------------------------------------------------------------------
-  } // namespace architecture
+  // --------------------------------------------------------------------------
+} // namespace riscv::architecture
 
-  namespace core
-  {
-    // ------------------------------------------------------------------------
+namespace riscv::core
+{
+  // --------------------------------------------------------------------------
 
-    using trap_handler_ptr_t = riscv_core_trap_handler_ptr_t;
+  using trap_handler_ptr_t = riscv_core_trap_handler_ptr_t;
 
-    // ------------------------------------------------------------------------
-  } // namespace core
-} // namespace riscv
+  // --------------------------------------------------------------------------
+} // namespace riscv::core
 
 namespace micro_os_plus::architecture
 {
   // --------------------------------------------------------------------------
 
   using register_t = riscv_architecture_register_t;
+  using signed_register_t = riscv_architecture_signed_register_t;
 
   // --------------------------------------------------------------------------
 } // namespace micro_os_plus::architecture

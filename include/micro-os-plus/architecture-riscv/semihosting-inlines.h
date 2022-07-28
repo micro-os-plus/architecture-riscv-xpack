@@ -27,10 +27,21 @@ extern "C"
 
   // --------------------------------------------------------------------------
 
-  static inline __attribute__ ((always_inline)) int
+  // Type of each entry in a parameter block.
+  typedef micro_os_plus_architecture_register_t
+      micro_os_plus_semihosting_param_block_t;
+  // Type of result.
+  typedef micro_os_plus_architecture_signed_register_t
+      micro_os_plus_semihosting_response_t;
+
+  // --------------------------------------------------------------------------
+
+  static inline __attribute__ ((always_inline))
+  micro_os_plus_semihosting_response_t
   micro_os_plus_semihosting_call_host (int reason, void* arg)
   {
-    register int value __asm__("a0") = reason;
+    register micro_os_plus_semihosting_response_t value __asm__("a0")
+        = (micro_os_plus_semihosting_response_t)reason;
     register void* ptr __asm__("a1") = arg;
 
     __asm__ volatile(
