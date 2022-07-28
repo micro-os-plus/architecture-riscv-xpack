@@ -50,7 +50,7 @@ and close existing issues and pull requests.
 ## 2021-02-04
 
 * v1.1.0
-* first restructured release
+* first restructured release; renamed architecture-riscv
 
 ## 2020-09-19
 
