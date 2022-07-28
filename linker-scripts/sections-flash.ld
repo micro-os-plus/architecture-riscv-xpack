@@ -253,21 +253,6 @@ SECTIONS
     *(.glue_7t)
   } >FLASH
 
-
-  /* ARM magic sections, after exceptions. */
-  .ARM.extab : ALIGN(4)
-  {
-    *(.ARM.extab* .gnu.linkonce.armextab.*)
-  } >FLASH
-
-  . = ALIGN(4);
-  __exidx_start = .;
-  .ARM.exidx : ALIGN(4)
-  {
-    *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-  } >FLASH
-  __exidx_end = .;
-
   /*
    * Read-only data (constants)
    */
