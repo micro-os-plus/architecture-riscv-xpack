@@ -40,12 +40,14 @@ extern "C"
   micro_os_plus_semihosting_response_t
   micro_os_plus_semihosting_call_host (int reason, void* arg)
   {
-    register micro_os_plus_semihosting_response_t value __asm__("a0")
-        = (micro_os_plus_semihosting_response_t)reason;
-    register void* ptr __asm__("a1") = arg;
+    micro_os_plus_semihosting_response_t value;
 
     __asm__ volatile(
 
+        " mv a0, %[rsn] \n"
+        " mv a1, %[arg] \n"
+
+        " .balign 16 \n"
         // Workaround for RISC-V lack of multiple EBREAKs.
         " .option push \n"
         " .option norvc \n"
@@ -53,11 +55,12 @@ extern "C"
         " ebreak \n"
         " srai x0, x0, %[swi] \n"
         " .option pop \n"
+        
+        " mv %[val], a0"
 
-        : "=r"(value) /* Outputs */
-        : "0"(value),
-          "r"(ptr), [swi] "i"(RISCV_SEMIHOSTING_CALL_NUMBER) /* Inputs */
-        : "memory" /* Clobbers */
+        : [val] "=r"(value) /* Outputs */
+        : [rsn] "r"(reason), [arg] "r"(arg), [swi] "i"(RISCV_SEMIHOSTING_CALL_NUMBER) /* Inputs */
+        : "a0", "a1", "a2", "a3", "a4", "a5", "memory" /* Clobbers */
     );
 
     return value;
