@@ -41,7 +41,7 @@ For details please follow the instructions in the
 
 ### xpm
 
-This package is available from npmjs.com as
+This package is available as
 [`@micro-os-plus/architecture-riscv`](https://www.npmjs.com/package/@micro-os-plus/architecture-riscv)
 from the `npmjs.com` registry:
 

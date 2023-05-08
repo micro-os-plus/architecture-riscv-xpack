@@ -139,7 +139,6 @@ The version is visible at:
 
 - <https://www.npmjs.com/package/@micro-os-plus/architecture-riscv?activeTab=versions>
 
-
 ## Update the repo
 
 When the package is considered stable:
