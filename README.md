@@ -51,7 +51,7 @@ xpm init # Unless a package.json is already present
 
 xpm install @micro-os-plus/architecture-riscv@latest
 
-ls -l xpacks/micro-os-plus-architecture-riscv
+ls -l xpacks/@micro-os-plus/architecture-riscv
 ```
 
 ### Git submodule
@@ -65,7 +65,7 @@ git init # Unless already a Git project
 mkdir -p xpacks
 
 git submodule add https://github.com/micro-os-plus/architecture-riscv-xpack.git \
-  xpacks/micro-os-plus-architecture-riscv
+  xpacks/@micro-os-plus/architecture-riscv
 ```
 
 ## Branches
@@ -255,7 +255,7 @@ To integrate the architecture-riscv source library into a CMake application,
 add this folder to the build:
 
 ```cmake
-add_subdirectory("xpacks/micro-os-plus-architecture-riscv")`
+add_subdirectory("xpacks/@micro-os-plus/architecture-riscv")`
 ```
 
 The result is an interface library that can be added as an application
@@ -274,7 +274,7 @@ To integrate the architecture-riscv source library into a meson application,
 add this folder to the build:
 
 ```meson
-subdir('xpacks/micro-os-plus-architecture-riscv')
+subdir('xpacks/@micro-os-plus/architecture-riscv')
 ```
 
 The result is a dependency object that can be added
