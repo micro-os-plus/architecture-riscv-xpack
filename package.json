@@ -1,7 +1,7 @@
 {
   "name": "@micro-os-plus/architecture-riscv",
   "version": "4.1.0",
-  "description": "A source library xPack with the µOS++ RISC-V architecture port",
+  "description": "A source code library with the µOS++ RISC-V architecture port",
   "main": "",
   "scripts": {
     "npm-install": "npm install",
