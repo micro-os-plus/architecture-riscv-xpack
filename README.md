@@ -4,7 +4,7 @@
 [![license](https://img.shields.io/github/license/micro-os-plus/architecture-riscv-xpack)](https://github.com/micro-os-plus/architecture-riscv-xpack/blob/xpack/LICENSE)
 [![CI on Push](https://github.com/micro-os-plus/architecture-riscv-xpack/actions/workflows/ci.yml/badge.svg)](https://github.com/micro-os-plus/architecture-riscv-xpack/actions/workflows/ci.yml)
 
-# A source library xPack with the µOS++ RISC-V architecture definitions
+# A source code library with the µOS++ RISC-V architecture definitions
 
 This project provides the **architecture-riscv** source library as an xPack
 dependency and includes architecture definitions for RISC-V embedded projects.
@@ -320,7 +320,7 @@ are:
 
 ## License
 
-The original content is released under the
-[MIT License](https://opensource.org/licenses/MIT/),
+Unless otherwise stated, the content is released under the terms of the
+[MIT License](https://opensource.org/licenses/mit/),
 with all rights reserved to
 [Liviu Ionescu](https://github.com/ilg-ul).
