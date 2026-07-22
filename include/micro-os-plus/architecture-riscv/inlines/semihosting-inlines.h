@@ -33,7 +33,7 @@ extern "C"
   typedef micro_os_plus_architecture_signed_register_t
       micro_os_plus_semihosting_response_t;
 
-   // --------------------------------------------------------------------------
+  // --------------------------------------------------------------------------
 
 #if defined(__cplusplus)
 }

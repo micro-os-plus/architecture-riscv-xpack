@@ -23,7 +23,7 @@
  *
  * The declarations are part of the common design, but each device
  * must define the actual address and include the file
- * <micro-os-plus/architecture-riscv/device-functions-inlines.h>.
+ * <micro-os-plus/architecture-riscv/inlines/device-functions-inlines.h>.
  */
 
 // ----------------------------------------------------------------------------
@@ -99,7 +99,7 @@ namespace riscv
 {
   namespace device
   {
-    // ----------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
     // `mtime` functions.
 
     /**

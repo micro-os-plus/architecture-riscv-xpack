@@ -233,6 +233,11 @@ namespace riscv
 
 #endif // defined(__cplusplus)
 
+// ============================================================================
+// Templates, inlines & constexpr implementations.
+
+#include <micro-os-plus/architecture-riscv/inlines/csr-functions-inlines.h>
+
 // ----------------------------------------------------------------------------
 
 #endif // MICRO_OS_PLUS_ARCHITECTURE_RISCV_CSR_FUNCTIONS_H_

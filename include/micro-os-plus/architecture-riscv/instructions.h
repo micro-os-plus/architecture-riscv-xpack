@@ -145,6 +145,11 @@ namespace micro_os_plus
 
 #endif // defined(__cplusplus)
 
+// ============================================================================
+// Templates, inlines & constexpr implementations.
+
+#include <micro-os-plus/architecture-riscv/inlines/instructions-inlines.h>
+
 // ----------------------------------------------------------------------------
 
 #endif // MICRO_OS_PLUS_ARCHITECTURE_RISCV_ARCH_INSTRUCTIONS_H_

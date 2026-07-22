@@ -55,7 +55,7 @@ extern "C"
   {
     riscv_architecture_register_t tmp;
 
-    __asm__ volatile(
+    __asm__ volatile (
 
         "csrr %[r],mstatus"
 
@@ -70,7 +70,7 @@ extern "C"
   static inline __attribute__ ((always_inline)) void
   riscv_csr_write_mstatus (riscv_architecture_register_t value)
   {
-    __asm__ volatile(
+    __asm__ volatile (
 
         "csrw mstatus,%[v]"
 
@@ -85,7 +85,7 @@ extern "C"
   {
     riscv_architecture_register_t tmp;
 
-    __asm__ volatile(
+    __asm__ volatile (
 
         "csrrc %[r],mstatus,%[v]"
 
@@ -102,7 +102,7 @@ extern "C"
   {
     riscv_architecture_register_t tmp;
 
-    __asm__ volatile(
+    __asm__ volatile (
 
         "csrrs %[r],mstatus,%[v]"
 
@@ -124,7 +124,7 @@ extern "C"
   {
     riscv_architecture_register_t tmp;
 
-    __asm__ volatile(
+    __asm__ volatile (
 
         "csrr %[r],mtvec"
 
@@ -142,7 +142,7 @@ extern "C"
   static inline __attribute__ ((always_inline)) void
   riscv_csr_write_mtvec (riscv_architecture_register_t value)
   {
-    __asm__ volatile(
+    __asm__ volatile (
 
         "csrw mtvec,%[v]"
 
@@ -159,7 +159,7 @@ extern "C"
   {
     riscv_architecture_register_t tmp;
 
-    __asm__ volatile(
+    __asm__ volatile (
 
         "csrr %[r],mcause"
 
@@ -178,7 +178,7 @@ extern "C"
   {
     riscv_architecture_register_t tmp;
 
-    __asm__ volatile(
+    __asm__ volatile (
 
         "csrr %[r],mie"
 
@@ -193,7 +193,7 @@ extern "C"
   static inline __attribute__ ((always_inline)) void
   riscv_csr_write_mie (riscv_architecture_register_t value)
   {
-    __asm__ volatile(
+    __asm__ volatile (
 
         "csrw mie,%[v]"
 
@@ -208,7 +208,7 @@ extern "C"
   {
     riscv_architecture_register_t tmp;
 
-    __asm__ volatile(
+    __asm__ volatile (
 
         "csrrc %[r],mie,%[v]"
 
@@ -225,7 +225,7 @@ extern "C"
   {
     riscv_architecture_register_t tmp;
 
-    __asm__ volatile(
+    __asm__ volatile (
 
         "csrrs %[r],mie,%[v]"
 
@@ -249,7 +249,7 @@ extern "C"
   {
     riscv_architecture_register_t tmp;
 
-    __asm__ volatile(
+    __asm__ volatile (
 
         "csrr %[r],mcycle"
 
@@ -269,7 +269,7 @@ extern "C"
 
     uint32_t tmp;
 
-    __asm__ volatile(
+    __asm__ volatile (
 
         "csrr %[r],mcycle"
 
@@ -293,7 +293,7 @@ extern "C"
 
     uint32_t tmp;
 
-    __asm__ volatile(
+    __asm__ volatile (
 
         "csrr %[r],mcycleh"
 
@@ -305,7 +305,7 @@ extern "C"
 
 #elif __riscv_xlen == 64
 
-  return (uint32_t) (riscv_csr_read_mcycle () >> 32);
+  return (uint32_t)(riscv_csr_read_mcycle () >> 32);
 
 #endif // __riscv_xlen
   }
@@ -317,7 +317,7 @@ extern "C"
   {
     riscv_architecture_register_t tmp;
 
-    __asm__ volatile(
+    __asm__ volatile (
 
         "csrr %[r],mhartid"
 
