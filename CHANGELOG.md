@@ -6,9 +6,79 @@ Please check
 [GitHub](https://github.com/micro-os-plus/architecture-riscv-xpack/issues/)
 and close existing issues and pull requests.
 
+## 2026-07-22
+
+* 780394f xcdl export
+* c07d045 re-work includes
+* 98d177f re-generate top commons
+* b79195e re-generate top commons
+* 1a68ac8 extract semihosting.cpp
+* 7f7663c fix copyright notices
+
+## 2026-06-06
+
+* 036a3df copyright update 2026
+
+## 2025-11-20
+
+* ede63b1 rename npm-pack
+
+## 2025-10-07
+
+* 4bcf370 update copyright notices
+
+## 2023-11-28
+
+* d1ef44b README updates
+* 8509b6e package.json: cosmetise scripts
+
+## 2023-10-19
+
+* 9215ac5 package.json: cosmetise description
+* a7b4471 README updates
+
+## 2023-07-14
+
+* 92ed5f2 README updates
+* fa45973 package.json: cosmetise urls
+* 5625c25 package.json: minXpm 0.16.2
+
+## 2023-06-04
+
+* b1fc258 update for @scope/name
+
+## 2023-06-03
+
+* 39ca32a lower case ci.yml
+* 5a019d3 package.json min 0.16.0
+
+## 2023-05-08
+
+* 03d57b0 .npmignore update
+* 99627ed README updates
+* 5e0620b README updates
+* 6c4bd98 READMEs update
+* 1e5a1a6 meson.build cosmetics
+
+## 2022-08-16
+
+* a9fb5e2 package.json min 0.14.0 & defaults
+
+## 2022-08-03
+
+* d97774b README updates
+* 452f77c .vscode/settings.json: cmake.ignoreCMakeListsMissing
+* 87537f4 .vscode/settings.json: makefile.configureOnOpen
+
+## 2022-08-02
+
+* ce9c653 READMEs updates
+
 ## 2022-07-28
 
-* v4.1.0
+* 2bff438 CHANGELOG update
+* e5a9bac 4.1.0
+* 6943ac8 prepare v4.1.0
 * e19aa16 #5: remove linker script ARM sections
 * 5f43150 #7: add sections-flash.ld
 * 963be52 #6: rework semihosting_call_host() to avoid asm() registers
