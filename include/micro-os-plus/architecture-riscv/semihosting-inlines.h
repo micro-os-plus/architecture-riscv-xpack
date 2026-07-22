@@ -33,39 +33,7 @@ extern "C"
   typedef micro_os_plus_architecture_signed_register_t
       micro_os_plus_semihosting_response_t;
 
-  // --------------------------------------------------------------------------
-
-  static inline __attribute__ ((always_inline))
-  micro_os_plus_semihosting_response_t
-  micro_os_plus_semihosting_call_host (int reason, void* arg)
-  {
-    micro_os_plus_semihosting_response_t value;
-
-    __asm__ volatile(
-
-        " mv a0, %[rsn] \n"
-        " mv a1, %[arg] \n"
-
-        " .balign 16 \n"
-        // Workaround for RISC-V lack of multiple EBREAKs.
-        " .option push \n"
-        " .option norvc \n"
-        " slli x0, x0, 0x1f \n"
-        " ebreak \n"
-        " srai x0, x0, %[swi] \n"
-        " .option pop \n"
-
-        " mv %[val], a0"
-
-        : [val] "=r"(value) /* Outputs */
-        : [rsn] "r"(reason), [arg] "r"(arg), [swi] "i"(RISCV_SEMIHOSTING_CALL_NUMBER) /* Inputs */
-        : "a0", "a1", "a2", "a3", "a4", "a5", "memory" /* Clobbers */
-    );
-
-    return value;
-  }
-
-  // --------------------------------------------------------------------------
+   // --------------------------------------------------------------------------
 
 #if defined(__cplusplus)
 }
