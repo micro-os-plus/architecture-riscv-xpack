@@ -15,6 +15,14 @@
     "email": "ilg@livius.net",
     "url": "https://github.com/ilg-ul"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/micro-os-plus/architecture-riscv-xpack.git"
+  },
+  "homepage": "https://micro-os-plus.github.io/architecture-riscv-xpack/",
+  "bugs": {
+    "url": "https://github.com/micro-os-plus/architecture-riscv-xpack/issues"
+  },
   "$dependenciesUrls": {
     "del-cli": "https://www.npmjs.com/package/del-cli",
     "json": "https://www.npmjs.com/package/json",
@@ -60,13 +68,5 @@
   },
   "engines": {
     "node": ">=20.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+"
-  },
-  "bugs": {
-    "url": "https://github.com///issues"
-  },
-  "homepage": "https://.github.io//"
+  }
 }

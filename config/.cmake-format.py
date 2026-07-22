@@ -16,3 +16,20 @@ with section("format"):
     
 with section("markup"):
     enable_markup = True
+
+with section("parse"):
+    additional_commands = {
+        "add_compare_files_test": {
+            "kwargs": {
+                "NAME": 1,
+                "DEPENDS": 1,
+                "FILES": 2,
+            }
+        },
+        "add_qemu_test": {
+            "kwargs": {
+                "NAME": 1,
+                "COMMAND": "*",
+            }
+        },
+    }
