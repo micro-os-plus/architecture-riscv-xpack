@@ -6,8 +6,14 @@ Please check
 [GitHub](https://github.com/micro-os-plus/architecture-riscv-xpack/issues/)
 and close existing issues and pull requests.
 
+## 2026-07-31 
+
+* 0705830 xcdl-package.jsonc update
+* 37a7f6d update guards & includes
+
 ## 2026-07-22
 
+* 351f4f0 prepare 5.0.0
 * 780394f xcdl export
 * c07d045 re-work includes
 * 98d177f re-generate top commons
