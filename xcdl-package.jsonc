@@ -7,6 +7,7 @@
     {
       "id": "micro-os-plus.architectures.riscv",
       "alias": "micro-os-plus.architecture",
+      "display": "RISC-V architecture",
       "description": "The RISC-V architecture definitions",
       "publicIncludeFolders": [
         "include"
@@ -19,9 +20,13 @@
         // "micro-os-plus.semihosting"
       ],
       "implementedInterfaces": [
-        "micro-os-plus.architectures.interface"
+        "micro-os-plus.architecture"
       ],
-      // "defaultDefine": "MICRO_OS_PLUS_INCLUDE_ARCHITECTURE_RISCV"
+      "generatedFile": {
+        "type": "c-header",
+        "filePath": "{{buildFolderPath}}/generated/include/micro-os-plus/architecture-defines.h"
+      },
+      // "defaultDefine": "MICRO_OS_PLUS_INCLUDE_ARCHITECTURES_RISCV_ENABLED"
     }
   ]
 }
