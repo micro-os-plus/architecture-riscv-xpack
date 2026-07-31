@@ -14,7 +14,7 @@
 
 // ----------------------------------------------------------------------------
 
-#include <micro-os-plus/architecture-riscv/types.h>
+#include "micro-os-plus/architecture-riscv/types.h"
 
 #include <stdbool.h>
 

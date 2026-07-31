@@ -14,7 +14,7 @@
 
 // ----------------------------------------------------------------------------
 
-#include <micro-os-plus/architecture-riscv/defines.h>
+#include "micro-os-plus/architecture-riscv/defines.h"
 
 #include <stdint.h>
 
@@ -148,7 +148,7 @@ namespace micro_os_plus
 // ============================================================================
 // Templates, inlines & constexpr implementations.
 
-#include <micro-os-plus/architecture-riscv/inlines/instructions-inlines.h>
+#include "inlines/instructions-inlines.h"
 
 // ----------------------------------------------------------------------------
 

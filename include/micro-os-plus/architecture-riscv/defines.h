@@ -128,7 +128,7 @@
 
 // End of SiFive definitions.
 // ----------------------------------------------------------------------------
-#endif
+#endif // 0-1
 
 #define RISCV_CSR_MSTATUS_UIE 0x00000001ul
 #define RISCV_CSR_MSTATUS_SIE 0x00000002ul

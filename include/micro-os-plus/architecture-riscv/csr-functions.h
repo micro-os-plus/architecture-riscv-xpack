@@ -14,7 +14,7 @@
 
 // ----------------------------------------------------------------------------
 
-#include <micro-os-plus/architecture-riscv/types.h>
+#include "micro-os-plus/architecture-riscv/types.h"
 
 // ----------------------------------------------------------------------------
 // RISC-V CSR support functions.
@@ -236,7 +236,7 @@ namespace riscv
 // ============================================================================
 // Templates, inlines & constexpr implementations.
 
-#include <micro-os-plus/architecture-riscv/inlines/csr-functions-inlines.h>
+#include "inlines/csr-functions-inlines.h"
 
 // ----------------------------------------------------------------------------
 

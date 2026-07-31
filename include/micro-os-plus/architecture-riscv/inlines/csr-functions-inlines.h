@@ -9,8 +9,8 @@
  * obtained from https://opensource.org/licenses/mit.
  */
 
-#ifndef MICRO_OS_PLUS_ARCHITECTURE_RISCV_CSR_FUNCTIONS_INLINES_H_
-#define MICRO_OS_PLUS_ARCHITECTURE_RISCV_CSR_FUNCTIONS_INLINES_H_
+#ifndef MICRO_OS_PLUS_ARCHITECTURE_RISCV_INLINES_CSR_FUNCTIONS_INLINES_H_
+#define MICRO_OS_PLUS_ARCHITECTURE_RISCV_INLINES_CSR_FUNCTIONS_INLINES_H_
 
 // ----------------------------------------------------------------------------
 
@@ -460,6 +460,6 @@ namespace riscv
 
 // ----------------------------------------------------------------------------
 
-#endif // MICRO_OS_PLUS_ARCHITECTURE_RISCV_CSR_FUNCTIONS_INLINES_H_
+#endif // MICRO_OS_PLUS_ARCHITECTURE_RISCV_INLINES_CSR_FUNCTIONS_INLINES_H_
 
 // ----------------------------------------------------------------------------

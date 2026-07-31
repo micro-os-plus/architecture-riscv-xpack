@@ -11,8 +11,12 @@
 
 // ----------------------------------------------------------------------------
 
-#include <micro-os-plus/architecture.h>
-#include <micro-os-plus/semihosting.h>
+#include "micro-os-plus/architecture.h"
+#include "micro-os-plus/semihosting.h"
+
+// ----------------------------------------------------------------------------
+
+#if defined(MICRO_OS_PLUS_SEMIHOSTING_ENABLED)
 
 // ----------------------------------------------------------------------------
 
@@ -46,5 +50,9 @@ micro_os_plus_semihosting_call_host (
 
   return value;
 }
+
+// ----------------------------------------------------------------------------
+
+#endif // defined(MICRO_OS_PLUS_SEMIHOSTING_ENABLED)
 
 // ----------------------------------------------------------------------------

@@ -20,27 +20,33 @@
 #endif
 #endif // defined(__cplusplus)
 
-#if __has_include(<micro-os-plus/project-config.h>)
-#include <micro-os-plus/project-config.h>
-#elif __has_include(<micro-os-plus/config.h>)
-#pragma message \
-    "micro-os-plus/config.h is deprecated, rename to micro-os-plus/project-config.h and include it instead of micro-os-plus/config.h"
-#include <micro-os-plus/config.h>
-#endif // __has_include(<micro-os-plus/project-config.h>)
+#if __has_include("micro-os-plus/project-config.h")
+#include "micro-os-plus/project-config.h"
+#endif // __has_include("micro-os-plus/project-config.h")
 
-#if __has_include(<micro-os-plus/architecture-defines.h>)
-#include <micro-os-plus/architecture-defines.h>
-#endif // __has_include(<micro-os-plus/architecture-defines.h>)
+#if __has_include("micro-os-plus/architecture-defines.h")
+#include "micro-os-plus/architecture-defines.h"
+#endif // __has_include("micro-os-plus/architecture-defines.h")
 
-#include <micro-os-plus/architecture-riscv/defines.h>
+// ----------------------------------------------------------------------------
 
-#include <micro-os-plus/architecture-riscv/types.h>
-#include <micro-os-plus/architecture-riscv/declarations.h>
-#include <micro-os-plus/architecture-riscv/instructions.h>
-#include <micro-os-plus/architecture-riscv/csr-functions.h>
-#include <micro-os-plus/architecture-riscv/core-functions.h>
+// No guard is needed; there can be only one architecture in a build.
+// #if defined(MICRO_OS_PLUS_INCLUDE_ARCHITECTURES_RISCV_ENABLED)
 
-#include <micro-os-plus/architecture-riscv/inlines/semihosting-inlines.h>
+// ----------------------------------------------------------------------------
+
+#include "micro-os-plus/architecture-riscv/defines.h"
+#include "micro-os-plus/architecture-riscv/types.h"
+#include "micro-os-plus/architecture-riscv/declarations.h"
+#include "micro-os-plus/architecture-riscv/instructions.h"
+#include "micro-os-plus/architecture-riscv/csr-functions.h"
+#include "micro-os-plus/architecture-riscv/core-functions.h"
+
+#include "micro-os-plus/architecture-riscv/inlines/semihosting-inlines.h"
+
+// ----------------------------------------------------------------------------
+
+// #endif // defined(MICRO_OS_PLUS_INCLUDE_ARCHITECTURES_RISCV_ENABLED)
 
 // ----------------------------------------------------------------------------
 

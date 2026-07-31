@@ -100,7 +100,7 @@ namespace riscv
 // ============================================================================
 // Templates, inlines & constexpr implementations.
 
-#include <micro-os-plus/architecture-riscv/inlines/core-functions-inlines.h>
+#include "inlines/core-functions-inlines.h"
 
 // ----------------------------------------------------------------------------
 

@@ -112,7 +112,7 @@ like what GPIO pins are used for various LEDs, buttons, etc.
 The portable way to include platform specific definitions in an application is:
 
 ```c
-#include <micro-os-plus/platform.h>
+#include "micro-os-plus/platform.h"
 ```
 
 In µOS++, the platform specific definitions are grouped in the
@@ -126,10 +126,10 @@ SiFive HiFive1 small development board.
 The RISC-V documentation introduces the term _platform_ as:
 
 > A RISC-V hardware _platform_ can contain one or more RISC-V-compatible
-processing cores together with other non-RISC-V-compatible cores,
-fixed-function accelerators, various physical memory structures,
-I/O devices, and an interconnect structure to allow the components
-to communicate.
+> processing cores together with other non-RISC-V-compatible cores,
+> fixed-function accelerators, various physical memory structures,
+> I/O devices, and an interconnect structure to allow the components
+> to communicate.
 
 In modern implementations, this is generally either a physical chip
 or a synthesised one.
@@ -153,7 +153,7 @@ In µOS++, the device specific definitions are grouped in the
 The portable way to include device specific definitions in an application is:
 
 ```c
-#include <micro-os-plus/device.h>
+#include "micro-os-plus/device.h"
 ```
 
 Example of device packages are **sifive/devices** with the SiFive
@@ -164,9 +164,9 @@ Freedom E310 and E31/E51 Arty devices.
 The RISC-V documentation introduces the term _core_ as:
 
 > A component is termed a core if it contains an independent
-instruction fetch unit. A RISC-V-compatible core might support
-multiple RISC-V-compatible hardware threads, or harts, through
-multi-threading.
+> instruction fetch unit. A RISC-V-compatible core might support
+> multiple RISC-V-compatible hardware threads, or harts, through
+> multi-threading.
 
 In µOS++, the core specific definitions are grouped in the
 `riscv::core` namespace.
@@ -175,7 +175,7 @@ The portable way to include architecture specific definitions
 in an application is:
 
 ```c
-#include <micro-os-plus/architecture.h>
+#include "micro-os-plus/architecture.h"
 ```
 
 #### Hart
@@ -219,7 +219,7 @@ The following folders should be passed to the compiler during the build:
 The header files to be included in user projects are:
 
 ```c++
-#include <micro-os-plus/architecture.h>
+#include "micro-os-plus/architecture.h"
 ```
 
 #### Source files
@@ -309,7 +309,7 @@ TBD
 According to [semver](https://semver.org) rules:
 
 > Major version X (X.y.z | X > 0) MUST be incremented if any
-backwards incompatible changes are introduced to the public API.
+> backwards incompatible changes are introduced to the public API.
 
 The incompatible changes, in reverse chronological order,
 are:
