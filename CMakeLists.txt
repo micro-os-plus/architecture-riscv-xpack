@@ -1,5 +1,5 @@
 # -----------------------------------------------------------------------------
-# DO NOT EDIT! Automatically generated from xcdl-package.jsonc.
+# DO NOT EDIT! Automatically generated from template file: xcdl-package.jsonc
 #
 # This file is part of the µOS++ project (https://micro-os-plus.github.io/).
 # Copyright (c) 2021-2026 Liviu Ionescu. All rights reserved.
@@ -29,7 +29,7 @@ cmake_minimum_required (VERSION 3.20)
 project (
   micro-os-plus-architecture-riscv
   DESCRIPTION "A source code library with the µOS++ RISC-V architecture port"
-  LANGUAGES C CXX
+  LANGUAGES C CXX ASM
 )
 
 # To access the optional functions, include the
