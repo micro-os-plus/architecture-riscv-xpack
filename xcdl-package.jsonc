@@ -13,7 +13,8 @@
         "include"
       ],
       "sourceFiles": [
-        "src/semihosting.cpp"
+        "src/semihosting.cpp",
+        "src/show-cpuid.cpp"
       ],
       "dependencies": [
         // This introduces a circular dependency.

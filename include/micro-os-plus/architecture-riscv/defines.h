@@ -9,8 +9,8 @@
  * obtained from https://opensource.org/licenses/mit.
  */
 
-#ifndef MICRO_OS_PLUS_ARCHITECTURE_RISCV_ARCH_DEFINES_H_
-#define MICRO_OS_PLUS_ARCHITECTURE_RISCV_ARCH_DEFINES_H_
+#ifndef MICRO_OS_PLUS_ARCHITECTURE_RISCV_DEFINES_H_
+#define MICRO_OS_PLUS_ARCHITECTURE_RISCV_DEFINES_H_
 
 // ----------------------------------------------------------------------------
 
@@ -179,6 +179,6 @@
 
 // ----------------------------------------------------------------------------
 
-#endif // MICRO_OS_PLUS_ARCHITECTURE_RISCV_ARCH_DEFINES_H_
+#endif // MICRO_OS_PLUS_ARCHITECTURE_RISCV_DEFINES_H_
 
 // ----------------------------------------------------------------------------

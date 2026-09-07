@@ -73,6 +73,7 @@ target_include_directories (
 
 target_sources (
   micro-os-plus-architectures-riscv-interface INTERFACE "src/semihosting.cpp"
+                                                        "src/show-cpuid.cpp"
 )
 
 if (COMMAND xpack_display_target_lists)

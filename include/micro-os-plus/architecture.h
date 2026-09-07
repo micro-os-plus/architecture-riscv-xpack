@@ -37,6 +37,7 @@
 
 #include "micro-os-plus/architecture-riscv/defines.h"
 #include "micro-os-plus/architecture-riscv/types.h"
+#include "micro-os-plus/architecture-riscv/functions.h"
 #include "micro-os-plus/architecture-riscv/declarations.h"
 #include "micro-os-plus/architecture-riscv/instructions.h"
 #include "micro-os-plus/architecture-riscv/csr-functions.h"
