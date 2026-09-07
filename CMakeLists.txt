@@ -25,25 +25,22 @@
 # -----------------------------------------------------------------------------
 
 # https://cmake.org/cmake/help/v3.20/
-cmake_minimum_required (VERSION 3.20)
-project (
+cmake_minimum_required(VERSION 3.20)
+project(
   micro-os-plus-architecture-riscv
   DESCRIPTION "A source code library with the µOS++ RISC-V architecture port"
-  LANGUAGES C CXX ASM
-)
+  LANGUAGES C CXX ASM)
 
 # To access the optional functions, include the
 # `cmake/micro-os-plus-build-helper.cmake` file from the
 # `@micro-os-plus/build-helper` package.
 
-if (COMMAND xpack_get_package_name_and_version)
-  xpack_get_package_name_and_version (
-    "${CMAKE_CURRENT_SOURCE_DIR}/package.json"
-  )
-  message (VERBOSE
-           "Processing xPack ${PACKAGE_JSON_NAME}@${PACKAGE_JSON_VERSION}..."
-  )
-endif ()
+if(COMMAND xpack_get_package_name_and_version)
+  xpack_get_package_name_and_version("${CMAKE_CURRENT_SOURCE_DIR}/package.json")
+  message(
+    VERBOSE
+    "Processing xpm package ${PACKAGE_JSON_NAME}@${PACKAGE_JSON_VERSION}...")
+endif()
 
 # -----------------------------------------------------------------------------
 
@@ -63,40 +60,33 @@ endif ()
 # https://cmake.org/cmake/help/v3.20/command/add_library.html?highlight=interface#interface-libraries
 # Visibility keywords: PRIVATE applies to the target itself; INTERFACE passes
 # properties up to targets that link against it; PUBLIC does both.
-add_library (
-  micro-os-plus-architectures-riscv-interface INTERFACE EXCLUDE_FROM_ALL
-)
+add_library(micro-os-plus-architectures-riscv-interface INTERFACE
+            EXCLUDE_FROM_ALL)
 
-target_include_directories (
-  micro-os-plus-architectures-riscv-interface INTERFACE "include"
-)
+target_include_directories(micro-os-plus-architectures-riscv-interface
+                           INTERFACE "include")
 
-target_sources (
-  micro-os-plus-architectures-riscv-interface INTERFACE "src/semihosting.cpp"
-                                                        "src/show-cpuid.cpp"
-)
+target_sources(micro-os-plus-architectures-riscv-interface
+               INTERFACE "src/semihosting.cpp" "src/show-cpuid.cpp")
 
-if (COMMAND xpack_display_target_lists)
-  xpack_display_target_lists (micro-os-plus-architectures-riscv-interface)
-endif ()
+if(COMMAND xpack_display_target_lists)
+  xpack_display_target_lists(micro-os-plus-architectures-riscv-interface)
+endif()
 
 # -----------------------------------------------------------------------------
 # Alias.
 
 # https://cmake.org/cmake/help/v3.20/command/add_library.html#alias-libraries
-add_library (
-  micro-os-plus::architectures-riscv ALIAS
-  micro-os-plus-architectures-riscv-interface
-)
-message (
+add_library(micro-os-plus::architectures-riscv ALIAS
+            micro-os-plus-architectures-riscv-interface)
+message(
   VERBOSE
   "> micro-os-plus::architectures-riscv -> micro-os-plus-architectures-riscv-interface"
 )
 
-add_library (
-  micro-os-plus::architecture ALIAS micro-os-plus-architectures-riscv-interface
-)
-message (
+add_library(micro-os-plus::architecture ALIAS
+            micro-os-plus-architectures-riscv-interface)
+message(
   VERBOSE
   "> micro-os-plus::architecture -> micro-os-plus-architectures-riscv-interface"
 )
