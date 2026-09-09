@@ -153,6 +153,6 @@ When the package is considered stable:
 
 When the release is considered stable, promote it as `latest`:
 
-- `npm dist-tag ls @micro-os-plus/architecture-riscv-xpack`
-- `npm dist-tag add @micro-os-plus/architecture-riscv-xpack@5.1.0 latest`
-- `npm dist-tag ls @micro-os-plus/architecture-riscv-xpack`
+- `npm dist-tag ls @micro-os-plus/architecture-riscv`
+- `npm dist-tag add @micro-os-plus/architecture-riscv@5.1.0 latest`
+- `npm dist-tag ls @micro-os-plus/architecture-riscv`
