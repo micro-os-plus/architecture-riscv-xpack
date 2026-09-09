@@ -6,9 +6,29 @@ Please check
 [GitHub](https://github.com/micro-os-plus/architecture-riscv-xpack/issues/)
 and close existing issues and pull requests.
 
+## 2026-09-09
+
+* v5.1.0
+* b3d5140 re-format
+
+## 2026-09-08
+
+* 0150285 architecture.h __ASSEMBLY__
+* cadd9d4 add micro_os_plus_semihosting_register_t
+
+## 2026-09-07
+
+* bf22010 cosmetics xpm packages
+* 7b75d63 add show-cpuid
+
+## 2026-08-05
+
+* 19ddea8 readme cosmetics
+
 ## 2026-08-04
 
-* v5.0.0
+* 8052bbb 5.0.0
+* c3a6757 prepare v5.0.0
 * f8176c2 re-generate top commons
 
 ## 2026-07-31
