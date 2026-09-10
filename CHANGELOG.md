@@ -6,9 +6,16 @@ Please check
 [GitHub](https://github.com/micro-os-plus/architecture-riscv-xpack/issues/)
 and close existing issues and pull requests.
 
+## 2026-09-10
+
+* v6.0.0
+* 41f3791 remove linker scripts
+
 ## 2026-09-09
 
-* v5.1.0
+* 5da7984 README update
+* 419b176 5.1.0
+* aa4b862 prepare v5.1.0
 * b3d5140 re-format
 
 ## 2026-09-08
