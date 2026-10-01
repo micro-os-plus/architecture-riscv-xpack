@@ -9,8 +9,8 @@
  * obtained from https://opensource.org/licenses/mit.
  */
 
-#ifndef MICRO_OS_PLUS_ARCHITECTURE_RISCV_ARCH_DECLARATIONS_H_
-#define MICRO_OS_PLUS_ARCHITECTURE_RISCV_ARCH_DECLARATIONS_H_
+#ifndef MICRO_OS_PLUS_ARCHITECTURE_RISCV_DECLARATIONS_H_
+#define MICRO_OS_PLUS_ARCHITECTURE_RISCV_DECLARATIONS_H_
 
 // ----------------------------------------------------------------------------
 
@@ -77,6 +77,6 @@ namespace riscv
 
 // ----------------------------------------------------------------------------
 
-#endif // MICRO_OS_PLUS_ARCHITECTURE_RISCV_ARCH_DECLARATIONS_H_
+#endif // MICRO_OS_PLUS_ARCHITECTURE_RISCV_DECLARATIONS_H_
 
 // ----------------------------------------------------------------------------
