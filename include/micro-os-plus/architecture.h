@@ -37,7 +37,7 @@
 
 #include "micro-os-plus/architecture-riscv/defines.h"
 
-#if !defined(__ASSEMBLY__)
+#if !defined(__ASSEMBLER__)
 
 #include "micro-os-plus/architecture-riscv/types.h"
 #include "micro-os-plus/architecture-riscv/functions.h"
@@ -48,7 +48,7 @@
 
 #include "micro-os-plus/architecture-riscv/inlines/semihosting-inlines.h"
 
-#endif // !defined(__ASSEMBLY__)
+#endif // !defined(__ASSEMBLER__)
 
 // ----------------------------------------------------------------------------
 
