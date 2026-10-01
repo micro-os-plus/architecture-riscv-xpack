@@ -239,14 +239,17 @@ extern "C"
 
   // --------------------------------------------------------------------------
 
-#if __riscv_xlen == 64
-
   /**
-   * Read `mcycle` CSR.
+   * @details
+   * On RV32, `mcycleh` is read before and after `mcycle`; if the two
+   * high values differ, the low word overflowed between the reads and
+   * the sequence is repeated.
    */
   static inline __attribute__ ((always_inline)) uint64_t
   riscv_csr_read_mcycle (void)
   {
+#if __riscv_xlen == 64
+
     riscv_architecture_register_t tmp;
 
     __asm__ volatile (
@@ -258,9 +261,23 @@ extern "C"
         : /* Clobbers */
     );
     return tmp;
-  }
+
+#else // !(__riscv_xlen == 64)
+
+  uint32_t high;
+  uint32_t low;
+
+  do
+    {
+      high = riscv_csr_read_mcycle_high ();
+      low = riscv_csr_read_mcycle_low ();
+    }
+  while (high != riscv_csr_read_mcycle_high ());
+
+  return ((uint64_t)high << 32) | low;
 
 #endif // __riscv_xlen == 64
+  }
 
   static inline __attribute__ ((always_inline)) uint32_t
   riscv_csr_read_mcycle_low (void)
@@ -420,15 +437,11 @@ namespace riscv
 
     // ------------------------------------------------------------------------
 
-#if __riscv_xlen == 64
-
     inline __attribute__ ((always_inline)) uint64_t
     mcycle (void)
     {
       return riscv_csr_read_mcycle ();
     }
-
-#endif // __riscv_xlen == 64
 
     inline __attribute__ ((always_inline)) uint32_t
     mcycle_low (void)

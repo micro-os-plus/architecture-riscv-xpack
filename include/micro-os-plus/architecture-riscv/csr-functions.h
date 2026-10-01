@@ -120,13 +120,21 @@ extern "C"
   // `mcycle`
 
   /**
-   * Read the `mcycle` CSR.
+   * @brief Read the 64-bit `mcycle` CSR.
+   * @par Parameters
+   *  None.
+   * @return The number of clock cycles executed by the hart.
+   *
+   * @details
+   * On RV64 the counter is read with a single `csrr` instruction.
+   *
+   * On RV32 the counter is split between `mcycle` and `mcycleh`, and
+   * cannot be read atomically; the high word is read before and after
+   * the low word, and the sequence is repeated if the low word
+   * overflowed in between, so the result is always consistent.
    */
-#if __riscv_xlen == 64
-  static
-#endif // __riscv_xlen == 64
-      uint64_t
-      riscv_csr_read_mcycle (void);
+  static uint64_t
+  riscv_csr_read_mcycle (void);
 
   static uint32_t
   riscv_csr_read_mcycle_low (void);
@@ -208,7 +216,15 @@ namespace riscv
     // `mcycle`
 
     /**
-     * Read the mcycle counter.
+     * @brief Read the 64-bit `mcycle` counter.
+     * @par Parameters
+     *  None.
+     * @return The number of clock cycles executed by the hart.
+     *
+     * @details
+     * The C++ equivalent of `riscv_csr_read_mcycle()`; on RV32 the
+     * result is consistent even if the low word overflows during
+     * the read.
      */
     uint64_t
     mcycle (void);

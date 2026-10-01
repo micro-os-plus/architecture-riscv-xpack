@@ -35,11 +35,22 @@ extern "C"
   // --------------------------------------------------------------------------
   // `mtime` functions.
 
-#if __riscv_xlen == 64
-  static
-#endif // __riscv_xlen == 64
-      uint64_t
-      riscv_device_read_mtime (void);
+  /**
+   * @brief Read the 64-bit `mtime` register.
+   * @par Parameters
+   *  None.
+   * @return The current value of the machine timer.
+   *
+   * @details
+   * On RV64 the register is read with a single 64-bit access.
+   *
+   * On RV32 the register cannot be read atomically; the high word is
+   * read before and after the low word, and the sequence is repeated
+   * if the low word overflowed in between, so the result is always
+   * consistent.
+   */
+  static uint64_t
+  riscv_device_read_mtime (void);
 
   static uint32_t
   riscv_device_read_mtime_low (void);
@@ -47,11 +58,22 @@ extern "C"
   static uint32_t
   riscv_device_read_mtime_high (void);
 
-#if __riscv_xlen == 64
-  static
-#endif // __riscv_xlen == 64
-      void
-      riscv_device_write_mtime (uint64_t value);
+  /**
+   * @brief Write the 64-bit `mtime` register.
+   * @param [in] value The new value of the machine timer.
+   * @par Returns
+   *  Nothing.
+   *
+   * @details
+   * On RV64 the register is written with a single 64-bit access.
+   *
+   * On RV32 the low word is first cleared, so that it cannot overflow
+   * into the high word while the high word is written, then the high
+   * and the low words are written. The sequence is not atomic with
+   * respect to interrupts; if needed, the caller must disable them.
+   */
+  static void
+  riscv_device_write_mtime (uint64_t value);
 
   static void
   riscv_device_write_mtime_low (uint32_t value);
@@ -71,11 +93,25 @@ extern "C"
   static uint32_t
   riscv_device_read_mtimecmp_high (void);
 
-#if __riscv_xlen == 64
-  static
-#endif // __riscv_xlen == 64
-      void
-      riscv_device_write_mtimecmp (uint64_t value);
+  /**
+   * @brief Write the 64-bit `mtimecmp` register.
+   * @param [in] value The new value of the timer comparator.
+   * @par Returns
+   *  Nothing.
+   *
+   * @details
+   * On RV64 the register is written with a single 64-bit access.
+   *
+   * On RV32 the sequence recommended by the RISC-V privileged
+   * specification is used: the low word is first set to the maximum
+   * value, so that no intermediate comparator value is smaller than
+   * both the old and the new values, then the high and the low words
+   * are written. This prevents spurious timer interrupts. The sequence
+   * is not atomic with respect to interrupts; if needed, the caller
+   * must disable them.
+   */
+  static void
+  riscv_device_write_mtimecmp (uint64_t value);
 
   static void
   riscv_device_write_mtimecmp_low (uint32_t value);
@@ -103,7 +139,15 @@ namespace riscv
     // `mtime` functions.
 
     /**
-     * Read the RTC current counter.
+     * @brief Read the 64-bit `mtime` register.
+     * @par Parameters
+     *  None.
+     * @return The current value of the machine timer.
+     *
+     * @details
+     * The C++ equivalent of `riscv_device_read_mtime()`; on RV32 the
+     * result is consistent even if the low word overflows during
+     * the read.
      */
     uint64_t
     mtime (void);
@@ -114,6 +158,15 @@ namespace riscv
     uint32_t
     mtime_high (void);
 
+    /**
+     * @brief Write the 64-bit `mtime` register.
+     * @param [in] value The new value of the machine timer.
+     * @par Returns
+     *  Nothing.
+     *
+     * @details
+     * The C++ equivalent of `riscv_device_write_mtime()`.
+     */
     void
     mtime (uint64_t value);
 
@@ -139,7 +192,14 @@ namespace riscv
     mtimecmp_high (void);
 
     /**
-     * Write the RTC comparator.
+     * @brief Write the 64-bit `mtimecmp` register.
+     * @param [in] value The new value of the timer comparator.
+     * @par Returns
+     *  Nothing.
+     *
+     * @details
+     * The C++ equivalent of `riscv_device_write_mtimecmp()`; on RV32
+     * the write sequence prevents spurious timer interrupts.
      */
     void
     mtimecmp (uint64_t value);

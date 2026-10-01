@@ -28,15 +28,35 @@ extern "C"
 
   // --------------------------------------------------------------------------
 
-#if __riscv_xlen == 64
-
+  /**
+   * @details
+   * On RV32, the high word is read before and after the low word; if
+   * the two high values differ, the low word overflowed between the
+   * reads and the sequence is repeated.
+   */
   static inline __attribute__ ((always_inline)) uint64_t
   riscv_device_read_mtime (void)
   {
+#if __riscv_xlen == 64
+
     return *(volatile uint64_t*)(RISCV_MMIO_MTIME_ADDRESS);
-  }
+
+#else // !(__riscv_xlen == 64)
+
+  uint32_t high;
+  uint32_t low;
+
+  do
+    {
+      high = riscv_device_read_mtime_high ();
+      low = riscv_device_read_mtime_low ();
+    }
+  while (high != riscv_device_read_mtime_high ());
+
+  return ((uint64_t)high << 32) | low;
 
 #endif // __riscv_xlen == 64
+  }
 
   static inline __attribute__ ((always_inline)) uint32_t
   riscv_device_read_mtime_low (void)
@@ -50,15 +70,26 @@ extern "C"
     return *(volatile uint32_t*)(RISCV_MMIO_MTIME_ADDRESS + 4);
   }
 
-#if __riscv_xlen == 64
-
+  /**
+   * @details
+   * On RV32, clearing the low word first prevents a carry into the
+   * high word while it is being written.
+   */
   static inline __attribute__ ((always_inline)) void
   riscv_device_write_mtime (uint64_t value)
   {
+#if __riscv_xlen == 64
+
     *(volatile uint64_t*)(RISCV_MMIO_MTIME_ADDRESS) = value;
-  }
+
+#else // !(__riscv_xlen == 64)
+
+  riscv_device_write_mtime_low (0);
+  riscv_device_write_mtime_high ((uint32_t)(value >> 32));
+  riscv_device_write_mtime_low ((uint32_t)value);
 
 #endif // __riscv_xlen == 64
+  }
 
   static inline __attribute__ ((always_inline)) void
   riscv_device_write_mtime_low (uint32_t value)
@@ -93,15 +124,27 @@ extern "C"
     return *(volatile uint32_t*)(RISCV_MMIO_MTIMECMP_ADDRESS + 4);
   }
 
-#if __riscv_xlen == 64
-
+  /**
+   * @details
+   * On RV32, setting the low word to the maximum value first ensures
+   * that no intermediate comparator value can trigger a spurious
+   * interrupt.
+   */
   static inline __attribute__ ((always_inline)) void
   riscv_device_write_mtimecmp (uint64_t value)
   {
+#if __riscv_xlen == 64
+
     *(volatile uint64_t*)(RISCV_MMIO_MTIMECMP_ADDRESS) = value;
-  }
+
+#else // !(__riscv_xlen == 64)
+
+  riscv_device_write_mtimecmp_low (UINT32_MAX);
+  riscv_device_write_mtimecmp_high ((uint32_t)(value >> 32));
+  riscv_device_write_mtimecmp_low ((uint32_t)value);
 
 #endif // __riscv_xlen == 64
+  }
 
   static inline __attribute__ ((always_inline)) void
   riscv_device_write_mtimecmp_low (uint32_t value)
@@ -133,15 +176,11 @@ namespace riscv
   {
     // ------------------------------------------------------------------------
 
-#if __riscv_xlen == 64
-
     inline __attribute__ ((always_inline)) uint64_t
     mtime (void)
     {
       return riscv_device_read_mtime ();
     }
-
-#endif // __riscv_xlen == 64
 
     inline __attribute__ ((always_inline)) uint32_t
     mtime_low (void)
@@ -155,15 +194,11 @@ namespace riscv
       return riscv_device_read_mtime_high ();
     }
 
-#if __riscv_xlen == 64
-
     inline __attribute__ ((always_inline)) void
     mtime (uint64_t value)
     {
       riscv_device_write_mtime (value);
     }
-
-#endif // __riscv_xlen == 64
 
     inline __attribute__ ((always_inline)) void
     mtime_low (uint32_t value)
@@ -197,15 +232,11 @@ namespace riscv
       return riscv_device_read_mtimecmp_high ();
     }
 
-#if __riscv_xlen == 64
-
     inline __attribute__ ((always_inline)) void
     mtimecmp (uint64_t value)
     {
       riscv_device_write_mtimecmp (value);
     }
-
-#endif // __riscv_xlen == 64
 
     inline __attribute__ ((always_inline)) void
     mtimecmp_low (uint32_t value)
