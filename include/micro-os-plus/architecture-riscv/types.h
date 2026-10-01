@@ -37,6 +37,24 @@ typedef int64_t riscv_architecture_signed_register_t;
 
   typedef void (*riscv_core_trap_handler_ptr_t) (void);
 
+  /**
+   * @brief Type of a PLIC global interrupt source id.
+   *
+   * @details
+   * The PLIC registers are 32-bit wide. Device packages may repeat
+   * this typedef, but only with the same type.
+   */
+  typedef uint32_t riscv_plic_source_t;
+
+  /**
+   * @brief Type of a PLIC interrupt priority or threshold.
+   *
+   * @details
+   * The PLIC registers are 32-bit wide. Device packages may repeat
+   * this typedef, but only with the same type.
+   */
+  typedef uint32_t riscv_plic_priority_t;
+
   // --------------------------------------------------------------------------
 
   typedef enum

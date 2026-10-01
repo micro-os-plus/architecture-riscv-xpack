@@ -236,33 +236,40 @@ extern "C"
   void
   riscv_plic_clear_priorities (void);
 
-  static riscv_plic_priority_t
-  riscv_plic_write_threshold (riscv_plic_priority_t priority);
-
-  static riscv_plic_priority_t
-  riscv_plic_read_threshold (void);
-
-  static void
-  riscv_plic_enable_interrupt (riscv_plic_source_t global_interrupt_id);
-
-  static void
-  riscv_plic_disable_interrupt (riscv_plic_source_t global_interrupt_id);
-
-  static bool
-  riscv_plic_is_interrupt_enabled (riscv_plic_source_t global_interrupt_id);
-
-  static void
-  riscv_plic_write_priority (riscv_plic_source_t global_interrupt_id,
-                             riscv_plic_priority_t priority);
-
-  static riscv_plic_priority_t
-  riscv_plic_read_priority (riscv_plic_source_t global_interrupt_id);
-
-  static riscv_plic_source_t
-  riscv_plic_claim_interrupt (void);
-
-  static void
-  riscv_plic_complete_interrupt (riscv_plic_source_t global_interrupt_id);
+  // The following functions are device specific and must be defined
+  // as `static inline` by the device package (usually in a
+  // `plic-functions-inlines.h` header included after this one).
+  // They are not declared here, since a `static` declaration without
+  // a definition in the same translation unit triggers
+  // `-Wunused-function` warnings.
+  //
+  // riscv_plic_priority_t
+  // riscv_plic_write_threshold (riscv_plic_priority_t priority);
+  //
+  // riscv_plic_priority_t
+  // riscv_plic_read_threshold (void);
+  //
+  // void
+  // riscv_plic_enable_interrupt (riscv_plic_source_t global_interrupt_id);
+  //
+  // void
+  // riscv_plic_disable_interrupt (riscv_plic_source_t global_interrupt_id);
+  //
+  // bool
+  // riscv_plic_is_interrupt_enabled (riscv_plic_source_t global_interrupt_id);
+  //
+  // void
+  // riscv_plic_write_priority (riscv_plic_source_t global_interrupt_id,
+  //                            riscv_plic_priority_t priority);
+  //
+  // riscv_plic_priority_t
+  // riscv_plic_read_priority (riscv_plic_source_t global_interrupt_id);
+  //
+  // riscv_plic_source_t
+  // riscv_plic_claim_interrupt (void);
+  //
+  // void
+  // riscv_plic_complete_interrupt (riscv_plic_source_t global_interrupt_id);
 
   // --------------------------------------------------------------------------
 
