@@ -22,9 +22,9 @@
  * RISC-V device support functions.
  *
  * The declarations are part of the common design, but each device
- * must define the actual addresses 
+ * must define the actual addresses
  * (`MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIME_ADDRESS` and
- * `MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIMECMP_ADDRESS`, as integer constants) 
+ * `MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIMECMP_ADDRESS`, as integer constants)
  * before including this header; the inline definitions are then included
  * automatically at the end.
  */

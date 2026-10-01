@@ -57,7 +57,7 @@ reset_entry:
 #else // !defined(__riscv_cmodel_compact)
 
     la        gp, __global_pointer$
-    
+
 #endif // defined(__riscv_cmodel_compact)
 
     .option pop
