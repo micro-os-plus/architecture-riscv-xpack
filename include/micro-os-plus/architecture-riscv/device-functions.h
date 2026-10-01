@@ -22,8 +22,10 @@
  * RISC-V device support functions.
  *
  * The declarations are part of the common design, but each device
- * must define the actual address and include the file
- * "micro-os-plus/architecture-riscv/inlines/device-functions-inlines.h".
+ * must define the actual addresses (`MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIME_ADDRESS` and
+ * `MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIMECMP_ADDRESS`, as integer constants) before
+ * including this header; the inline definitions are then included
+ * automatically at the end.
  */
 
 // ----------------------------------------------------------------------------
@@ -217,6 +219,18 @@ namespace riscv
 // ----------------------------------------------------------------------------
 
 #endif // defined(__cplusplus)
+
+// ============================================================================
+// Templates, inlines & constexpr implementations.
+
+// The inline definitions need the device specific MMIO addresses; they
+// are included only if the device defined both of them before including
+// this header.
+#if defined(MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIME_ADDRESS)
+#if defined(MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIMECMP_ADDRESS)
+#include "inlines/device-functions-inlines.h"
+#endif // defined(MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIMECMP_ADDRESS)
+#endif // defined(MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIME_ADDRESS)
 
 // ----------------------------------------------------------------------------
 

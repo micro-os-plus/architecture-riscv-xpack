@@ -39,7 +39,8 @@ extern "C"
   {
 #if __riscv_xlen == 64
 
-    return *(volatile uint64_t*)(RISCV_MMIO_MTIME_ADDRESS);
+    return *(
+        volatile uint64_t*)(MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIME_ADDRESS);
 
 #else // !(__riscv_xlen == 64)
 
@@ -61,13 +62,15 @@ extern "C"
   static inline __attribute__ ((always_inline)) uint32_t
   riscv_device_read_mtime_low (void)
   {
-    return *(volatile uint32_t*)(RISCV_MMIO_MTIME_ADDRESS);
+    return *(
+        volatile uint32_t*)(MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIME_ADDRESS);
   }
 
   static inline __attribute__ ((always_inline)) uint32_t
   riscv_device_read_mtime_high (void)
   {
-    return *(volatile uint32_t*)(RISCV_MMIO_MTIME_ADDRESS + 4);
+    return *(volatile uint32_t*)(MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIME_ADDRESS
+                                 + 4);
   }
 
   /**
@@ -80,7 +83,8 @@ extern "C"
   {
 #if __riscv_xlen == 64
 
-    *(volatile uint64_t*)(RISCV_MMIO_MTIME_ADDRESS) = value;
+    *(volatile uint64_t*)(MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIME_ADDRESS)
+        = value;
 
 #else // !(__riscv_xlen == 64)
 
@@ -94,13 +98,15 @@ extern "C"
   static inline __attribute__ ((always_inline)) void
   riscv_device_write_mtime_low (uint32_t value)
   {
-    *(volatile uint32_t*)(RISCV_MMIO_MTIME_ADDRESS) = value;
+    *(volatile uint32_t*)(MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIME_ADDRESS)
+        = value;
   }
 
   static inline __attribute__ ((always_inline)) void
   riscv_device_write_mtime_high (uint32_t value)
   {
-    *(volatile uint32_t*)(RISCV_MMIO_MTIME_ADDRESS + 4) = value;
+    *(volatile uint32_t*)(MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIME_ADDRESS + 4)
+        = value;
   }
 
   // --------------------------------------------------------------------------
@@ -109,19 +115,23 @@ extern "C"
   riscv_device_read_mtimecmp (void)
   {
     // On RV32 the compiler generates two word accesses.
-    return *(volatile uint64_t*)(RISCV_MMIO_MTIMECMP_ADDRESS);
+    return *(
+        volatile uint64_t*)(MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIMECMP_ADDRESS);
   }
 
   static inline __attribute__ ((always_inline)) uint32_t
   riscv_device_read_mtimecmp_low (void)
   {
-    return *(volatile uint32_t*)(RISCV_MMIO_MTIMECMP_ADDRESS);
+    return *(
+        volatile uint32_t*)(MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIMECMP_ADDRESS);
   }
 
   static inline __attribute__ ((always_inline)) uint32_t
   riscv_device_read_mtimecmp_high (void)
   {
-    return *(volatile uint32_t*)(RISCV_MMIO_MTIMECMP_ADDRESS + 4);
+    return *(
+        volatile uint32_t*)(MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIMECMP_ADDRESS
+                            + 4);
   }
 
   /**
@@ -135,7 +145,8 @@ extern "C"
   {
 #if __riscv_xlen == 64
 
-    *(volatile uint64_t*)(RISCV_MMIO_MTIMECMP_ADDRESS) = value;
+    *(volatile uint64_t*)(MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIMECMP_ADDRESS)
+        = value;
 
 #else // !(__riscv_xlen == 64)
 
@@ -149,13 +160,15 @@ extern "C"
   static inline __attribute__ ((always_inline)) void
   riscv_device_write_mtimecmp_low (uint32_t value)
   {
-    *(volatile uint32_t*)(RISCV_MMIO_MTIMECMP_ADDRESS) = value;
+    *(volatile uint32_t*)(MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIMECMP_ADDRESS)
+        = value;
   }
 
   static inline __attribute__ ((always_inline)) void
   riscv_device_write_mtimecmp_high (uint32_t value)
   {
-    *(volatile uint32_t*)(RISCV_MMIO_MTIMECMP_ADDRESS + 4) = value;
+    *(volatile uint32_t*)(MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIMECMP_ADDRESS + 4)
+        = value;
   }
 
   // --------------------------------------------------------------------------
