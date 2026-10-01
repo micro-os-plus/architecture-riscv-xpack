@@ -165,4 +165,6 @@ website/.docusaurus
 website/build
 website/html
 
+CODE-REVIEW.md
+
 # ----- end -----
