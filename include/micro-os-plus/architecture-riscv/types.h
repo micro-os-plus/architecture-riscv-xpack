@@ -29,7 +29,9 @@ extern "C"
 #elif __riscv_xlen == 64
 typedef uint64_t riscv_architecture_register_t;
 typedef int64_t riscv_architecture_signed_register_t;
-#endif // __riscv_xlen
+#else // !(__riscv_xlen == 32) && !(__riscv_xlen == 64)
+#error "Unsupported __riscv_xlen"
+#endif // __riscv_xlen == 32
 
   typedef riscv_architecture_register_t micro_os_plus_architecture_register_t;
   typedef riscv_architecture_signed_register_t
