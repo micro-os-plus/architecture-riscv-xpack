@@ -67,6 +67,34 @@ extern "C"
   }
 
   static inline __attribute__ ((always_inline)) void
+  riscv_architecture_fence (void)
+  {
+    __asm__ volatile (
+
+        " fence iorw, iorw "
+
+        : /* Outputs */
+        : /* Inputs */
+        : "memory" /* Clobbers */
+    );
+  }
+
+  static inline __attribute__ ((always_inline)) void
+  riscv_architecture_fence_i (void)
+  {
+    __asm__ volatile (
+
+        // `fence.i` (opcode MISC-MEM, funct3 1), encoded explicitly,
+        // since the mnemonic requires `_zifencei` in `-march`.
+        " .insn i 0x0F, 1, x0, x0, 0 "
+
+        : /* Outputs */
+        : /* Inputs */
+        : "memory" /* Clobbers */
+    );
+  }
+
+  static inline __attribute__ ((always_inline)) void
   micro_os_plus_architecture_nop (void)
   {
     riscv_architecture_nop ();
@@ -124,6 +152,18 @@ namespace riscv
     wfi (void)
     {
       riscv_architecture_wfi ();
+    }
+
+    inline __attribute__ ((always_inline)) void
+    fence (void)
+    {
+      riscv_architecture_fence ();
+    }
+
+    inline __attribute__ ((always_inline)) void
+    fence_i (void)
+    {
+      riscv_architecture_fence_i ();
     }
 
     // ------------------------------------------------------------------------

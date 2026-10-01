@@ -48,6 +48,24 @@ extern "C"
   static void
   riscv_architecture_wfi (void);
 
+  /**
+   * `fence iorw, iorw` instruction (full memory and I/O fence).
+   */
+  static void
+  riscv_architecture_fence (void);
+
+  /**
+   * `fence.i` instruction (Zifencei, instruction fetch fence).
+   *
+   * @details
+   * Emitted via its `.insn` encoding, so it assembles even when
+   * `_zifencei` is not part of `-march` (GCC 12 and later require it
+   * for the `fence.i` mnemonic). On cores that do not implement
+   * Zifencei, executing it raises an illegal instruction exception.
+   */
+  static void
+  riscv_architecture_fence_i (void);
+
   // --------------------------------------------------------------------------
   // Portable architecture assembly instructions in C.
 
@@ -105,6 +123,18 @@ namespace riscv
      */
     void
     wfi (void);
+
+    /**
+     * The assembler `fence iorw, iorw` instruction.
+     */
+    void
+    fence (void);
+
+    /**
+     * The assembler `fence.i` instruction.
+     */
+    void
+    fence_i (void);
 
     // ------------------------------------------------------------------------
   } // namespace architecture
