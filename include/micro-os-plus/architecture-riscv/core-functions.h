@@ -14,6 +14,9 @@
 
 // ----------------------------------------------------------------------------
 
+#include "micro-os-plus/architecture-riscv/defines.h"
+#include "micro-os-plus/architecture-riscv/csr-functions.h"
+
 #include <stdint.h>
 
 // ----------------------------------------------------------------------------
