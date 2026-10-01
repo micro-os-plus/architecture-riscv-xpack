@@ -109,7 +109,7 @@ extern "C"
    * the floating-point unit state (`FS`); see the
    * `RISCV_CSR_MSTATUS_*` definitions.
    */
-  static riscv_architecture_register_t
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE riscv_architecture_register_t
   riscv_csr_read_mstatus (void);
 
   /**
@@ -127,7 +127,7 @@ extern "C"
    * accesses are not moved across it; this is required when the
    * function is used to delimit critical sections.
    */
-  static void
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
   riscv_csr_write_mstatus (riscv_architecture_register_t value);
 
   /**
@@ -148,7 +148,7 @@ extern "C"
    * accesses are not moved across it; this is required when the
    * function is used to delimit critical sections.
    */
-  static riscv_architecture_register_t
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE riscv_architecture_register_t
   riscv_csr_clear_mstatus_bits (riscv_architecture_register_t mask);
 
   /**
@@ -168,7 +168,7 @@ extern "C"
    * accesses are not moved across it; this is required when the
    * function is used to delimit critical sections.
    */
-  static riscv_architecture_register_t
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE riscv_architecture_register_t
   riscv_csr_set_mstatus_bits (riscv_architecture_register_t mask);
 
   // --------------------------------------------------------------------------
@@ -185,7 +185,7 @@ extern "C"
    * the trap handler (aligned to 4 bytes), and the mode in the two
    * least significant bits (0 = direct, 1 = vectored).
    */
-  static riscv_architecture_register_t
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE riscv_architecture_register_t
   riscv_csr_read_mtvec (void);
 
   /**
@@ -199,7 +199,7 @@ extern "C"
    * accesses (for example the initialisation of a vector table) are
    * not moved after the trap vector is changed.
    */
-  static void
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
   riscv_csr_write_mtvec (riscv_architecture_register_t value);
 
   // --------------------------------------------------------------------------
@@ -217,7 +217,7 @@ extern "C"
    * (`RISCV_CSR_MCAUSE_CAUSE`) is a `riscv_interrupts_local_enum_t`;
    * otherwise it is an exception (`riscv_exceptions_enum_t`).
    */
-  static riscv_architecture_register_t
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE riscv_architecture_register_t
   riscv_csr_read_mcause (void);
 
   // --------------------------------------------------------------------------
@@ -234,7 +234,7 @@ extern "C"
    * interrupt (see the `RISCV_CSR_MIP_*` bit masks, which use the same
    * positions).
    */
-  static riscv_architecture_register_t
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE riscv_architecture_register_t
   riscv_csr_read_mie (void);
 
   /**
@@ -252,7 +252,7 @@ extern "C"
    * accesses are not moved across it; this is required when the
    * function is used to delimit critical sections.
    */
-  static void
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
   riscv_csr_write_mie (riscv_architecture_register_t value);
 
   /**
@@ -272,7 +272,7 @@ extern "C"
    * accesses are not moved across it; this is required when the
    * function is used to delimit critical sections.
    */
-  static riscv_architecture_register_t
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE riscv_architecture_register_t
   riscv_csr_clear_mie_bits (riscv_architecture_register_t mask);
 
   /**
@@ -292,7 +292,7 @@ extern "C"
    * accesses are not moved across it; this is required when the
    * function is used to delimit critical sections.
    */
-  static riscv_architecture_register_t
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE riscv_architecture_register_t
   riscv_csr_set_mie_bits (riscv_architecture_register_t mask);
 
   // --------------------------------------------------------------------------
@@ -312,7 +312,7 @@ extern "C"
    * the low word, and the sequence is repeated if the low word
    * overflowed in between, so the result is always consistent.
    */
-  static uint64_t
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE uint64_t
   riscv_csr_read_mcycle (void);
 
   /**
@@ -326,7 +326,7 @@ extern "C"
    * the low word every 2^32 cycles can be handled by unsigned
    * subtraction.
    */
-  static uint32_t
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE uint32_t
   riscv_csr_read_mcycle_low (void);
 
   /**
@@ -340,7 +340,7 @@ extern "C"
    * `riscv_csr_read_mcycle_low()` call is not atomic; use
    * `riscv_csr_read_mcycle()` to get a consistent 64-bit value.
    */
-  static uint32_t
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE uint32_t
   riscv_csr_read_mcycle_high (void);
 
   // --------------------------------------------------------------------------
@@ -356,7 +356,7 @@ extern "C"
    * The ID of the hart executing the code. Hart IDs are not
    * necessarily contiguous, but one hart must have ID 0.
    */
-  static riscv_architecture_register_t
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE riscv_architecture_register_t
   riscv_csr_read_mhartid (void);
 
   // --------------------------------------------------------------------------
@@ -374,7 +374,7 @@ extern "C"
    * 25 flag the supported extensions, one per letter (`A` to `Z`).
    * The register may legally read as zero, if not implemented.
    */
-  static riscv_architecture_register_t
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE riscv_architecture_register_t
   riscv_csr_read_misa (void);
 
   // --------------------------------------------------------------------------
@@ -392,7 +392,7 @@ extern "C"
    * the number of `0x7F` continuation codes. Zero means that the
    * field is not implemented, or that the core is non-commercial.
    */
-  static riscv_architecture_register_t
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE riscv_architecture_register_t
   riscv_csr_read_mvendorid (void);
 
   // --------------------------------------------------------------------------
@@ -408,7 +408,7 @@ extern "C"
    * Encodes the base microarchitecture of the hart, together with
    * `mvendorid`. Zero means not implemented.
    */
-  static riscv_architecture_register_t
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE riscv_architecture_register_t
   riscv_csr_read_marchid (void);
 
   // --------------------------------------------------------------------------
@@ -424,7 +424,7 @@ extern "C"
    * Encodes the version of the processor implementation. Zero means
    * not implemented.
    */
-  static riscv_architecture_register_t
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE riscv_architecture_register_t
   riscv_csr_read_mimpid (void);
 
   // --------------------------------------------------------------------------
@@ -462,8 +462,9 @@ namespace riscv
      * Example: `riscv::csr::read<0x300> ()` reads `mstatus`.
      */
     template <uint32_t csr>
-    architecture::register_t
-    read (void);
+    [[nodiscard]] MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE
+        architecture::register_t
+        read (void) noexcept;
 
     /**
      * @brief Write any CSR.
@@ -479,8 +480,8 @@ namespace riscv
      * accesses are not moved across it.
      */
     template <uint32_t csr>
-    void
-    write (architecture::register_t value);
+    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    write (architecture::register_t value) noexcept;
 
     // ------------------------------------------------------------------------
     // `mstatus`
@@ -494,8 +495,9 @@ namespace riscv
      * @details
      * The C++ equivalent of `riscv_csr_read_mstatus()`.
      */
-    architecture::register_t
-    mstatus (void);
+    [[nodiscard]] MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE
+        architecture::register_t
+        mstatus (void) noexcept;
 
     /**
      * @brief Write the `mstatus` CSR.
@@ -507,8 +509,8 @@ namespace riscv
      * The C++ equivalent of `riscv_csr_write_mstatus()`; it is also a
      * compiler memory barrier.
      */
-    void
-    mstatus (architecture::register_t value);
+    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    mstatus (architecture::register_t value) noexcept;
 
     /**
      * @brief Clear bits in the `mstatus` CSR.
@@ -522,8 +524,8 @@ namespace riscv
      * example the interrupt enable bits, at the end of a critical
      * section).
      */
-    architecture::register_t
-    clear_mstatus_bits (architecture::register_t mask);
+    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE architecture::register_t
+    clear_mstatus_bits (architecture::register_t mask) noexcept;
 
     /**
      * @brief Set bits in the `mstatus` CSR.
@@ -537,8 +539,8 @@ namespace riscv
      * example the interrupt enable bits, at the end of a critical
      * section).
      */
-    architecture::register_t
-    set_mstatus_bits (architecture::register_t mask);
+    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE architecture::register_t
+    set_mstatus_bits (architecture::register_t mask) noexcept;
 
     // ------------------------------------------------------------------------
     // `mtvec`
@@ -552,8 +554,9 @@ namespace riscv
      * @details
      * The C++ equivalent of `riscv_csr_read_mtvec()`.
      */
-    architecture::register_t
-    mtvec (void);
+    [[nodiscard]] MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE
+        architecture::register_t
+        mtvec (void) noexcept;
 
     /**
      * @brief Write the `mtvec` CSR.
@@ -565,8 +568,8 @@ namespace riscv
      * The C++ equivalent of `riscv_csr_write_mtvec()`; it is also a
      * compiler memory barrier.
      */
-    void
-    mtvec (architecture::register_t value);
+    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    mtvec (architecture::register_t value) noexcept;
 
     // ------------------------------------------------------------------------
     // `mcause`
@@ -580,8 +583,9 @@ namespace riscv
      * @details
      * The C++ equivalent of `riscv_csr_read_mcause()`.
      */
-    architecture::register_t
-    mcause (void);
+    [[nodiscard]] MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE
+        architecture::register_t
+        mcause (void) noexcept;
 
     // ------------------------------------------------------------------------
     // `mie`
@@ -595,8 +599,9 @@ namespace riscv
      * @details
      * The C++ equivalent of `riscv_csr_read_mie()`.
      */
-    architecture::register_t
-    mie (void);
+    [[nodiscard]] MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE
+        architecture::register_t
+        mie (void) noexcept;
 
     /**
      * @brief Write the `mie` CSR.
@@ -608,8 +613,8 @@ namespace riscv
      * The C++ equivalent of `riscv_csr_write_mie()`; it is also a
      * compiler memory barrier.
      */
-    void
-    mie (architecture::register_t value);
+    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    mie (architecture::register_t value) noexcept;
 
     /**
      * @brief Clear bits in the `mie` CSR.
@@ -623,8 +628,8 @@ namespace riscv
      * example the interrupt enable bits, at the end of a critical
      * section).
      */
-    architecture::register_t
-    clear_mie_bits (architecture::register_t mask);
+    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE architecture::register_t
+    clear_mie_bits (architecture::register_t mask) noexcept;
 
     /**
      * @brief Set bits in the `mie` CSR.
@@ -638,8 +643,8 @@ namespace riscv
      * example the interrupt enable bits, at the end of a critical
      * section).
      */
-    architecture::register_t
-    set_mie_bits (architecture::register_t mask);
+    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE architecture::register_t
+    set_mie_bits (architecture::register_t mask) noexcept;
 
     // ------------------------------------------------------------------------
     // `mcycle`
@@ -655,8 +660,8 @@ namespace riscv
      * result is consistent even if the low word overflows during
      * the read.
      */
-    uint64_t
-    mcycle (void);
+    [[nodiscard]] MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE uint64_t
+    mcycle (void) noexcept;
 
     /**
      * @brief Read the low 32 bits of the `mcycle` counter.
@@ -667,8 +672,8 @@ namespace riscv
      * @details
      * The C++ equivalent of `riscv_csr_read_mcycle_low()`.
      */
-    uint32_t
-    mcycle_low (void);
+    [[nodiscard]] MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE uint32_t
+    mcycle_low (void) noexcept;
 
     /**
      * @brief Read the high 32 bits of the `mcycle` counter.
@@ -680,8 +685,8 @@ namespace riscv
      * The C++ equivalent of `riscv_csr_read_mcycle_high()`; combining
      * it with `mcycle_low()` is not atomic, use `mcycle()` instead.
      */
-    uint32_t
-    mcycle_high (void);
+    [[nodiscard]] MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE uint32_t
+    mcycle_high (void) noexcept;
 
     // ------------------------------------------------------------------------
     // `mhartid`
@@ -695,8 +700,9 @@ namespace riscv
      * @details
      * The C++ equivalent of `riscv_csr_read_mhartid()`.
      */
-    architecture::register_t
-    mhartid (void);
+    [[nodiscard]] MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE
+        architecture::register_t
+        mhartid (void) noexcept;
 
     // ------------------------------------------------------------------------
     // `misa`
@@ -710,8 +716,9 @@ namespace riscv
      * @details
      * The C++ equivalent of `riscv_csr_read_misa()`.
      */
-    architecture::register_t
-    misa (void);
+    [[nodiscard]] MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE
+        architecture::register_t
+        misa (void) noexcept;
 
     // ------------------------------------------------------------------------
     // `mvendorid`
@@ -725,8 +732,9 @@ namespace riscv
      * @details
      * The C++ equivalent of `riscv_csr_read_mvendorid()`.
      */
-    architecture::register_t
-    mvendorid (void);
+    [[nodiscard]] MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE
+        architecture::register_t
+        mvendorid (void) noexcept;
 
     // ------------------------------------------------------------------------
     // `marchid`
@@ -740,8 +748,9 @@ namespace riscv
      * @details
      * The C++ equivalent of `riscv_csr_read_marchid()`.
      */
-    architecture::register_t
-    marchid (void);
+    [[nodiscard]] MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE
+        architecture::register_t
+        marchid (void) noexcept;
 
     // ------------------------------------------------------------------------
     // `mimpid`
@@ -755,8 +764,9 @@ namespace riscv
      * @details
      * The C++ equivalent of `riscv_csr_read_mimpid()`.
      */
-    architecture::register_t
-    mimpid (void);
+    [[nodiscard]] MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE
+        architecture::register_t
+        mimpid (void) noexcept;
 
     // ------------------------------------------------------------------------
   } // namespace csr

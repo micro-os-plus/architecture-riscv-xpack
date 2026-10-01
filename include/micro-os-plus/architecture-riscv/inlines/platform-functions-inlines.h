@@ -34,7 +34,7 @@ extern "C"
 {
 #endif // defined(__cplusplus)
 
-  static inline __attribute__ ((always_inline)) uint32_t
+  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE uint32_t
   riscv_board_get_rtc_frequency_hz (void)
   {
     return RISCV_PLATFORM_RTC_FREQUENCY_HZ;
@@ -56,8 +56,8 @@ namespace riscv
   {
     // ------------------------------------------------------------------------
 
-    inline __attribute__ ((always_inline)) uint32_t
-    rtc_frequency_hz (void)
+    [[nodiscard]] MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE uint32_t
+    rtc_frequency_hz (void) noexcept
     {
       return riscv_board_get_rtc_frequency_hz ();
     }
