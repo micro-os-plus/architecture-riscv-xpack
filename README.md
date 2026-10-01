@@ -6,7 +6,7 @@
 
 # A source code library with the µOS++ RISC-V architecture definitions
 
-This project provides the **architecture-riscv** source library as an xPack
+This project provides the **architecture-riscv** source library as an `xpm`
 dependency and includes architecture definitions for RISC-V embedded projects.
 
 The project is hosted on GitHub as
@@ -22,7 +22,7 @@ For maintainer info, please see the
 
 ## Install
 
-As a source library xPack, the easiest way to add it to a project is via
+As a source library xpm package, the easiest way to add it to a project is via
 **xpm**, but it can also be used as any Git project, for example as a submodule.
 
 ### Prerequisites
@@ -85,7 +85,7 @@ into `xpack`.
 
 ### Overview
 
-This source xPack provides general RISC-V definitions and will eventually
+This source xpm package provides general RISC-V definitions and will eventually
 include the implementation for a hardware abstraction layer, which,
 for RISC-V is not yet standardized.
 
