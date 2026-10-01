@@ -187,6 +187,74 @@ extern "C"
   riscv_csr_read_mhartid (void);
 
   // --------------------------------------------------------------------------
+  // `misa`
+
+  /**
+   * @brief Read the `misa` CSR (machine ISA register).
+   * @par Parameters
+   *  None.
+   * @return The value of the CSR.
+   *
+   * @details
+   * The `MXL` field, in the two most significant bits, encodes the
+   * native register width (1 = 32, 2 = 64, 3 = 128 bits); bits 0 to
+   * 25 flag the supported extensions, one per letter (`A` to `Z`).
+   * The register may legally read as zero, if not implemented.
+   */
+  static riscv_architecture_register_t
+  riscv_csr_read_misa (void);
+
+  // --------------------------------------------------------------------------
+  // `mvendorid`
+
+  /**
+   * @brief Read the `mvendorid` CSR (vendor ID register).
+   * @par Parameters
+   *  None.
+   * @return The value of the CSR.
+   *
+   * @details
+   * The JEDEC manufacturer ID of the core provider: bits 6:0 hold
+   * the ID within the bank, without the parity bit, and bits 31:7
+   * the number of `0x7F` continuation codes. Zero means that the
+   * field is not implemented, or that the core is non-commercial.
+   */
+  static riscv_architecture_register_t
+  riscv_csr_read_mvendorid (void);
+
+  // --------------------------------------------------------------------------
+  // `marchid`
+
+  /**
+   * @brief Read the `marchid` CSR (architecture ID register).
+   * @par Parameters
+   *  None.
+   * @return The value of the CSR.
+   *
+   * @details
+   * Encodes the base microarchitecture of the hart, together with
+   * `mvendorid`. Zero means not implemented.
+   */
+  static riscv_architecture_register_t
+  riscv_csr_read_marchid (void);
+
+  // --------------------------------------------------------------------------
+  // `mimpid`
+
+  /**
+   * @brief Read the `mimpid` CSR (implementation ID register).
+   * @par Parameters
+   *  None.
+   * @return The value of the CSR.
+   *
+   * @details
+   * Encodes the version of the processor implementation. Zero means
+   * not implemented.
+   */
+  static riscv_architecture_register_t
+  riscv_csr_read_mimpid (void);
+
+  // --------------------------------------------------------------------------
 
 #if defined(__cplusplus)
 }
@@ -323,6 +391,66 @@ namespace riscv
 
     architecture::register_t
     mhartid (void);
+
+    // ------------------------------------------------------------------------
+    // `misa`
+
+    /**
+     * @brief Read the `misa` CSR (machine ISA register).
+     * @par Parameters
+     *  None.
+     * @return The value of the CSR.
+     *
+     * @details
+     * The C++ equivalent of `riscv_csr_read_misa()`.
+     */
+    architecture::register_t
+    misa (void);
+
+    // ------------------------------------------------------------------------
+    // `mvendorid`
+
+    /**
+     * @brief Read the `mvendorid` CSR (vendor ID register).
+     * @par Parameters
+     *  None.
+     * @return The value of the CSR.
+     *
+     * @details
+     * The C++ equivalent of `riscv_csr_read_mvendorid()`.
+     */
+    architecture::register_t
+    mvendorid (void);
+
+    // ------------------------------------------------------------------------
+    // `marchid`
+
+    /**
+     * @brief Read the `marchid` CSR (architecture ID register).
+     * @par Parameters
+     *  None.
+     * @return The value of the CSR.
+     *
+     * @details
+     * The C++ equivalent of `riscv_csr_read_marchid()`.
+     */
+    architecture::register_t
+    marchid (void);
+
+    // ------------------------------------------------------------------------
+    // `mimpid`
+
+    /**
+     * @brief Read the `mimpid` CSR (implementation ID register).
+     * @par Parameters
+     *  None.
+     * @return The value of the CSR.
+     *
+     * @details
+     * The C++ equivalent of `riscv_csr_read_mimpid()`.
+     */
+    architecture::register_t
+    mimpid (void);
 
     // ------------------------------------------------------------------------
   } // namespace csr

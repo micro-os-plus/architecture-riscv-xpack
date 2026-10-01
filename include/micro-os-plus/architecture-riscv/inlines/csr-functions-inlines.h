@@ -345,6 +345,70 @@ extern "C"
     return tmp;
   }
 
+  static inline __attribute__ ((always_inline)) riscv_architecture_register_t
+  riscv_csr_read_misa (void)
+  {
+    riscv_architecture_register_t tmp;
+
+    __asm__ volatile (
+
+        "csrr %[r],misa"
+
+        : [r] "=r"(tmp) /* Outputs */
+        : /* Inputs */
+        : /* Clobbers */
+    );
+    return tmp;
+  }
+
+  static inline __attribute__ ((always_inline)) riscv_architecture_register_t
+  riscv_csr_read_mvendorid (void)
+  {
+    riscv_architecture_register_t tmp;
+
+    __asm__ volatile (
+
+        "csrr %[r],mvendorid"
+
+        : [r] "=r"(tmp) /* Outputs */
+        : /* Inputs */
+        : /* Clobbers */
+    );
+    return tmp;
+  }
+
+  static inline __attribute__ ((always_inline)) riscv_architecture_register_t
+  riscv_csr_read_marchid (void)
+  {
+    riscv_architecture_register_t tmp;
+
+    __asm__ volatile (
+
+        "csrr %[r],marchid"
+
+        : [r] "=r"(tmp) /* Outputs */
+        : /* Inputs */
+        : /* Clobbers */
+    );
+    return tmp;
+  }
+
+  static inline __attribute__ ((always_inline)) riscv_architecture_register_t
+  riscv_csr_read_mimpid (void)
+  {
+    riscv_architecture_register_t tmp;
+
+    __asm__ volatile (
+
+        "csrr %[r],mimpid"
+
+        : [r] "=r"(tmp) /* Outputs */
+        : /* Inputs */
+        : /* Clobbers */
+    );
+    return tmp;
+  }
+
   // --------------------------------------------------------------------------
 
 #if defined(__cplusplus)
@@ -461,6 +525,30 @@ namespace riscv
     mhartid (void)
     {
       return riscv_csr_read_mhartid ();
+    }
+
+    inline __attribute__ ((always_inline)) architecture::register_t
+    misa (void)
+    {
+      return riscv_csr_read_misa ();
+    }
+
+    inline __attribute__ ((always_inline)) architecture::register_t
+    mvendorid (void)
+    {
+      return riscv_csr_read_mvendorid ();
+    }
+
+    inline __attribute__ ((always_inline)) architecture::register_t
+    marchid (void)
+    {
+      return riscv_csr_read_marchid ();
+    }
+
+    inline __attribute__ ((always_inline)) architecture::register_t
+    mimpid (void)
+    {
+      return riscv_csr_read_mimpid ();
     }
 
     // ------------------------------------------------------------------------
