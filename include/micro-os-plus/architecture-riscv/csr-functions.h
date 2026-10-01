@@ -211,9 +211,33 @@ namespace riscv
     void
     mstatus (architecture::register_t value);
 
+    /**
+     * @brief Clear bits in the `mstatus` CSR.
+     * @param [in] mask The bits to clear.
+     * @return The previous value of the CSR.
+     *
+     * @details
+     * The C++ equivalent of `riscv_csr_clear_mstatus_bits()`. The bits
+     * are cleared atomically, with a single `csrrc` instruction; the
+     * returned value can be used to restore the previous state (for
+     * example the interrupt enable bits, at the end of a critical
+     * section).
+     */
     architecture::register_t
     clear_mstatus_bits (architecture::register_t mask);
 
+    /**
+     * @brief Set bits in the `mstatus` CSR.
+     * @param [in] mask The bits to set.
+     * @return The previous value of the CSR.
+     *
+     * @details
+     * The C++ equivalent of `riscv_csr_set_mstatus_bits()`. The bits
+     * are set atomically, with a single `csrrs` instruction; the
+     * returned value can be used to restore the previous state (for
+     * example the interrupt enable bits, at the end of a critical
+     * section).
+     */
     architecture::register_t
     set_mstatus_bits (architecture::register_t mask);
 
@@ -241,9 +265,33 @@ namespace riscv
     void
     mie (architecture::register_t value);
 
+    /**
+     * @brief Clear bits in the `mie` CSR.
+     * @param [in] mask The bits to clear.
+     * @return The previous value of the CSR.
+     *
+     * @details
+     * The C++ equivalent of `riscv_csr_clear_mie_bits()`. The bits
+     * are cleared atomically, with a single `csrrc` instruction; the
+     * returned value can be used to restore the previous state (for
+     * example the interrupt enable bits, at the end of a critical
+     * section).
+     */
     architecture::register_t
     clear_mie_bits (architecture::register_t mask);
 
+    /**
+     * @brief Set bits in the `mie` CSR.
+     * @param [in] mask The bits to set.
+     * @return The previous value of the CSR.
+     *
+     * @details
+     * The C++ equivalent of `riscv_csr_set_mie_bits()`. The bits
+     * are set atomically, with a single `csrrs` instruction; the
+     * returned value can be used to restore the previous state (for
+     * example the interrupt enable bits, at the end of a critical
+     * section).
+     */
     architecture::register_t
     set_mie_bits (architecture::register_t mask);
 
