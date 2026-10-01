@@ -32,6 +32,12 @@
     .type     reset_entry, @function
 reset_entry:
 
+    // This package does not bring up secondary harts; park them here,
+    // so that only the hart that reaches reset first initialises the
+    // stack and runs the C startup code.
+    csrr      t0, mhartid
+    bnez      t0, park_hart
+
     .option   push
 
     // Ensure the instruction is not optimized, since gp is not yet set.
@@ -57,6 +63,13 @@ reset_entry:
 
     .option pop
 
+    // Install a default trap handler before anything that could trap,
+    // so that a fault during start-up has a defined, if minimal,
+    // target; the application is expected to install its own handler
+    // once the C runtime is up.
+    la        t0, default_trap_entry
+    csrw      mtvec, t0
+
     // The linker script usually defines the stack at the end of RAM.
     la        sp, __stack
 
@@ -80,6 +93,17 @@ reset_entry:
 
     // Proceed with the standard C _start() routine.
     j         _start
+
+    .align    2
+park_hart:
+1:
+    wfi
+    j         1b
+
+    .align    2
+default_trap_entry:
+1:
+    j         1b
 
 // ----------------------------------------------------------------------------
 
