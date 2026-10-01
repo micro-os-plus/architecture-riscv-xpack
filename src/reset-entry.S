@@ -25,7 +25,7 @@
     .section  .reset_entry, "ax", @progbits
     .align    2 // number of low order zeros, i.e. align to a multiple of 4
 
-    // µOS++ prefered name. Other projects (like pico SDK) may use
+    // µOS++ preferred name. Other projects (like pico SDK) may use
     // `_reset_handler`.
 
     .globl    reset_entry
@@ -40,11 +40,11 @@ reset_entry:
 
     .option   push
 
-    // Ensure the instruction is not optimized, since gp is not yet set.
+    // Ensure the instruction is not optimised, since gp is not yet set.
     .option   norelax
 
     // __global_pointer$ is a magic symbol, known by the linker.
-    // Unless instructed not to do so, the linker optimizes
+    // Unless instructed not to do so, the linker optimises
     // accesses +/- 2KB around this to gp-relative.
 
 #ifdef __riscv_cmodel_compact

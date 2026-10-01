@@ -51,7 +51,7 @@ namespace riscv
     using priority_t = riscv_plic_priority_t;
 
     /**
-     * @brief Initialize the interrupt controller.
+     * @brief Initialise the interrupt controller.
      * @par Parameters
      *  None.
      * @par Returns

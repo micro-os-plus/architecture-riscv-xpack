@@ -57,6 +57,7 @@ namespace riscv
 {
   namespace core
   {
+    // ------------------------------------------------------------------------
 
     inline __attribute__ ((always_inline)) void
     enable_machine_external_interrupts (void)
