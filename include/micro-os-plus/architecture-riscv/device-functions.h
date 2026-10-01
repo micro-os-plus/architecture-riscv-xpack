@@ -18,6 +18,30 @@
 
 // ----------------------------------------------------------------------------
 
+/**
+ * @brief Internal flag, defined when the device MMIO addresses are known.
+ *
+ * @details
+ * Defined when the device package defined both
+ * `MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIME_ADDRESS` and
+ * `MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIMECMP_ADDRESS` before including
+ * this header (or when generating the documentation). It enables the
+ * C declarations and the inline definitions; without it, the
+ * `static inline` C declarations would have no definitions, which
+ * triggers `-Wunused-function` warnings in C.
+ */
+#if defined(MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIME_ADDRESS)
+#if defined(MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIMECMP_ADDRESS)
+#define MICRO_OS_PLUS_ARCHITECTURE_RISCV_HAS_DEVICE_ADDRESSES
+#endif // defined(MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIMECMP_ADDRESS)
+#endif // defined(MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIME_ADDRESS)
+
+#if defined(__DOXYGEN__)
+#define MICRO_OS_PLUS_ARCHITECTURE_RISCV_HAS_DEVICE_ADDRESSES
+#endif // defined(__DOXYGEN__)
+
+// ----------------------------------------------------------------------------
+
 /*
  * RISC-V device support functions.
  *
@@ -34,6 +58,8 @@
 extern "C"
 {
 #endif // defined(__cplusplus)
+
+#if defined(MICRO_OS_PLUS_ARCHITECTURE_RISCV_HAS_DEVICE_ADDRESSES)
 
   // --------------------------------------------------------------------------
   // `mtime` functions.
@@ -220,6 +246,8 @@ extern "C"
 
   // --------------------------------------------------------------------------
 
+#endif // defined(MICRO_OS_PLUS_ARCHITECTURE_RISCV_HAS_DEVICE_ADDRESSES)
+
 #if defined(__cplusplus)
 }
 #endif // defined(__cplusplus)
@@ -401,11 +429,9 @@ namespace riscv
 // The inline definitions need the device specific MMIO addresses; they
 // are included only if the device defined both of them before including
 // this header.
-#if defined(MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIME_ADDRESS)
-#if defined(MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIMECMP_ADDRESS)
+#if defined(MICRO_OS_PLUS_ARCHITECTURE_RISCV_HAS_DEVICE_ADDRESSES)
 #include "inlines/device-functions-inlines.h"
-#endif // defined(MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIMECMP_ADDRESS)
-#endif // defined(MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIME_ADDRESS)
+#endif // defined(MICRO_OS_PLUS_ARCHITECTURE_RISCV_HAS_DEVICE_ADDRESSES)
 
 // ----------------------------------------------------------------------------
 
