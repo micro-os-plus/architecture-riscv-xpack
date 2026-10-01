@@ -66,9 +66,36 @@ extern "C"
   void
   riscv_core_update_running_frequency (void);
 
+  /**
+   * @brief Enable the machine external interrupts.
+   * @par Parameters
+   *  None.
+   * @par Returns
+   *  Nothing.
+   *
+   * @details
+   * Sets the `MEIP` bit in `mie`, which enables the interrupts
+   * forwarded by the PLIC to this hart. The individual sources must
+   * also be enabled in the PLIC, and the global `mstatus.MIE` bit
+   * must be set for the interrupts to be taken.
+   *
+   * The change is atomic (a single `csrrs`), so the function can be
+   * called from interrupt handlers.
+   */
   static void
   riscv_core_enable_machine_external_interrupts (void);
 
+  /**
+   * @brief Disable the machine external interrupts.
+   * @par Parameters
+   *  None.
+   * @par Returns
+   *  Nothing.
+   *
+   * @details
+   * Clears the `MEIP` bit in `mie`; the PLIC configuration is not
+   * changed. The change is atomic (a single `csrrc`).
+   */
   static void
   riscv_core_disable_machine_external_interrupts (void);
 
@@ -142,13 +169,29 @@ namespace riscv
     update_running_frequency (void);
 
     /**
-     * @brief Enable external interrupts (used by PLIC).
+     * @brief Enable the machine external interrupts.
+     * @par Parameters
+     *  None.
+     * @par Returns
+     *  Nothing.
+     *
+     * @details
+     * The C++ equivalent of
+     * `riscv_core_enable_machine_external_interrupts()`.
      */
     void
     enable_machine_external_interrupts (void);
 
     /**
-     * @brief Disable external interrupts (used by PLIC).
+     * @brief Disable the machine external interrupts.
+     * @par Parameters
+     *  None.
+     * @par Returns
+     *  Nothing.
+     *
+     * @details
+     * The C++ equivalent of
+     * `riscv_core_disable_machine_external_interrupts()`.
      */
     void
     disable_machine_external_interrupts (void);

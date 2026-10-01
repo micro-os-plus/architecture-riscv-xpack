@@ -100,36 +100,24 @@ extern "C"
     riscv_architecture_nop ();
   }
 
-  /**
-   * `break` instruction.
-   */
   static inline __attribute__ ((always_inline)) void
   micro_os_plus_architecture_brk (void)
   {
     riscv_architecture_ebreak ();
   }
 
-  /**
-   * `wfi` instruction.
-   */
   static inline __attribute__ ((always_inline)) void
   micro_os_plus_architecture_wfi (void)
   {
     riscv_architecture_wfi ();
   }
 
-  /**
-   * Data synchronisation barrier (`fence iorw, iorw`).
-   */
   static inline __attribute__ ((always_inline)) void
   micro_os_plus_architecture_data_barrier (void)
   {
     riscv_architecture_fence ();
   }
 
-  /**
-   * Instruction synchronisation barrier (`fence.i`).
-   */
   static inline __attribute__ ((always_inline)) void
   micro_os_plus_architecture_instruction_barrier (void)
   {

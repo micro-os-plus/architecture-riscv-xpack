@@ -32,9 +32,6 @@ extern "C"
     riscv_csr_set_mie_bits (RISCV_CSR_MIP_MEIP);
   }
 
-  /**
-   * @brief Disable external interrupts (used by PLIC).
-   */
   static inline __attribute__ ((always_inline)) void
   riscv_core_disable_machine_external_interrupts (void)
   {

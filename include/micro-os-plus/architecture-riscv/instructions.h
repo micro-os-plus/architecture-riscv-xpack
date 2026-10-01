@@ -31,15 +31,30 @@ extern "C"
   // Architecture assembly instructions in C.
 
   /**
-   * `nop` instruction.
+   * @brief Execute the `nop` instruction.
+   * @par Parameters
+   *  None.
+   * @par Returns
+   *  Nothing.
+   *
+   * @details
+   * Does nothing; usually used for short delays or as a placeholder.
+   * It is not a memory barrier.
    */
   static void
   riscv_architecture_nop (void);
 
   /**
-   * @brief `ebreak` instruction.
+   * @brief Execute the `ebreak` instruction.
+   * @par Parameters
+   *  None.
+   * @par Returns
+   *  Nothing.
    *
    * @details
+   * Enters the debugger, if one is attached; otherwise it raises a
+   * breakpoint exception (`riscv_exception_breakpoint`).
+   *
    * The instruction is also a compiler memory barrier, so all memory
    * writes issued before it are visible to a debugger inspecting the
    * target when the breakpoint is hit.
@@ -48,9 +63,18 @@ extern "C"
   riscv_architecture_ebreak (void);
 
   /**
-   * @brief `wfi` instruction.
+   * @brief Execute the `wfi` (wait for interrupt) instruction.
+   * @par Parameters
+   *  None.
+   * @par Returns
+   *  Nothing.
    *
    * @details
+   * Stalls the hart, possibly in a low power state, until an
+   * interrupt is pending; the interrupt is taken only if enabled. The
+   * instruction may also complete earlier, so it must be used in a
+   * loop that checks the wake-up condition.
+   *
    * The instruction is also a compiler memory barrier, so variables
    * modified by interrupt handlers are re-read after the core wakes
    * up; without it, loops like `while (!flag) wfi();` may never
@@ -60,15 +84,31 @@ extern "C"
   riscv_architecture_wfi (void);
 
   /**
-   * `fence iorw, iorw` instruction (full memory and I/O fence).
+   * @brief Execute the `fence iorw, iorw` instruction.
+   * @par Parameters
+   *  None.
+   * @par Returns
+   *  Nothing.
+   *
+   * @details
+   * A full memory and I/O fence: all memory and device accesses issued
+   * before it are ordered before those issued after it, as observed
+   * by other harts and devices. It is also a compiler memory barrier.
    */
   static void
   riscv_architecture_fence (void);
 
   /**
-   * `fence.i` instruction (Zifencei, instruction fetch fence).
+   * @brief Execute the `fence.i` instruction (Zifencei).
+   * @par Parameters
+   *  None.
+   * @par Returns
+   *  Nothing.
    *
    * @details
+   * Synchronises the instruction fetch of the current hart with the
+   * preceding stores, for example after code was written to memory.
+   *
    * Emitted via its `.insn` encoding, so it assembles even when
    * `_zifencei` is not part of `-march` (GCC 12 and later require it
    * for the `fence.i` mnemonic). On cores that do not implement
@@ -81,7 +121,14 @@ extern "C"
   // Portable architecture assembly instructions in C.
 
   /**
-   * `nop` instruction.
+   * @brief No operation.
+   * @par Parameters
+   *  None.
+   * @par Returns
+   *  Nothing.
+   *
+   * @details
+   * The portable µOS++ name; on RISC-V it executes `nop`.
    */
   static void
   micro_os_plus_architecture_nop (void);
@@ -158,31 +205,69 @@ namespace riscv
     // Architecture assembly instructions in C++.
 
     /**
-     * The assembler `nop` instruction.
+     * @brief Execute the `nop` instruction.
+     * @par Parameters
+     *  None.
+     * @par Returns
+     *  Nothing.
+     *
+     * @details
+     * The C++ equivalent of `riscv_architecture_nop()`.
      */
     void
     nop (void);
 
     /**
-     * The assembler `ebreak` instruction.
+     * @brief Execute the `ebreak` instruction.
+     * @par Parameters
+     *  None.
+     * @par Returns
+     *  Nothing.
+     *
+     * @details
+     * The C++ equivalent of `riscv_architecture_ebreak()`; it is also a
+     * compiler memory barrier.
      */
     void
     ebreak (void);
 
     /**
-     * The assembler `wfi` instruction.
+     * @brief Execute the `wfi` instruction.
+     * @par Parameters
+     *  None.
+     * @par Returns
+     *  Nothing.
+     *
+     * @details
+     * The C++ equivalent of `riscv_architecture_wfi()`; it is also a
+     * compiler memory barrier, and must be used in a loop.
      */
     void
     wfi (void);
 
     /**
-     * The assembler `fence iorw, iorw` instruction.
+     * @brief Execute the `fence iorw, iorw` instruction.
+     * @par Parameters
+     *  None.
+     * @par Returns
+     *  Nothing.
+     *
+     * @details
+     * The C++ equivalent of `riscv_architecture_fence()`.
      */
     void
     fence (void);
 
     /**
-     * The assembler `fence.i` instruction.
+     * @brief Execute the `fence.i` instruction.
+     * @par Parameters
+     *  None.
+     * @par Returns
+     *  Nothing.
+     *
+     * @details
+     * The C++ equivalent of `riscv_architecture_fence_i()`; it requires
+     * the Zifencei extension.
      */
     void
     fence_i (void);
@@ -201,19 +286,42 @@ namespace micro_os_plus
     // Portable architecture assembly instructions in C++.
 
     /**
-     * The assembler `nop` instruction.
+     * @brief No operation.
+     * @par Parameters
+     *  None.
+     * @par Returns
+     *  Nothing.
+     *
+     * @details
+     * The C++ equivalent of `micro_os_plus_architecture_nop()`.
      */
     void
     nop (void);
 
     /**
-     * The assembler `break` instruction.
+     * @brief Breakpoint.
+     * @par Parameters
+     *  None.
+     * @par Returns
+     *  Nothing.
+     *
+     * @details
+     * The C++ equivalent of `micro_os_plus_architecture_brk()`; on
+     * RISC-V it executes `ebreak`.
      */
     void
     brk (void);
 
     /**
-     * The assembler `wfi` instruction.
+     * @brief Wait for interrupt.
+     * @par Parameters
+     *  None.
+     * @par Returns
+     *  Nothing.
+     *
+     * @details
+     * The C++ equivalent of `micro_os_plus_architecture_wfi()`; on
+     * RISC-V it executes `wfi`.
      */
     void
     wfi (void);

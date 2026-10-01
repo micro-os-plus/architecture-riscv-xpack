@@ -18,25 +18,78 @@
 
 #include <stdint.h>
 
-#if defined(__cplusplus)
-extern "C"
-{
-#endif // defined(__cplusplus)
+// Register types; they do not need C linkage, and are defined outside
+// the `extern "C"` block to keep a consistent formatting.
 
 #if __riscv_xlen == 32
-  typedef uint32_t riscv_architecture_register_t;
-  typedef int32_t riscv_architecture_signed_register_t;
+/**
+ * @brief Unsigned integer type with the width of a register.
+ *
+ * @details
+ * `uint32_t` on RV32; the type of the CSR accessors and of the
+ * values saved in a trap frame.
+ */
+typedef uint32_t riscv_architecture_register_t;
+/**
+ * @brief Signed integer type with the width of a register.
+ *
+ * @details
+ * `int32_t` on RV32.
+ */
+typedef int32_t riscv_architecture_signed_register_t;
 #elif __riscv_xlen == 64
+/**
+ * @brief Unsigned integer type with the width of a register.
+ *
+ * @details
+ * `uint64_t` on RV64; the type of the CSR accessors and of the
+ * values saved in a trap frame.
+ */
 typedef uint64_t riscv_architecture_register_t;
+/**
+ * @brief Signed integer type with the width of a register.
+ *
+ * @details
+ * `int64_t` on RV64.
+ */
 typedef int64_t riscv_architecture_signed_register_t;
 #else // !(__riscv_xlen == 32) && !(__riscv_xlen == 64)
 #error "Unsupported __riscv_xlen"
 #endif // __riscv_xlen == 32
 
+#if defined(__cplusplus)
+extern "C"
+{
+#endif // defined(__cplusplus)
+
+  /**
+   * @brief Portable name of the register type.
+   *
+   * @details
+   * Used by architecture independent µOS++ code (for example the
+   * semihosting package).
+   */
   typedef riscv_architecture_register_t micro_os_plus_architecture_register_t;
+
+  /**
+   * @brief Portable name of the signed register type.
+   *
+   * @details
+   * Used by architecture independent µOS++ code.
+   */
   typedef riscv_architecture_signed_register_t
       micro_os_plus_architecture_signed_register_t;
 
+  /**
+   * @brief Pointer to a trap (interrupt or exception) handler.
+   *
+   * @details
+   * The type of the entries in the interrupt handler tables
+   * (`riscv::core::local_interrupt_handlers[]` and
+   * `riscv::core::global_interrupt_handlers[]`). The handlers are
+   * regular C functions, called by the trap dispatcher after the
+   * context was saved.
+   */
   typedef void (*riscv_core_trap_handler_ptr_t) (void);
 
   /**
@@ -59,6 +112,14 @@ typedef int64_t riscv_architecture_signed_register_t;
 
   // --------------------------------------------------------------------------
 
+  /**
+   * @brief Synchronous exception codes.
+   *
+   * @details
+   * The values of `mcause` when the interrupt bit
+   * (`RISCV_CSR_MCAUSE_INTERRUPT`) is clear, as defined by the RISC-V
+   * privileged specification; codes 10 and 14 are reserved.
+   */
   typedef enum
   {
     riscv_exception_misaligned_fetch = 0,
@@ -79,11 +140,25 @@ typedef int64_t riscv_architecture_signed_register_t;
     riscv_exception_page_store = 15
   } riscv_exceptions_enum_t;
 
+  /**
+   * @brief The highest exception code in `riscv_exceptions_enum_t`.
+   *
+   * @details
+   * Used to size tables indexed by the exception code.
+   */
 #define RISCV_EXCEPTIONS_LAST_NUMBER (15u)
 
   // --------------------------------------------------------------------------
-  // Values from Table 3.6.
 
+  /**
+   * @brief Local (core) interrupt codes.
+   *
+   * @details
+   * The values of `mcause` when the interrupt bit
+   * (`RISCV_CSR_MCAUSE_INTERRUPT`) is set, which are also the bit
+   * positions in `mie` and `mip` (see `RISCV_CSR_MIP_*`), as defined
+   * by the RISC-V privileged specification.
+   */
   typedef enum
   {
     riscv_interrupt_local_user_software = 0,
@@ -106,6 +181,9 @@ typedef int64_t riscv_architecture_signed_register_t;
 
   // Ensure the `RISCV_CSR_MIP_*` bit masks, which use literal bit
   // numbers to be usable in assembly, match the enumeration values.
+  // These are compile time checks, not part of the API.
+#if !defined(__DOXYGEN__)
+
 #if defined(__cplusplus)
 #define RISCV_STATIC_ASSERT static_assert
 #else // !defined(__cplusplus)
@@ -134,6 +212,8 @@ typedef int64_t riscv_architecture_signed_register_t;
 
 #undef RISCV_STATIC_ASSERT
 
+#endif // !defined(__DOXYGEN__)
+
   // --------------------------------------------------------------------------
 
 #if defined(__cplusplus)
@@ -150,7 +230,20 @@ namespace riscv::architecture
 {
   // --------------------------------------------------------------------------
 
+  /**
+   * @brief Unsigned integer type with the width of a register.
+   *
+   * @details
+   * The C++ name of `riscv_architecture_register_t`.
+   */
   using register_t = riscv_architecture_register_t;
+
+  /**
+   * @brief Signed integer type with the width of a register.
+   *
+   * @details
+   * The C++ name of `riscv_architecture_signed_register_t`.
+   */
   using signed_register_t = riscv_architecture_signed_register_t;
 
   // --------------------------------------------------------------------------
@@ -160,6 +253,12 @@ namespace riscv::core
 {
   // --------------------------------------------------------------------------
 
+  /**
+   * @brief Pointer to a trap (interrupt or exception) handler.
+   *
+   * @details
+   * The C++ name of `riscv_core_trap_handler_ptr_t`.
+   */
   using trap_handler_ptr_t = riscv_core_trap_handler_ptr_t;
 
   // --------------------------------------------------------------------------
@@ -169,7 +268,20 @@ namespace micro_os_plus::architecture
 {
   // --------------------------------------------------------------------------
 
+  /**
+   * @brief Portable C++ name of the register type.
+   *
+   * @details
+   * Used by architecture independent µOS++ C++ code.
+   */
   using register_t = riscv_architecture_register_t;
+
+  /**
+   * @brief Portable C++ name of the signed register type.
+   *
+   * @details
+   * Used by architecture independent µOS++ C++ code.
+   */
   using signed_register_t = riscv_architecture_signed_register_t;
 
   // --------------------------------------------------------------------------

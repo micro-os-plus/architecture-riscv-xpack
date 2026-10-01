@@ -55,15 +55,36 @@ extern "C"
   static uint64_t
   riscv_device_read_mtime (void);
 
+  /**
+   * @brief Read the low 32 bits of the `mtime` register.
+   * @par Parameters
+   *  None.
+   * @return The low word of `mtime`.
+   *
+   * @details
+   * The low word wraps around every 2^32 ticks. Combining the two
+   * halves is not atomic on RV32; use the 64-bit function to get a
+   * consistent value.
+   */
   static uint32_t
   riscv_device_read_mtime_low (void);
 
+  /**
+   * @brief Read the high 32 bits of the `mtime` register.
+   * @par Parameters
+   *  None.
+   * @return The high word of `mtime`.
+   *
+   * @details
+   * Combining the two halves is not atomic on RV32; use the 64-bit
+   * function to get a consistent value.
+   */
   static uint32_t
   riscv_device_read_mtime_high (void);
 
   /**
    * @brief Write the 64-bit `mtime` register.
-   * @param [in] value The new value of the machine timer.
+   * @param value The new value of the machine timer.
    * @par Returns
    *  Nothing.
    *
@@ -78,27 +99,80 @@ extern "C"
   static void
   riscv_device_write_mtime (uint64_t value);
 
+  /**
+   * @brief Write the low 32 bits of the `mtime` register.
+   * @param value The new low word.
+   * @par Returns
+   *  Nothing.
+   *
+   * @details
+   * The other word is not changed. To write the full value, use
+   * `riscv_device_write_mtime()`, which uses a safe sequence on RV32.
+   */
   static void
   riscv_device_write_mtime_low (uint32_t value);
 
+  /**
+   * @brief Write the high 32 bits of the `mtime` register.
+   * @param value The new high word.
+   * @par Returns
+   *  Nothing.
+   *
+   * @details
+   * The other word is not changed. To write the full value, use
+   * `riscv_device_write_mtime()`, which uses a safe sequence on RV32.
+   */
   static void
   riscv_device_write_mtime_high (uint32_t value);
 
   // --------------------------------------------------------------------------
   // `mtimecmp` functions.
 
+  /**
+   * @brief Read the 64-bit `mtimecmp` register.
+   * @par Parameters
+   *  None.
+   * @return The current value of the timer comparator.
+   *
+   * @details
+   * A machine timer interrupt is pending while `mtime` is greater
+   * than or equal to `mtimecmp`. On RV32 the value is read with two
+   * 32-bit accesses; since `mtimecmp` is changed only by software, the
+   * result is consistent unless it is written concurrently by an
+   * interrupt handler or another hart.
+   */
   static uint64_t
   riscv_device_read_mtimecmp (void);
 
+  /**
+   * @brief Read the low 32 bits of the `mtimecmp` register.
+   * @par Parameters
+   *  None.
+   * @return The low word of `mtimecmp`.
+   *
+   * @details
+   * Combining the two halves is not atomic on RV32; use the 64-bit
+   * function to get a consistent value.
+   */
   static uint32_t
   riscv_device_read_mtimecmp_low (void);
 
+  /**
+   * @brief Read the high 32 bits of the `mtimecmp` register.
+   * @par Parameters
+   *  None.
+   * @return The high word of `mtimecmp`.
+   *
+   * @details
+   * Combining the two halves is not atomic on RV32; use the 64-bit
+   * function to get a consistent value.
+   */
   static uint32_t
   riscv_device_read_mtimecmp_high (void);
 
   /**
    * @brief Write the 64-bit `mtimecmp` register.
-   * @param [in] value The new value of the timer comparator.
+   * @param value The new value of the timer comparator.
    * @par Returns
    *  Nothing.
    *
@@ -116,9 +190,31 @@ extern "C"
   static void
   riscv_device_write_mtimecmp (uint64_t value);
 
+  /**
+   * @brief Write the low 32 bits of the `mtimecmp` register.
+   * @param value The new low word.
+   * @par Returns
+   *  Nothing.
+   *
+   * @details
+   * The other word is not changed. Writing the two halves separately
+   * may trigger a spurious timer interrupt, if an intermediate value is
+   * not larger than `mtime`; use `riscv_device_write_mtimecmp()`.
+   */
   static void
   riscv_device_write_mtimecmp_low (uint32_t value);
 
+  /**
+   * @brief Write the high 32 bits of the `mtimecmp` register.
+   * @param value The new high word.
+   * @par Returns
+   *  Nothing.
+   *
+   * @details
+   * The other word is not changed. Writing the two halves separately
+   * may trigger a spurious timer interrupt, if an intermediate value is
+   * not larger than `mtime`; use `riscv_device_write_mtimecmp()`.
+   */
   static void
   riscv_device_write_mtimecmp_high (uint32_t value);
 
@@ -138,7 +234,7 @@ namespace riscv
 {
   namespace device
   {
-    // --------------------------------------------------------------------------
+    // ------------------------------------------------------------------------
     // `mtime` functions.
 
     /**
@@ -155,15 +251,33 @@ namespace riscv
     uint64_t
     mtime (void);
 
+    /**
+     * @brief Read the low 32 bits of `mtime`.
+     * @par Parameters
+     *  None.
+     * @return The low word.
+     *
+     * @details
+     * The C++ equivalent of `riscv_device_read_mtime_low()`.
+     */
     uint32_t
     mtime_low (void);
 
+    /**
+     * @brief Read the high 32 bits of `mtime`.
+     * @par Parameters
+     *  None.
+     * @return The high word.
+     *
+     * @details
+     * The C++ equivalent of `riscv_device_read_mtime_high()`.
+     */
     uint32_t
     mtime_high (void);
 
     /**
      * @brief Write the 64-bit `mtime` register.
-     * @param [in] value The new value of the machine timer.
+     * @param value The new value of the machine timer.
      * @par Returns
      *  Nothing.
      *
@@ -173,9 +287,27 @@ namespace riscv
     void
     mtime (uint64_t value);
 
+    /**
+     * @brief Write the low 32 bits of `mtime`.
+     * @param value The new low word.
+     * @par Returns
+     *  Nothing.
+     *
+     * @details
+     * The C++ equivalent of `riscv_device_write_mtime_low()`.
+     */
     void
     mtime_low (uint32_t value);
 
+    /**
+     * @brief Write the high 32 bits of `mtime`.
+     * @param value The new high word.
+     * @par Returns
+     *  Nothing.
+     *
+     * @details
+     * The C++ equivalent of `riscv_device_write_mtime_high()`.
+     */
     void
     mtime_high (uint32_t value);
 
@@ -183,20 +315,44 @@ namespace riscv
     // `mtimecmp` functions.
 
     /**
-     * Read the RTC comparator.
+     * @brief Read the 64-bit `mtimecmp` register.
+     * @par Parameters
+     *  None.
+     * @return The current value of the timer comparator.
+     *
+     * @details
+     * The C++ equivalent of `riscv_device_read_mtimecmp()`.
      */
     uint64_t
     mtimecmp (void);
 
+    /**
+     * @brief Read the low 32 bits of `mtimecmp`.
+     * @par Parameters
+     *  None.
+     * @return The low word.
+     *
+     * @details
+     * The C++ equivalent of `riscv_device_read_mtimecmp_low()`.
+     */
     uint32_t
     mtimecmp_low (void);
 
+    /**
+     * @brief Read the high 32 bits of `mtimecmp`.
+     * @par Parameters
+     *  None.
+     * @return The high word.
+     *
+     * @details
+     * The C++ equivalent of `riscv_device_read_mtimecmp_high()`.
+     */
     uint32_t
     mtimecmp_high (void);
 
     /**
      * @brief Write the 64-bit `mtimecmp` register.
-     * @param [in] value The new value of the timer comparator.
+     * @param value The new value of the timer comparator.
      * @par Returns
      *  Nothing.
      *
@@ -207,9 +363,27 @@ namespace riscv
     void
     mtimecmp (uint64_t value);
 
+    /**
+     * @brief Write the low 32 bits of `mtimecmp`.
+     * @param value The new low word.
+     * @par Returns
+     *  Nothing.
+     *
+     * @details
+     * The C++ equivalent of `riscv_device_write_mtimecmp_low()`.
+     */
     void
     mtimecmp_low (uint32_t value);
 
+    /**
+     * @brief Write the high 32 bits of `mtimecmp`.
+     * @param value The new high word.
+     * @par Returns
+     *  Nothing.
+     *
+     * @details
+     * The C++ equivalent of `riscv_device_write_mtimecmp_high()`.
+     */
     void
     mtimecmp_high (uint32_t value);
 

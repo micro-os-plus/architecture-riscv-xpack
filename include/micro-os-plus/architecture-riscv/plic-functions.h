@@ -47,7 +47,22 @@ namespace riscv
   {
     // ------------------------------------------------------------------------
 
+    /**
+     * @brief Type of a PLIC global interrupt source id.
+     *
+     * @details
+     * The C++ name of `riscv_plic_source_t`; id 0 means "no
+     * interrupt".
+     */
     using source_t = riscv_plic_source_t;
+
+    /**
+     * @brief Type of a PLIC interrupt priority or threshold.
+     *
+     * @details
+     * The C++ name of `riscv_plic_priority_t`; priority 0 means "never
+     * interrupt".
+     */
     using priority_t = riscv_plic_priority_t;
 
     /**
@@ -90,7 +105,7 @@ namespace riscv
 
     /**
      * @brief Set the interrupt threshold for the current target (hart).
-     * @param [in] priority The new threshold value.
+     * @param priority The new threshold value.
      * @return The previous threshold value.
      *
      * @details
@@ -109,6 +124,10 @@ namespace riscv
      * are masked. If implemented, the threshold register will usually
      * also be able to hold the maximum priority level, in which case
      * all interrupts are masked.
+     *
+     * The threshold is per hart; the read-modify-write is not atomic,
+     * so the function must not be interrupted by handlers that also
+     * change the threshold.
      */
     priority_t
     threshold (priority_t priority);
@@ -124,7 +143,7 @@ namespace riscv
 
     /**
      * @brief Enable an interrupt for the current target (hart).
-     * @param [in] global_interrupt_id The id of the global interrupt
+     * @param global_interrupt_id The id of the global interrupt
      *  source.
      * @par Returns
      *  Nothing.
@@ -134,7 +153,7 @@ namespace riscv
 
     /**
      * @brief Disable an interrupt for the current target (hart).
-     * @param [in] global_interrupt_id The id of the global interrupt
+     * @param global_interrupt_id The id of the global interrupt
      *  source.
      * @par Returns
      *  Nothing.
@@ -145,7 +164,7 @@ namespace riscv
     /**
      * @brief Check if an interrupt is enabled for the current target
      *  (hart).
-     * @param [in] global_interrupt_id The id of the global interrupt
+     * @param global_interrupt_id The id of the global interrupt
      *  source.
      * @retval true The interrupt is enabled.
      * @retval false The interrupt is disabled.
@@ -155,9 +174,9 @@ namespace riscv
 
     /**
      * @brief Set the priority of an interrupt.
-     * @param [in] global_interrupt_id The id of the global interrupt
+     * @param global_interrupt_id The id of the global interrupt
      *  source.
-     * @param [in] priority The interrupt priority.
+     * @param priority The interrupt priority.
      * @par Returns
      *  Nothing.
      */
@@ -166,7 +185,7 @@ namespace riscv
 
     /**
      * @brief Get the priority of an interrupt.
-     * @param [in] global_interrupt_id The id of the global interrupt
+     * @param global_interrupt_id The id of the global interrupt
      *  source.
      * @return The current priority.
      */
@@ -209,13 +228,18 @@ namespace riscv
      * simpler approach to implement polling would be to clear the
      * external interrupt enable in the corresponding `xie` register
      * for privilege mode `x`.
+     *
+     * The claim is atomic in the PLIC, so concurrent claims by
+     * different harts never return the same interrupt. It must be
+     * followed by `complete_interrupt()` with the returned id, on the
+     * same hart, otherwise the source is not re-enabled.
      */
     source_t
     claim_interrupt (void);
 
     /**
      * @brief Send the completion message to the interrupt target (hart).
-     * @param [in] global_interrupt_id The id of the global interrupt
+     * @param global_interrupt_id The id of the global interrupt
      *  source.
      * @par Returns
      *  Nothing.
@@ -226,6 +250,11 @@ namespace riscv
      * usually as a write to a non-idempotent memory-mapped I/O control
      * register. The gateway will only forward additional interrupts to
      * the PLIC core after receiving the completion message.
+     *
+     * Must be called on the hart that claimed the interrupt, with the
+     * id returned by `claim_interrupt()`; a completion for a source
+     * that is not currently enabled for this hart is silently ignored
+     * by the PLIC.
      */
     void
     complete_interrupt (source_t global_interrupt_id);
@@ -245,9 +274,31 @@ extern "C"
 
   // --------------------------------------------------------------------------
 
+  /**
+   * @brief Initialise the interrupt controller for the current hart.
+   * @par Parameters
+   *  None.
+   * @par Returns
+   *  Nothing.
+   *
+   * @details
+   * The C equivalent of `riscv::plic::initialize()`; usually defined
+   * by the device package as an alias of the C++ function.
+   */
   void
   riscv_plic_initialize (void);
 
+  /**
+   * @brief Clear all PLIC priorities.
+   * @par Parameters
+   *  None.
+   * @par Returns
+   *  Nothing.
+   *
+   * @details
+   * The C equivalent of `riscv::plic::clear_priorities()`; usually
+   * defined by the device package as an alias of the C++ function.
+   */
   void
   riscv_plic_clear_priorities (void);
 

@@ -92,9 +92,6 @@ extern "C"
 
   // --------------------------------------------------------------------------
 
-  /**
-   * Read `mtvec` CSR.
-   */
   static inline __attribute__ ((always_inline)) riscv_architecture_register_t
   riscv_csr_read_mtvec (void)
   {
@@ -112,9 +109,6 @@ extern "C"
     return tmp;
   }
 
-  /**
-   * Write `mtvec` CSR.
-   */
   static inline __attribute__ ((always_inline)) void
   riscv_csr_write_mtvec (riscv_architecture_register_t value)
   {

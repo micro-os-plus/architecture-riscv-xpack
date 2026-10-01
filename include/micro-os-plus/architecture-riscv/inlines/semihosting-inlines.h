@@ -14,7 +14,15 @@
 
 // ----------------------------------------------------------------------------
 
-// The hint that differentiates the semihosting call.
+/**
+ * @brief Immediate of the `srai` instruction that marks a semihosting
+ *  call.
+ *
+ * @details
+ * A semihosting call is the sequence `slli x0, x0, 0x1f`, `ebreak`,
+ * `srai x0, x0, 7`; the surrounding instructions distinguish it from
+ * a regular breakpoint.
+ */
 #define RISCV_SEMIHOSTING_CALL_NUMBER 7
 
 // ----------------------------------------------------------------------------
@@ -25,15 +33,30 @@ extern "C"
 #endif // defined(__cplusplus)
 
   // --------------------------------------------------------------------------
-  // Type of each entry in structures.
+  /**
+   * @brief Type of each entry in the semihosting structures.
+   *
+   * @details
+   * Register wide, as required by the semihosting specification.
+   */
   typedef micro_os_plus_architecture_register_t
       micro_os_plus_semihosting_register_t;
 
-  // Type of each entry in a parameter block.
+  /**
+   * @brief Type of each entry in a semihosting parameter block.
+   *
+   * @details
+   * Register wide; the address of the block is passed in `a1`.
+   */
   typedef micro_os_plus_architecture_register_t
       micro_os_plus_semihosting_param_block_t;
 
-  // Type of result.
+  /**
+   * @brief Type of the result of a semihosting call.
+   *
+   * @details
+   * Signed and register wide; returned by the host in `a0`.
+   */
   typedef micro_os_plus_architecture_signed_register_t
       micro_os_plus_semihosting_response_t;
 

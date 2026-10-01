@@ -26,20 +26,28 @@
 // `riscv::csr::write<>()` function templates are preferred.
 
 /**
+ * @brief Internal helper of `RISCV_CSR_STRINGIFY()`.
+ * @param x The token(s) to convert, not expanded.
+ *
+ * @details
+ * Do not use directly.
+ */
+#define RISCV_CSR_STRINGIFY_(x) #x
+
+/**
  * @brief Convert a macro argument to a string, after expanding it.
- * @param [in] x The token(s) to convert.
+ * @param x The token(s) to convert.
  *
  * @details
  * The two-level indirection allows the CSR argument of
  * `RISCV_CSR_READ()` and `RISCV_CSR_WRITE()` to be itself a macro
  * that expands to a CSR name or number.
  */
-#define RISCV_CSR_STRINGIFY_(x) #x
 #define RISCV_CSR_STRINGIFY(x) RISCV_CSR_STRINGIFY_ (x)
 
 /**
  * @brief Read any CSR.
- * @param [in] csr The CSR, as a name known by the assembler (for
+ * @param csr The CSR, as a name known by the assembler (for
  *  example `mstatus`) or as a plain integer literal (for example
  *  `0x300`), without suffixes.
  * @return The value of the CSR, as `riscv_architecture_register_t`.
@@ -60,10 +68,10 @@
 
 /**
  * @brief Write any CSR.
- * @param [in] csr The CSR, as a name known by the assembler (for
+ * @param csr The CSR, as a name known by the assembler (for
  *  example `mstatus`) or as a plain integer literal (for example
  *  `0x300`), without suffixes.
- * @param [in] value The value to write; small constants (0 to 31) are
+ * @param value The value to write; small constants (0 to 31) are
  *  encoded as immediates.
  *
  * @details
@@ -90,15 +98,31 @@ extern "C"
   // `mstatus`
 
   /**
-   * Read the `mstatus` CSR.
+   * @brief Read the `mstatus` CSR.
+   * @par Parameters
+   *  None.
+   * @return The value of the CSR.
+   *
+   * @details
+   * The machine status register; it holds, among others, the global
+   * interrupt enable (`MIE`), the previous privilege mode (`MPP`), and
+   * the floating-point unit state (`FS`); see the
+   * `RISCV_CSR_MSTATUS_*` definitions.
    */
   static riscv_architecture_register_t
   riscv_csr_read_mstatus (void);
 
   /**
    * @brief Write the `mstatus` CSR.
+   * @param value The new value of the CSR.
+   * @par Returns
+   *  Nothing.
    *
    * @details
+   * Prefer `riscv_csr_clear_mstatus_bits()` and
+   * `riscv_csr_set_mstatus_bits()`, which are atomic; a read followed
+   * by a write may lose concurrent changes made by interrupt handlers.
+   *
    * The instruction is also a compiler memory barrier, so memory
    * accesses are not moved across it; this is required when the
    * function is used to delimit critical sections.
@@ -108,8 +132,18 @@ extern "C"
 
   /**
    * @brief Clear bits in the `mstatus` CSR.
+   * @param mask The bits to clear; the other bits are not changed.
+   * @return The previous value of the CSR.
    *
    * @details
+   * The read-modify-write is performed atomically by a single `csrrc`
+   * instruction, so the function can be safely used from interrupt
+   * handlers, without additional protection.
+   *
+   * For example, clearing `RISCV_CSR_MSTATUS_MIE` disables all
+   * interrupts; the returned value allows the previous state to be
+   * restored.
+   *
    * The instruction is also a compiler memory barrier, so memory
    * accesses are not moved across it; this is required when the
    * function is used to delimit critical sections.
@@ -119,8 +153,17 @@ extern "C"
 
   /**
    * @brief Set bits in the `mstatus` CSR.
+   * @param mask The bits to set; the other bits are not changed.
+   * @return The previous value of the CSR.
    *
    * @details
+   * The read-modify-write is performed atomically by a single `csrrs`
+   * instruction, so the function can be safely used from interrupt
+   * handlers, without additional protection.
+   *
+   * For example, setting `RISCV_CSR_MSTATUS_MIE` enables the
+   * interrupts.
+   *
    * The instruction is also a compiler memory barrier, so memory
    * accesses are not moved across it; this is required when the
    * function is used to delimit critical sections.
@@ -132,13 +175,24 @@ extern "C"
   // `mtvec`
 
   /**
-   * Read the `mtvec` CSR.
+   * @brief Read the `mtvec` CSR.
+   * @par Parameters
+   *  None.
+   * @return The value of the CSR.
+   *
+   * @details
+   * The machine trap vector base address register: the address of
+   * the trap handler (aligned to 4 bytes), and the mode in the two
+   * least significant bits (0 = direct, 1 = vectored).
    */
   static riscv_architecture_register_t
   riscv_csr_read_mtvec (void);
 
   /**
    * @brief Write the `mtvec` CSR.
+   * @param value The new value of the CSR.
+   * @par Returns
+   *  Nothing.
    *
    * @details
    * The instruction is also a compiler memory barrier, so memory
@@ -152,7 +206,16 @@ extern "C"
   // `mcause`
 
   /**
-   * Read the `mcause` CSR.
+   * @brief Read the `mcause` CSR.
+   * @par Parameters
+   *  None.
+   * @return The value of the CSR.
+   *
+   * @details
+   * The cause of the last trap. If `RISCV_CSR_MCAUSE_INTERRUPT` is
+   * set, the trap is an interrupt and the rest of the value
+   * (`RISCV_CSR_MCAUSE_CAUSE`) is a `riscv_interrupts_local_enum_t`;
+   * otherwise it is an exception (`riscv_exceptions_enum_t`).
    */
   static riscv_architecture_register_t
   riscv_csr_read_mcause (void);
@@ -161,15 +224,30 @@ extern "C"
   // `mie`
 
   /**
-   * Read the `mie` CSR.
+   * @brief Read the `mie` CSR.
+   * @par Parameters
+   *  None.
+   * @return The value of the CSR.
+   *
+   * @details
+   * The machine interrupt enable register, with one bit per local
+   * interrupt (see the `RISCV_CSR_MIP_*` bit masks, which use the same
+   * positions).
    */
   static riscv_architecture_register_t
   riscv_csr_read_mie (void);
 
   /**
    * @brief Write the `mie` CSR.
+   * @param value The new value of the CSR.
+   * @par Returns
+   *  Nothing.
    *
    * @details
+   * Prefer `riscv_csr_clear_mie_bits()` and `riscv_csr_set_mie_bits()`,
+   * which are atomic; a read followed by a write may lose concurrent
+   * changes made by interrupt handlers.
+   *
    * The instruction is also a compiler memory barrier, so memory
    * accesses are not moved across it; this is required when the
    * function is used to delimit critical sections.
@@ -179,8 +257,17 @@ extern "C"
 
   /**
    * @brief Clear bits in the `mie` CSR.
+   * @param mask The bits to clear; the other bits are not changed.
+   * @return The previous value of the CSR.
    *
    * @details
+   * The read-modify-write is performed atomically by a single `csrrc`
+   * instruction, so the function can be safely used from interrupt
+   * handlers, without additional protection.
+   *
+   * For example, clearing `RISCV_CSR_MIP_MTIP` disables the machine
+   * timer interrupt.
+   *
    * The instruction is also a compiler memory barrier, so memory
    * accesses are not moved across it; this is required when the
    * function is used to delimit critical sections.
@@ -190,8 +277,17 @@ extern "C"
 
   /**
    * @brief Set bits in the `mie` CSR.
+   * @param mask The bits to set; the other bits are not changed.
+   * @return The previous value of the CSR.
    *
    * @details
+   * The read-modify-write is performed atomically by a single `csrrs`
+   * instruction, so the function can be safely used from interrupt
+   * handlers, without additional protection.
+   *
+   * For example, setting `RISCV_CSR_MIP_MEIP` enables the machine
+   * external interrupts (from the PLIC).
+   *
    * The instruction is also a compiler memory barrier, so memory
    * accesses are not moved across it; this is required when the
    * function is used to delimit critical sections.
@@ -219,9 +315,31 @@ extern "C"
   static uint64_t
   riscv_csr_read_mcycle (void);
 
+  /**
+   * @brief Read the low 32 bits of the `mcycle` CSR.
+   * @par Parameters
+   *  None.
+   * @return The low word of the cycle counter.
+   *
+   * @details
+   * Useful for measuring short intervals, where the wrap-around of
+   * the low word every 2^32 cycles can be handled by unsigned
+   * subtraction.
+   */
   static uint32_t
   riscv_csr_read_mcycle_low (void);
 
+  /**
+   * @brief Read the high 32 bits of the `mcycle` CSR.
+   * @par Parameters
+   *  None.
+   * @return The high word of the cycle counter.
+   *
+   * @details
+   * On RV32 this reads `mcycleh`. Combining it with a separate
+   * `riscv_csr_read_mcycle_low()` call is not atomic; use
+   * `riscv_csr_read_mcycle()` to get a consistent 64-bit value.
+   */
   static uint32_t
   riscv_csr_read_mcycle_high (void);
 
@@ -229,7 +347,14 @@ extern "C"
   // `mhartid`
 
   /**
-   * Read the `mhartid` CSR.
+   * @brief Read the `mhartid` CSR.
+   * @par Parameters
+   *  None.
+   * @return The value of the CSR.
+   *
+   * @details
+   * The ID of the hart executing the code. Hart IDs are not
+   * necessarily contiguous, but one hart must have ID 0.
    */
   static riscv_architecture_register_t
   riscv_csr_read_mhartid (void);
@@ -343,7 +468,7 @@ namespace riscv
     /**
      * @brief Write any CSR.
      * @tparam csr The CSR number (0 to 4095).
-     * @param [in] value The value to write.
+     * @param value The value to write.
      * @par Returns
      *  Nothing.
      *
@@ -360,15 +485,34 @@ namespace riscv
     // ------------------------------------------------------------------------
     // `mstatus`
 
+    /**
+     * @brief Read the `mstatus` CSR.
+     * @par Parameters
+     *  None.
+     * @return The value of the CSR.
+     *
+     * @details
+     * The C++ equivalent of `riscv_csr_read_mstatus()`.
+     */
     architecture::register_t
     mstatus (void);
 
+    /**
+     * @brief Write the `mstatus` CSR.
+     * @param value The new value of the CSR.
+     * @par Returns
+     *  Nothing.
+     *
+     * @details
+     * The C++ equivalent of `riscv_csr_write_mstatus()`; it is also a
+     * compiler memory barrier.
+     */
     void
     mstatus (architecture::register_t value);
 
     /**
      * @brief Clear bits in the `mstatus` CSR.
-     * @param [in] mask The bits to clear.
+     * @param mask The bits to clear.
      * @return The previous value of the CSR.
      *
      * @details
@@ -383,7 +527,7 @@ namespace riscv
 
     /**
      * @brief Set bits in the `mstatus` CSR.
-     * @param [in] mask The bits to set.
+     * @param mask The bits to set.
      * @return The previous value of the CSR.
      *
      * @details
@@ -399,30 +543,77 @@ namespace riscv
     // ------------------------------------------------------------------------
     // `mtvec`
 
+    /**
+     * @brief Read the `mtvec` CSR.
+     * @par Parameters
+     *  None.
+     * @return The value of the CSR.
+     *
+     * @details
+     * The C++ equivalent of `riscv_csr_read_mtvec()`.
+     */
     architecture::register_t
     mtvec (void);
 
+    /**
+     * @brief Write the `mtvec` CSR.
+     * @param value The new value of the CSR.
+     * @par Returns
+     *  Nothing.
+     *
+     * @details
+     * The C++ equivalent of `riscv_csr_write_mtvec()`; it is also a
+     * compiler memory barrier.
+     */
     void
     mtvec (architecture::register_t value);
 
     // ------------------------------------------------------------------------
     // `mcause`
 
+    /**
+     * @brief Read the `mcause` CSR.
+     * @par Parameters
+     *  None.
+     * @return The value of the CSR.
+     *
+     * @details
+     * The C++ equivalent of `riscv_csr_read_mcause()`.
+     */
     architecture::register_t
     mcause (void);
 
     // ------------------------------------------------------------------------
     // `mie`
 
+    /**
+     * @brief Read the `mie` CSR.
+     * @par Parameters
+     *  None.
+     * @return The value of the CSR.
+     *
+     * @details
+     * The C++ equivalent of `riscv_csr_read_mie()`.
+     */
     architecture::register_t
     mie (void);
 
+    /**
+     * @brief Write the `mie` CSR.
+     * @param value The new value of the CSR.
+     * @par Returns
+     *  Nothing.
+     *
+     * @details
+     * The C++ equivalent of `riscv_csr_write_mie()`; it is also a
+     * compiler memory barrier.
+     */
     void
     mie (architecture::register_t value);
 
     /**
      * @brief Clear bits in the `mie` CSR.
-     * @param [in] mask The bits to clear.
+     * @param mask The bits to clear.
      * @return The previous value of the CSR.
      *
      * @details
@@ -437,7 +628,7 @@ namespace riscv
 
     /**
      * @brief Set bits in the `mie` CSR.
-     * @param [in] mask The bits to set.
+     * @param mask The bits to set.
      * @return The previous value of the CSR.
      *
      * @details
@@ -467,15 +658,43 @@ namespace riscv
     uint64_t
     mcycle (void);
 
+    /**
+     * @brief Read the low 32 bits of the `mcycle` counter.
+     * @par Parameters
+     *  None.
+     * @return The low word of the cycle counter.
+     *
+     * @details
+     * The C++ equivalent of `riscv_csr_read_mcycle_low()`.
+     */
     uint32_t
     mcycle_low (void);
 
+    /**
+     * @brief Read the high 32 bits of the `mcycle` counter.
+     * @par Parameters
+     *  None.
+     * @return The high word of the cycle counter.
+     *
+     * @details
+     * The C++ equivalent of `riscv_csr_read_mcycle_high()`; combining
+     * it with `mcycle_low()` is not atomic, use `mcycle()` instead.
+     */
     uint32_t
     mcycle_high (void);
 
     // ------------------------------------------------------------------------
     // `mhartid`
 
+    /**
+     * @brief Read the `mhartid` CSR.
+     * @par Parameters
+     *  None.
+     * @return The value of the CSR.
+     *
+     * @details
+     * The C++ equivalent of `riscv_csr_read_mhartid()`.
+     */
     architecture::register_t
     mhartid (void);
 

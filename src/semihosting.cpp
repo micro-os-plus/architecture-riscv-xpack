@@ -28,6 +28,24 @@
 
 // ----------------------------------------------------------------------------
 
+/**
+ * @details
+ * The RISC-V implementation of the semihosting call, declared in the
+ * `semihosting` package. The operation number is passed in `a0` and
+ * the address of the parameter block in `a1`; the result is returned
+ * by the host in `a0`.
+ *
+ * The `ebreak` is surrounded by the `slli x0, x0, 0x1f` and
+ * `srai x0, x0, 7` instructions, which the debugger checks to
+ * distinguish a semihosting call from a regular breakpoint. The
+ * sequence is aligned to 16 bytes and assembled without compressed
+ * instructions, so that the three instructions are always 32-bit and
+ * in the same page, as required by the specification.
+ *
+ * The core is halted by the debugger while the host performs the
+ * operation, which may take a long time; interrupts are not serviced
+ * meanwhile, so it should not be used in timing critical code.
+ */
 micro_os_plus_semihosting_response_t
 micro_os_plus_semihosting_call_host (
     int reason, micro_os_plus_semihosting_param_block_t* arg)
