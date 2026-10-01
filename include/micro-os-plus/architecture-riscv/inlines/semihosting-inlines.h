@@ -14,18 +14,18 @@
 
 // ----------------------------------------------------------------------------
 
+// The hint that differentiates the semihosting call.
+#define RISCV_SEMIHOSTING_CALL_NUMBER 7
+
+// ----------------------------------------------------------------------------
+
+
 #if defined(__cplusplus)
 extern "C"
 {
 #endif // defined(__cplusplus)
 
   // --------------------------------------------------------------------------
-
-// The hint that differentiates the semihosting call.
-#define RISCV_SEMIHOSTING_CALL_NUMBER 7
-
-  // --------------------------------------------------------------------------
-
   // Type of each entry in structures.
   typedef micro_os_plus_architecture_register_t
       micro_os_plus_semihosting_register_t;
