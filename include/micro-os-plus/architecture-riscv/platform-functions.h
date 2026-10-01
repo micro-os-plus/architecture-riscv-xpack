@@ -39,6 +39,10 @@ extern "C"
 {
 #endif // defined(__cplusplus)
 
+// The declaration is visible only when the definition is also
+// available, to avoid `-Wunused-function` warnings in C.
+#if defined(RISCV_PLATFORM_RTC_FREQUENCY_HZ) || defined(__DOXYGEN__)
+
   // --------------------------------------------------------------------------
 
   /**
@@ -56,6 +60,8 @@ extern "C"
   riscv_board_get_rtc_frequency_hz (void);
 
   // --------------------------------------------------------------------------
+
+#endif // defined(RISCV_PLATFORM_RTC_FREQUENCY_HZ) || defined(__DOXYGEN__)
 
 #if defined(__cplusplus)
 }
