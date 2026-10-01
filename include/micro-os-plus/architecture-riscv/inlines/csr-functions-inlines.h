@@ -76,7 +76,7 @@ extern "C"
 
         : /* Outputs */
         : [v] "rK"(value) /* Inputs */
-        : /* Clobbers */
+        : "memory" /* Clobbers */
     );
   }
 
@@ -91,7 +91,7 @@ extern "C"
 
         : [r] "=r"(tmp) /* Outputs */
         : [v] "rK"(mask) /* Inputs */
-        : /* Clobbers */
+        : "memory" /* Clobbers */
     );
 
     return tmp;
@@ -108,7 +108,7 @@ extern "C"
 
         : [r] "=r"(tmp) /* Outputs */
         : [v] "rK"(mask) /* Inputs */
-        : /* Clobbers */
+        : "memory" /* Clobbers */
     );
 
     return tmp;
@@ -148,7 +148,7 @@ extern "C"
 
         : /* Outputs */
         : [v] "rK"(value) /* Inputs */
-        : /* Clobbers */
+        : "memory" /* Clobbers */
     );
   }
 
@@ -199,7 +199,7 @@ extern "C"
 
         : /* Outputs */
         : [v] "rK"(value) /* Inputs */
-        : /* Clobbers */
+        : "memory" /* Clobbers */
     );
   }
 
@@ -214,7 +214,7 @@ extern "C"
 
         : [r] "=r"(tmp) /* Outputs */
         : [v] "rK"(mask) /* Inputs */
-        : /* Clobbers */
+        : "memory" /* Clobbers */
     );
 
     return tmp;
@@ -231,7 +231,7 @@ extern "C"
 
         : [r] "=r"(tmp) /* Outputs */
         : [v] "rK"(mask) /* Inputs */
-        : /* Clobbers */
+        : "memory" /* Clobbers */
     );
 
     return tmp;
