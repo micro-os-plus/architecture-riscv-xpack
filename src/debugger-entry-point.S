@@ -25,12 +25,13 @@
 // Required to satisfy the linker script definitions:
 // ENTRY(_debugger_entry_point)
 
-// On RISC-V there are no custom initialisations to be done when the
-// application is started by a debugger, so generally this can go directly 
-// to the reset.
+// For simple devices there is nothing to do when the application is
+// started by a debugger, so this jumps directly to the reset entry.
 
-// For platforms that use a bootstrap, like the pico 2, that need to jump 
-// to the bootstrap, reimplement this function in the project.
+// For devices that need a bootstrap, like the pico 2, this generic
+// definition does not apply; leave
+// MICRO_OS_PLUS_ARCHITECTURES_RISCV_DEBUGGER_ENTRY_POINT_ENABLED
+// undefined and provide `_debugger_entry_point` in the device package.
 
     .section  .debugger_entry_point, "ax", @progbits
     .align    2 // number of low order zeros, i.e. align to a multiple of 4
