@@ -14,7 +14,15 @@
 
 // ----------------------------------------------------------------------------
 
-#define MICRO_OS_PLUS_INTEGER_STARTUP_STACK_FILL_MAGIC (0xEFBEADDE)
+#if __riscv_xlen == 32
+// DEADBEEF
+#define MICRO_OS_PLUS_ARCHITECTURE_STACK_FILL_MAGIC (0xEFBEADDE)
+#elif __riscv_xlen == 64
+// DEADBEEFBADC0FEE
+#define MICRO_OS_PLUS_ARCHITECTURE_STACK_FILL_MAGIC (0xEE0FDCBAEFBEADDE)
+#else
+#error "Unsupported __riscv_xlen"
+#endif // __riscv_xlen
 
 #if 0
 // TODO: check and possibly prefix them.
