@@ -25,7 +25,7 @@
     .section  .reset_entry, "ax", @progbits
     .align    2 // number of low order zeros, i.e. align to a multiple of 4
 
-    // µOS++ prefered name. Other projects (like pico SDK) may use 
+    // µOS++ prefered name. Other projects (like pico SDK) may use
     // `_reset_handler`.
 
     .globl    reset_entry
