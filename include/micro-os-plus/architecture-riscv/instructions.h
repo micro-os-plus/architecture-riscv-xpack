@@ -87,6 +87,37 @@ extern "C"
   static void
   micro_os_plus_architecture_wfi (void);
 
+  /**
+   * @brief Data synchronisation barrier.
+   *
+   * @details
+   * Ensures that all memory and I/O accesses issued before this call are
+   * ordered before any memory or I/O access after it. It also acts as a
+   * compiler memory barrier.
+   *
+   * On RISC-V, it is implemented with the `fence iorw, iorw`
+   * instruction. Unlike the Arm `dsb`, a RISC-V fence only orders the
+   * accesses, it does not wait for their completion; CSR writes are
+   * already serialised by the architecture.
+   */
+  static void
+  micro_os_plus_architecture_data_barrier (void);
+
+  /**
+   * @brief Instruction synchronisation barrier.
+   *
+   * @details
+   * Ensures that the instructions after this call are fetched only
+   * after the preceding stores (for example code written to memory) are
+   * visible to the instruction fetch of the current hart. Usually
+   * called right after `micro_os_plus_architecture_data_barrier()`.
+   *
+   * On RISC-V, it is implemented with the `fence.i` instruction, which
+   * requires the Zifencei extension.
+   */
+  static void
+  micro_os_plus_architecture_instruction_barrier (void);
+
   // --------------------------------------------------------------------------
 
 #if defined(__cplusplus)
@@ -166,6 +197,28 @@ namespace micro_os_plus
      */
     void
     wfi (void);
+
+    /**
+     * @brief Data synchronisation barrier.
+     *
+     * @details
+     * The C++ equivalent of `micro_os_plus_architecture_data_barrier()`;
+     * on RISC-V, it is implemented with the `fence iorw, iorw`
+     * instruction.
+     */
+    void
+    data_barrier (void);
+
+    /**
+     * @brief Instruction synchronisation barrier.
+     *
+     * @details
+     * The C++ equivalent of
+     * `micro_os_plus_architecture_instruction_barrier()`; on RISC-V,
+     * it is implemented with the `fence.i` instruction.
+     */
+    void
+    instruction_barrier (void);
 
     // ------------------------------------------------------------------------
   } // namespace architecture

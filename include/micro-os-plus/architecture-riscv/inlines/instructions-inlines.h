@@ -118,6 +118,24 @@ extern "C"
     riscv_architecture_wfi ();
   }
 
+  /**
+   * Data synchronisation barrier (`fence iorw, iorw`).
+   */
+  static inline __attribute__ ((always_inline)) void
+  micro_os_plus_architecture_data_barrier (void)
+  {
+    riscv_architecture_fence ();
+  }
+
+  /**
+   * Instruction synchronisation barrier (`fence.i`).
+   */
+  static inline __attribute__ ((always_inline)) void
+  micro_os_plus_architecture_instruction_barrier (void)
+  {
+    riscv_architecture_fence_i ();
+  }
+
   // --------------------------------------------------------------------------
 
 #if defined(__cplusplus)
@@ -194,6 +212,18 @@ namespace micro_os_plus
     wfi (void)
     {
       riscv::architecture::wfi ();
+    }
+
+    inline __attribute__ ((always_inline)) void
+    data_barrier (void)
+    {
+      riscv::architecture::fence ();
+    }
+
+    inline __attribute__ ((always_inline)) void
+    instruction_barrier (void)
+    {
+      riscv::architecture::fence_i ();
     }
 
     // ------------------------------------------------------------------------
