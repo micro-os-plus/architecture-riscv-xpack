@@ -375,16 +375,16 @@ namespace riscv
       riscv_csr_write_mstatus (value);
     }
 
-    inline __attribute__ ((always_inline)) void
+    inline __attribute__ ((always_inline)) architecture::register_t
     clear_mstatus_bits (architecture::register_t mask)
     {
-      riscv_csr_clear_mstatus_bits (mask);
+      return riscv_csr_clear_mstatus_bits (mask);
     }
 
-    inline __attribute__ ((always_inline)) void
+    inline __attribute__ ((always_inline)) architecture::register_t
     set_mstatus_bits (architecture::register_t mask)
     {
-      riscv_csr_set_mstatus_bits (mask);
+      return riscv_csr_set_mstatus_bits (mask);
     }
 
     // ------------------------------------------------------------------------
@@ -423,16 +423,16 @@ namespace riscv
       riscv_csr_write_mie (value);
     }
 
-    inline __attribute__ ((always_inline)) void
+    inline __attribute__ ((always_inline)) architecture::register_t
     clear_mie_bits (architecture::register_t mask)
     {
-      riscv_csr_clear_mie_bits (mask);
+      return riscv_csr_clear_mie_bits (mask);
     }
 
-    inline __attribute__ ((always_inline)) void
+    inline __attribute__ ((always_inline)) architecture::register_t
     set_mie_bits (architecture::register_t mask)
     {
-      riscv_csr_set_mie_bits (mask);
+      return riscv_csr_set_mie_bits (mask);
     }
 
     // ------------------------------------------------------------------------

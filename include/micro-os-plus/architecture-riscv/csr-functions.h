@@ -211,10 +211,10 @@ namespace riscv
     void
     mstatus (architecture::register_t value);
 
-    void
+    architecture::register_t
     clear_mstatus_bits (architecture::register_t mask);
 
-    void
+    architecture::register_t
     set_mstatus_bits (architecture::register_t mask);
 
     // ------------------------------------------------------------------------
@@ -241,10 +241,10 @@ namespace riscv
     void
     mie (architecture::register_t value);
 
-    void
+    architecture::register_t
     clear_mie_bits (architecture::register_t mask);
 
-    void
+    architecture::register_t
     set_mie_bits (architecture::register_t mask);
 
     // ------------------------------------------------------------------------
