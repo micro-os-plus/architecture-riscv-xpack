@@ -1,7 +1,7 @@
 {
   "name": "@micro-os-plus/architecture-riscv",
   "version": "6.0.0",
-  "description": "A source code library with the µOS++ RISC-V architecture port",
+  "description": "A source code library with the µOS++ RISC-V architecture port for 32/64-bit devices",
   "keywords": [
     "xpack",
     "c++",
@@ -31,15 +31,15 @@
     "json5": "https://www.npmjs.com/package/json5",
     "jsonc-parser": "https://www.npmjs.com/package/jsonc-parser"
   },
-  "dependencies": {},
   "devDependencies": {
     "@xpack/npm-packages-helper": "github:xpack/npm-packages-helper",
     "del-cli": "^7.0.0",
-    "json": "^11.0.0",
-    "liquidjs": "^10.25.0",
     "glob": "^13.0.6",
+    "json": "^11.0.0",
     "json5": "^2.2.3",
-    "jsonc-parser": "^3.3.1"
+    "jsonc-parser": "^3.3.1",
+    "liquidjs": "^10.25.0",
+    "prettier": "^3.9.9"
   },
   "scripts": {
     "generate-top-commons": "node node_modules/@xpack/npm-packages-helper/maintenance-scripts/generate-top-commons.mjs --micro-os-plus",
