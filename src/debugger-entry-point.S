@@ -17,8 +17,7 @@
 
 // ----------------------------------------------------------------------------
 
-#if defined(MICRO_OS_PLUS_ARCHITECTURES_RISCV_ENABLED) \
-    && defined(MICRO_OS_PLUS_ARCHITECTURES_RISCV_DEBUGGER_ENTRY_POINT_ENABLED)
+#if defined(MICRO_OS_PLUS_ARCHITECTURES_RISCV_ENABLED) && defined(MICRO_OS_PLUS_ARCHITECTURES_RISCV_DEBUGGER_ENTRY_POINT_ENABLED)
 
 // ----------------------------------------------------------------------------
 
@@ -45,7 +44,6 @@ _debugger_entry_point:
 
 // ----------------------------------------------------------------------------
 
-#endif /* defined(MICRO_OS_PLUS_ARCHITECTURES_RISCV_ENABLED)
-          && defined(MICRO_OS_PLUS_ARCHITECTURES_RISCV_DEBUGGER_ENTRY_POINT_ENABLED) */
+#endif // defined(MICRO_OS_PLUS_ARCHITECTURES_RISCV_ENABLED) && defined(MICRO_OS_PLUS_ARCHITECTURES_RISCV_DEBUGGER_ENTRY_POINT_ENABLED)
 
 // ----------------------------------------------------------------------------

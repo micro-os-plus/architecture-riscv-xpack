@@ -39,9 +39,9 @@
 #elif __riscv_xlen == 64
 // DEADBEEFBADC0FEE
 #define MICRO_OS_PLUS_ARCHITECTURE_STACK_FILL_MAGIC (0xEE0FDCBAEFBEADDE)
-#else
+#else // !(__riscv_xlen == 32) && !(__riscv_xlen == 64)
 #error "Unsupported __riscv_xlen"
-#endif // __riscv_xlen
+#endif // __riscv_xlen == 32
 
 #if 0
 // TODO: check and possibly prefix them.
@@ -148,14 +148,14 @@
 #define MSTATUS_SD MSTATUS64_SD
 #define SSTATUS_SD SSTATUS64_SD
 #define RISCV_PGLEVEL_BITS 9
-#endif // __riscv_xlen
+#endif // __riscv_xlen == 32
 
 #define RISCV_PGSHIFT 12
 #define RISCV_PGSIZE (1 << RISCV_PGSHIFT)
 
 // End of SiFive definitions.
 // ----------------------------------------------------------------------------
-#endif // 0-1
+#endif // 0
 
 // ----------------------------------------------------------------------------
 // `mstatus` fields, as defined by the RISC-V Privileged Architecture,
@@ -255,9 +255,9 @@
 #elif __riscv_xlen == 64
 #define RISCV_CSR_MCAUSE_INTERRUPT (RISCV_UL (1) << 63)
 #define RISCV_CSR_MCAUSE_CAUSE (RISCV_UL (0x7FFFFFFFFFFFFFFF))
-#else
+#else // !(__riscv_xlen == 32) && !(__riscv_xlen == 64)
 #error "Unsupported __riscv_xlen"
-#endif // __riscv_xlen
+#endif // __riscv_xlen == 32
 
 // ----------------------------------------------------------------------------
 

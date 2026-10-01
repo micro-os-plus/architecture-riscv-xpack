@@ -17,8 +17,7 @@
 
 // ----------------------------------------------------------------------------
 
-#if defined(MICRO_OS_PLUS_ARCHITECTURES_RISCV_ENABLED) \
-    && defined(MICRO_OS_PLUS_ARCHITECTURES_RISCV_RESET_ENTRY_ENABLED)
+#if defined(MICRO_OS_PLUS_ARCHITECTURES_RISCV_ENABLED) && defined(MICRO_OS_PLUS_ARCHITECTURES_RISCV_RESET_ENTRY_ENABLED)
 
 // ----------------------------------------------------------------------------
 
@@ -47,7 +46,7 @@ reset_entry:
     // Unless instructed not to do so, the linker optimises
     // accesses +/- 2KB around this to gp-relative.
 
-#ifdef __riscv_cmodel_compact
+#if defined(__riscv_cmodel_compact)
 
 1:
     auipc     a0, %pcrel_hi(__global_pointer__)
@@ -55,11 +54,11 @@ reset_entry:
     ld        gp, 0(a0)
     add       gp, gp, a0
 
-#else
+#else // !defined(__riscv_cmodel_compact)
 
     la        gp, __global_pointer$
     
-#endif
+#endif // defined(__riscv_cmodel_compact)
 
     .option pop
 
@@ -107,7 +106,6 @@ default_trap_entry:
 
 // ----------------------------------------------------------------------------
 
-#endif /* defined(MICRO_OS_PLUS_ARCHITECTURES_RISCV_ENABLED) 
-          && defined(MICRO_OS_PLUS_ARCHITECTURES_RISCV_RESET_ENTRY_ENABLED) */
+#endif // defined(MICRO_OS_PLUS_ARCHITECTURES_RISCV_ENABLED) && defined(MICRO_OS_PLUS_ARCHITECTURES_RISCV_RESET_ENTRY_ENABLED)
 
 // ----------------------------------------------------------------------------

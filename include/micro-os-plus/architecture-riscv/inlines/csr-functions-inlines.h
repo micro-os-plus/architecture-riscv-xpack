@@ -276,7 +276,7 @@ extern "C"
 
   return (uint32_t)riscv_csr_read_mcycle ();
 
-#endif // __riscv_xlen
+#endif // __riscv_xlen == 32
   }
 
   static inline __attribute__ ((always_inline)) uint32_t
@@ -300,7 +300,7 @@ extern "C"
 
   return (uint32_t)(riscv_csr_read_mcycle () >> 32);
 
-#endif // __riscv_xlen
+#endif // __riscv_xlen == 32
   }
 
   // --------------------------------------------------------------------------
