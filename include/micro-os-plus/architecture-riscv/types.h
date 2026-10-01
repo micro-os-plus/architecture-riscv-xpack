@@ -14,6 +14,8 @@
 
 // ----------------------------------------------------------------------------
 
+#include "micro-os-plus/architecture-riscv/defines.h"
+
 #include <stdint.h>
 
 #if defined(__cplusplus)
@@ -81,6 +83,36 @@ typedef int64_t riscv_architecture_signed_register_t;
     /* 14 reserved */
     /* 15 reserved */
   } riscv_interrupts_local_enum_t;
+
+  // Ensure the `RISCV_CSR_MIP_*` bit masks, which use literal bit
+  // numbers to be usable in assembly, match the enumeration values.
+#if defined(__cplusplus)
+#define RISCV_STATIC_ASSERT static_assert
+#else // !defined(__cplusplus)
+#define RISCV_STATIC_ASSERT _Static_assert
+#endif // defined(__cplusplus)
+
+  RISCV_STATIC_ASSERT (RISCV_CSR_MIP_SSIP
+                           == (1ul
+                               << riscv_interrupt_local_supervisor_software),
+                       "RISCV_CSR_MIP_SSIP mismatch");
+  RISCV_STATIC_ASSERT (RISCV_CSR_MIP_MSIP
+                           == (1ul << riscv_interrupt_local_machine_software),
+                       "RISCV_CSR_MIP_MSIP mismatch");
+  RISCV_STATIC_ASSERT (RISCV_CSR_MIP_STIP
+                           == (1ul << riscv_interrupt_local_supervisor_timer),
+                       "RISCV_CSR_MIP_STIP mismatch");
+  RISCV_STATIC_ASSERT (RISCV_CSR_MIP_MTIP
+                           == (1ul << riscv_interrupt_local_machine_timer),
+                       "RISCV_CSR_MIP_MTIP mismatch");
+  RISCV_STATIC_ASSERT (RISCV_CSR_MIP_SEIP
+                           == (1ul << riscv_interrupt_local_supervisor_ext),
+                       "RISCV_CSR_MIP_SEIP mismatch");
+  RISCV_STATIC_ASSERT (RISCV_CSR_MIP_MEIP
+                           == (1ul << riscv_interrupt_local_machine_ext),
+                       "RISCV_CSR_MIP_MEIP mismatch");
+
+#undef RISCV_STATIC_ASSERT
 
   // --------------------------------------------------------------------------
 
