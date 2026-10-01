@@ -48,19 +48,34 @@ extern "C"
   riscv_csr_read_mstatus (void);
 
   /**
-   * Write the `mstatus` CSR.
+   * @brief Write the `mstatus` CSR.
+   *
+   * @details
+   * The instruction is also a compiler memory barrier, so memory
+   * accesses are not moved across it; this is required when the
+   * function is used to delimit critical sections.
    */
   static void
   riscv_csr_write_mstatus (riscv_architecture_register_t value);
 
   /**
-   * Clear bits in the `mstatus` CSR.
+   * @brief Clear bits in the `mstatus` CSR.
+   *
+   * @details
+   * The instruction is also a compiler memory barrier, so memory
+   * accesses are not moved across it; this is required when the
+   * function is used to delimit critical sections.
    */
   static riscv_architecture_register_t
   riscv_csr_clear_mstatus_bits (riscv_architecture_register_t mask);
 
   /**
-   * Set bits in the `mstatus` CSR.
+   * @brief Set bits in the `mstatus` CSR.
+   *
+   * @details
+   * The instruction is also a compiler memory barrier, so memory
+   * accesses are not moved across it; this is required when the
+   * function is used to delimit critical sections.
    */
   static riscv_architecture_register_t
   riscv_csr_set_mstatus_bits (riscv_architecture_register_t mask);
@@ -75,7 +90,12 @@ extern "C"
   riscv_csr_read_mtvec (void);
 
   /**
-   * Write the `mtvec` CSR.
+   * @brief Write the `mtvec` CSR.
+   *
+   * @details
+   * The instruction is also a compiler memory barrier, so memory
+   * accesses (for example the initialisation of a vector table) are
+   * not moved after the trap vector is changed.
    */
   static void
   riscv_csr_write_mtvec (riscv_architecture_register_t value);
@@ -99,19 +119,34 @@ extern "C"
   riscv_csr_read_mie (void);
 
   /**
-   * Write the `mie` CSR.
+   * @brief Write the `mie` CSR.
+   *
+   * @details
+   * The instruction is also a compiler memory barrier, so memory
+   * accesses are not moved across it; this is required when the
+   * function is used to delimit critical sections.
    */
   static void
   riscv_csr_write_mie (riscv_architecture_register_t value);
 
   /**
-   * Clear bits in the `mie` CSR.
+   * @brief Clear bits in the `mie` CSR.
+   *
+   * @details
+   * The instruction is also a compiler memory barrier, so memory
+   * accesses are not moved across it; this is required when the
+   * function is used to delimit critical sections.
    */
   static riscv_architecture_register_t
   riscv_csr_clear_mie_bits (riscv_architecture_register_t mask);
 
   /**
-   * Set bits in the `mie` CSR.
+   * @brief Set bits in the `mie` CSR.
+   *
+   * @details
+   * The instruction is also a compiler memory barrier, so memory
+   * accesses are not moved across it; this is required when the
+   * function is used to delimit critical sections.
    */
   static riscv_architecture_register_t
   riscv_csr_set_mie_bits (riscv_architecture_register_t mask);

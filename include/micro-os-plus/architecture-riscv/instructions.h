@@ -37,13 +37,24 @@ extern "C"
   riscv_architecture_nop (void);
 
   /**
-   * `ebreak` instruction.
+   * @brief `ebreak` instruction.
+   *
+   * @details
+   * The instruction is also a compiler memory barrier, so all memory
+   * writes issued before it are visible to a debugger inspecting the
+   * target when the breakpoint is hit.
    */
   static void
   riscv_architecture_ebreak (void);
 
   /**
-   * `wfi` instruction.
+   * @brief `wfi` instruction.
+   *
+   * @details
+   * The instruction is also a compiler memory barrier, so variables
+   * modified by interrupt handlers are re-read after the core wakes
+   * up; without it, loops like `while (!flag) wfi();` may never
+   * observe the change.
    */
   static void
   riscv_architecture_wfi (void);
@@ -76,13 +87,22 @@ extern "C"
   micro_os_plus_architecture_nop (void);
 
   /**
-   * `break` instruction.
+   * @brief Breakpoint instruction.
+   *
+   * @details
+   * On RISC-V, it is implemented with the `ebreak` instruction, which
+   * is also a compiler memory barrier.
    */
   static void
   micro_os_plus_architecture_brk (void);
 
   /**
-   * `wfi` instruction.
+   * @brief Wait for interrupt.
+   *
+   * @details
+   * On RISC-V, it is implemented with the `wfi` instruction, which
+   * is also a compiler memory barrier, so variables modified by
+   * interrupt handlers are re-read after the core wakes up.
    */
   static void
   micro_os_plus_architecture_wfi (void);
