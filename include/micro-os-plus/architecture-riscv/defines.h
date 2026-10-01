@@ -157,38 +157,86 @@
 // ----------------------------------------------------------------------------
 #endif // 0-1
 
-#define RISCV_CSR_MSTATUS_UIE RISCV_UL (0x00000001)
+// ----------------------------------------------------------------------------
+// `mstatus` fields, as defined by the RISC-V Privileged Architecture,
+// version 20211203 (privileged ISA 1.12).
+//
+// The fields of the obsolete 1.9 specification were removed: `UIE`
+// and `UPIE` (the N extension was withdrawn), `PUM` (renamed `SUM`
+// in 1.10), and `VM` (replaced by the `satp` CSR).
+
 #define RISCV_CSR_MSTATUS_SIE RISCV_UL (0x00000002)
 #define RISCV_CSR_MSTATUS_MIE RISCV_UL (0x00000008)
-#define RISCV_CSR_MSTATUS_UPIE RISCV_UL (0x00000010)
 #define RISCV_CSR_MSTATUS_SPIE RISCV_UL (0x00000020)
+#define RISCV_CSR_MSTATUS_UBE RISCV_UL (0x00000040)
 #define RISCV_CSR_MSTATUS_MPIE RISCV_UL (0x00000080)
 #define RISCV_CSR_MSTATUS_SPP RISCV_UL (0x00000100)
+#define RISCV_CSR_MSTATUS_VS RISCV_UL (0x00000600)
 #define RISCV_CSR_MSTATUS_MPP RISCV_UL (0x00001800)
 #define RISCV_CSR_MSTATUS_FS RISCV_UL (0x00006000)
+#define RISCV_CSR_MSTATUS_XS RISCV_UL (0x00018000)
+#define RISCV_CSR_MSTATUS_MPRV RISCV_UL (0x00020000)
+#define RISCV_CSR_MSTATUS_SUM RISCV_UL (0x00040000)
+#define RISCV_CSR_MSTATUS_MXR RISCV_UL (0x00080000)
+#define RISCV_CSR_MSTATUS_TVM RISCV_UL (0x00100000)
+#define RISCV_CSR_MSTATUS_TW RISCV_UL (0x00200000)
+#define RISCV_CSR_MSTATUS_TSR RISCV_UL (0x00400000)
+#define RISCV_CSR_MSTATUS32_SD RISCV_UL (0x80000000)
+#define RISCV_CSR_MSTATUS64_SD RISCV_UL (0x8000000000000000)
+
+// Values of the `mstatus.MPP` field (previous privilege mode).
+#define RISCV_CSR_MSTATUS_MPP_U RISCV_UL (0x00000000)
+#define RISCV_CSR_MSTATUS_MPP_S RISCV_UL (0x00000800)
+#define RISCV_CSR_MSTATUS_MPP_M RISCV_UL (0x00001800)
+
 // Values of the `mstatus.FS` field (floating-point unit state).
 #define RISCV_CSR_MSTATUS_FS_OFF RISCV_UL (0x00000000)
 #define RISCV_CSR_MSTATUS_FS_INITIAL RISCV_UL (0x00002000)
 #define RISCV_CSR_MSTATUS_FS_CLEAN RISCV_UL (0x00004000)
 #define RISCV_CSR_MSTATUS_FS_DIRTY RISCV_UL (0x00006000)
-#define RISCV_CSR_MSTATUS_XS RISCV_UL (0x00018000)
-#define RISCV_CSR_MSTATUS_MPRV RISCV_UL (0x00020000)
-#define RISCV_CSR_MSTATUS_PUM RISCV_UL (0x00040000)
-#define RISCV_CSR_MSTATUS_MXR RISCV_UL (0x00080000)
-#define RISCV_CSR_MSTATUS_VM RISCV_UL (0x1F000000)
-#define RISCV_CSR_MSTATUS32_SD RISCV_UL (0x80000000)
-#define RISCV_CSR_MSTATUS64_SD RISCV_UL (0x8000000000000000)
 
-#define RISCV_CSR_SSTATUS_UIE RISCV_UL (0x00000001)
+// Values of the `mstatus.VS` field (vector unit state).
+#define RISCV_CSR_MSTATUS_VS_OFF RISCV_UL (0x00000000)
+#define RISCV_CSR_MSTATUS_VS_INITIAL RISCV_UL (0x00000200)
+#define RISCV_CSR_MSTATUS_VS_CLEAN RISCV_UL (0x00000400)
+#define RISCV_CSR_MSTATUS_VS_DIRTY RISCV_UL (0x00000600)
+
+#if __riscv_xlen == 32
+// On RV32, the endianness control bits are in the separate `mstatush`.
+#define RISCV_CSR_MSTATUSH_SBE RISCV_UL (0x00000010)
+#define RISCV_CSR_MSTATUSH_MBE RISCV_UL (0x00000020)
+#define RISCV_CSR_MSTATUS_SD RISCV_CSR_MSTATUS32_SD
+#elif __riscv_xlen == 64
+#define RISCV_CSR_MSTATUS_UXL RISCV_UL (0x0000000300000000)
+#define RISCV_CSR_MSTATUS_SXL RISCV_UL (0x0000000C00000000)
+#define RISCV_CSR_MSTATUS_SBE RISCV_UL (0x0000001000000000)
+#define RISCV_CSR_MSTATUS_MBE RISCV_UL (0x0000002000000000)
+#define RISCV_CSR_MSTATUS_SD RISCV_CSR_MSTATUS64_SD
+#endif // __riscv_xlen == 32
+
+// ----------------------------------------------------------------------------
+// `sstatus` fields (a restricted view of `mstatus`).
+
 #define RISCV_CSR_SSTATUS_SIE RISCV_UL (0x00000002)
-#define RISCV_CSR_SSTATUS_UPIE RISCV_UL (0x00000010)
 #define RISCV_CSR_SSTATUS_SPIE RISCV_UL (0x00000020)
+#define RISCV_CSR_SSTATUS_UBE RISCV_UL (0x00000040)
 #define RISCV_CSR_SSTATUS_SPP RISCV_UL (0x00000100)
+#define RISCV_CSR_SSTATUS_VS RISCV_UL (0x00000600)
 #define RISCV_CSR_SSTATUS_FS RISCV_UL (0x00006000)
 #define RISCV_CSR_SSTATUS_XS RISCV_UL (0x00018000)
-#define RISCV_CSR_SSTATUS_PUM RISCV_UL (0x00040000)
+#define RISCV_CSR_SSTATUS_SUM RISCV_UL (0x00040000)
+#define RISCV_CSR_SSTATUS_MXR RISCV_UL (0x00080000)
 #define RISCV_CSR_SSTATUS32_SD RISCV_UL (0x80000000)
 #define RISCV_CSR_SSTATUS64_SD RISCV_UL (0x8000000000000000)
+
+#if __riscv_xlen == 32
+#define RISCV_CSR_SSTATUS_SD RISCV_CSR_SSTATUS32_SD
+#elif __riscv_xlen == 64
+#define RISCV_CSR_SSTATUS_UXL RISCV_UL (0x0000000300000000)
+#define RISCV_CSR_SSTATUS_SD RISCV_CSR_SSTATUS64_SD
+#endif // __riscv_xlen == 32
+
+// ----------------------------------------------------------------------------
 
 // The bit positions match the `riscv_interrupts_local_enum_t` values;
 // literal numbers are used since enums are not available in assembly.
