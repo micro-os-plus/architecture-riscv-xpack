@@ -63,6 +63,7 @@ LICENSE-*
 !LICENSE-liquid
 CONTRIBUTING**
 NOTES.md
+CODE-REVIEW.md
 
 **/tsconfig*.json
 typedoc.json
