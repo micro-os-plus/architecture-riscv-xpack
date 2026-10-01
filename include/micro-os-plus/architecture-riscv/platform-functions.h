@@ -21,23 +21,37 @@
 /*
  * RISC-V platform (board) support functions.
  *
- * The functions are defined inline in
- * `micro-os-plus/architecture-riscv/inlines/platform-functions-inlines.h`,
- * which the platform package must include after defining:
+ * The declarations are part of the common design, but the values are
+ * board specific. Each platform package must define the following
+ * before including this header:
  * - `RISCV_PLATFORM_RTC_FREQUENCY_HZ`, the frequency of the clock that
  *   drives `mtime` (for example `platform-sifive-hifive1`, in its
- *   `defines.h`).
+ *   `defines.h`); it cannot be derived from the architecture, since
+ *   no CSR reports it.
  *
- * The C function is `riscv_board_get_rtc_frequency_hz()`; the C++
- * equivalent is `riscv::board::rtc_frequency_hz()`. They are not
- * declared here, since a `static` declaration without a definition in
- * the same translation unit triggers `-Wunused-function` warnings.
+ * The inline definitions are then included automatically at the end.
  */
 
 #if defined(__cplusplus)
 extern "C"
 {
 #endif // defined(__cplusplus)
+
+  // --------------------------------------------------------------------------
+
+  /**
+   * @brief Get the frequency of the `mtime` clock.
+   * @par Parameters
+   *  None.
+   * @return The frequency in Hz.
+   *
+   * @details
+   * Returns `RISCV_PLATFORM_RTC_FREQUENCY_HZ`, as defined by the
+   * platform package. The value is needed to convert `mtime` ticks
+   * to time units, and to measure the core clock frequency.
+   */
+  static uint32_t
+  riscv_board_get_rtc_frequency_hz (void);
 
   // --------------------------------------------------------------------------
 
@@ -55,8 +69,19 @@ namespace riscv
 {
   namespace board
   {
-    // `rtc_frequency_hz()` is defined inline in
-    // `inlines/platform-functions-inlines.h`; see the file comment above.
+    // ------------------------------------------------------------------------
+
+    /**
+     * @brief Get the frequency of the `mtime` clock.
+     * @par Parameters
+     *  None.
+     * @return The frequency in Hz.
+     *
+     * @details
+     * The C++ equivalent of `riscv_board_get_rtc_frequency_hz()`.
+     */
+    uint32_t
+    rtc_frequency_hz (void);
 
     // ------------------------------------------------------------------------
   } // namespace board
@@ -65,6 +90,15 @@ namespace riscv
 // ----------------------------------------------------------------------------
 
 #endif // defined(__cplusplus)
+
+// ============================================================================
+// Templates, inlines & constexpr implementations.
+
+// The inline definitions need the platform specific frequency; they are
+// included only if the platform defined it before including this header.
+#if defined(RISCV_PLATFORM_RTC_FREQUENCY_HZ)
+#include "inlines/platform-functions-inlines.h"
+#endif // defined(RISCV_PLATFORM_RTC_FREQUENCY_HZ)
 
 // ----------------------------------------------------------------------------
 
