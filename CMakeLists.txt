@@ -1,5 +1,6 @@
 # -----------------------------------------------------------------------------
-# DO NOT EDIT! Automatically generated from template file: xcdl-package.jsonc
+# DO NOT EDIT! Automatically generated from template file:
+# xcdl-package.jsonc
 #
 # This file is part of the µOS++ project (https://micro-os-plus.github.io/).
 # Copyright (c) 2021-2026 Liviu Ionescu. All rights reserved.
@@ -19,6 +20,8 @@
 # This creates libraries that can be linked to a target with:
 #
 # ~~~
+# target_link_libraries(your-target PUBLIC micro-os-plus::architectures-riscv-debugger-entry-point)
+# target_link_libraries(your-target PUBLIC micro-os-plus::architectures-riscv-reset-entry)
 # target_link_libraries(your-target PUBLIC micro-os-plus::architectures-riscv)
 # ~~~
 
@@ -40,9 +43,8 @@ if (COMMAND xpack_get_package_name_and_version)
   xpack_get_package_name_and_version (
     "${CMAKE_CURRENT_SOURCE_DIR}/package.json"
   )
-  message (
-    VERBOSE
-    "Processing xpm package ${PACKAGE_JSON_NAME}@${PACKAGE_JSON_VERSION}..."
+  message (VERBOSE
+           "Processing xpm package ${PACKAGE_JSON_NAME}@${PACKAGE_JSON_VERSION}..."
   )
 endif ()
 
@@ -61,20 +63,86 @@ endif ()
 # read-only; properties must be set on the underlying target, not on the alias
 # itself.
 
+
+
 # https://cmake.org/cmake/help/v3.20/command/add_library.html?highlight=interface#interface-libraries
 # Visibility keywords: PRIVATE applies to the target itself; INTERFACE passes
 # properties up to targets that link against it; PUBLIC does both.
-add_library (
-  micro-os-plus-architectures-riscv-interface INTERFACE EXCLUDE_FROM_ALL
+add_library (micro-os-plus-architectures-riscv-debugger-entry-point-interface INTERFACE EXCLUDE_FROM_ALL)
+
+target_sources (
+  micro-os-plus-architectures-riscv-debugger-entry-point-interface
+  INTERFACE "src/debugger-entry-point.S"
 )
 
+if (COMMAND xpack_display_target_lists)
+  xpack_display_target_lists (micro-os-plus-architectures-riscv-debugger-entry-point-interface)
+endif ()
+
+# -----------------------------------------------------------------------------
+# Alias.
+
+# https://cmake.org/cmake/help/v3.20/command/add_library.html#alias-libraries
+add_library (
+  micro-os-plus::architectures-riscv-debugger-entry-point ALIAS micro-os-plus-architectures-riscv-debugger-entry-point-interface
+)
+message (
+  VERBOSE
+  "> micro-os-plus::architectures-riscv-debugger-entry-point -> micro-os-plus-architectures-riscv-debugger-entry-point-interface"
+)
+
+# -----------------------------------------------------------------------------
+
+
+# https://cmake.org/cmake/help/v3.20/command/add_library.html?highlight=interface#interface-libraries
+# Visibility keywords: PRIVATE applies to the target itself; INTERFACE passes
+# properties up to targets that link against it; PUBLIC does both.
+add_library (micro-os-plus-architectures-riscv-reset-entry-interface INTERFACE EXCLUDE_FROM_ALL)
+
+target_sources (
+  micro-os-plus-architectures-riscv-reset-entry-interface
+  INTERFACE "src/reset-entry.S"
+)
+
+if (COMMAND xpack_display_target_lists)
+  xpack_display_target_lists (micro-os-plus-architectures-riscv-reset-entry-interface)
+endif ()
+
+# -----------------------------------------------------------------------------
+# Alias.
+
+# https://cmake.org/cmake/help/v3.20/command/add_library.html#alias-libraries
+add_library (
+  micro-os-plus::architectures-riscv-reset-entry ALIAS micro-os-plus-architectures-riscv-reset-entry-interface
+)
+message (
+  VERBOSE
+  "> micro-os-plus::architectures-riscv-reset-entry -> micro-os-plus-architectures-riscv-reset-entry-interface"
+)
+
+# -----------------------------------------------------------------------------
+
+
+# https://cmake.org/cmake/help/v3.20/command/add_library.html?highlight=interface#interface-libraries
+# Visibility keywords: PRIVATE applies to the target itself; INTERFACE passes
+# properties up to targets that link against it; PUBLIC does both.
+add_library (micro-os-plus-architectures-riscv-interface INTERFACE EXCLUDE_FROM_ALL)
+
 target_include_directories (
-  micro-os-plus-architectures-riscv-interface INTERFACE "include"
+  micro-os-plus-architectures-riscv-interface 
+  INTERFACE "include"
 )
 
 target_sources (
-  micro-os-plus-architectures-riscv-interface INTERFACE "src/semihosting.cpp"
-                                                        "src/show-cpuid.cpp"
+  micro-os-plus-architectures-riscv-interface
+  INTERFACE "src/semihosting.cpp"
+            "src/show-cpuid.cpp"
+)
+
+target_link_libraries (
+  micro-os-plus-architectures-riscv-interface 
+  INTERFACE "micro-os-plus::architectures-riscv-debugger-entry-point"
+            "micro-os-plus::architectures-riscv-reset-entry"
 )
 
 if (COMMAND xpack_display_target_lists)
@@ -86,8 +154,7 @@ endif ()
 
 # https://cmake.org/cmake/help/v3.20/command/add_library.html#alias-libraries
 add_library (
-  micro-os-plus::architectures-riscv ALIAS
-  micro-os-plus-architectures-riscv-interface
+  micro-os-plus::architectures-riscv ALIAS micro-os-plus-architectures-riscv-interface
 )
 message (
   VERBOSE
