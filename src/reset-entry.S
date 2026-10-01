@@ -49,7 +49,7 @@ reset_entry:
 #if defined(__riscv_cmodel_compact)
 
 1:
-    auipc     a0, %pcrel_hi(__global_pointer__)
+    auipc     a0, %pcrel_hi(__global_pointer$)
     addi      a0, a0, %pcrel_lo(1b)
     ld        gp, 0(a0)
     add       gp, gp, a0
