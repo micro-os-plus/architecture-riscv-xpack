@@ -256,7 +256,7 @@ extern "C"
 
         "csrr %[r],mcycle"
 
-        : [r] "=rm"(tmp) /* Outputs */
+        : [r] "=r"(tmp) /* Outputs */
         : /* Inputs */
         : /* Clobbers */
     );
@@ -290,7 +290,7 @@ extern "C"
 
         "csrr %[r],mcycle"
 
-        : [r] "=rm"(tmp) /* Outputs */
+        : [r] "=r"(tmp) /* Outputs */
         : /* Inputs */
         : /* Clobbers */
     );
@@ -314,7 +314,7 @@ extern "C"
 
         "csrr %[r],mcycleh"
 
-        : [r] "=rm"(tmp) /* Outputs */
+        : [r] "=r"(tmp) /* Outputs */
         : /* Inputs */
         : /* Clobbers */
     );
