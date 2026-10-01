@@ -14,6 +14,25 @@
 
 // ----------------------------------------------------------------------------
 
+/**
+ * @brief Define an unsigned long constant usable in C, C++, and
+ *  assembly.
+ * @param [in] x An integer literal, without suffix.
+ *
+ * @details
+ * This header is also included in assembly files, where integer
+ * suffixes are not accepted by the assembler. In C and C++ the
+ * literal gets the `ul` suffix, so that it has the width of a
+ * register; in assembly the literal is used as is.
+ */
+#if defined(__ASSEMBLER__)
+#define RISCV_UL(x) x
+#else // !defined(__ASSEMBLER__)
+#define RISCV_UL(x) x##ul
+#endif // defined(__ASSEMBLER__)
+
+// ----------------------------------------------------------------------------
+
 #if __riscv_xlen == 32
 // DEADBEEF
 #define MICRO_OS_PLUS_ARCHITECTURE_STACK_FILL_MAGIC (0xEFBEADDE)
@@ -138,49 +157,51 @@
 // ----------------------------------------------------------------------------
 #endif // 0-1
 
-#define RISCV_CSR_MSTATUS_UIE 0x00000001ul
-#define RISCV_CSR_MSTATUS_SIE 0x00000002ul
-#define RISCV_CSR_MSTATUS_MIE 0x00000008ul
-#define RISCV_CSR_MSTATUS_UPIE 0x00000010ul
-#define RISCV_CSR_MSTATUS_SPIE 0x00000020ul
-#define RISCV_CSR_MSTATUS_MPIE 0x00000080ul
-#define RISCV_CSR_MSTATUS_SPP 0x00000100ul
-#define RISCV_CSR_MSTATUS_MPP 0x00001800ul
-#define RISCV_CSR_MSTATUS_FS 0x00006000ul
-#define RISCV_CSR_MSTATUS_XS 0x00018000ul
-#define RISCV_CSR_MSTATUS_MPRV 0x00020000ul
-#define RISCV_CSR_MSTATUS_PUM 0x00040000ul
-#define RISCV_CSR_MSTATUS_MXR 0x00080000ul
-#define RISCV_CSR_MSTATUS_VM 0x1F000000ul
-#define RISCV_CSR_MSTATUS32_SD 0x80000000ul
-#define RISCV_CSR_MSTATUS64_SD 0x8000000000000000ul
+#define RISCV_CSR_MSTATUS_UIE RISCV_UL (0x00000001)
+#define RISCV_CSR_MSTATUS_SIE RISCV_UL (0x00000002)
+#define RISCV_CSR_MSTATUS_MIE RISCV_UL (0x00000008)
+#define RISCV_CSR_MSTATUS_UPIE RISCV_UL (0x00000010)
+#define RISCV_CSR_MSTATUS_SPIE RISCV_UL (0x00000020)
+#define RISCV_CSR_MSTATUS_MPIE RISCV_UL (0x00000080)
+#define RISCV_CSR_MSTATUS_SPP RISCV_UL (0x00000100)
+#define RISCV_CSR_MSTATUS_MPP RISCV_UL (0x00001800)
+#define RISCV_CSR_MSTATUS_FS RISCV_UL (0x00006000)
+#define RISCV_CSR_MSTATUS_XS RISCV_UL (0x00018000)
+#define RISCV_CSR_MSTATUS_MPRV RISCV_UL (0x00020000)
+#define RISCV_CSR_MSTATUS_PUM RISCV_UL (0x00040000)
+#define RISCV_CSR_MSTATUS_MXR RISCV_UL (0x00080000)
+#define RISCV_CSR_MSTATUS_VM RISCV_UL (0x1F000000)
+#define RISCV_CSR_MSTATUS32_SD RISCV_UL (0x80000000)
+#define RISCV_CSR_MSTATUS64_SD RISCV_UL (0x8000000000000000)
 
-#define RISCV_CSR_SSTATUS_UIE 0x00000001ul
-#define RISCV_CSR_SSTATUS_SIE 0x00000002ul
-#define RISCV_CSR_SSTATUS_UPIE 0x00000010ul
-#define RISCV_CSR_SSTATUS_SPIE 0x00000020ul
-#define RISCV_CSR_SSTATUS_SPP 0x00000100ul
-#define RISCV_CSR_SSTATUS_FS 0x00006000ul
-#define RISCV_CSR_SSTATUS_XS 0x00018000ul
-#define RISCV_CSR_SSTATUS_PUM 0x00040000ul
-#define RISCV_CSR_SSTATUS32_SD 0x80000000ul
-#define RISCV_CSR_SSTATUS64_SD 0x8000000000000000ul
+#define RISCV_CSR_SSTATUS_UIE RISCV_UL (0x00000001)
+#define RISCV_CSR_SSTATUS_SIE RISCV_UL (0x00000002)
+#define RISCV_CSR_SSTATUS_UPIE RISCV_UL (0x00000010)
+#define RISCV_CSR_SSTATUS_SPIE RISCV_UL (0x00000020)
+#define RISCV_CSR_SSTATUS_SPP RISCV_UL (0x00000100)
+#define RISCV_CSR_SSTATUS_FS RISCV_UL (0x00006000)
+#define RISCV_CSR_SSTATUS_XS RISCV_UL (0x00018000)
+#define RISCV_CSR_SSTATUS_PUM RISCV_UL (0x00040000)
+#define RISCV_CSR_SSTATUS32_SD RISCV_UL (0x80000000)
+#define RISCV_CSR_SSTATUS64_SD RISCV_UL (0x8000000000000000)
 
-#define RISCV_CSR_MIP_SSIP (1ul << riscv_interrupt_local_supervisor_software)
-#define RISCV_CSR_MIP_MSIP (1ul << riscv_interrupt_local_machine_software)
-#define RISCV_CSR_MIP_STIP (1ul << riscv_interrupt_local_supervisor_timer)
-#define RISCV_CSR_MIP_MTIP (1ul << riscv_interrupt_local_machine_timer)
-#define RISCV_CSR_MIP_SEIP (1ul << riscv_interrupt_local_supervisor_ext)
-#define RISCV_CSR_MIP_MEIP (1ul << riscv_interrupt_local_machine_ext)
+// The bit positions match the `riscv_interrupts_local_enum_t` values;
+// literal numbers are used since enums are not available in assembly.
+#define RISCV_CSR_MIP_SSIP (RISCV_UL (1) << 1)
+#define RISCV_CSR_MIP_MSIP (RISCV_UL (1) << 3)
+#define RISCV_CSR_MIP_STIP (RISCV_UL (1) << 5)
+#define RISCV_CSR_MIP_MTIP (RISCV_UL (1) << 7)
+#define RISCV_CSR_MIP_SEIP (RISCV_UL (1) << 9)
+#define RISCV_CSR_MIP_MEIP (RISCV_UL (1) << 11)
 
 // ----------------------------------------------------------------------------
 
 #if __riscv_xlen == 32
-#define RISCV_CSR_MCAUSE_INTERRUPT (1ul << 31ul)
-#define RISCV_CSR_MCAUSE_CAUSE (0x7FFFFFFFul)
+#define RISCV_CSR_MCAUSE_INTERRUPT (RISCV_UL (1) << 31)
+#define RISCV_CSR_MCAUSE_CAUSE (RISCV_UL (0x7FFFFFFF))
 #elif __riscv_xlen == 64
-#define RISCV_CSR_MCAUSE_INTERRUPT (1ul << 63ul)
-#define RISCV_CSR_MCAUSE_CAUSE (0x7FFFFFFFFFFFFFFFul)
+#define RISCV_CSR_MCAUSE_INTERRUPT (RISCV_UL (1) << 63)
+#define RISCV_CSR_MCAUSE_CAUSE (RISCV_UL (0x7FFFFFFFFFFFFFFF))
 #else
 #error "Unsupported __riscv_xlen"
 #endif // __riscv_xlen
