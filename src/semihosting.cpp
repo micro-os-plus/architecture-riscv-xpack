@@ -50,10 +50,14 @@ micro_os_plus_semihosting_call_host (
 
       " mv %[val], a0"
 
+      // Only `a0` (operation number, then result) and `a1` (parameter
+      // block) are used; the semihosting specification requires the
+      // host to preserve all other registers. The host may read and
+      // write memory through the parameter block, hence `memory`.
       : [val] "=r"(value) /* Outputs */
       : [rsn] "r"(reason), [arg] "r"(arg),
         [swi] "i"(RISCV_SEMIHOSTING_CALL_NUMBER) /* Inputs */
-      : "a0", "a1", "a2", "a3", "a4", "a5", "memory" /* Clobbers */
+      : "a0", "a1", "memory" /* Clobbers */
   );
 
   return value;
