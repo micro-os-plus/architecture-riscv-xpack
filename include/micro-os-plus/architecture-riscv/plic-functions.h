@@ -20,7 +20,22 @@
 
 // ----------------------------------------------------------------------------
 
-// RISC-V PLIC support functions.
+/*
+ * RISC-V PLIC (Platform-Level Interrupt Controller) support functions.
+ *
+ * The PLIC is not part of the RISC-V ISA; its register layout and
+ * address are device specific. This header only defines the common
+ * API; none of the functions are defined in this package.
+ *
+ * Each device package must provide:
+ * - the out-of-line `riscv::plic::initialize()` and
+ *   `riscv::plic::clear_priorities()`, and their C aliases
+ *   `riscv_plic_initialize()` and `riscv_plic_clear_priorities()`
+ *   (for example `devices-sifive`, in `plic-functions.cpp`);
+ * - the remaining functions, as `static inline` C functions and
+ *   `inline` C++ functions (for example `devices-sifive`, in
+ *   `plic-functions-inlines.h`), included after this header.
+ */
 
 #if defined(__cplusplus)
 

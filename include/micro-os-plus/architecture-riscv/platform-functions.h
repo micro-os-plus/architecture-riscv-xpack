@@ -18,22 +18,26 @@
 
 // ----------------------------------------------------------------------------
 
-// RISC-V core support functions.
+/*
+ * RISC-V platform (board) support functions.
+ *
+ * The functions are defined inline in
+ * `micro-os-plus/architecture-riscv/inlines/platform-functions-inlines.h`,
+ * which the platform package must include after defining:
+ * - `RISCV_PLATFORM_RTC_FREQUENCY_HZ`, the frequency of the clock that
+ *   drives `mtime` (for example `platform-sifive-hifive1`, in its
+ *   `defines.h`).
+ *
+ * The C function is `riscv_board_get_rtc_frequency_hz()`; the C++
+ * equivalent is `riscv::board::rtc_frequency_hz()`. They are not
+ * declared here, since a `static` declaration without a definition in
+ * the same translation unit triggers `-Wunused-function` warnings.
+ */
 
 #if defined(__cplusplus)
 extern "C"
 {
 #endif // defined(__cplusplus)
-
-  // --------------------------------------------------------------------------
-
-  // The declarations are part of the common design, but each board
-  // must implement them in the <xxx/platform-functions.h> file.
-
-  // Redundant, see the inline definitions.
-
-  // static uint32_t
-  // riscv_board_get_rtc_frequency_hz (void);
 
   // --------------------------------------------------------------------------
 
@@ -51,13 +55,8 @@ namespace riscv
 {
   namespace board
   {
-    // The declarations are part of the common design, but each board
-    // must implement them in the <xxx/platform-functions.h> file.
-
-    // Redundant, see the inline definitions.
-
-    // uint32_t
-    // rtc_frequency_hz (void);
+    // `rtc_frequency_hz()` is defined inline in
+    // `inlines/platform-functions-inlines.h`; see the file comment above.
 
     // ------------------------------------------------------------------------
   } // namespace board

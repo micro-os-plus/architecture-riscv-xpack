@@ -29,10 +29,40 @@ extern "C"
 
   // --------------------------------------------------------------------------
   // Support functions.
+  //
+  // Unless otherwise stated, the non-inline functions declared here are
+  // not defined in this package; they must be provided by the RTOS
+  // port, by the device package, or by the application.
 
+  /**
+   * @brief Get the core clock frequency.
+   * @par Parameters
+   *  None.
+   * @return The frequency in Hz, as computed by the last call to
+   *  `riscv_core_update_running_frequency()`.
+   *
+   * @details
+   * The C equivalent of `riscv::core::running_frequency_hz()`.
+   *
+   * Not defined in this package; usually provided by the RTOS port
+   * (`rtos-riscv`), as an alias of the C++ function.
+   */
   uint32_t
   riscv_core_get_running_frequency_hz (void);
 
+  /**
+   * @brief Compute the core clock frequency.
+   * @par Parameters
+   *  None.
+   * @par Returns
+   *  Nothing.
+   *
+   * @details
+   * The C equivalent of `riscv::core::update_running_frequency()`.
+   *
+   * Not defined in this package; usually provided by the RTOS port
+   * (`rtos-riscv`), as an alias of the C++ function.
+   */
   void
   riscv_core_update_running_frequency (void);
 
@@ -43,7 +73,19 @@ extern "C"
   riscv_core_disable_machine_external_interrupts (void);
 
   /**
-   * Hardware trap entry point (assembly).
+   * @brief Hardware trap entry point.
+   * @par Parameters
+   *  None.
+   * @par Returns
+   *  Nothing.
+   *
+   * @details
+   * The address to be written in `mtvec`, which saves the context and
+   * dispatches exceptions and interrupts. It is not a regular
+   * function and must not be called directly.
+   *
+   * Not defined in this package; usually provided in assembly by the
+   * RTOS port (`rtos-riscv`, in `trap-entry.S`).
    */
   void
   riscv_trap_entry (void);
@@ -68,14 +110,33 @@ namespace riscv
     // Support functions.
 
     /**
-     * Get the previously computed CPU frequency.
+     * @brief Get the core clock frequency.
+     * @par Parameters
+     *  None.
+     * @return The frequency in Hz, as computed by the last call to
+     *  `update_running_frequency()`.
+     *
+     * @details
+     * Not defined in this package; usually provided by the RTOS port
+     * (`rtos-riscv`), which may compute the frequency on the first
+     * call.
      */
     uint32_t
     running_frequency_hz (void);
 
     /**
-     * Compute the CPU frequency. Call this after changing the
-     * clock settings.
+     * @brief Compute the core clock frequency.
+     * @par Parameters
+     *  None.
+     * @par Returns
+     *  Nothing.
+     *
+     * @details
+     * Must be called after changing the clock settings, so that
+     * `running_frequency_hz()` returns the new value.
+     *
+     * Not defined in this package; usually provided by the RTOS port
+     * (`rtos-riscv`).
      */
     void
     update_running_frequency (void);

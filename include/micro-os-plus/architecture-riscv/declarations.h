@@ -30,7 +30,32 @@ namespace riscv
   {
     // ------------------------------------------------------------------------
 
+    /**
+     * @brief Table of local (core) interrupt handlers.
+     *
+     * @details
+     * Indexed by the `mcause` interrupt number (see
+     * `riscv_interrupts_local_enum_t`); used by the trap dispatcher.
+     *
+     * Not defined in this package; each device package must define it
+     * (for example `devices-sifive`, in `device-interrupts.cpp`), with
+     * `RISCV_INTERRUPTS_LOCAL_LAST_NUMBER + 1` entries (the macro is
+     * also defined by the device package).
+     */
     extern riscv_core_trap_handler_ptr_t local_interrupt_handlers[];
+
+    /**
+     * @brief Table of global (PLIC) interrupt handlers.
+     *
+     * @details
+     * Indexed by the PLIC source ID returned by
+     * `riscv::plic::claim_interrupt()`; entry 0 is not a valid source.
+     *
+     * Not defined in this package; each device package must define it
+     * (for example `devices-sifive`, in `device-interrupts.cpp`), with
+     * `RISCV_INTERRUPTS_GLOBAL_LAST_NUMBER + 1` entries (the macro is
+     * also defined by the device package).
+     */
     extern riscv_core_trap_handler_ptr_t global_interrupt_handlers[];
 
     // ------------------------------------------------------------------------
