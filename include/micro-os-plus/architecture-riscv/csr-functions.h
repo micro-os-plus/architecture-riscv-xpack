@@ -17,26 +17,74 @@
 #include "micro-os-plus/architecture-riscv/types.h"
 
 // ----------------------------------------------------------------------------
+// Generic CSR access.
+//
+// The CSR number is a 12-bit immediate encoded in the `csrr`/`csrw`
+// instructions, so it must be known at compile time; it cannot be
+// passed in a register. In C this requires macros (the CSR is pasted
+// into the instruction text); in C++ the `riscv::csr::read<>()` and
+// `riscv::csr::write<>()` function templates are preferred.
+
+/**
+ * @brief Convert a macro argument to a string, after expanding it.
+ * @param [in] x The token(s) to convert.
+ *
+ * @details
+ * The two-level indirection allows the CSR argument of
+ * `RISCV_CSR_READ()` and `RISCV_CSR_WRITE()` to be itself a macro
+ * that expands to a CSR name or number.
+ */
+#define RISCV_CSR_STRINGIFY_(x) #x
+#define RISCV_CSR_STRINGIFY(x) RISCV_CSR_STRINGIFY_ (x)
+
+/**
+ * @brief Read any CSR.
+ * @param [in] csr The CSR, as a name known by the assembler (for
+ *  example `mstatus`) or as a plain integer literal (for example
+ *  `0x300`), without suffixes.
+ * @return The value of the CSR, as `riscv_architecture_register_t`.
+ *
+ * @details
+ * The CSR is pasted into the instruction text and resolved by the
+ * assembler; an invalid name or number is reported as an assembler
+ * error. Uses a GNU statement expression, supported by GCC and Clang;
+ * `__extension__` keeps `-Wpedantic` builds clean.
+ */
+#define RISCV_CSR_READ(csr) \
+  __extension__ ({ \
+    riscv_architecture_register_t riscv_csr_value_; \
+    __asm__ volatile ("csrr %[r], " RISCV_CSR_STRINGIFY (csr) \
+                      : [r] "=r"(riscv_csr_value_) /* Outputs */); \
+    riscv_csr_value_; \
+  })
+
+/**
+ * @brief Write any CSR.
+ * @param [in] csr The CSR, as a name known by the assembler (for
+ *  example `mstatus`) or as a plain integer literal (for example
+ *  `0x300`), without suffixes.
+ * @param [in] value The value to write; small constants (0 to 31) are
+ *  encoded as immediates.
+ *
+ * @details
+ * As the other CSR write functions, it is also a compiler memory
+ * barrier, so memory accesses are not moved across it.
+ */
+#define RISCV_CSR_WRITE(csr, value) \
+  __extension__ ({ \
+    __asm__ volatile ("csrw " RISCV_CSR_STRINGIFY (csr) ", %[v]" \
+                      : /* Outputs */ \
+                      : [v] "rK"((riscv_architecture_register_t)(value)) \
+                      : "memory" /* Clobbers */); \
+  })
+
+// ----------------------------------------------------------------------------
 // RISC-V CSR support functions.
 
 #if defined(__cplusplus)
 extern "C"
 {
 #endif // defined(__cplusplus)
-
-  // --------------------------------------------------------------------------
-
-#if 0
-  // Not available, due to ISA limitations.
-  // The workaround is to use distinct functions
-  // for each CSR. There are only 4096 of them.
-
-  riscv_architecture_register_t
-  riscv_csr_read (uint32_t reg);
-
-  void
-  riscv_csr_write (uint32_t reg, riscv_architecture_register_t value);
-#endif
 
   // --------------------------------------------------------------------------
   // `mstatus`
@@ -270,6 +318,45 @@ namespace riscv
 {
   namespace csr
   {
+    // ------------------------------------------------------------------------
+    // Generic CSR access.
+
+    /**
+     * @brief Read any CSR.
+     * @tparam csr The CSR number (0 to 4095).
+     * @par Parameters
+     *  None.
+     * @return The value of the CSR.
+     *
+     * @details
+     * The CSR number is a template argument, therefore a constant
+     * expression at all optimisation levels, as required by the
+     * `csrr` instruction encoding. Numbers outside the 12-bit range
+     * are rejected at compile time.
+     *
+     * Example: `riscv::csr::read<0x300> ()` reads `mstatus`.
+     */
+    template <uint32_t csr>
+    architecture::register_t
+    read (void);
+
+    /**
+     * @brief Write any CSR.
+     * @tparam csr The CSR number (0 to 4095).
+     * @param [in] value The value to write.
+     * @par Returns
+     *  Nothing.
+     *
+     * @details
+     * As `read<>()`, the CSR number is checked at compile time. Small
+     * constant values (0 to 31) are encoded as immediates. The
+     * instruction is also a compiler memory barrier, so memory
+     * accesses are not moved across it.
+     */
+    template <uint32_t csr>
+    void
+    write (architecture::register_t value);
+
     // ------------------------------------------------------------------------
     // `mstatus`
 

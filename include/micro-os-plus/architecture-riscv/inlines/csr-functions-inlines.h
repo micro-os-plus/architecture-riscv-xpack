@@ -26,30 +26,6 @@ extern "C"
 
   // --------------------------------------------------------------------------
 
-#if 0
-  // Not available, due to ISA limitations (no 'r' to pass the CSR,
-  // mandatory on -O0, even when called with constants).
-
-  inline riscv_architecture_register_t
-  __attribute__((always_inline))
-  riscv_csr_read (uint32_t reg)
-    {
-      riscv_architecture_register_t tmp;
-
-      __asm__ volatile (
-          "csrr %[r],%[csr]"
-
-          : [r] "=rm"(tmp) /* Outputs */
-          : [csr] "ri"(reg) /* Inputs */
-          : /* Clobbers */
-      );
-      return tmp;
-    }
-
-#endif
-
-  // --------------------------------------------------------------------------
-
   static inline __attribute__ ((always_inline)) riscv_architecture_register_t
   riscv_csr_read_mstatus (void)
   {
@@ -425,6 +401,44 @@ namespace riscv
 {
   namespace csr
   {
+    // ------------------------------------------------------------------------
+
+    template <uint32_t csr>
+    inline __attribute__ ((always_inline)) architecture::register_t
+    read (void)
+    {
+      static_assert (csr < 4096, "CSR numbers are 12-bit");
+
+      architecture::register_t tmp;
+
+      __asm__ volatile (
+
+          "csrr %[r], %[c]"
+
+          : [r] "=r"(tmp) /* Outputs */
+          : [c] "i"(csr) /* Inputs */
+          : /* Clobbers */
+      );
+
+      return tmp;
+    }
+
+    template <uint32_t csr>
+    inline __attribute__ ((always_inline)) void
+    write (architecture::register_t value)
+    {
+      static_assert (csr < 4096, "CSR numbers are 12-bit");
+
+      __asm__ volatile (
+
+          "csrw %[c], %[v]"
+
+          : /* Outputs */
+          : [c] "i"(csr), [v] "rK"(value) /* Inputs */
+          : "memory" /* Clobbers */
+      );
+    }
+
     // ------------------------------------------------------------------------
 
     inline __attribute__ ((always_inline)) architecture::register_t
