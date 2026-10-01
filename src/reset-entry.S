@@ -60,22 +60,23 @@ reset_entry:
     // The linker script usually defines the stack at the end of RAM.
     la        sp, __stack
 
-#if defined(__riscv_fdiv)
+#if defined(__riscv_flen)
 
-    // Initialise the Floating Point Unit
-    // From FreeRTOS prvSetupFPU()
-    csrr      t0, misa          // Get misa
-    li        t1, 0x10028       // 0x10028 = Q,F,D Quad, Single or Double precision floating point
-    and       t0, t0, t1
-    beqz      t0, 1f            // check if Q,F or D is present into misa
-    csrr      t0, mstatus       // Floating point unit is present so need to put it into initial state
-    lui       t1, 0x2           // t1 =  0x1 << 12
-    or        t0, t0, t1
-    csrw      mstatus, t0       // Set FS to initial state
-    csrwi     fcsr, 0           // Clear Floating-point Control and Status Register
-1:
+    // Initialise the Floating Point Unit.
+    // The code was compiled for an FPU, so the hardware must have one;
+    // `misa` is not checked, since it may legally read as zero.
+    // `mstatus.FS` (bits 14:13) is first cleared, since this code may
+    // be re-entered (for example by a debugger) with the FPU in use,
+    // then set to Initial (0b01), which enables the FPU.
+    li        t0, RISCV_CSR_MSTATUS_FS
+    csrc      mstatus, t0
+    li        t0, RISCV_CSR_MSTATUS_FS_INITIAL
+    csrs      mstatus, t0
 
-#endif // __riscv_fdiv
+    // Clear the rounding mode and the accrued exceptions.
+    csrwi     fcsr, 0
+
+#endif // defined(__riscv_flen)
 
     // Proceed with the standard C _start() routine.
     j         _start
