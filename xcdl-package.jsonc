@@ -5,8 +5,7 @@
   "copyright": "Copyright (c) 2022-2026 Liviu Ionescu. All rights reserved.",
   "cdlComponents": [
     {
-      "id": "micro-os-plus.architectures.riscv",
-      "alias": "micro-os-plus.architecture",
+      "id": "micro-os-plus.architecture.riscv",
       "display": "RISC-V architecture",
       "description": "The RISC-V architecture definitions, for 32/64-bit devices",
       "publicIncludeFolders": [
@@ -27,7 +26,7 @@
         "type": "c-header",
         "filePath": "{{buildFolderPath}}/generated/include/micro-os-plus/architecture-defines.h"
       },
-      // "defaultDefine": "MICRO_OS_PLUS_ARCHITECTURES_RISCV_ENABLED"
+      // "defaultDefine": "MICRO_OS_PLUS_ARCHITECTURE_RISCV_ENABLED"
       "cdlComponents": [
         {
           "id": "debugger-entry-point",
@@ -36,7 +35,7 @@
           "sourceFiles": [
             "src/debugger-entry-point.S"
           ],
-          // "defaultDefine": "MICRO_OS_PLUS_ARCHITECTURES_RISCV_DEBUGGER_ENTRY_POINT_ENABLED"
+          // "defaultDefine": "MICRO_OS_PLUS_ARCHITECTURE_RISCV_DEBUGGER_ENTRY_POINT_ENABLED"
         },
         {
           "id": "reset-entry",
@@ -45,7 +44,7 @@
           "sourceFiles": [
             "src/reset-entry.S"
           ]
-          // "defaultDefine": "MICRO_OS_PLUS_ARCHITECTURES_RISCV_RESET_ENTRY_ENABLED"
+          // "defaultDefine": "MICRO_OS_PLUS_ARCHITECTURE_RISCV_RESET_ENTRY_ENABLED"
         },
       ]
     }

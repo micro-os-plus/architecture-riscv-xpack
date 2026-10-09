@@ -20,9 +20,9 @@
 # This creates libraries that can be linked to a target with:
 #
 # ~~~
-# target_link_libraries(your-target PUBLIC micro-os-plus::architectures-riscv-debugger-entry-point)
-# target_link_libraries(your-target PUBLIC micro-os-plus::architectures-riscv-reset-entry)
-# target_link_libraries(your-target PUBLIC micro-os-plus::architectures-riscv)
+# target_link_libraries(your-target PUBLIC micro-os-plus::architecture-riscv-debugger-entry-point)
+# target_link_libraries(your-target PUBLIC micro-os-plus::architecture-riscv-reset-entry)
+# target_link_libraries(your-target PUBLIC micro-os-plus::architecture-riscv)
 # ~~~
 
 # -----------------------------------------------------------------------------
@@ -31,7 +31,7 @@
 cmake_minimum_required (VERSION 3.20)
 project (
   micro-os-plus-architecture-riscv
-  DESCRIPTION "A source code library with the µOS++ RISC-V architecture port"
+  DESCRIPTION "A source code library with the µOS++ RISC-V architecture port for 32/64-bit devices"
   LANGUAGES C CXX ASM
 )
 
@@ -68,15 +68,15 @@ endif ()
 # https://cmake.org/cmake/help/v3.20/command/add_library.html?highlight=interface#interface-libraries
 # Visibility keywords: PRIVATE applies to the target itself; INTERFACE passes
 # properties up to targets that link against it; PUBLIC does both.
-add_library (micro-os-plus-architectures-riscv-debugger-entry-point-interface INTERFACE EXCLUDE_FROM_ALL)
+add_library (micro-os-plus-architecture-riscv-debugger-entry-point-interface INTERFACE EXCLUDE_FROM_ALL)
 
 target_sources (
-  micro-os-plus-architectures-riscv-debugger-entry-point-interface
+  micro-os-plus-architecture-riscv-debugger-entry-point-interface
   INTERFACE "src/debugger-entry-point.S"
 )
 
 if (COMMAND xpack_display_target_lists)
-  xpack_display_target_lists (micro-os-plus-architectures-riscv-debugger-entry-point-interface)
+  xpack_display_target_lists (micro-os-plus-architecture-riscv-debugger-entry-point-interface)
 endif ()
 
 # -----------------------------------------------------------------------------
@@ -84,11 +84,11 @@ endif ()
 
 # https://cmake.org/cmake/help/v3.20/command/add_library.html#alias-libraries
 add_library (
-  micro-os-plus::architectures-riscv-debugger-entry-point ALIAS micro-os-plus-architectures-riscv-debugger-entry-point-interface
+  micro-os-plus::architecture-riscv-debugger-entry-point ALIAS micro-os-plus-architecture-riscv-debugger-entry-point-interface
 )
 message (
   VERBOSE
-  "> micro-os-plus::architectures-riscv-debugger-entry-point -> micro-os-plus-architectures-riscv-debugger-entry-point-interface"
+  "> micro-os-plus::architecture-riscv-debugger-entry-point -> micro-os-plus-architecture-riscv-debugger-entry-point-interface"
 )
 
 # -----------------------------------------------------------------------------
@@ -97,15 +97,15 @@ message (
 # https://cmake.org/cmake/help/v3.20/command/add_library.html?highlight=interface#interface-libraries
 # Visibility keywords: PRIVATE applies to the target itself; INTERFACE passes
 # properties up to targets that link against it; PUBLIC does both.
-add_library (micro-os-plus-architectures-riscv-reset-entry-interface INTERFACE EXCLUDE_FROM_ALL)
+add_library (micro-os-plus-architecture-riscv-reset-entry-interface INTERFACE EXCLUDE_FROM_ALL)
 
 target_sources (
-  micro-os-plus-architectures-riscv-reset-entry-interface
+  micro-os-plus-architecture-riscv-reset-entry-interface
   INTERFACE "src/reset-entry.S"
 )
 
 if (COMMAND xpack_display_target_lists)
-  xpack_display_target_lists (micro-os-plus-architectures-riscv-reset-entry-interface)
+  xpack_display_target_lists (micro-os-plus-architecture-riscv-reset-entry-interface)
 endif ()
 
 # -----------------------------------------------------------------------------
@@ -113,11 +113,11 @@ endif ()
 
 # https://cmake.org/cmake/help/v3.20/command/add_library.html#alias-libraries
 add_library (
-  micro-os-plus::architectures-riscv-reset-entry ALIAS micro-os-plus-architectures-riscv-reset-entry-interface
+  micro-os-plus::architecture-riscv-reset-entry ALIAS micro-os-plus-architecture-riscv-reset-entry-interface
 )
 message (
   VERBOSE
-  "> micro-os-plus::architectures-riscv-reset-entry -> micro-os-plus-architectures-riscv-reset-entry-interface"
+  "> micro-os-plus::architecture-riscv-reset-entry -> micro-os-plus-architecture-riscv-reset-entry-interface"
 )
 
 # -----------------------------------------------------------------------------
@@ -126,27 +126,27 @@ message (
 # https://cmake.org/cmake/help/v3.20/command/add_library.html?highlight=interface#interface-libraries
 # Visibility keywords: PRIVATE applies to the target itself; INTERFACE passes
 # properties up to targets that link against it; PUBLIC does both.
-add_library (micro-os-plus-architectures-riscv-interface INTERFACE EXCLUDE_FROM_ALL)
+add_library (micro-os-plus-architecture-riscv-interface INTERFACE EXCLUDE_FROM_ALL)
 
 target_include_directories (
-  micro-os-plus-architectures-riscv-interface 
+  micro-os-plus-architecture-riscv-interface 
   INTERFACE "include"
 )
 
 target_sources (
-  micro-os-plus-architectures-riscv-interface
+  micro-os-plus-architecture-riscv-interface
   INTERFACE "src/semihosting.cpp"
             "src/show-cpuid.cpp"
 )
 
 target_link_libraries (
-  micro-os-plus-architectures-riscv-interface 
-  INTERFACE "micro-os-plus::architectures-riscv-debugger-entry-point"
-            "micro-os-plus::architectures-riscv-reset-entry"
+  micro-os-plus-architecture-riscv-interface 
+  INTERFACE "micro-os-plus::architecture-riscv-debugger-entry-point"
+            "micro-os-plus::architecture-riscv-reset-entry"
 )
 
 if (COMMAND xpack_display_target_lists)
-  xpack_display_target_lists (micro-os-plus-architectures-riscv-interface)
+  xpack_display_target_lists (micro-os-plus-architecture-riscv-interface)
 endif ()
 
 # -----------------------------------------------------------------------------
@@ -154,19 +154,11 @@ endif ()
 
 # https://cmake.org/cmake/help/v3.20/command/add_library.html#alias-libraries
 add_library (
-  micro-os-plus::architectures-riscv ALIAS micro-os-plus-architectures-riscv-interface
+  micro-os-plus::architecture-riscv ALIAS micro-os-plus-architecture-riscv-interface
 )
 message (
   VERBOSE
-  "> micro-os-plus::architectures-riscv -> micro-os-plus-architectures-riscv-interface"
-)
-
-add_library (
-  micro-os-plus::architecture ALIAS micro-os-plus-architectures-riscv-interface
-)
-message (
-  VERBOSE
-  "> micro-os-plus::architecture -> micro-os-plus-architectures-riscv-interface"
+  "> micro-os-plus::architecture-riscv -> micro-os-plus-architecture-riscv-interface"
 )
 
 # -----------------------------------------------------------------------------
