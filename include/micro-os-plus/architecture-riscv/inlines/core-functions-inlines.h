@@ -26,13 +26,13 @@ extern "C"
 
   // --------------------------------------------------------------------------
 
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   riscv_core_enable_machine_external_interrupts (void)
   {
     riscv_csr_set_mie_bits (RISCV_CSR_MIP_MEIP);
   }
 
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   riscv_core_disable_machine_external_interrupts (void)
   {
     riscv_csr_clear_mie_bits (RISCV_CSR_MIP_MEIP);
@@ -56,13 +56,13 @@ namespace riscv
   {
     // ------------------------------------------------------------------------
 
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     enable_machine_external_interrupts (void) noexcept
     {
       riscv_core_enable_machine_external_interrupts ();
     }
 
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     disable_machine_external_interrupts (void) noexcept
     {
       riscv_core_disable_machine_external_interrupts ();

@@ -82,7 +82,7 @@ extern "C"
    * The change is atomic (a single `csrrs`), so the function can be
    * called from interrupt handlers.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   riscv_core_enable_machine_external_interrupts (void);
 
   /**
@@ -96,7 +96,7 @@ extern "C"
    * Clears the `MEIP` bit in `mie`; the PLIC configuration is not
    * changed. The change is atomic (a single `csrrc`).
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   riscv_core_disable_machine_external_interrupts (void);
 
   /**
@@ -179,7 +179,7 @@ namespace riscv
      * The C++ equivalent of
      * `riscv_core_enable_machine_external_interrupts()`.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     enable_machine_external_interrupts (void) noexcept;
 
     /**
@@ -193,7 +193,7 @@ namespace riscv
      * The C++ equivalent of
      * `riscv_core_disable_machine_external_interrupts()`.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     disable_machine_external_interrupts (void) noexcept;
 
     // ------------------------------------------------------------------------

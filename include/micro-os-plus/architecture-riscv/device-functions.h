@@ -78,7 +78,7 @@ extern "C"
    * if the low word overflowed in between, so the result is always
    * consistent.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE uint64_t
+  MICRO_OS_PLUS_ALWAYS_INLINE uint64_t
   riscv_device_read_mtime (void);
 
   /**
@@ -92,7 +92,7 @@ extern "C"
    * halves is not atomic on RV32; use the 64-bit function to get a
    * consistent value.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE uint32_t
+  MICRO_OS_PLUS_ALWAYS_INLINE uint32_t
   riscv_device_read_mtime_low (void);
 
   /**
@@ -105,7 +105,7 @@ extern "C"
    * Combining the two halves is not atomic on RV32; use the 64-bit
    * function to get a consistent value.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE uint32_t
+  MICRO_OS_PLUS_ALWAYS_INLINE uint32_t
   riscv_device_read_mtime_high (void);
 
   /**
@@ -122,7 +122,7 @@ extern "C"
    * and the low words are written. The sequence is not atomic with
    * respect to interrupts; if needed, the caller must disable them.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   riscv_device_write_mtime (uint64_t value);
 
   /**
@@ -135,7 +135,7 @@ extern "C"
    * The other word is not changed. To write the full value, use
    * `riscv_device_write_mtime()`, which uses a safe sequence on RV32.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   riscv_device_write_mtime_low (uint32_t value);
 
   /**
@@ -148,7 +148,7 @@ extern "C"
    * The other word is not changed. To write the full value, use
    * `riscv_device_write_mtime()`, which uses a safe sequence on RV32.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   riscv_device_write_mtime_high (uint32_t value);
 
   // --------------------------------------------------------------------------
@@ -167,7 +167,7 @@ extern "C"
    * result is consistent unless it is written concurrently by an
    * interrupt handler or another hart.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE uint64_t
+  MICRO_OS_PLUS_ALWAYS_INLINE uint64_t
   riscv_device_read_mtimecmp (void);
 
   /**
@@ -180,7 +180,7 @@ extern "C"
    * Combining the two halves is not atomic on RV32; use the 64-bit
    * function to get a consistent value.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE uint32_t
+  MICRO_OS_PLUS_ALWAYS_INLINE uint32_t
   riscv_device_read_mtimecmp_low (void);
 
   /**
@@ -193,7 +193,7 @@ extern "C"
    * Combining the two halves is not atomic on RV32; use the 64-bit
    * function to get a consistent value.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE uint32_t
+  MICRO_OS_PLUS_ALWAYS_INLINE uint32_t
   riscv_device_read_mtimecmp_high (void);
 
   /**
@@ -213,7 +213,7 @@ extern "C"
    * is not atomic with respect to interrupts; if needed, the caller
    * must disable them.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   riscv_device_write_mtimecmp (uint64_t value);
 
   /**
@@ -227,7 +227,7 @@ extern "C"
    * may trigger a spurious timer interrupt, if an intermediate value is
    * not larger than `mtime`; use `riscv_device_write_mtimecmp()`.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   riscv_device_write_mtimecmp_low (uint32_t value);
 
   /**
@@ -241,7 +241,7 @@ extern "C"
    * may trigger a spurious timer interrupt, if an intermediate value is
    * not larger than `mtime`; use `riscv_device_write_mtimecmp()`.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   riscv_device_write_mtimecmp_high (uint32_t value);
 
   // --------------------------------------------------------------------------
@@ -276,7 +276,7 @@ namespace riscv
      * result is consistent even if the low word overflows during
      * the read.
      */
-    [[nodiscard]] MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE uint64_t
+    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE uint64_t
     mtime (void) noexcept;
 
     /**
@@ -288,7 +288,7 @@ namespace riscv
      * @details
      * The C++ equivalent of `riscv_device_read_mtime_low()`.
      */
-    [[nodiscard]] MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE uint32_t
+    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE uint32_t
     mtime_low (void) noexcept;
 
     /**
@@ -300,7 +300,7 @@ namespace riscv
      * @details
      * The C++ equivalent of `riscv_device_read_mtime_high()`.
      */
-    [[nodiscard]] MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE uint32_t
+    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE uint32_t
     mtime_high (void) noexcept;
 
     /**
@@ -312,7 +312,7 @@ namespace riscv
      * @details
      * The C++ equivalent of `riscv_device_write_mtime()`.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     mtime (uint64_t value) noexcept;
 
     /**
@@ -324,7 +324,7 @@ namespace riscv
      * @details
      * The C++ equivalent of `riscv_device_write_mtime_low()`.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     mtime_low (uint32_t value) noexcept;
 
     /**
@@ -336,7 +336,7 @@ namespace riscv
      * @details
      * The C++ equivalent of `riscv_device_write_mtime_high()`.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     mtime_high (uint32_t value) noexcept;
 
     // ------------------------------------------------------------------------
@@ -351,7 +351,7 @@ namespace riscv
      * @details
      * The C++ equivalent of `riscv_device_read_mtimecmp()`.
      */
-    [[nodiscard]] MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE uint64_t
+    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE uint64_t
     mtimecmp (void) noexcept;
 
     /**
@@ -363,7 +363,7 @@ namespace riscv
      * @details
      * The C++ equivalent of `riscv_device_read_mtimecmp_low()`.
      */
-    [[nodiscard]] MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE uint32_t
+    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE uint32_t
     mtimecmp_low (void) noexcept;
 
     /**
@@ -375,7 +375,7 @@ namespace riscv
      * @details
      * The C++ equivalent of `riscv_device_read_mtimecmp_high()`.
      */
-    [[nodiscard]] MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE uint32_t
+    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE uint32_t
     mtimecmp_high (void) noexcept;
 
     /**
@@ -388,7 +388,7 @@ namespace riscv
      * The C++ equivalent of `riscv_device_write_mtimecmp()`; on RV32
      * the write sequence prevents spurious timer interrupts.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     mtimecmp (uint64_t value) noexcept;
 
     /**
@@ -400,7 +400,7 @@ namespace riscv
      * @details
      * The C++ equivalent of `riscv_device_write_mtimecmp_low()`.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     mtimecmp_low (uint32_t value) noexcept;
 
     /**
@@ -412,7 +412,7 @@ namespace riscv
      * @details
      * The C++ equivalent of `riscv_device_write_mtimecmp_high()`.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     mtimecmp_high (uint32_t value) noexcept;
 
     // ------------------------------------------------------------------------

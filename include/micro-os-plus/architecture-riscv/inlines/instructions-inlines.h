@@ -27,7 +27,7 @@ extern "C"
 
   // --------------------------------------------------------------------------
 
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   riscv_architecture_nop (void)
   {
     __asm__ volatile (
@@ -40,7 +40,7 @@ extern "C"
     );
   }
 
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   riscv_architecture_ebreak (void)
   {
     __asm__ volatile (
@@ -53,7 +53,7 @@ extern "C"
     );
   }
 
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   riscv_architecture_wfi (void)
   {
     __asm__ volatile (
@@ -66,7 +66,7 @@ extern "C"
     );
   }
 
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   riscv_architecture_fence (void)
   {
     __asm__ volatile (
@@ -79,7 +79,7 @@ extern "C"
     );
   }
 
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   riscv_architecture_fence_i (void)
   {
     __asm__ volatile (
@@ -94,31 +94,31 @@ extern "C"
     );
   }
 
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   micro_os_plus_architecture_nop (void)
   {
     riscv_architecture_nop ();
   }
 
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   micro_os_plus_architecture_brk (void)
   {
     riscv_architecture_ebreak ();
   }
 
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   micro_os_plus_architecture_wfi (void)
   {
     riscv_architecture_wfi ();
   }
 
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   micro_os_plus_architecture_data_barrier (void)
   {
     riscv_architecture_fence ();
   }
 
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   micro_os_plus_architecture_instruction_barrier (void)
   {
     riscv_architecture_fence_i ();
@@ -142,31 +142,31 @@ namespace riscv
   {
     // ------------------------------------------------------------------------
 
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     nop (void) noexcept
     {
       riscv_architecture_nop ();
     }
 
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     ebreak (void) noexcept
     {
       riscv_architecture_ebreak ();
     }
 
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     wfi (void) noexcept
     {
       riscv_architecture_wfi ();
     }
 
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     fence (void) noexcept
     {
       riscv_architecture_fence ();
     }
 
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     fence_i (void) noexcept
     {
       riscv_architecture_fence_i ();
@@ -184,31 +184,31 @@ namespace micro_os_plus
   {
     // ------------------------------------------------------------------------
 
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     nop (void) noexcept
     {
       riscv::architecture::nop ();
     }
 
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     brk (void) noexcept
     {
       riscv::architecture::ebreak ();
     }
 
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     wfi (void) noexcept
     {
       riscv::architecture::wfi ();
     }
 
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     data_barrier (void) noexcept
     {
       riscv::architecture::fence ();
     }
 
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     instruction_barrier (void) noexcept
     {
       riscv::architecture::fence_i ();

@@ -56,7 +56,7 @@ extern "C"
    * platform package. The value is needed to convert `mtime` ticks
    * to time units, and to measure the core clock frequency.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE uint32_t
+  MICRO_OS_PLUS_ALWAYS_INLINE uint32_t
   riscv_board_get_rtc_frequency_hz (void);
 
   // --------------------------------------------------------------------------
@@ -88,7 +88,7 @@ namespace riscv
      * @details
      * The C++ equivalent of `riscv_board_get_rtc_frequency_hz()`.
      */
-    [[nodiscard]] MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE uint32_t
+    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE uint32_t
     rtc_frequency_hz (void) noexcept;
 
     // ------------------------------------------------------------------------

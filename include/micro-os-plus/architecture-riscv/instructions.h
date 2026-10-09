@@ -41,7 +41,7 @@ extern "C"
    * Does nothing; usually used for short delays or as a placeholder.
    * It is not a memory barrier.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   riscv_architecture_nop (void);
 
   /**
@@ -59,7 +59,7 @@ extern "C"
    * writes issued before it are visible to a debugger inspecting the
    * target when the breakpoint is hit.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   riscv_architecture_ebreak (void);
 
   /**
@@ -80,7 +80,7 @@ extern "C"
    * up; without it, loops like `while (!flag) wfi();` may never
    * observe the change.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   riscv_architecture_wfi (void);
 
   /**
@@ -95,7 +95,7 @@ extern "C"
    * before it are ordered before those issued after it, as observed
    * by other harts and devices. It is also a compiler memory barrier.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   riscv_architecture_fence (void);
 
   /**
@@ -114,7 +114,7 @@ extern "C"
    * for the `fence.i` mnemonic). On cores that do not implement
    * Zifencei, executing it raises an illegal instruction exception.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   riscv_architecture_fence_i (void);
 
   // --------------------------------------------------------------------------
@@ -130,7 +130,7 @@ extern "C"
    * @details
    * The portable µOS++ name; on RISC-V it executes `nop`.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   micro_os_plus_architecture_nop (void);
 
   /**
@@ -140,7 +140,7 @@ extern "C"
    * On RISC-V, it is implemented with the `ebreak` instruction, which
    * is also a compiler memory barrier.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   micro_os_plus_architecture_brk (void);
 
   /**
@@ -151,7 +151,7 @@ extern "C"
    * is also a compiler memory barrier, so variables modified by
    * interrupt handlers are re-read after the core wakes up.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   micro_os_plus_architecture_wfi (void);
 
   /**
@@ -167,7 +167,7 @@ extern "C"
    * accesses, it does not wait for their completion; CSR writes are
    * already serialised by the architecture.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   micro_os_plus_architecture_data_barrier (void);
 
   /**
@@ -182,7 +182,7 @@ extern "C"
    * On RISC-V, it is implemented with the `fence.i` instruction, which
    * requires the Zifencei extension.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   micro_os_plus_architecture_instruction_barrier (void);
 
   // --------------------------------------------------------------------------
@@ -214,7 +214,7 @@ namespace riscv
      * @details
      * The C++ equivalent of `riscv_architecture_nop()`.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     nop (void) noexcept;
 
     /**
@@ -228,7 +228,7 @@ namespace riscv
      * The C++ equivalent of `riscv_architecture_ebreak()`; it is also a
      * compiler memory barrier.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     ebreak (void) noexcept;
 
     /**
@@ -242,7 +242,7 @@ namespace riscv
      * The C++ equivalent of `riscv_architecture_wfi()`; it is also a
      * compiler memory barrier, and must be used in a loop.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     wfi (void) noexcept;
 
     /**
@@ -255,7 +255,7 @@ namespace riscv
      * @details
      * The C++ equivalent of `riscv_architecture_fence()`.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     fence (void) noexcept;
 
     /**
@@ -269,7 +269,7 @@ namespace riscv
      * The C++ equivalent of `riscv_architecture_fence_i()`; it requires
      * the Zifencei extension.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     fence_i (void) noexcept;
 
     // ------------------------------------------------------------------------
@@ -295,7 +295,7 @@ namespace micro_os_plus
      * @details
      * The C++ equivalent of `micro_os_plus_architecture_nop()`.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     nop (void) noexcept;
 
     /**
@@ -309,7 +309,7 @@ namespace micro_os_plus
      * The C++ equivalent of `micro_os_plus_architecture_brk()`; on
      * RISC-V it executes `ebreak`.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     brk (void) noexcept;
 
     /**
@@ -323,7 +323,7 @@ namespace micro_os_plus
      * The C++ equivalent of `micro_os_plus_architecture_wfi()`; on
      * RISC-V it executes `wfi`.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     wfi (void) noexcept;
 
     /**
@@ -334,7 +334,7 @@ namespace micro_os_plus
      * on RISC-V, it is implemented with the `fence iorw, iorw`
      * instruction.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     data_barrier (void) noexcept;
 
     /**
@@ -345,7 +345,7 @@ namespace micro_os_plus
      * `micro_os_plus_architecture_instruction_barrier()`; on RISC-V,
      * it is implemented with the `fence.i` instruction.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     instruction_barrier (void) noexcept;
 
     // ------------------------------------------------------------------------

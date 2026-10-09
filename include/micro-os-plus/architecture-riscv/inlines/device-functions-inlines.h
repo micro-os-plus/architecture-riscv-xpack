@@ -34,7 +34,7 @@ extern "C"
    * the two high values differ, the low word overflowed between the
    * reads and the sequence is repeated.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE uint64_t
+  MICRO_OS_PLUS_ALWAYS_INLINE uint64_t
   riscv_device_read_mtime (void)
   {
 #if __riscv_xlen == 64
@@ -59,14 +59,14 @@ extern "C"
 #endif // __riscv_xlen == 64
   }
 
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE uint32_t
+  MICRO_OS_PLUS_ALWAYS_INLINE uint32_t
   riscv_device_read_mtime_low (void)
   {
     return *(
         volatile uint32_t*)(MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIME_ADDRESS);
   }
 
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE uint32_t
+  MICRO_OS_PLUS_ALWAYS_INLINE uint32_t
   riscv_device_read_mtime_high (void)
   {
     return *(volatile uint32_t*)(MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIME_ADDRESS
@@ -78,7 +78,7 @@ extern "C"
    * On RV32, clearing the low word first prevents a carry into the
    * high word while it is being written.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   riscv_device_write_mtime (uint64_t value)
   {
 #if __riscv_xlen == 64
@@ -95,14 +95,14 @@ extern "C"
 #endif // __riscv_xlen == 64
   }
 
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   riscv_device_write_mtime_low (uint32_t value)
   {
     *(volatile uint32_t*)(MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIME_ADDRESS)
         = value;
   }
 
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   riscv_device_write_mtime_high (uint32_t value)
   {
     *(volatile uint32_t*)(MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIME_ADDRESS + 4)
@@ -111,7 +111,7 @@ extern "C"
 
   // --------------------------------------------------------------------------
 
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE uint64_t
+  MICRO_OS_PLUS_ALWAYS_INLINE uint64_t
   riscv_device_read_mtimecmp (void)
   {
     // On RV32 the compiler generates two word accesses.
@@ -119,14 +119,14 @@ extern "C"
         volatile uint64_t*)(MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIMECMP_ADDRESS);
   }
 
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE uint32_t
+  MICRO_OS_PLUS_ALWAYS_INLINE uint32_t
   riscv_device_read_mtimecmp_low (void)
   {
     return *(
         volatile uint32_t*)(MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIMECMP_ADDRESS);
   }
 
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE uint32_t
+  MICRO_OS_PLUS_ALWAYS_INLINE uint32_t
   riscv_device_read_mtimecmp_high (void)
   {
     return *(
@@ -140,7 +140,7 @@ extern "C"
    * that no intermediate comparator value can trigger a spurious
    * interrupt.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   riscv_device_write_mtimecmp (uint64_t value)
   {
 #if __riscv_xlen == 64
@@ -157,14 +157,14 @@ extern "C"
 #endif // __riscv_xlen == 64
   }
 
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   riscv_device_write_mtimecmp_low (uint32_t value)
   {
     *(volatile uint32_t*)(MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIMECMP_ADDRESS)
         = value;
   }
 
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   riscv_device_write_mtimecmp_high (uint32_t value)
   {
     *(volatile uint32_t*)(MICRO_OS_PLUS_DEVICE_RISCV_MMIO_MTIMECMP_ADDRESS + 4)
@@ -189,37 +189,37 @@ namespace riscv
   {
     // ------------------------------------------------------------------------
 
-    [[nodiscard]] MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE uint64_t
+    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE uint64_t
     mtime (void) noexcept
     {
       return riscv_device_read_mtime ();
     }
 
-    [[nodiscard]] MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE uint32_t
+    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE uint32_t
     mtime_low (void) noexcept
     {
       return riscv_device_read_mtime_low ();
     }
 
-    [[nodiscard]] MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE uint32_t
+    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE uint32_t
     mtime_high (void) noexcept
     {
       return riscv_device_read_mtime_high ();
     }
 
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     mtime (uint64_t value) noexcept
     {
       riscv_device_write_mtime (value);
     }
 
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     mtime_low (uint32_t value) noexcept
     {
       riscv_device_write_mtime_low (value);
     }
 
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     mtime_high (uint32_t value) noexcept
     {
       riscv_device_write_mtime_high (value);
@@ -227,37 +227,37 @@ namespace riscv
 
     // ------------------------------------------------------------------------
 
-    [[nodiscard]] MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE uint64_t
+    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE uint64_t
     mtimecmp (void) noexcept
     {
       return riscv_device_read_mtimecmp ();
     }
 
-    [[nodiscard]] MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE uint32_t
+    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE uint32_t
     mtimecmp_low (void) noexcept
     {
       return riscv_device_read_mtimecmp_low ();
     }
 
-    [[nodiscard]] MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE uint32_t
+    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE uint32_t
     mtimecmp_high (void) noexcept
     {
       return riscv_device_read_mtimecmp_high ();
     }
 
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     mtimecmp (uint64_t value) noexcept
     {
       riscv_device_write_mtimecmp (value);
     }
 
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     mtimecmp_low (uint32_t value) noexcept
     {
       riscv_device_write_mtimecmp_low (value);
     }
 
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     mtimecmp_high (uint32_t value) noexcept
     {
       riscv_device_write_mtimecmp_high (value);
