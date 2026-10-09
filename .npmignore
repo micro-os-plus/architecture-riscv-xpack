@@ -63,7 +63,6 @@ LICENSE-*
 !LICENSE-liquid
 CONTRIBUTING**
 NOTES.md
-CODE-REVIEW.md
 
 **/tsconfig*.json
 typedoc.json
@@ -87,7 +86,7 @@ build-assets/
 wrappers/
 extras/
 inspiration/
-maintenance-scripts/
+maintenance/
 tests/
 config/
 
@@ -104,5 +103,7 @@ eslint.config.js
 **/.cmake-format.yaml
 **/code-review.md
 **/CODE-REVIEW.md
+**/CLAUDE.md
+.claude/
 
 #end

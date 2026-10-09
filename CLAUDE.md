@@ -31,7 +31,7 @@ to vendor-specific packages (e.g. `sifive/devices`,
   header; it checks for C++20, optionally includes
   `micro-os-plus/project-config.h` and
   `micro-os-plus/architecture-defines.h`, then, only when
-  `MICRO_OS_PLUS_ARCHITECTURES_RISCV_ENABLED` is defined, pulls in the
+  `MICRO_OS_PLUS_ARCHITECTURE_RISCV_ENABLED` is defined, pulls in the
   RISC-V headers (only `defines.h` when `__ASSEMBLER__` is defined).
 - `include/micro-os-plus/architecture-riscv/` — declarations; each
   `*-functions.h` header includes its matching file in `inlines/` at
@@ -59,11 +59,11 @@ to vendor-specific packages (e.g. `sifive/devices`,
 Every source file is wrapped in preprocessor guards, so nothing is
 compiled unless the consumer enables it:
 
-- `MICRO_OS_PLUS_ARCHITECTURES_RISCV_ENABLED` — all sources and the
+- `MICRO_OS_PLUS_ARCHITECTURE_RISCV_ENABLED` — all sources and the
   header content.
-- `MICRO_OS_PLUS_ARCHITECTURES_RISCV_RESET_ENTRY_ENABLED` —
+- `MICRO_OS_PLUS_ARCHITECTURE_RISCV_RESET_ENTRY_ENABLED` —
   `reset-entry.S`.
-- `MICRO_OS_PLUS_ARCHITECTURES_RISCV_DEBUGGER_ENTRY_POINT_ENABLED` —
+- `MICRO_OS_PLUS_ARCHITECTURE_RISCV_DEBUGGER_ENTRY_POINT_ENABLED` —
   `debugger-entry-point.S`.
 - `MICRO_OS_PLUS_SEMIHOSTING_ENABLED` — `semihosting.cpp`; the file
   also requires `micro-os-plus/semihosting.h` (from the separate
@@ -92,8 +92,7 @@ be circular.
 ## Build metadata and generated files
 
 `xcdl-package.jsonc` is the source of truth for build integration. It
-declares the component `micro-os-plus.architectures.riscv` (alias
-`micro-os-plus.architecture`) with two child components,
+declares the component `micro-os-plus.architecture.riscv` with two child components,
 `debugger-entry-point` and `reset-entry`.
 
 `CMakeLists.txt` and `meson.build` are generated from it; do not edit
@@ -116,7 +115,7 @@ Resulting consumer targets:
   `micro-os-plus::architectures-riscv-debugger-entry-point` and
   `micro-os-plus::architectures-riscv-reset-entry`. All are INTERFACE
   libraries; sources are compiled by the consumer.
-- Meson: `micro_os_plus_architectures_riscv_dependency`,
+- Meson: `micro_os_plus_architecture_riscv_dependency`,
   `micro_os_plus_architecture_dependency`, and the two
   `..._debugger_entry_point_dependency` / `..._reset_entry_dependency`
   objects.

@@ -1,5 +1,7 @@
 {
   "descriptiveName": "Architecture: RISC-V",
+  "permalinkName": "architecture-riscv",
+  "preferredName": "Architecture: RISC-V",
   "githubActionsNodeVersions": [
     "24"
   ],

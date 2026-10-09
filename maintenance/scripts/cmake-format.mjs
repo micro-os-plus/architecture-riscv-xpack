@@ -1,6 +1,6 @@
 /*
  * DO NOT EDIT! Automatically generated from template file:
- * npm-packages-helper/templates/common/scripts/cmake-format-liquid.mjs
+ * npm-packages-helper/templates/common/maintenance/scripts/cmake-format-liquid.mjs
  *
  * This file is part of the µOS++ project (https://micro-os-plus.github.io/).
  * Copyright (c) 2026 Liviu Ionescu. All rights reserved.
@@ -35,12 +35,13 @@ const files = globSync(['**/CMakeLists.txt', '**/*.cmake'], {
     '**/build/**',
     '**/xpacks/**',
     '**/node_modules/**',
+    '**/stm32cubemx/**',
   ],
 })
 
 const args = [
   '--config-file',
-  'config/.cmake-format.py',
+  'maintenance/config/.cmake-format.py',
   '--in-place',
   ...files,
 ]

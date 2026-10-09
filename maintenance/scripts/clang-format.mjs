@@ -1,6 +1,6 @@
 /*
  * DO NOT EDIT! Automatically generated from template file:
- * npm-packages-helper/templates/common/scripts/clang-format-liquid.mjs
+ * npm-packages-helper/templates/common/maintenance/scripts/clang-format-liquid.mjs
  *
  * This file is part of the µOS++ project (https://micro-os-plus.github.io/).
  * Copyright (c) 2026 Liviu Ionescu. All rights reserved.
@@ -18,14 +18,18 @@ import { execFileSync } from 'child_process'
 import { globSync } from 'glob'
 
 const files = [
-  ...globSync('src/**/*.{cpp,c,h}'),
-  ...globSync('include/**/*.h'),
-  ...globSync('tests/sources/**/*.{cpp,c,h}'),
-  ...globSync('tests/includes/**/*.{cpp,c,h}'),
-  ...globSync('tests/platforms/**/*.{cpp,c,h}'),
+  ...globSync('{include,src}/**/*.{cpp,c,h}'),
+  ...globSync('tests/sources/{include,src}/*.{cpp,c,h}'),
+  ...globSync('tests/platforms/*/{include,src}/**/*.{cpp,c,h}'),
+  ...globSync('tests/platforms/*/device/{include,src}/**/*.{cpp,c,h}'),
 ]
 
-const args = ['--style=file:config/.clang-format', '-i', '--verbose', ...files]
+const args = [
+  '--style=file:maintenance/config/.clang-format',
+  '-i',
+  '--verbose',
+  ...files,
+]
 
 console.log()
 console.log(`[clang-format ${args.join(' ')}]`)
