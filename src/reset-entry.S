@@ -17,7 +17,7 @@
 
 // ----------------------------------------------------------------------------
 
-#if defined(MICRO_OS_PLUS_ARCHITECTURES_RISCV_ENABLED) && defined(MICRO_OS_PLUS_ARCHITECTURES_RISCV_RESET_ENTRY_ENABLED)
+#if defined(MICRO_OS_PLUS_ARCHITECTURE_RISCV_ENABLED) && defined(MICRO_OS_PLUS_ARCHITECTURE_RISCV_RESET_ENTRY_ENABLED)
 
 // ----------------------------------------------------------------------------
 
@@ -106,6 +106,6 @@ default_trap_entry:
 
 // ----------------------------------------------------------------------------
 
-#endif // defined(MICRO_OS_PLUS_ARCHITECTURES_RISCV_ENABLED) && defined(MICRO_OS_PLUS_ARCHITECTURES_RISCV_RESET_ENTRY_ENABLED)
+#endif // defined(MICRO_OS_PLUS_ARCHITECTURE_RISCV_ENABLED) && defined(MICRO_OS_PLUS_ARCHITECTURE_RISCV_RESET_ENTRY_ENABLED)
 
 // ----------------------------------------------------------------------------

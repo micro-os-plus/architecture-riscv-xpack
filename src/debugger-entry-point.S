@@ -17,7 +17,7 @@
 
 // ----------------------------------------------------------------------------
 
-#if defined(MICRO_OS_PLUS_ARCHITECTURES_RISCV_ENABLED) && defined(MICRO_OS_PLUS_ARCHITECTURES_RISCV_DEBUGGER_ENTRY_POINT_ENABLED)
+#if defined(MICRO_OS_PLUS_ARCHITECTURE_RISCV_ENABLED) && defined(MICRO_OS_PLUS_ARCHITECTURE_RISCV_DEBUGGER_ENTRY_POINT_ENABLED)
 
 // ----------------------------------------------------------------------------
 
@@ -29,7 +29,7 @@
 
 // For devices that need a bootstrap, like the pico 2, this generic
 // definition does not apply; leave
-// MICRO_OS_PLUS_ARCHITECTURES_RISCV_DEBUGGER_ENTRY_POINT_ENABLED
+// MICRO_OS_PLUS_ARCHITECTURE_RISCV_DEBUGGER_ENTRY_POINT_ENABLED
 // undefined and provide `_debugger_entry_point` in the device package.
 
     .section  .debugger_entry_point, "ax", @progbits
@@ -44,6 +44,6 @@ _debugger_entry_point:
 
 // ----------------------------------------------------------------------------
 
-#endif // defined(MICRO_OS_PLUS_ARCHITECTURES_RISCV_ENABLED) && defined(MICRO_OS_PLUS_ARCHITECTURES_RISCV_DEBUGGER_ENTRY_POINT_ENABLED)
+#endif // defined(MICRO_OS_PLUS_ARCHITECTURE_RISCV_ENABLED) && defined(MICRO_OS_PLUS_ARCHITECTURE_RISCV_DEBUGGER_ENTRY_POINT_ENABLED)
 
 // ----------------------------------------------------------------------------

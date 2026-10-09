@@ -15,7 +15,7 @@
 
 // ----------------------------------------------------------------------------
 
-#if defined(MICRO_OS_PLUS_ARCHITECTURES_RISCV_ENABLED)
+#if defined(MICRO_OS_PLUS_ARCHITECTURE_RISCV_ENABLED)
 
 // The whole implementation depends on this header: it must be included
 // before testing MICRO_OS_PLUS_SEMIHOSTING_ENABLED, which may be defined
@@ -91,6 +91,6 @@ micro_os_plus_semihosting_call_host (
 
 // ----------------------------------------------------------------------------
 
-#endif // defined(MICRO_OS_PLUS_ARCHITECTURES_RISCV_ENABLED)
+#endif // defined(MICRO_OS_PLUS_ARCHITECTURE_RISCV_ENABLED)
 
 // ----------------------------------------------------------------------------
