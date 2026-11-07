@@ -6,9 +6,80 @@ Please check
 [GitHub](https://github.com/micro-os-plus/architecture-riscv-xpack/issues/)
 and close existing issues and pull requests.
 
+## 2026-11-07
+
+* v7.0.0
+* f66d253 re-generate top commons
+
+## 2026-10-09
+
+* dabc063 MICRO_OS_PLUS_ARCHITECTURE_RISCV_ENABLED
+* 0277c1d MICRO_OS_PLUS_ALWAYS_INLINE
+* 7353c22 micro-os-plus.architecture.riscv
+* 633148d re-generate top commons
+* 953d14f move to maintenance
+
+## 2026-10-02
+
+* 92f75c2 .gitignore CODE-REVIEW
+* 5d31ee1 .npmignore CODE-REVIEW
+* 25f934e README update
+* 03b0e39 CLAUDE.md updates
+* 52a54ca package.json prettier
+* c0690f7 xcdl and generated make/meson
+* e7d5e1a check RISCV_PLATFORM_RTC_FREQUENCY_HZ
+* 74985ad use _RISCV_HAS_DEVICE_ADDRESSES
+* 1a5f2cb cosmetics
+* 0eec67d fix __global_pointer$ references
+* b6231ea noexcept, nodiscard, static inlines
+* 1988c78 doxygen updates
+* c448cb2 consistent #else & #endif comments
+
+## 2026-10-01
+
+* cba06e4 fix guards consistency
+* 34bf356 cosmetics
+* 312a3cc cosmetics
+* 0ebdc7d add csr read & write
+* 63a86a6 semihosting.cpp: clobber only a0, a1 and memory
+* a2f85e2 add platform rtc_frequency_hz() declaration
+* 32a51fc semihosting-inlines.h reorder
+* 7c5f990 more doxygen comments
+* 4f3b83b implement show-cpuid
+* 81933a3 add functions to read misa, mvendorid, marchid, mimpid
+* 59423cc add __riscv_xlen fallback
+* c016733 defines.h: update for recent isa versions
+* 8e54a2b add doxygen comments
+* 54dd492 csr functions output only in register
+* 3ce8521 fix mstatus & mie return values
+* 6348112 _debugger_entry_point clarifications
+* 431d314 reset-entry.S: park all other harts
+* 74af757 defines.h: add more CSR_MSTATUS_*
+* 6e87ad1 reset-entry.S fix FPU initialisation
+* 4c5324e re-work device plic support
+* 14e736e core-functions.h standalone
+* b968a50 rename MICRO_OS_PLUS_DEVICE_RISCV_MMIO_*
+* 14ddbe0 add some doxygen comments
+* cb27a0a use RISCV_STATIC_ASSERT
+* 984938e use RISCV_UL for assemby syntax
+* 2f28f75 add memory clobber
+* b08a52a add 64-bit mcycle, mtime, mtimecmp
+* a13175f mtimecmp use volatile
+* 8819f02 semihosting.cpp re-work conditions
+* 461c785 add reset-entry.S
+* 6861f7b add debugger-entry-point.S
+* 4f0c33b use MICRO_OS_PLUS_ARCHITECTURES_RISCV_ENABLED
+* 44eccb0 _ARCHITECTURE_STACK_FILL_MAGIC update
+* c86b73d __ASSEMBLER__
+* d9d2d74 add data/instruction barrier
+* 9800b82 add architecture_fence*
+
 ## 2026-09-10
 
-* v6.0.0
+## 2026-09-10
+
+* a97fa93 6.0.0
+* 32f865b prepare v6.0.0
 * 41f3791 remove linker scripts
 
 ## 2026-09-09
