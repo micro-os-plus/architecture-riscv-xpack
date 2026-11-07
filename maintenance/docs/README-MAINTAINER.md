@@ -111,7 +111,7 @@ xpm run test-all -C ~/Work/micro-os-plus/architecture-riscv-xpack.git
   only `package.json`, `README.md`, `LICENSE`, `CHANGELOG.md`,
   the sources and CMake/meson files;
   possibly adjust `.npmignore`
-- `npm version 8.0.0`
+- `npm version 7.0.0`
 - push the `xpack-development` branch to GitHub
 - the `postversion` npm script should also update tags via `git push origin --tags`
 - wait for the CI job to complete
