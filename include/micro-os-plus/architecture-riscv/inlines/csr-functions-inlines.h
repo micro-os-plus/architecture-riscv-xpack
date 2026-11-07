@@ -398,9 +398,8 @@ namespace riscv
     // ------------------------------------------------------------------------
 
     template <uint32_t csr>
-    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE
-        architecture::register_t
-        read (void) noexcept
+    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE architecture::register_t
+    read (void) noexcept
     {
       static_assert (csr < 4096, "CSR numbers are 12-bit");
 
@@ -436,9 +435,8 @@ namespace riscv
 
     // ------------------------------------------------------------------------
 
-    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE
-        architecture::register_t
-        mstatus (void) noexcept
+    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE architecture::register_t
+    mstatus (void) noexcept
     {
       return riscv_csr_read_mstatus ();
     }
@@ -463,9 +461,8 @@ namespace riscv
 
     // ------------------------------------------------------------------------
 
-    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE
-        architecture::register_t
-        mtvec (void) noexcept
+    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE architecture::register_t
+    mtvec (void) noexcept
     {
       return riscv_csr_read_mtvec ();
     }
@@ -478,18 +475,16 @@ namespace riscv
 
     // ------------------------------------------------------------------------
 
-    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE
-        architecture::register_t
-        mcause (void) noexcept
+    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE architecture::register_t
+    mcause (void) noexcept
     {
       return riscv_csr_read_mcause ();
     }
 
     // ------------------------------------------------------------------------
 
-    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE
-        architecture::register_t
-        mie (void) noexcept
+    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE architecture::register_t
+    mie (void) noexcept
     {
       return riscv_csr_read_mie ();
     }
@@ -534,37 +529,32 @@ namespace riscv
 
     // ------------------------------------------------------------------------
 
-    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE
-        architecture::register_t
-        mhartid (void) noexcept
+    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE architecture::register_t
+    mhartid (void) noexcept
     {
       return riscv_csr_read_mhartid ();
     }
 
-    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE
-        architecture::register_t
-        misa (void) noexcept
+    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE architecture::register_t
+    misa (void) noexcept
     {
       return riscv_csr_read_misa ();
     }
 
-    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE
-        architecture::register_t
-        mvendorid (void) noexcept
+    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE architecture::register_t
+    mvendorid (void) noexcept
     {
       return riscv_csr_read_mvendorid ();
     }
 
-    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE
-        architecture::register_t
-        marchid (void) noexcept
+    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE architecture::register_t
+    marchid (void) noexcept
     {
       return riscv_csr_read_marchid ();
     }
 
-    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE
-        architecture::register_t
-        mimpid (void) noexcept
+    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE architecture::register_t
+    mimpid (void) noexcept
     {
       return riscv_csr_read_mimpid ();
     }

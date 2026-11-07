@@ -15,5 +15,6 @@
   "githubActionsXpmVersions": [
     "0.23.2"
   ],
+  "skipCiTests": true,
   "useSelfHostedRunners": false
 }

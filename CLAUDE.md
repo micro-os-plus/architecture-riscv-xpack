@@ -110,13 +110,11 @@ the parent), topologically sorts them, and renders
 
 Resulting consumer targets:
 
-- CMake: `micro-os-plus::architectures-riscv` (also aliased as
-  `micro-os-plus::architecture`), which links
+- CMake: `micro-os-plus::architectures-riscv`, which links
   `micro-os-plus::architectures-riscv-debugger-entry-point` and
   `micro-os-plus::architectures-riscv-reset-entry`. All are INTERFACE
   libraries; sources are compiled by the consumer.
-- Meson: `micro_os_plus_architecture_riscv_dependency`,
-  `micro_os_plus_architecture_dependency`, and the two
+- Meson: `micro_os_plus_architecture_riscv_dependency` and the two
   `..._debugger_entry_point_dependency` / `..._reset_entry_dependency`
   objects.
 

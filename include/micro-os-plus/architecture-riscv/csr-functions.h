@@ -462,9 +462,8 @@ namespace riscv
      * Example: `riscv::csr::read<0x300> ()` reads `mstatus`.
      */
     template <uint32_t csr>
-    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE
-        architecture::register_t
-        read (void) noexcept;
+    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE architecture::register_t
+    read (void) noexcept;
 
     /**
      * @brief Write any CSR.
@@ -495,9 +494,8 @@ namespace riscv
      * @details
      * The C++ equivalent of `riscv_csr_read_mstatus()`.
      */
-    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE
-        architecture::register_t
-        mstatus (void) noexcept;
+    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE architecture::register_t
+    mstatus (void) noexcept;
 
     /**
      * @brief Write the `mstatus` CSR.
@@ -554,9 +552,8 @@ namespace riscv
      * @details
      * The C++ equivalent of `riscv_csr_read_mtvec()`.
      */
-    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE
-        architecture::register_t
-        mtvec (void) noexcept;
+    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE architecture::register_t
+    mtvec (void) noexcept;
 
     /**
      * @brief Write the `mtvec` CSR.
@@ -583,9 +580,8 @@ namespace riscv
      * @details
      * The C++ equivalent of `riscv_csr_read_mcause()`.
      */
-    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE
-        architecture::register_t
-        mcause (void) noexcept;
+    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE architecture::register_t
+    mcause (void) noexcept;
 
     // ------------------------------------------------------------------------
     // `mie`
@@ -599,9 +595,8 @@ namespace riscv
      * @details
      * The C++ equivalent of `riscv_csr_read_mie()`.
      */
-    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE
-        architecture::register_t
-        mie (void) noexcept;
+    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE architecture::register_t
+    mie (void) noexcept;
 
     /**
      * @brief Write the `mie` CSR.
@@ -700,9 +695,8 @@ namespace riscv
      * @details
      * The C++ equivalent of `riscv_csr_read_mhartid()`.
      */
-    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE
-        architecture::register_t
-        mhartid (void) noexcept;
+    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE architecture::register_t
+    mhartid (void) noexcept;
 
     // ------------------------------------------------------------------------
     // `misa`
@@ -716,9 +710,8 @@ namespace riscv
      * @details
      * The C++ equivalent of `riscv_csr_read_misa()`.
      */
-    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE
-        architecture::register_t
-        misa (void) noexcept;
+    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE architecture::register_t
+    misa (void) noexcept;
 
     // ------------------------------------------------------------------------
     // `mvendorid`
@@ -732,9 +725,8 @@ namespace riscv
      * @details
      * The C++ equivalent of `riscv_csr_read_mvendorid()`.
      */
-    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE
-        architecture::register_t
-        mvendorid (void) noexcept;
+    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE architecture::register_t
+    mvendorid (void) noexcept;
 
     // ------------------------------------------------------------------------
     // `marchid`
@@ -748,9 +740,8 @@ namespace riscv
      * @details
      * The C++ equivalent of `riscv_csr_read_marchid()`.
      */
-    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE
-        architecture::register_t
-        marchid (void) noexcept;
+    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE architecture::register_t
+    marchid (void) noexcept;
 
     // ------------------------------------------------------------------------
     // `mimpid`
@@ -764,9 +755,8 @@ namespace riscv
      * @details
      * The C++ equivalent of `riscv_csr_read_mimpid()`.
      */
-    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE
-        architecture::register_t
-        mimpid (void) noexcept;
+    [[nodiscard]] MICRO_OS_PLUS_ALWAYS_INLINE architecture::register_t
+    mimpid (void) noexcept;
 
     // ------------------------------------------------------------------------
   } // namespace csr

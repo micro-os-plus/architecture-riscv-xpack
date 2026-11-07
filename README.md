@@ -255,7 +255,7 @@ To integrate the architecture-riscv source library into a CMake application,
 add this folder to the build:
 
 ```cmake
-add_subdirectory("xpacks/@micro-os-plus/architecture-riscv")`
+add_subdirectory("xpacks/@micro-os-plus/architecture-riscv")
 ```
 
 The result is an interface library that can be added as an application
@@ -267,6 +267,10 @@ target_link_libraries(your-target PRIVATE
   micro-os-plus::architecture-riscv
 )
 ```
+
+Architecture agnostic applications that refer to the generic
+`micro-os-plus::architecture` library must define it in their platform
+specific part, as an alias to `micro-os-plus::architecture-riscv`.
 
 #### meson
 
@@ -291,6 +295,12 @@ exe = executable(
   ]
 )
 ```
+
+Architecture agnostic applications that refer to the generic
+`micro_os_plus_architecture_dependency` object (with the corresponding
+`_compile_c_args` and `_compile_cpp_args` variables) must define them in
+their platform specific part, as copies of
+`micro_os_plus_architecture_riscv_dependency` and its variables.
 
 ### Examples
 

@@ -70,7 +70,7 @@ micro_os_plus_architecture_riscv_debugger_entry_point_dependency_compile_cpp_arg
 foreach name : _local_include_directories
   message('+ -I ' + name)
 endforeach
-foreach name : _local_sources + _local_compile_definitions + _local_compile_args + _local_compile_c_args + _local_compile_cpp_args
+foreach name : _local_sources + _local_compile_definitions + _local_compile_args + _local_compile_c_args + _local_compile_cpp_args + _local_link_args
   message('+ ' + name)
 endforeach
 message('> micro_os_plus_architecture_riscv_debugger_entry_point_dependency')
@@ -109,7 +109,7 @@ micro_os_plus_architecture_riscv_reset_entry_dependency_compile_cpp_args = _loca
 foreach name : _local_include_directories
   message('+ -I ' + name)
 endforeach
-foreach name : _local_sources + _local_compile_definitions + _local_compile_args + _local_compile_c_args + _local_compile_cpp_args
+foreach name : _local_sources + _local_compile_definitions + _local_compile_args + _local_compile_c_args + _local_compile_cpp_args + _local_link_args
   message('+ ' + name)
 endforeach
 message('> micro_os_plus_architecture_riscv_reset_entry_dependency')
@@ -135,10 +135,19 @@ _local_sources += [
   'src/show-cpuid.cpp',
 ]
 
+# The dependencies are single objects; enclose them in brackets,
+# to append them as elements of the list.
 _local_dependencies += [
   micro_os_plus_architecture_riscv_debugger_entry_point_dependency,
   micro_os_plus_architecture_riscv_reset_entry_dependency,
 ]
+
+# The dependencies' C/C++ args are lists; add them without brackets,
+# to concatenate their elements rather than nest the lists.
+_local_compile_c_args += micro_os_plus_architecture_riscv_debugger_entry_point_dependency_compile_c_args
+_local_compile_cpp_args += micro_os_plus_architecture_riscv_debugger_entry_point_dependency_compile_cpp_args
+_local_compile_c_args += micro_os_plus_architecture_riscv_reset_entry_dependency_compile_c_args
+_local_compile_cpp_args += micro_os_plus_architecture_riscv_reset_entry_dependency_compile_cpp_args
 
 # https://mesonbuild.com/Reference-manual_functions.html#declare_dependency
 micro_os_plus_architecture_riscv_dependency = declare_dependency(
@@ -158,7 +167,7 @@ micro_os_plus_architecture_riscv_dependency_compile_cpp_args = _local_compile_cp
 foreach name : _local_include_directories
   message('+ -I ' + name)
 endforeach
-foreach name : _local_sources + _local_compile_definitions + _local_compile_args + _local_compile_c_args + _local_compile_cpp_args
+foreach name : _local_sources + _local_compile_definitions + _local_compile_args + _local_compile_c_args + _local_compile_cpp_args + _local_link_args
   message('+ ' + name)
 endforeach
 message('> micro_os_plus_architecture_riscv_dependency')
