@@ -91,7 +91,10 @@ reset_entry:
 #endif // defined(__riscv_flen)
 
     // Proceed with the standard C _start() routine.
-    j         _start
+    // Use `tail`, not `j`, since `j` (JAL) reaches only +/-1 MiB, and
+    // large images (for example debug builds) may place _start further
+    // away from the reset entry section.
+    tail      _start
 
     .align    2
 park_hart:
