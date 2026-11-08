@@ -1,6 +1,6 @@
 {
   "name": "@micro-os-plus/architecture-riscv",
-  "version": "7.0.0",
+  "version": "7.0.1-pre",
   "description": "A source code library with the µOS++ RISC-V architecture port for 32/64-bit devices",
   "keywords": [
     "xpack",

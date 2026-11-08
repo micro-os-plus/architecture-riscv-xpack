@@ -6,9 +6,19 @@ Please check
 [GitHub](https://github.com/micro-os-plus/architecture-riscv-xpack/issues/)
 and close existing issues and pull requests.
 
+## 2026-11-08
+
+* v7.0.1
+* 5457138 #8: Use tail to reach _start from reset entry
+* e391ffe .clang-format cleanup
+* 69553b2 README update
+
 ## 2026-11-07
 
-* v7.0.0
+* f317573 7.0.0
+* 89a6a28 README update
+* 9822a68 prepare v7.0.0
+* 2c9b296 prepare v7.0.0
 * f66d253 re-generate top commons
 
 ## 2026-10-09
